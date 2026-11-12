@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<!-- Prototype 3D de référence — jeu Course au large (Mémoire du large).
+     Modèle procédural Three.js r149, sans logo ni marquage sponsor. Point de départ, pas modèle définitif.
+     Voir le cahier des charges §10b.3 bis et §10b.4 bis. -->
+
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prototype 3D – Ultim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;height:100%;background:#07131F;color:#E6EEF5;font-family:Inter,system-ui,sans-serif;overflow:hidden}
+  #scene{position:fixed;inset:0}
+  #scene canvas{display:block;touch-action:none;cursor:grab}
+  #labels{position:fixed;inset:0;pointer-events:none}
+  .tag{position:absolute;left:0;top:0;padding:3px 9px;border-radius:7px;background:rgba(6,24,40,.82);font-size:12px;font-weight:600;white-space:nowrap}
+  .tag.me{background:#3DD6F5;color:#04121F}
+  .panel{position:fixed;background:rgba(6,24,40,.9);border:1px solid #1F3D5A;border-radius:14px;padding:12px 14px;box-sizing:border-box}
+  #top{top:12px;left:12px;right:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+  h1{margin:0;font-family:'Space Grotesk',sans-serif;font-size:17px;letter-spacing:.02em}
+  .sub{font-size:12px;color:#B9CADB}
+  .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  button{font-family:inherit;min-height:40px;padding:0 12px;border-radius:10px;border:1px solid #1F3D5A;background:#0E2133;color:#E6EEF5;font-size:13px;font-weight:600;cursor:pointer}
+  button[aria-pressed="true"]{background:#3DD6F5;border-color:#3DD6F5;color:#04121F}
+  #ctrl{left:12px;bottom:12px;width:min(420px,calc(100% - 24px));display:flex;flex-direction:column;gap:10px}
+  .lbl{font-size:11px;font-weight:600;letter-spacing:.08em;color:#8FA6BC}
+  #note{font-size:13px;color:#B9CADB;line-height:1.45}
+  #deco{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:12px;color:#B9CADB}
+  #deco label{display:flex;align-items:center;gap:6px}
+  input[type=color]{width:34px;height:28px;border:1px solid #1F3D5A;border-radius:6px;background:none;padding:0}
+  input[type=text]{width:78px;height:28px;border:1px solid #1F3D5A;border-radius:6px;background:#0E2133;color:#E6EEF5;padding:0 6px;font-family:inherit}
+  #warn{right:12px;bottom:12px;max-width:300px;font-size:12px;color:#B9CADB;line-height:1.45}
+  @media (max-width:760px){#warn{display:none}}
+</style>
+</head>
+<body>
+<div id="scene"></div>
+<div id="labels"></div>
+
+<div id="top" class="panel">
+  <div>
+    <h1>COURSE AU LARGE · prototype 3D Ultim</h1>
+    <div class="sub">Trimaran Ultim 32/23 · architecture de référence : SVR-Lazartigue · <span id="speed"></span></div>
+  </div>
+  <div class="row" role="group" aria-label="Caméra">
+    <button id="btnGen" aria-pressed="false">Vue générale (choix)</button>
+    <button id="btnClose" aria-pressed="true">Vue rapprochée (résolution)</button>
+  </div>
+</div>
+
+<div id="ctrl" class="panel">
+  <div class="lbl">ALLURE</div>
+  <div class="row" role="group" aria-label="Allure">
+    <button data-allure="pres">Près</button>
+    <button data-allure="travers">Travers</button>
+    <button data-allure="largue">Largue</button>
+    <button data-allure="arriere">Grand largue</button>
+    <button id="gybe">Changer d'amure</button>
+  </div>
+  <div id="note"></div>
+  <div class="lbl">DÉCORATION DE VOTRE BATEAU</div>
+  <div id="deco">
+    <label>Coque <input id="cHull" type="color" value="#1d3c78"></label>
+    <label>Bandes <input id="cStripe" type="color" value="#ffffff"></label>
+    <label>Gennaker <input id="cSpi" type="color" value="#e8eef4"></label>
+    <label>N° de voile <input id="num" type="text" value="FRA 00" maxlength="8"></label>
+  </div>
+</div>
+
+<div id="warn" class="panel">
+  <div class="lbl" style="margin-bottom:6px">ARCHITECTURE REPRISE (SOURCES PRESSE ET ARCHITECTE)</div>
+  <ul style="margin:0;padding-left:16px">
+    <li>32 m × 23 m, coques et flotteurs très fins</li>
+    <li>Cockpit intégré à la coque centrale, pont lisse, deux bulles de veille près du mât</li>
+    <li>Bras droits et carénés (aérodynamique)</li>
+    <li>Bôme au ras du pont</li>
+    <li>Six plans porteurs : dérive, 3 safrans, 2 foils</li>
+  </ul>
+  <div style="margin-top:6px">Sans logo ni marquage du sponsor. Formes approchées : foils, hauteur de mât et position des bras à valider sur plans ou photos détaillées.</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script>
+// Prototype 3D — Ultim 32/23 inspiré de l'architecture de SVR-Lazartigue (modèle procédural, sans marquage sponsor)
+(function () {
+  'use strict';
+  const T = THREE;
+  if (T.ColorManagement) T.ColorManagement.legacyMode = false;
+
+  // ---------- Dimensions (ordre de grandeur de la jauge Ultim 32/23) ----------
+  const LC = 32;        // longueur coque centrale
+  const BEAM = 23;      // largeur hors tout
+  const LF = 28.5;      // longueur flotteurs
+  const FHB = 0.95;     // demi-largeur flotteur
+  const FX = BEAM / 2 - FHB; // axe des flotteurs
+  const MAST_H = 35;    // hauteur de mât au-dessus du pont (approximation)
+  const MAST_Z = -3.2;  // pied de mât (proue vers -z)
+  const BEAM_F = -2.4, BEAM_A = 7.2; // bras avant / arrière (droits, carénés)
+
+  const ALLURES = {
+    pres:    { label: 'Près',         heel: 5,  lift: 0.5, boom: 4,  head: 'j2',   speed: 16, note: 'J2 sur l\'étrave de la coque centrale. Le flotteur au vent quitte l\'eau ; le bateau commence à voler sur le foil sous le vent.' },
+    travers: { label: 'Travers',      heel: 6,  lift: 1.2, boom: 12, head: 'j1',   speed: 24, note: 'J1 sur le bout-dehors. Vol stabilisé : foil sous le vent, dérive et safrans à plans porteurs en T.' },
+    largue:  { label: 'Largue',       heel: 5,  lift: 1.4, boom: 22, head: 'genn', speed: 27, note: 'Gennaker. Allure de très haute vitesse en vol, coque centrale au-dessus de l\'eau.' },
+    arriere: { label: 'Grand largue', heel: 4,  lift: 1.1, boom: 32, head: 'genn2', speed: 22, note: 'Grand gennaker. Comme les monocoques à foils, un Ultim tire des bords au portant plutôt que de tenir le plein vent arrière.' }
+  };
+
+  // ---------- Rendu ----------
+  const wrap = document.getElementById('scene');
+  const renderer = new T.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.outputEncoding = T.sRGBEncoding;
+  renderer.toneMapping = T.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 0.95;
+  wrap.appendChild(renderer.domElement);
+
+  const scene = new T.Scene();
+  (function sky() {
+    const c = document.createElement('canvas'); c.width = 2; c.height = 256;
+    const g = c.getContext('2d'); const gr = g.createLinearGradient(0, 0, 0, 256);
+    gr.addColorStop(0, '#5f97c9'); gr.addColorStop(0.55, '#a9cbe6'); gr.addColorStop(1, '#dbe9f3');
+    g.fillStyle = gr; g.fillRect(0, 0, 2, 256);
+    const tx = new T.CanvasTexture(c); tx.encoding = T.sRGBEncoding; scene.background = tx;
+  })();
+  scene.fog = new T.Fog(0xc4dbec, 260, 1300);
+
+  const camera = new T.PerspectiveCamera(45, 1, 0.5, 4000);
+  scene.add(new T.HemisphereLight(0xdcecff, 0x1d4b6e, 0.75));
+  const sun = new T.DirectionalLight(0xfff3e0, 1.25); sun.position.set(-80, 120, 60); scene.add(sun, sun.target);
+
+  // ---------- Mer ----------
+  const SEA = 1500, SEG = 160;
+  const seaGeo = new T.PlaneGeometry(SEA, SEA, SEG, SEG); seaGeo.rotateX(-Math.PI / 2);
+  const seaMat = new T.MeshPhongMaterial({ color: 0x0b4a72, specular: 0x4a7894, shininess: 45, transparent: true, opacity: 0.86 });
+  const sea = new T.Mesh(seaGeo, seaMat); scene.add(sea);
+  const seaBase = seaGeo.attributes.position.array.slice();
+  const WAVES = [
+    { a: 0.7, k: 0.03, dx: 0.8, dz: 0.6, w: 0.8 },
+    { a: 0.4, k: 0.07, dx: -0.3, dz: 1.0, w: 1.2 },
+    { a: 0.2, k: 0.16, dx: 1.0, dz: -0.2, w: 2.0 },
+    { a: 0.08, k: 0.4, dx: 0.4, dz: 0.9, w: 3.1 }
+  ];
+  function waveH(x, z, t) { let h = 0; for (const w of WAVES) h += w.a * Math.sin((x * w.dx + z * w.dz) * w.k + t * w.w); return h; }
+
+  // ---------- Outils de modélisation ----------
+  function loft(o) {
+    // o: {L, half(t), top(t), dep(t), n, colors:{hull,stripe,bottom}, deckColor}
+    const S = 56, K = 28, n = o.n;
+    const pos = [], col = [], idx = [];
+    const cH = new T.Color(o.colors.hull), cS = new T.Color(o.colors.stripe), cB = new T.Color(o.colors.bottom);
+    for (let i = 0; i <= S; i++) {
+      const t = i / S; const hb = o.half(t), top = o.top(t), dep = o.dep(t);
+      const z = o.L / 2 - t * o.L;
+      for (let k = 0; k <= K; k++) {
+        const th = Math.PI * k / K; const c = Math.cos(th), s = Math.sin(th);
+        const x = hb * Math.sign(c) * Math.pow(Math.abs(c), 2 / n);
+        const y = top - (top + dep) * Math.pow(Math.abs(s), 2 / n);
+        pos.push(x, y, z);
+        const cc = y > top - 0.25 ? cS : (y < -dep + (top + dep) * 0.28 ? cB : cH);
+        col.push(cc.r, cc.g, cc.b);
+      }
+    }
+    for (let i = 0; i < S; i++) for (let k = 0; k < K; k++) { const a = i * (K + 1) + k, b = a + K + 1; idx.push(a, b, a + 1, b, b + 1, a + 1); }
+    const g = new T.BufferGeometry();
+    g.setAttribute('position', new T.Float32BufferAttribute(pos, 3));
+    g.setAttribute('color', new T.Float32BufferAttribute(col, 3));
+    g.setIndex(idx); g.computeVertexNormals();
+    const grp = new T.Group();
+    grp.add(new T.Mesh(g, new T.MeshStandardMaterial({ vertexColors: true, roughness: 0.35, metalness: 0.05, side: T.DoubleSide })));
+    // pont
+    const dp = [], di = [], J = 10;
+    for (let i = 0; i <= S; i++) {
+      const t = i / S; const hb = o.half(t), top = o.top(t), z = o.L / 2 - t * o.L;
+      for (let j = 0; j <= J; j++) { const u = -1 + 2 * j / J; dp.push(u * hb, top + o.camber * (1 - u * u) - 0.005, z); }
+    }
+    for (let i = 0; i < S; i++) for (let j = 0; j < J; j++) { const a = i * (J + 1) + j, b = a + J + 1; di.push(a, a + 1, b, b, a + 1, b + 1); }
+    const dg = new T.BufferGeometry(); dg.setAttribute('position', new T.Float32BufferAttribute(dp, 3)); dg.setIndex(di); dg.computeVertexNormals();
+    grp.add(new T.Mesh(dg, new T.MeshStandardMaterial({ color: o.deckColor, roughness: 0.75, side: T.DoubleSide })));
+    // tableau
+    const tr = [0, o.top(0) * 0.3, o.L / 2], ti = [];
+    for (let k = 0; k <= K; k++) tr.push(pos[k * 3], pos[k * 3 + 1], pos[k * 3 + 2]);
+    for (let k = 1; k <= K; k++) ti.push(0, k, k + 1);
+    const tg = new T.BufferGeometry(); tg.setAttribute('position', new T.Float32BufferAttribute(tr, 3)); tg.setIndex(ti); tg.computeVertexNormals();
+    grp.add(new T.Mesh(tg, new T.MeshStandardMaterial({ color: o.colors.hull, roughness: 0.4, side: T.DoubleSide })));
+    return grp;
+  }
+
+  // Coque centrale : très fine, étrave effilée
+  const central = {
+    L: LC, n: 2.3, camber: 0.18,
+    half: (t) => t < 0.5 ? 1.6 * (0.78 + 0.22 * Math.sin((t / 0.5) * Math.PI / 2)) : 1.6 * Math.max(0.004, Math.pow(Math.cos(((t - 0.5) / 0.5) * Math.PI / 2), 0.8)),
+    top: (t) => 2.4 + 0.6 * t * t,
+    dep: (t) => 1.0 * Math.sin(Math.PI * Math.min(1, t * 1.05 + 0.12)) + 0.05
+  };
+  // Flotteurs : fins, étrave longue
+  const float = {
+    L: LF, n: 2.4, camber: 0.1,
+    half: (t) => t < 0.45 ? FHB * (0.7 + 0.3 * Math.sin((t / 0.45) * Math.PI / 2)) : FHB * Math.max(0.004, Math.pow(Math.cos(((t - 0.45) / 0.55) * Math.PI / 2), 0.85)),
+    top: (t) => 1.95 + 0.5 * t * t,
+    dep: (t) => 0.85 * Math.sin(Math.PI * Math.min(1, t * 1.0 + 0.15)) + 0.05
+  };
+
+  function sailGeometry(tack, head, clew, camber, leeSign, segU, segV) {
+    segU = segU || 14; segV = segV || 18;
+    const pos = [], uv = [], idx = [];
+    for (let v = 0; v <= segV; v++) {
+      const fv = v / segV;
+      const lu = new T.Vector3().lerpVectors(tack, head.luff || head, fv);
+      const le = new T.Vector3().lerpVectors(clew, head.leech || head, fv);
+      const chord = new T.Vector3().subVectors(le, lu);
+      const nrm = new T.Vector3(chord.z, 0, -chord.x).normalize().multiplyScalar(leeSign);
+      for (let u = 0; u <= segU; u++) {
+        const fu = u / segU;
+        const p = new T.Vector3().lerpVectors(lu, le, fu);
+        p.addScaledVector(nrm, camber * chord.length() * Math.sin(Math.PI * Math.pow(fu, 0.8)) * (1 - 0.35 * fv));
+        pos.push(p.x, p.y, p.z); uv.push(fu, fv);
+      }
+    }
+    for (let v = 0; v < segV; v++) for (let u = 0; u < segU; u++) { const a = v * (segU + 1) + u, b = a + segU + 1; idx.push(a, b, a + 1, b, b + 1, a + 1); }
+    const g = new T.BufferGeometry();
+    g.setAttribute('position', new T.Float32BufferAttribute(pos, 3));
+    g.setAttribute('uv', new T.Float32BufferAttribute(uv, 2));
+    g.setIndex(idx); g.computeVertexNormals(); return g;
+  }
+
+  function mainTexture(number, stripe) {
+    const c = document.createElement('canvas'); c.width = 512; c.height = 1024;
+    const g = c.getContext('2d');
+    g.fillStyle = '#2a2f36'; g.fillRect(0, 0, 512, 1024);           // voile membrane sombre
+    g.strokeStyle = 'rgba(255,255,255,0.07)'; g.lineWidth = 3;
+    for (let i = 1; i < 14; i++) { g.beginPath(); g.moveTo(0, i * 74); g.lineTo(512, i * 74 - 40); g.stroke(); }
+    g.fillStyle = stripe; g.fillRect(0, 0, 512, 60);
+    g.fillStyle = '#ffffff'; g.font = 'bold 110px Arial, sans-serif'; g.textAlign = 'center';
+    g.fillText(number, 256, 520);
+    const tx = new T.CanvasTexture(c); tx.encoding = T.sRGBEncoding; tx.anisotropy = 4; return tx;
+  }
+
+  function wingBeam(z, chord, thick, y) {
+    const geo = new T.CylinderGeometry(1, 1, 2 * FX, 20, 1); geo.rotateZ(Math.PI / 2); geo.scale(1, thick / 2, chord / 2);
+    const m = new T.Mesh(geo, null); m.position.set(0, y, z); return m;
+  }
+
+  function flatFoil(points, w, th, mat) {
+    const shape = new T.Shape(); shape.absellipse(0, 0, th, w, 0, Math.PI * 2, false, 0);
+    const g = new T.ExtrudeGeometry(shape, { steps: 40, bevelEnabled: false, extrudePath: new T.CatmullRomCurve3(points) });
+    return new T.Mesh(g, mat);
+  }
+
+  function rudderT(x, z, yTop, depth, mat) {
+    const g = new T.Group();
+    const blade = new T.Mesh(new T.BoxGeometry(0.1, depth, 0.75), mat); blade.position.set(x, yTop - depth / 2, z); g.add(blade);
+    const elev = new T.Mesh(new T.BoxGeometry(1.8, 0.07, 0.55), mat); elev.position.set(x, yTop - depth + 0.05, z - 0.05); g.add(elev);
+    return g;
+  }
+
+  function buildUltim(o) {
+    const boat = new T.Group(), body = new T.Group(); boat.add(body);
+    const carbon = new T.MeshStandardMaterial({ color: 0x14171b, roughness: 0.45, metalness: 0.2 });
+    const beamMat = new T.MeshStandardMaterial({ color: o.hull, roughness: 0.4 });
+    const colors = { hull: o.hull, stripe: o.stripe, bottom: o.bottom };
+
+    const c = loft(Object.assign({ colors: colors, deckColor: 0x2b3036 }, central)); body.add(c);
+    const fl = {};
+    for (const side of [-1, 1]) {
+      const f = loft(Object.assign({ colors: colors, deckColor: 0x2b3036 }, float));
+      f.position.set(side * FX, 0.15, 1.2); body.add(f); fl[side] = f;
+    }
+    // bras droits carénés
+    const bf = wingBeam(BEAM_F, 1.7, 0.55, 2.45); bf.material = beamMat; body.add(bf);
+    const ba = wingBeam(BEAM_A, 1.4, 0.5, 2.35); ba.material = beamMat; body.add(ba);
+    // trampolines
+    const trampMat = new T.MeshStandardMaterial({ color: 0x3a4048, roughness: 0.95, side: T.DoubleSide });
+    for (const side of [-1, 1]) {
+      const g = new T.PlaneGeometry(FX - 2.3, BEAM_A - BEAM_F - 1.4); g.rotateX(-Math.PI / 2);
+      const m = new T.Mesh(g, trampMat); m.position.set(side * (1.4 + (FX - 2.3) / 2 + 0.2), 2.3, (BEAM_F + BEAM_A) / 2); body.add(m);
+      // trampoline avant triangulaire
+      const tri = new T.BufferGeometry().setFromPoints([
+        new T.Vector3(side * 1.3, 2.55, BEAM_F - 0.8), new T.Vector3(side * (FX - 0.9), 2.35, BEAM_F - 0.8), new T.Vector3(side * 1.1, 2.7, BEAM_F - 8.5)
+      ]); tri.computeVertexNormals();
+      body.add(new T.Mesh(tri, trampMat));
+    }
+    // deux bulles de veille près du mât (cockpit intégré à la coque centrale)
+    const glass = new T.MeshStandardMaterial({ color: 0x0b1724, roughness: 0.08, metalness: 0.6, transparent: true, opacity: 0.85 });
+    const deckY = central.top(0.6) + 0.15;
+    for (const side of [-1, 1]) {
+      const g = new T.SphereGeometry(0.55, 20, 12, 0, Math.PI * 2, 0, Math.PI / 2); g.scale(1, 0.75, 1.5);
+      const m = new T.Mesh(g, glass); m.position.set(side * 0.75, deckY - 0.05, MAST_Z + 2.2); body.add(m);
+    }
+    // mât aile rotatif
+    const mastGeo = new T.CylinderGeometry(0.16, 0.26, MAST_H, 14); mastGeo.scale(1, 1, 3.2);
+    const mastPivot = new T.Group(); mastPivot.position.set(0, deckY, MAST_Z); body.add(mastPivot);
+    const mast = new T.Mesh(mastGeo, carbon); mast.position.y = MAST_H / 2; mastPivot.add(mast);
+    boat.userData.mastPivot = mastPivot;
+    // bout-dehors
+    const bowY = central.top(1);
+    const sprit = new T.Mesh(new T.CylinderGeometry(0.1, 0.13, 4.2, 8), carbon);
+    sprit.rotation.x = Math.PI / 2; sprit.position.set(0, bowY - 0.15, -LC / 2 - 1.8); body.add(sprit);
+    // gréement : haubans vers les bras avant, bastaques, étai
+    const top = new T.Vector3(0, deckY + MAST_H - 0.5, MAST_Z);
+    const rig = [];
+    for (const s of [-1, 1]) {
+      rig.push(top, new T.Vector3(s * (FX - 0.6), 2.7, BEAM_F + 0.3));
+      rig.push(new T.Vector3(0, deckY + MAST_H * 0.6, MAST_Z), new T.Vector3(s * (FX - 0.6), 2.7, BEAM_F + 0.3));
+      rig.push(top, new T.Vector3(s * (FX - 0.4), 2.5, BEAM_A + 0.2));
+    }
+    rig.push(new T.Vector3(0, deckY + MAST_H * 0.9, MAST_Z), new T.Vector3(0, bowY, -LC / 2 + 0.3));
+    rig.push(new T.Vector3(0, deckY + MAST_H * 0.97, MAST_Z), new T.Vector3(0, bowY - 0.1, -LC / 2 - 3.8));
+    body.add(new T.LineSegments(new T.BufferGeometry().setFromPoints(rig), new T.LineBasicMaterial({ color: 0x1a1d22 })));
+
+    // appendices : dérive centrale, 3 safrans en T, 2 foils (un par flotteur)
+    const dag = new T.Mesh(new T.BoxGeometry(0.16, 4.6, 1.2), carbon); dag.position.set(0, -2.6, MAST_Z + 1.5); body.add(dag);
+    body.add(rudderT(0, LC / 2 - 0.9, -0.6, 3.2, carbon));
+    for (const s of [-1, 1]) body.add(rudderT(s * FX, 1.2 + LF / 2 - 0.9, -0.3, 2.8, carbon));
+    function foil(side) {
+      // puits dans le flotteur, fût presque vertical, partie portante orientée vers la coque centrale
+      const x0 = side * FX, z0 = BEAM_F + 0.6;
+      const pts = [
+        new T.Vector3(x0, 0.6, z0), new T.Vector3(x0, -1.6, z0),
+        new T.Vector3(x0 - side * 0.7, -3.0, z0 + 0.1), new T.Vector3(x0 - side * 2.6, -3.4, z0 + 0.2), new T.Vector3(x0 - side * 3.6, -3.25, z0 + 0.2)
+      ];
+      const p = new T.Group(); p.add(flatFoil(pts, 0.5, 0.08, carbon)); body.add(p); return p;
+    }
+    boat.userData.foils = { '-1': foil(-1), '1': foil(1) };
+
+    // grand-voile
+    const boomPivot = new T.Group(); boomPivot.position.set(0, deckY, MAST_Z); body.add(boomPivot);
+    const BOOM = 12.5, BOOM_Y = 0.75; // bôme au ras du pont (effet de plaque)
+    const boom = new T.Mesh(new T.CylinderGeometry(0.14, 0.14, BOOM, 8), carbon);
+    boom.rotation.x = Math.PI / 2; boom.position.set(0, BOOM_Y, BOOM / 2); boomPivot.add(boom);
+    const mtx = mainTexture(o.number, o.stripe), mtxB = mtx.clone(); mtxB.repeat.x = -1; mtxB.offset.x = 1; mtxB.needsUpdate = true;
+    Object.assign(boat.userData, {
+      body: body, deckY: deckY, bowY: bowY, boomPivot: boomPivot, BOOM: BOOM, BOOM_Y: BOOM_Y,
+      mainMat: new T.MeshStandardMaterial({ map: mtx, roughness: 0.8, side: T.FrontSide }),
+      mainMatB: new T.MeshStandardMaterial({ map: mtxB, roughness: 0.8, side: T.BackSide }),
+      headMat: new T.MeshStandardMaterial({ color: 0x30353c, roughness: 0.8, side: T.DoubleSide }),
+      gennMat: new T.MeshStandardMaterial({ color: o.genn, roughness: 0.7, side: T.DoubleSide }),
+      phase: Math.random() * 10
+    });
+    return boat;
+  }
+
+  function rigFor(boat, key, windSide) {
+    const A = ALLURES[key], ud = boat.userData, lee = -windSide;
+    if (ud.mainMesh) { ud.boomPivot.remove(ud.mainMesh, ud.mainMeshB); ud.mainMesh.geometry.dispose(); }
+    if (ud.headMesh) { ud.body.remove(ud.headMesh); ud.headMesh.geometry.dispose(); }
+    const mg = sailGeometry(
+      new T.Vector3(0, ud.BOOM_Y + 0.1, 0.3),
+      { luff: new T.Vector3(0, MAST_H - 0.6, 0.3), leech: new T.Vector3(0, MAST_H - 1.2, 4.2) },
+      new T.Vector3(0, ud.BOOM_Y + 0.1, ud.BOOM - 0.3), key === 'pres' ? 0.06 : 0.09, lee
+    );
+    ud.mainMesh = new T.Mesh(mg, ud.mainMat); ud.mainMeshB = new T.Mesh(mg, ud.mainMatB); ud.boomPivot.add(ud.mainMesh, ud.mainMeshB);
+    ud.boomPivot.rotation.y = lee * T.MathUtils.degToRad(A.boom);
+    ud.mastPivot.rotation.y = lee * T.MathUtils.degToRad(A.boom * 0.8 + 6); // mât rotatif
+
+    const dY = ud.deckY, bowZ = -LC / 2, sprZ = -LC / 2 - 3.8, bY = ud.bowY;
+    let tack, head, clew, mat, camber;
+    if (A.head === 'j2') { tack = new T.Vector3(0, bY + 0.2, bowZ + 0.6); head = new T.Vector3(0, dY + MAST_H * 0.8, MAST_Z - 0.5); clew = new T.Vector3(lee * 1.6, dY + 0.8, MAST_Z + 1.2); mat = ud.headMat; camber = 0.07; }
+    else if (A.head === 'j1') { tack = new T.Vector3(0, bY, sprZ + 1.5); head = new T.Vector3(0, dY + MAST_H * 0.9, MAST_Z - 0.5); clew = new T.Vector3(lee * 3.0, dY + 1.0, MAST_Z + 2.4); mat = ud.headMat; camber = 0.09; }
+    else if (A.head === 'genn') { tack = new T.Vector3(0, bY, sprZ); head = new T.Vector3(0, dY + MAST_H * 0.96, MAST_Z - 0.6); clew = new T.Vector3(lee * 5.5, dY + 1.6, MAST_Z + 5.0); mat = ud.gennMat; camber = 0.15; }
+    else { tack = new T.Vector3(0, bY, sprZ); head = new T.Vector3(0, dY + MAST_H * 0.97, MAST_Z - 0.8); clew = new T.Vector3(lee * 7.5, dY + 2.2, MAST_Z + 6.5); mat = ud.gennMat; camber = 0.22; }
+    ud.headMesh = new T.Mesh(sailGeometry(tack, head, clew, camber, lee, 16, 20), mat); ud.body.add(ud.headMesh);
+
+    // foil sous le vent descendu, foil au vent relevé dans son puits
+    const fDown = ud.foils[String(lee)], fUp = ud.foils[String(-lee)];
+    fDown.position.set(0, 0, 0); fUp.position.set(0, 2.6, 0);
+    ud.heel = windSide * T.MathUtils.degToRad(A.heel); ud.lift = A.lift; ud.speed = A.speed; ud.lee = lee;
+  }
+
+  // ---------- Flotte ----------
+  const defs = [
+    { name: 'Vous · Ultim', number: 'FRA 00', hull: '#1d3c78', stripe: '#ffffff', bottom: '#14171b', genn: '#e8eef4', off: [0, 0], player: true },
+    { name: 'IA · Albatros', number: 'FRA 11', hull: '#e9edf1', stripe: '#c8102e', bottom: '#14171b', genn: '#c8102e', off: [-90, -60] },
+    { name: 'IA · Puffin', number: 'FRA 33', hull: '#202428', stripe: '#f5c842', bottom: '#14171b', genn: '#f5c842', off: [95, 45] }
+  ];
+  const fleet = defs.map((d) => { const b = buildUltim(d); b.userData.def = d; b.position.set(d.off[0], 0, d.off[1]); scene.add(b); return b; });
+
+  const labelsEl = document.getElementById('labels');
+  fleet.forEach((b) => { const el = document.createElement('div'); el.className = 'tag' + (b.userData.def.player ? ' me' : ''); el.textContent = b.userData.def.name; labelsEl.appendChild(el); b.userData.label = el; });
+
+  // ---------- Sillage ----------
+  const WAKE_N = 5000;
+  const wakeGeo = new T.BufferGeometry();
+  const wakePos = new Float32Array(WAKE_N * 3), wakeCol = new Float32Array(WAKE_N * 3), wakeAge = new Float32Array(WAKE_N).fill(99), wakeVel = new Float32Array(WAKE_N);
+  wakeGeo.setAttribute('position', new T.BufferAttribute(wakePos, 3)); wakeGeo.setAttribute('color', new T.BufferAttribute(wakeCol, 3));
+  const dot = (function () { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d');
+    const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, 64, 64); return new T.CanvasTexture(c); })();
+  scene.add(new T.Points(wakeGeo, new T.PointsMaterial({ size: 1.8, map: dot, vertexColors: true, transparent: true, opacity: 0.85, depthWrite: false })));
+  let wakeI = 0; const seaCol = new T.Color(0x0b4a72); const v3 = new T.Vector3();
+  function emit(b, lx, ly, lz, n, spread) {
+    b.userData.body.localToWorld(v3.set(lx, ly, lz));
+    for (let k = 0; k < n; k++) {
+      const i = wakeI = (wakeI + 1) % WAKE_N;
+      wakePos[i * 3] = v3.x + (Math.random() - 0.5) * spread; wakePos[i * 3 + 1] = 0.2; wakePos[i * 3 + 2] = v3.z + Math.random() * 1.5;
+      wakeVel[i] = (Math.random() - 0.5) * 2; wakeAge[i] = 0;
+    }
+  }
+
+  // ---------- État / UI ----------
+  const state = { allure: 'travers', windSide: 1, cam: 'close', camT: 1, camFrom: null };
+  function applyAllure() {
+    fleet.forEach((b) => rigFor(b, state.allure, state.windSide));
+    document.querySelectorAll('[data-allure]').forEach((el) => el.setAttribute('aria-pressed', el.dataset.allure === state.allure));
+    document.getElementById('note').textContent = ALLURES[state.allure].note;
+    document.getElementById('speed').textContent = ALLURES[state.allure].label + ' · ' + (state.windSide > 0 ? 'tribord amures' : 'bâbord amures');
+  }
+  document.querySelectorAll('[data-allure]').forEach((el) => el.addEventListener('click', () => { state.allure = el.dataset.allure; applyAllure(); }));
+
+  const orbit = { yaw: -1.25, pitch: 0.3, dist: 78 };
+  const overview = { yaw: 0, pitch: 1.3, dist: 620 };
+  let currentCam = { ...orbit };
+  function setCam(mode) {
+    state.camFrom = { ...currentCam }; state.cam = mode; state.camT = 0;
+    document.getElementById('btnGen').setAttribute('aria-pressed', mode === 'general');
+    document.getElementById('btnClose').setAttribute('aria-pressed', mode === 'close');
+  }
+  document.getElementById('btnGen').addEventListener('click', () => setCam('general'));
+  document.getElementById('btnClose').addEventListener('click', () => setCam('close'));
+  document.getElementById('gybe').addEventListener('click', () => { state.windSide *= -1; orbit.yaw = -orbit.yaw; if (state.cam === 'close') setCam('close'); applyAllure(); });
+
+  function redecorate() {
+    const d = fleet[0].userData.def;
+    d.hull = document.getElementById('cHull').value; d.stripe = document.getElementById('cStripe').value;
+    d.genn = document.getElementById('cSpi').value; d.number = (document.getElementById('num').value || 'FRA 00').slice(0, 8);
+    const old = fleet[0]; scene.remove(old);
+    const nb = buildUltim(d); nb.userData.def = d; nb.userData.label = old.userData.label; nb.position.copy(old.position);
+    scene.add(nb); fleet[0] = nb; rigFor(nb, state.allure, state.windSide);
+  }
+  ['cHull', 'cStripe', 'cSpi', 'num'].forEach((id) => document.getElementById(id).addEventListener('change', redecorate));
+
+  let dragging = false, lx = 0, ly = 0;
+  const cv = renderer.domElement;
+  cv.addEventListener('pointerdown', (e) => { dragging = true; lx = e.clientX; ly = e.clientY; cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointerup', () => { dragging = false; });
+  cv.addEventListener('pointermove', (e) => {
+    if (!dragging || state.cam !== 'close') return;
+    orbit.yaw -= (e.clientX - lx) * 0.006; orbit.pitch = Math.min(1.3, Math.max(0.03, orbit.pitch + (e.clientY - ly) * 0.004));
+    lx = e.clientX; ly = e.clientY; currentCam = { ...orbit };
+  });
+  cv.addEventListener('wheel', (e) => { e.preventDefault(); orbit.dist = Math.min(260, Math.max(40, orbit.dist * (1 + Math.sign(e.deltaY) * 0.08))); }, { passive: false });
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resize() { const w = wrap.clientWidth, h = wrap.clientHeight; renderer.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix(); }
+  window.addEventListener('resize', resize); resize();
+  applyAllure();
+
+  // ---------- Boucle ----------
+  const clock = new T.Clock(); const focus = new T.Vector3();
+  function frame() {
+    const dt = Math.min(clock.getDelta(), 0.05), t = clock.elapsedTime;
+    const lead = fleet[0];
+    lead.position.z -= lead.userData.speed * 0.6 * dt;
+    fleet.forEach((b, i) => {
+      const ud = b.userData;
+      if (i > 0) { b.position.x = lead.position.x + ud.def.off[0]; b.position.z = lead.position.z + ud.def.off[1] + 9 * Math.sin(t * 0.06 + i * 2.3); }
+      const lx2 = b.position.x + ud.lee * FX;
+      const h = waveH(lx2, b.position.z, t), hf = waveH(lx2, b.position.z - 10, t), ha = waveH(lx2, b.position.z + 10, t);
+      b.position.y = ud.lift + h * 0.35;
+      ud.body.rotation.set(-0.012 + (hf - ha) * 0.02, 0, ud.heel + 0.01 * Math.sin(t * 1.1 + ud.phase), 'YXZ');
+      emit(b, ud.lee * FX, -1.0, 1.2 + LF / 2 - 0.9, 2, 1.6);   // safran du flotteur sous le vent
+      emit(b, ud.lee * FX - ud.lee * 2.6, -2.6, BEAM_F + 0.8, 1, 0.8); // foil
+      emit(b, 0, -1.4, LC / 2 - 0.9, 1, 1.0);                     // safran central
+    });
+
+    for (let i = 0; i < WAKE_N; i++) {
+      if (wakeAge[i] > 4.5) { wakePos[i * 3 + 1] = -60; continue; }
+      wakeAge[i] += dt; wakePos[i * 3] += wakeVel[i] * dt;
+      const k = Math.min(1, wakeAge[i] / 4.5);
+      wakeCol[i * 3] = 1 + (seaCol.r - 1) * k; wakeCol[i * 3 + 1] = 1 + (seaCol.g - 1) * k; wakeCol[i * 3 + 2] = 1 + (seaCol.b - 1) * k;
+      wakePos[i * 3 + 1] = waveH(wakePos[i * 3], wakePos[i * 3 + 2], t) * 0.6 + 0.12;
+    }
+    wakeGeo.attributes.position.needsUpdate = true; wakeGeo.attributes.color.needsUpdate = true;
+
+    const p = lead.position;
+    sea.position.set(Math.round(p.x / 8) * 8, 0, Math.round(p.z / 8) * 8);
+    const arr = seaGeo.attributes.position.array;
+    for (let i = 0; i < arr.length; i += 3) arr[i + 1] = waveH(seaBase[i] + sea.position.x, seaBase[i + 2] + sea.position.z, t);
+    seaGeo.attributes.position.needsUpdate = true; seaGeo.computeVertexNormals();
+
+    const target = state.cam === 'close' ? orbit : overview;
+    if (state.camT < 1) {
+      state.camT = reduceMotion ? 1 : Math.min(1, state.camT + dt / 1.6);
+      const e = state.camT < 0.5 ? 2 * state.camT * state.camT : 1 - Math.pow(-2 * state.camT + 2, 2) / 2;
+      currentCam = { yaw: state.camFrom.yaw + (target.yaw - state.camFrom.yaw) * e, pitch: state.camFrom.pitch + (target.pitch - state.camFrom.pitch) * e, dist: state.camFrom.dist + (target.dist - state.camFrom.dist) * e };
+    } else currentCam = { ...target };
+    focus.set(p.x, state.cam === 'general' ? 6 : 13, p.z + (state.cam === 'general' ? -10 : 2));
+    camera.position.set(
+      focus.x + currentCam.dist * Math.cos(currentCam.pitch) * Math.sin(currentCam.yaw),
+      focus.y + currentCam.dist * Math.sin(currentCam.pitch),
+      focus.z + currentCam.dist * Math.cos(currentCam.pitch) * Math.cos(currentCam.yaw));
+    camera.lookAt(focus);
+    sun.position.set(p.x - 120, 160, p.z + 80); sun.target.position.copy(p);
+
+    const w = wrap.clientWidth, hh = wrap.clientHeight;
+    fleet.forEach((b) => {
+      const v = new T.Vector3(b.position.x, b.userData.deckY + MAST_H + 4, b.position.z).project(camera), el = b.userData.label;
+      if (v.z > 1 || Math.abs(v.x) > 1.1 || Math.abs(v.y) > 1.1) { el.style.display = 'none'; return; }
+      el.style.display = 'block';
+      el.style.transform = 'translate(' + ((v.x + 1) / 2 * w) + 'px,' + ((1 - v.y) / 2 * hh) + 'px) translate(-50%,-100%)';
+    });
+    renderer.render(scene, camera);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

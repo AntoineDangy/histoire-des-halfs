@@ -23,6 +23,11 @@ _source/commons/files/
 *.tiff
 *.bmp
 
+# Jeu : construction locale, et documents de référence soumis à droits (livret de règles MB 1987, photos)
+jeu/packages/client/dist/
+jeu/conception/references/
+*.pdf
+
 # Divers
 .DS_Store
 Thumbs.db

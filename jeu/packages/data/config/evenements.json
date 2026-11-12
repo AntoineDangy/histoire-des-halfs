@@ -1,0 +1,508 @@
+{
+ "_note": "Cartes « événement » (demande du porteur de projet, 08/11/2026). À chaque tour, chaque bateau lance un dé événement : sur un 6, il tire une carte (tirage pondéré par « poids »). Les effets sont en UNITÉS de la table des voiles (1 unité ≈ 75 milles sur la Route du Rhum). « tours » = durée de l'effet, tour en cours compris. Une avarie peut être annulée par une carte réparation. « familles » limite une carte à certaines familles de bateaux. Situations inspirées des récits de course au large ; valeurs à calibrer par simulation et à relire par le porteur de projet.",
+ "de_evenement": {
+  "faces": 6,
+  "declencheur": 6
+ },
+ "cartes": [
+  {
+   "id": "dauphins",
+   "ton": "heureux",
+   "icone": "🐬",
+   "illustration": "dauphins",
+   "poids": 2,
+   "titre": "Banc de dauphins",
+   "texte": "Un banc de dauphins joue dans l'étrave pendant une heure. Le moral remonte en flèche et vous attaquez la nuit plein d'énergie.",
+   "effet": {
+    "distance": 1
+   }
+  },
+  {
+   "id": "photo",
+   "ton": "heureux",
+   "icone": "📸",
+   "illustration": "photo",
+   "poids": 2,
+   "titre": "La photo de la course",
+   "texte": "Soleil couchant, mer formée, bateau qui surfe : vous tenez LA photo de la course. L'équipe à terre la publie aussitôt, les messages d'encouragement affluent.",
+   "effet": {
+    "distance": 1
+   }
+  },
+  {
+   "id": "famille",
+   "ton": "heureux",
+   "icone": "💌",
+   "illustration": "message",
+   "poids": 2,
+   "titre": "Un message de la famille",
+   "texte": "Les enfants ont envoyé un dessin et une vidéo. Quelques minutes de bonheur avant de reprendre la barre.",
+   "effet": {
+    "distance": 1
+   }
+  },
+  {
+   "id": "ravitaillement",
+   "ton": "heureux",
+   "icone": "🎁",
+   "illustration": "ravitaillement",
+   "poids": 2,
+   "titre": "Surprise dans le sac de ravitaillement",
+   "texte": "Dans le sac du jour, l'équipe a glissé un gâteau breton et un petit mot. Rien de tel pour repartir de plus belle !",
+   "effet": {
+    "distance": 1
+   }
+  },
+  {
+   "id": "boite_outils",
+   "ton": "heureux",
+   "icone": "🧰",
+   "illustration": "outils",
+   "poids": 3,
+   "titre": "Une boîte à outils bien rangée",
+   "texte": "En fouillant la soute, vous retrouvez une boîte de pièces de rechange que le préparateur avait cachée « au cas où ».",
+   "effet": {
+    "reparation": 1
+   }
+  },
+  {
+   "id": "bascule",
+   "ton": "heureux",
+   "icone": "🌬",
+   "illustration": "risee",
+   "poids": 2,
+   "titre": "Bascule favorable",
+   "texte": "Une bascule de vent que les fichiers météo n'avaient pas vue : vous êtes du bon côté et vous allongez la foulée.",
+   "effet": {
+    "distance": 2
+   }
+  },
+  {
+   "id": "nuit_calme",
+   "ton": "heureux",
+   "icone": "🌙",
+   "illustration": "nuit",
+   "poids": 2,
+   "titre": "Une vraie nuit de sommeil",
+   "texte": "Mer maniable, pilote bien réglé : vous dormez trois heures d'affilée. Plus lucide, vous prenez moins de risques inutiles.",
+   "effet": {
+    "risque": -1,
+    "tours": 2
+   }
+  },
+  {
+   "id": "poisson_volant",
+   "ton": "neutre",
+   "icone": "🐟",
+   "illustration": "poisson",
+   "poids": 2,
+   "titre": "Poisson volant sur le pont",
+   "texte": "Au petit matin, un poisson volant a atterri dans le cockpit. Un grand classique des alizés… et une belle histoire pour la vacation radio.",
+   "effet": {}
+  },
+  {
+   "id": "vacation",
+   "ton": "heureux",
+   "icone": "🎙",
+   "illustration": "message",
+   "poids": 2,
+   "titre": "Vacation avec un concurrent",
+   "texte": "Un échange à la VHF avec un concurrent tout proche : on se donne des nouvelles, on se taquine un peu. La solitude pèse moins.",
+   "effet": {
+    "distance": 1
+   }
+  },
+  {
+   "id": "reparation_reussie",
+   "ton": "heureux",
+   "icone": "🔩",
+   "illustration": "outils",
+   "poids": 2,
+   "titre": "Bricolage réussi",
+   "texte": "Vous colmatez enfin la petite fuite qui vous agaçait depuis le départ. Le bateau est sec, l'esprit libre.",
+   "effet": {
+    "reparation": 1
+   }
+  },
+  {
+   "id": "foil",
+   "ton": "dommage",
+   "icone": "💥",
+   "illustration": "ofni",
+   "poids": 2,
+   "familles": [
+    "imoca_foiler"
+   ],
+   "titre": "Choc avec un OFNI : foil endommagé",
+   "texte": "Un objet flottant non identifié percute le foil sous le vent. Il faut le relever : le bateau ne vole plus aussi bien pendant quelques jours.",
+   "effet": {
+    "distance": -1,
+    "tours": 3
+   }
+  },
+  {
+   "id": "derive",
+   "ton": "dommage",
+   "icone": "💥",
+   "illustration": "ofni",
+   "poids": 2,
+   "familles": [
+    "imoca_derives"
+   ],
+   "titre": "Choc avec un OFNI : dérive abîmée",
+   "texte": "Un tronc d'arbre à la dérive heurte la dérive bâbord. Elle remonte mal : le bateau dérape au près pendant quelques jours.",
+   "effet": {
+    "distance": -1,
+    "tours": 3
+   }
+  },
+  {
+   "id": "ballast",
+   "ton": "dommage",
+   "icone": "💧",
+   "illustration": "ballast",
+   "poids": 2,
+   "titre": "Rupture du water-ballast",
+   "texte": "Une vanne cède et le ballast se vide d'un coup. Le temps de comprendre et de tout remplir à la main, la flotte vous a pris du terrain.",
+   "effet": {
+    "distance": -3
+   }
+  },
+  {
+   "id": "chute",
+   "ton": "dommage",
+   "icone": "🤕",
+   "illustration": "chute",
+   "poids": 2,
+   "titre": "Chute du skipper",
+   "texte": "Une glissade sur le pont mouillé, la côte contre un winch. Rien de cassé, mais il faut quelques heures pour se remettre.",
+   "effet": {
+    "demi": true
+   }
+  },
+  {
+   "id": "empannage",
+   "ton": "dommage",
+   "icone": "🌀",
+   "illustration": "empannage",
+   "poids": 2,
+   "titre": "Empannage non maîtrisé",
+   "texte": "Une survente, la bôme traverse violemment : la têtière de grand-voile est abîmée. Vous réparez, mais la GV n'est plus aussi efficace.",
+   "effet": {
+    "distance": -2,
+    "tours": 2
+   }
+  },
+  {
+   "id": "pilote",
+   "ton": "dommage",
+   "icone": "🧭",
+   "illustration": "pilote",
+   "poids": 2,
+   "titre": "Pilote automatique en panne",
+   "texte": "Le pilote décroche en pleine nuit. Vous barrez en attendant de changer le vérin : impossible de pousser le bateau à fond.",
+   "effet": {
+    "distance": -1,
+    "tours": 2
+   }
+  },
+  {
+   "id": "quille",
+   "ton": "dommage",
+   "icone": "⚙",
+   "illustration": "quille",
+   "poids": 1,
+   "titre": "Vérin de quille en panne",
+   "texte": "La quille pendulaire ne bascule plus. Le bateau gîte davantage : vous réduisez la toile le temps de trouver une solution.",
+   "effet": {
+    "distance": -1,
+    "risque": 1,
+    "tours": 2
+   }
+  },
+  {
+   "id": "energie",
+   "ton": "dommage",
+   "icone": "🔋",
+   "illustration": "energie",
+   "poids": 2,
+   "titre": "Panne d'énergie",
+   "texte": "L'hydrogénérateur a cassé et les batteries sont à plat. Écrans éteints, il faut réparer avant de repartir au contact.",
+   "effet": {
+    "distance": -2
+   }
+  },
+  {
+   "id": "filet",
+   "ton": "dommage",
+   "icone": "🕸",
+   "illustration": "filet",
+   "poids": 1,
+   "titre": "Filet de pêche dans le safran",
+   "texte": "Un filet dérivant s'est pris dans le safran. Marche arrière, couteau entre les dents… vous restez sur place le temps de vous dégager.",
+   "effet": {
+    "immobile": true
+   }
+  },
+  {
+   "id": "spi",
+   "ton": "dommage",
+   "icone": "🪡",
+   "illustration": "voile",
+   "poids": 1,
+   "titre": "Spi déchiré dans un grain",
+   "texte": "Un grain plus violent que prévu : le spi explose avant que vous ayez pu l'affaler. Il faudra une escale pour le réparer.",
+   "effet": {
+    "perte_voile": [
+     "spi",
+     "gennaker"
+    ]
+   }
+  },
+  {
+   "id": "grain",
+   "ton": "dommage",
+   "icone": "⛈",
+   "illustration": "grain",
+   "poids": 1,
+   "titre": "Grain blanc",
+   "texte": "Un grain blanc vous couche sans prévenir. Le temps de redresser, de ranger le cockpit et de renvoyer de la toile, la nuit est passée.",
+   "effet": {
+    "distance": -2
+   }
+  },
+  {
+   "id": "cargo",
+   "ton": "dommage",
+   "icone": "🚢",
+   "illustration": "cargo",
+   "poids": 1,
+   "titre": "Cargo en route de collision",
+   "texte": "L'alarme AIS sonne : un cargo arrive droit sur vous. Manœuvre d'urgence et grand détour pour le laisser passer.",
+   "effet": {
+    "distance": -2
+   }
+  },
+  {
+   "id": "fatigue",
+   "ton": "dommage",
+   "icone": "😴",
+   "illustration": "nuit",
+   "poids": 2,
+   "titre": "Coup de fatigue",
+   "texte": "Trop de manœuvres, pas assez de sommeil. Vous levez le pied le temps d'une sieste réparatrice.",
+   "effet": {
+    "distance": -1
+   }
+  },
+  {
+   "id": "crochet_ris",
+   "ton": "dommage",
+   "icone": "🪝",
+   "illustration": "voile",
+   "poids": 1,
+   "titre": "Crochet de ris cassé",
+   "texte": "Impossible de réduire rapidement la grand-voile. Vous naviguez sur la réserve, plus exposé dans les rafales.",
+   "effet": {
+    "risque": 1,
+    "tours": 2
+   }
+  },
+  {
+   "id": "baleine",
+   "ton": "neutre",
+   "icone": "🐋",
+   "illustration": "dauphins",
+   "poids": 2,
+   "titre": "Une baleine",
+   "texte": "Un souffle puissant à quelques longueurs : une baleine remonte, plonge et disparaît. Vous restez un long moment à fixer l'eau.",
+   "effet": {}
+  },
+  {
+   "id": "voie_lactee",
+   "ton": "neutre",
+   "icone": "✨",
+   "illustration": "nuit",
+   "poids": 2,
+   "titre": "La Voie lactée",
+   "texte": "Nuit sans lune, mer calme : la Voie lactée se reflète dans le sillage phosphorescent. Personne pour partager ça, alors vous l'écrivez.",
+   "effet": {}
+  },
+  {
+   "id": "oiseau",
+   "ton": "neutre",
+   "icone": "🕊",
+   "illustration": "photo",
+   "poids": 2,
+   "titre": "Un passager clandestin",
+   "texte": "Un oiseau épuisé se pose sur le balcon arrière et s'endort. Il repart à l'aube sans dire merci.",
+   "effet": {}
+  },
+  {
+   "id": "ecole",
+   "ton": "neutre",
+   "icone": "✉",
+   "illustration": "message",
+   "poids": 2,
+   "titre": "Les dessins de l'école",
+   "texte": "Une classe qui suit la course vous envoie ses dessins : votre bateau en rose, avec des dauphins partout. Vous les affichez au-dessus de la table à cartes.",
+   "effet": {}
+  },
+  {
+   "id": "anniversaire",
+   "ton": "neutre",
+   "icone": "🎂",
+   "illustration": "message",
+   "poids": 2,
+   "titre": "Joyeux anniversaire",
+   "texte": "C'est un anniversaire à terre. Appel vidéo par satellite, l'image saute, tout le monde chante faux : vous riez pendant une heure.",
+   "effet": {}
+  },
+  {
+   "id": "plat_fete",
+   "ton": "neutre",
+   "icone": "🍲",
+   "illustration": "ravitaillement",
+   "poids": 2,
+   "titre": "Le plat de fête",
+   "texte": "Vous aviez caché un vrai plat cuisiné pour le milieu de course. Le lyophilisé attendra demain.",
+   "effet": {}
+  },
+  {
+   "id": "livre_bord",
+   "ton": "neutre",
+   "icone": "📓",
+   "illustration": "nuit",
+   "poids": 2,
+   "titre": "Le livre de bord",
+   "texte": "Quart de nuit tranquille : vous noircissez trois pages du livre de bord. Plus tard, ce sera le meilleur souvenir de la course.",
+   "effet": {}
+  },
+  {
+   "id": "chalutier",
+   "ton": "neutre",
+   "icone": "🚢",
+   "illustration": "cargo",
+   "poids": 2,
+   "titre": "Salut d'un chalutier",
+   "texte": "Un chalutier vous appelle à la VHF : l'équipage suit la course et vous souhaite bon vent. Vous échangez la météo du coin.",
+   "effet": {}
+  },
+  {
+   "id": "aube",
+   "ton": "neutre",
+   "icone": "🌅",
+   "illustration": "photo",
+   "poids": 2,
+   "titre": "Lever de soleil",
+   "texte": "Le soleil se lève derrière un rideau de nuages roses. Vous prenez une photo qui fera le tour des réseaux de l'équipe.",
+   "effet": {}
+  },
+  {
+   "id": "musique",
+   "ton": "neutre",
+   "icone": "🎶",
+   "illustration": "energie",
+   "poids": 2,
+   "titre": "La playlist de l'équipe",
+   "texte": "L'équipe à terre vous a préparé une playlist secrète. Premier morceau : celui de votre mariage. Moment de flottement.",
+   "effet": {}
+  },
+  {
+   "id": "arc_en_ciel",
+   "ton": "neutre",
+   "icone": "🌈",
+   "illustration": "grain",
+   "poids": 2,
+   "titre": "Arc-en-ciel",
+   "texte": "Le grain est passé à côté. Derrière lui, un arc-en-ciel complet pose ses deux pieds dans la mer.",
+   "effet": {}
+  },
+  {
+   "id": "conteneur_evite",
+   "ton": "neutre",
+   "icone": "📦",
+   "illustration": "ofni",
+   "poids": 2,
+   "titre": "Évité de justesse",
+   "texte": "Un conteneur flotte entre deux eaux, à dix mètres de la coque. Vous l'avez vu à temps : simple frayeur, vous signalez sa position.",
+   "effet": {}
+  },
+  {
+   "id": "surf",
+   "ton": "heureux",
+   "icone": "🌊",
+   "illustration": "risee",
+   "poids": 1,
+   "titre": "Le surf de la course",
+   "texte": "Une vague parfaite, le bateau part au surf et le speedomètre affiche un record personnel. Vous tenez la cadence toute la nuit.",
+   "effet": {
+    "distance": 3
+   }
+  },
+  {
+   "id": "veille_meteo",
+   "ton": "heureux",
+   "icone": "🛰",
+   "illustration": "message",
+   "poids": 2,
+   "titre": "Fichier météo en or",
+   "texte": "Le dernier fichier météo est limpide : vous voyez venir chaque grain et vous réglez au plus juste.",
+   "effet": {
+    "risque": -1,
+    "tours": 3
+   }
+  },
+  {
+   "id": "voie_eau",
+   "ton": "dommage",
+   "icone": "💧",
+   "illustration": "ballast",
+   "poids": 2,
+   "titre": "Voie d'eau",
+   "texte": "De l'eau dans les fonds : un passe-coque fuit. Vous écopez et colmatez, le bateau alourdi perd de sa vitesse quelque temps.",
+   "effet": {
+    "distance": -2,
+    "tours": 2
+   }
+  },
+  {
+   "id": "hydrogenerateur",
+   "ton": "dommage",
+   "icone": "🔋",
+   "illustration": "energie",
+   "poids": 2,
+   "titre": "Hydrogénérateur arraché",
+   "texte": "Une vague arrache l'hydrogénérateur. Il faut faire tourner le moteur pour recharger : du temps perdu.",
+   "effet": {
+    "distance": -1
+   }
+  },
+  {
+   "id": "latte",
+   "ton": "dommage",
+   "icone": "🪡",
+   "illustration": "voile",
+   "poids": 1,
+   "titre": "Latte cassée",
+   "texte": "Une latte de grand-voile s'est rompue. La voile fait un pli disgracieux tant qu'elle n'est pas changée.",
+   "effet": {
+    "distance": -1,
+    "tours": 2
+   }
+  },
+  {
+   "id": "choc_ofni",
+   "ton": "dommage",
+   "icone": "💥",
+   "illustration": "ofni",
+   "poids": 1,
+   "titre": "Choc contre un OFNI",
+   "texte": "Un choc sourd sous la coque : un objet flottant non identifié. Vous ralentissez pour inspecter la quille et les safrans.",
+   "effet": {
+    "distance": -3
+   }
+  }
+ ],
+ "_note_equilibre": "Décision du 11/11/2026 : environ un tiers d'avantages (plus ou moins forts), un tiers d'histoires neutres, un tiers d'avaries (plus ou moins pénalisantes), en poids de tirage. Une carte réparation divise par deux l'effet d'une avarie."
+}

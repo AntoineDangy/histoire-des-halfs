@@ -1,0 +1,27 @@
+{
+  "name": "course-au-large",
+  "private": true,
+  "version": "0.4.0",
+  "description": "Jeu Course au large (projet Mémoire du large) : bêta Imoca",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @cal/client",
+    "build": "npm run build -w @cal/client",
+    "preview": "npm run preview -w @cal/client",
+    "test": "vitest run",
+    "typecheck": "tsc -p packages/engine && tsc -p packages/client --noEmit",
+    "sim": "tsx outils/sim.ts"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250109.0",
+    "@types/node": "^22.10.0",
+    "@types/topojson-client": "^3.1.5",
+    "topojson-client": "^3.1.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "world-atlas": "^2.0.2"
+  }
+}

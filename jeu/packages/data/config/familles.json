@@ -1,0 +1,382 @@
+{
+ "_note": "Cahier des charges §5.2 et §10b.4 bis. Profils de familles d'architecture, à valider par le porteur de projet. Le « profil d'allure » corrige la table de 1987 : un foiler est lent au plein vent arrière et tire des bords au portant (valeur provisoire, à faire relire par un connaisseur). La « polaire » ne sert qu'à l'affichage de la carte bateau.",
+ "classes": [
+  {
+   "id": "IMOCA",
+   "nom": "IMOCA",
+   "multicoque": false,
+   "bulletin_meteo": true,
+   "longueur": "60 pieds (18,28 m)",
+   "tours_moyens": 10,
+   "vitesse": 1.75,
+   "heures_par_tour": 28,
+   "distance_max_24h": 640,
+   "usure_facteur": 1.0
+  },
+  {
+   "id": "ULTIM",
+   "nom": "Ultim",
+   "multicoque": true,
+   "bulletin_meteo": true,
+   "longueur": "32 m (trimaran)",
+   "tours_moyens": 7,
+   "vitesse": 2.7,
+   "heures_par_tour": 23,
+   "usure_facteur": 1.2
+  },
+  {
+   "id": "OCEAN_FIFTY",
+   "nom": "Ocean Fifty",
+   "multicoque": true,
+   "bulletin_meteo": true,
+   "longueur": "50 pieds (15,24 m, trimaran)",
+   "tours_moyens": 10,
+   "vitesse": 1.75,
+   "heures_par_tour": 28,
+   "distance_max_24h": 640,
+   "usure_facteur": 1.0
+  },
+  {
+   "id": "CLASS40",
+   "nom": "Class40",
+   "multicoque": false,
+   "bulletin_meteo": true,
+   "longueur": "40 pieds (12,19 m)",
+   "tours_moyens": 15,
+   "vitesse": 1.21,
+   "heures_par_tour": 19,
+   "usure_facteur": 0.8
+  },
+  {
+   "id": "VINTAGE",
+   "nom": "Vintage",
+   "multicoque": false,
+   "bulletin_meteo": true,
+   "longueur": "Bateaux de légende (1967-1999), monocoques et multicoques",
+   "tours_moyens": 12,
+   "vitesse": 1.45,
+   "heures_par_tour": 28,
+   "usure_facteur": 1.0,
+   "_note": "Ajout du 10/11/2026 (demande du porteur de projet). Réglages PROVISOIRES, à valider : 12 tours de 28 h (environ 14 jours, l'ordre de grandeur des Routes du Rhum gagnées dans les années 1990), vitesse calée par simulation, usure normale (les légendaires sont des bateaux robustes et fiables, décision du 09/11/2026). Monocoques et multicoques courent ensemble : la famille dit si le bateau chavire (multicoque) ou démâte."
+  }
+ ],
+ "familles": [
+  {
+   "id": "imoca_foiler",
+   "classe": "IMOCA",
+   "nom": "Foiler",
+   "bonus": "+1 case au travers et au largue (F4 et plus)",
+   "malus": "Risque +1 cran par vent fort (F6 et plus)",
+   "effets": [
+    {
+     "type": "distance",
+     "valeur": 1,
+     "si": {
+      "allures": [
+       90,
+       135
+      ],
+      "force_min": 4
+     }
+    },
+    {
+     "type": "risque",
+     "valeur": 1,
+     "si": {
+      "force_min": 6
+     }
+    }
+   ],
+   "profil_allure": {
+    "45": 0,
+    "90": 0,
+    "135": 0,
+    "180": -1
+   },
+   "profil_note": "Lent au plein vent arrière : un foiler tire des bords au portant",
+   "polaire": {
+    "45": 2,
+    "90": 4,
+    "135": 5,
+    "180": 3
+   }
+  },
+  {
+   "id": "imoca_derives",
+   "classe": "IMOCA",
+   "nom": "Dérives droites",
+   "bonus": "Risque −1 cran par vent fort (F6 et plus)",
+   "malus": "−1 case au largue (F4 et plus)",
+   "effets": [
+    {
+     "type": "risque",
+     "valeur": -1,
+     "si": {
+      "force_min": 6
+     }
+    },
+    {
+     "type": "distance",
+     "valeur": -1,
+     "si": {
+      "allures": [
+       135
+      ],
+      "force_min": 4
+     }
+    }
+   ],
+   "profil_allure": {
+    "45": 0,
+    "90": 0,
+    "135": 0,
+    "180": 0
+   },
+   "profil_note": "",
+   "polaire": {
+    "45": 3,
+    "90": 3,
+    "135": 4,
+    "180": 4
+   }
+  },
+  {
+   "id": "ultim",
+   "classe": "ULTIM",
+   "nom": "Ultim volant",
+   "bonus": "+1 case au travers et au largue (F4 et plus)",
+   "malus": "Risque +1 cran dès la bonne brise (F5 et plus), +2 par vent fort (F7 et plus) : chavirage",
+   "effets": [
+    {
+     "type": "distance",
+     "valeur": 1,
+     "si": {
+      "allures": [
+       90,
+       135
+      ],
+      "force_min": 4
+     }
+    },
+    {
+     "type": "risque",
+     "valeur": 1,
+     "si": {
+      "force_min": 5
+     }
+    },
+    {
+     "type": "risque",
+     "valeur": 1,
+     "si": {
+      "force_min": 7
+     }
+    }
+   ],
+   "profil_allure": {
+    "45": 0,
+    "90": 0,
+    "135": 0,
+    "180": -1
+   },
+   "profil_note": "Trimaran conçu pour voler sur ses foils (Gitana 17 et suivants) : très rapide, mais fragile",
+   "polaire": {
+    "45": 3,
+    "90": 5,
+    "135": 5,
+    "180": 3
+   }
+  },
+  {
+   "id": "ocean_fifty",
+   "classe": "OCEAN_FIFTY",
+   "nom": "Trimaran de 50 pieds",
+   "bonus": "+1 case au travers (F4 et plus)",
+   "malus": "Risque +1 cran par vent très fort (F7 et plus) : chavirage",
+   "effets": [
+    {
+     "type": "distance",
+     "valeur": 1,
+     "si": {
+      "allures": [
+       90
+      ],
+      "force_min": 4
+     }
+    },
+    {
+     "type": "risque",
+     "valeur": 1,
+     "si": {
+      "force_min": 7
+     }
+    }
+   ],
+   "profil_allure": {
+    "45": 0,
+    "90": 0,
+    "135": 0,
+    "180": 0
+   },
+   "profil_note": "Rapide, chavire par gros temps",
+   "polaire": {
+    "45": 3,
+    "90": 5,
+    "135": 4,
+    "180": 3
+   }
+  },
+  {
+   "id": "class40",
+   "classe": "CLASS40",
+   "nom": "Class40 à étrave ronde",
+   "bonus": "Risque −1 cran par vent très fort (F7 et plus) : robuste",
+   "malus": "−1 case au près (F4 et plus)",
+   "effets": [
+    {
+     "type": "risque",
+     "valeur": -1,
+     "si": {
+      "force_min": 7
+     }
+    },
+    {
+     "type": "distance",
+     "valeur": -1,
+     "si": {
+      "allures": [
+       45
+      ],
+      "force_min": 4
+     }
+    }
+   ],
+   "profil_allure": {
+    "45": 0,
+    "90": 0,
+    "135": 0,
+    "180": 0
+   },
+   "profil_note": "Robuste et puissant au portant",
+   "polaire": {
+    "45": 2,
+    "90": 4,
+    "135": 4,
+    "180": 4
+   }
+  },
+  {
+   "id": "ultim_ancien",
+   "classe": "ULTIM",
+   "nom": "Ultim ancienne génération",
+   "bonus": "Plus robuste : risque +1 cran seulement par vent fort (F7 et plus)",
+   "malus": "Ne vole pas : pas de bonus au travers ni au largue",
+   "effets": [
+    {
+     "type": "risque",
+     "valeur": 1,
+     "si": {
+      "force_min": 7
+     }
+    }
+   ],
+   "profil_allure": {
+    "45": 0,
+    "90": 0,
+    "135": 0,
+    "180": 0
+   },
+   "profil_note": "Grand trimaran à dérives, sans vol (Groupama 3 / Idec Sport, Macif 2015) : moins rapide, mais plus sûr par gros temps",
+   "polaire": {
+    "45": 3,
+    "90": 4,
+    "135": 5,
+    "180": 4
+   },
+   "_note": "Ajout du 10/11/2026 à la demande du porteur de projet (deux types d'Ultim). Effets à valider."
+  },
+  {
+   "id": "vintage_monocoque",
+   "classe": "VINTAGE",
+   "nom": "Monocoque de légende",
+   "multicoque": false,
+   "bonus": "Risque −1 cran par vent fort (F6 et plus) : robuste",
+   "malus": "−1 case au largue (F4 et plus)",
+   "effets": [
+    {
+     "type": "risque",
+     "valeur": -1,
+     "si": {
+      "force_min": 6
+     }
+    },
+    {
+     "type": "distance",
+     "valeur": -1,
+     "si": {
+      "allures": [
+       135
+      ],
+      "force_min": 4
+     }
+    }
+   ],
+   "profil_allure": {
+    "45": 0,
+    "90": 0,
+    "135": 0,
+    "180": 0
+   },
+   "profil_note": "Monocoques de légende, de la goélette Pen Duick III (1967) aux 60 pieds des années 1990 : solides dans la brise",
+   "polaire": {
+    "45": 3,
+    "90": 3,
+    "135": 4,
+    "180": 4
+   },
+   "_note": "Ajout du 10/11/2026 ; deux familles Vintage seulement, monocoques et multicoques (décision du porteur de projet, 10/11/2026). Effets PROVISOIRES (ceux de l'IMOCA à dérives droites), à valider."
+  },
+  {
+   "id": "vintage_multicoque",
+   "classe": "VINTAGE",
+   "nom": "Multicoque de légende",
+   "multicoque": true,
+   "bonus": "+1 case au travers (F4 et plus)",
+   "malus": "Risque +1 cran par vent très fort (F7 et plus) : chavirage",
+   "effets": [
+    {
+     "type": "distance",
+     "valeur": 1,
+     "si": {
+      "allures": [
+       90
+      ],
+      "force_min": 4
+     }
+    },
+    {
+     "type": "risque",
+     "valeur": 1,
+     "si": {
+      "force_min": 7
+     }
+    }
+   ],
+   "profil_allure": {
+    "45": 0,
+    "90": 0,
+    "135": 0,
+    "180": 0
+   },
+   "profil_note": "Trimaran des années 1980 et 1990 (ORMA 60, grand trimaran, 50 pieds) : rapide, chavire par gros temps",
+   "polaire": {
+    "45": 3,
+    "90": 5,
+    "135": 4,
+    "180": 3
+   },
+   "_note": "Ajout du 10/11/2026 ; deux familles Vintage seulement, monocoques et multicoques (décision du porteur de projet, 10/11/2026). Effets PROVISOIRES (ceux du trimaran de 50 pieds), à valider."
+  }
+ ],
+ "_note_classes": "Décision du 09/11/2026 : Route du Rhum en 7 tours en moyenne en Ultim, 10 en IMOCA et Ocean Fifty, 15 en Class40 ; « vitesse » multiplie les distances (calée par simulation) ; plus de cartes du large dans les classes rapides (dé événement sur 5 ou 6). Durées d'un tour (temps de course affiché) d'après les temps réels approximatifs, à vérifier."
+}

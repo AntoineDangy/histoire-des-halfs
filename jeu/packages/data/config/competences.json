@@ -1,0 +1,338 @@
+{
+  "_note": "Compétences du jeu (décision du porteur de projet du 12/11/2026) : nom en un mot, liées à ce que sont les marins dans la vraie vie ; un bonus et un compromis ; valeurs calibrées par simulation sur les règles actuelles (outils/sim-competences.ts), voir conception/competences.md.",
+  "competences": [
+    {
+      "id": "aucune",
+      "nom": "Sans compétence",
+      "icone": "○",
+      "bonus": "—",
+      "malus": "—",
+      "effets": [],
+      "speciaux": {}
+    },
+    {
+      "id": "stratege",
+      "nom": "Stratège",
+      "icone": "♟",
+      "bonus": "Lit le plan d'eau : 1 relance du dé de direction du vent par course",
+      "malus": "−1 case au tour de la relance",
+      "effets": [],
+      "speciaux": {
+        "relances_direction": 1,
+        "malus_relance": -1
+      }
+    },
+    {
+      "id": "navigateur",
+      "nom": "Navigateur",
+      "icone": "🧭",
+      "bonus": "Annonce la force attendue du prochain vent (prévision juste 9 fois sur 10)",
+      "malus": "−1 case au passage d'une voile de près à une voile de portant, ou l'inverse (table à cartes)",
+      "effets": [],
+      "speciaux": {
+        "prevoit_force": 0.9,
+        "malus_changement_voile": -1
+      }
+    },
+    {
+      "id": "meteorologue",
+      "nom": "Météorologue",
+      "icone": "☁",
+      "bonus": "Connaît la tendance du bulletin et annonce l'orientation attendue du prochain vent (prévision juste 3 fois sur 4)",
+      "malus": "−2 cases pour un virage de 90° ou plus (table à cartes)",
+      "effets": [],
+      "speciaux": {
+        "prevoit_direction": 0.75,
+        "malus_changement_cap": -2
+      }
+    },
+    {
+      "id": "finesse",
+      "nom": "Finesse",
+      "icone": "🪶",
+      "bonus": "+1 case par petit temps (F3 et moins)",
+      "malus": "−1 case dès la bonne brise (F5 et plus)",
+      "effets": [
+        {
+          "type": "distance",
+          "valeur": 1,
+          "si": {
+            "force_max": 3
+          }
+        },
+        {
+          "type": "distance",
+          "valeur": -1,
+          "si": {
+            "force_min": 5
+          }
+        }
+      ],
+      "speciaux": {}
+    },
+    {
+      "id": "regatier",
+      "nom": "Régatier",
+      "icone": "⚑",
+      "bonus": "+1 case en zone côtière ; n'entre jamais en collision dans la brume",
+      "malus": "−1 case par gros temps (F7 et plus)",
+      "effets": [
+        {
+          "type": "distance",
+          "valeur": 1,
+          "si": {
+            "zone": "zone_cotiere"
+          }
+        },
+        {
+          "type": "distance",
+          "valeur": -1,
+          "si": {
+            "force_min": 7
+          }
+        }
+      ],
+      "speciaux": {
+        "sans_collision": true
+      }
+    },
+    {
+      "id": "dur_au_mal",
+      "nom": "Coriace",
+      "icone": "⛈",
+      "bonus": "+1 case par gros temps (F7 et plus)",
+      "malus": "Risque +1 cran dès la bonne brise (F5 et plus)",
+      "effets": [
+        {
+          "type": "distance",
+          "valeur": 1,
+          "si": {
+            "force_min": 7
+          }
+        },
+        {
+          "type": "risque",
+          "valeur": 1,
+          "si": {
+            "force_min": 5
+          }
+        }
+      ],
+      "speciaux": {}
+    },
+    {
+      "id": "bricoleur",
+      "nom": "Bricoleur",
+      "icone": "🔧",
+      "bonus": "+2 cartes réparation au départ",
+      "malus": "−1 case au tour où une carte réparation est jouée (bricole au lieu de barrer)",
+      "effets": [],
+      "speciaux": {
+        "reparations_depart": 2,
+        "malus_reparation": -1
+      }
+    },
+    {
+      "id": "voilier",
+      "nom": "Voilier",
+      "icone": "✂",
+      "bonus": "Ses voiles s'usent un peu moins (−20 %) et, tous les 3 tours, recoud une voile perdue en naviguant à mi-distance",
+      "malus": "Une carte réparation en moins au départ",
+      "effets": [],
+      "speciaux": {
+        "recoudre_periode": 3,
+        "usure_facteur": 0.8,
+        "reparations_depart": -1
+      }
+    },
+    {
+      "id": "kiffeur",
+      "nom": "Glisseur",
+      "icone": "➹",
+      "bonus": "+1 case au largue et au vent arrière",
+      "malus": "−1 case au près",
+      "effets": [
+        {
+          "type": "distance",
+          "valeur": 1,
+          "si": {
+            "allures": [
+              135,
+              180
+            ]
+          }
+        },
+        {
+          "type": "distance",
+          "valeur": -1,
+          "si": {
+            "allures": [
+              45
+            ]
+          }
+        }
+      ],
+      "speciaux": {}
+    },
+    {
+      "id": "grimpeur",
+      "nom": "Grimpeur",
+      "icone": "⛰",
+      "bonus": "+1 case au près",
+      "malus": "−1 case au largue et au vent arrière",
+      "effets": [
+        {
+          "type": "distance",
+          "valeur": 1,
+          "si": {
+            "allures": [
+              45
+            ]
+          }
+        },
+        {
+          "type": "distance",
+          "valeur": -1,
+          "si": {
+            "allures": [
+              135,
+              180
+            ]
+          }
+        }
+      ],
+      "speciaux": {}
+    },
+    {
+      "id": "mental_acier",
+      "nom": "Imperturbable",
+      "icone": "◆",
+      "bonus": "« Passe ton tour » devient « distance divisée par 2 » ; les avaries des cartes du large durent 1 tour de moins",
+      "malus": "Les cartes heureuses ne lui rapportent que la moitié",
+      "effets": [],
+      "speciaux": {
+        "passe_devient_demi": true,
+        "avarie_tours": -1,
+        "cartes_heureuses_facteur": 0.5
+      }
+    },
+    {
+      "id": "communicant",
+      "nom": "Communicant",
+      "icone": "📣",
+      "bonus": "Porté par ses supporters : les cartes heureuses lui rapportent un tiers de plus",
+      "malus": "Vit tout intensément : les avaries des cartes du large durent 1 tour de plus",
+      "effets": [],
+      "speciaux": {
+        "cartes_heureuses_facteur": 1.3,
+        "avarie_tours": 1
+      }
+    },
+    {
+      "id": "polyvalent",
+      "nom": "Polyvalent",
+      "icone": "✦",
+      "bonus": "+1 case au vent de travers",
+      "malus": "−1 case au près",
+      "effets": [
+        {
+          "type": "distance",
+          "valeur": 1,
+          "si": {
+            "allures": [
+              90
+            ]
+          }
+        },
+        {
+          "type": "distance",
+          "valeur": -1,
+          "si": {
+            "allures": [
+              45
+            ]
+          }
+        }
+      ],
+      "speciaux": {}
+    },
+    {
+      "id": "econome",
+      "nom": "Économe",
+      "icone": "🪡",
+      "bonus": "Ménage les voiles : elles s'usent deux fois moins vite",
+      "malus": "−1 case au portant par vent fort (F6 et plus) : pas question de forcer",
+      "effets": [
+        {
+          "type": "distance",
+          "valeur": -1,
+          "si": {
+            "allures": [
+              135,
+              180
+            ],
+            "force_min": 6
+          }
+        }
+      ],
+      "speciaux": {
+        "usure_facteur": 0.5
+      }
+    },
+    {
+      "id": "attaquant",
+      "nom": "Attaquant",
+      "icone": "⚡",
+      "bonus": "+1 case dès la jolie brise (F4 et plus)",
+      "malus": "Tire sur le matériel : les voiles s'usent 60 % plus vite",
+      "effets": [
+        {
+          "type": "distance",
+          "valeur": 1,
+          "si": {
+            "force_min": 4
+          }
+        }
+      ],
+      "speciaux": {
+        "usure_facteur": 1.6
+      }
+    },
+    {
+      "id": "prudent",
+      "nom": "Prudent",
+      "icone": "🛡",
+      "bonus": "Risque −1 cran par vent fort (F6 et plus) : réduit la toile à temps",
+      "malus": "−1 case par vent fort (F6 et plus)",
+      "effets": [
+        {
+          "type": "risque",
+          "valeur": -1,
+          "si": {
+            "force_min": 6
+          }
+        },
+        {
+          "type": "distance",
+          "valeur": -1,
+          "si": {
+            "force_min": 6
+          }
+        }
+      ],
+      "speciaux": {}
+    },
+    {
+      "id": "meticuleux",
+      "nom": "Méticuleux",
+      "icone": "🔍",
+      "bonus": "Bateau préparé au millimètre : une carte d'avarie tirée retourne dans le paquet et une autre est tirée",
+      "malus": "Une carte réparation en moins au départ",
+      "effets": [],
+      "speciaux": {
+        "relance_avarie": true,
+        "reparations_depart": -1
+      }
+    }
+  ]
+}

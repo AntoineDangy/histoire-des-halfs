@@ -1,0 +1,1285 @@
+{
+ "_note": "Questions d'exemple pour la bêta (cahier des charges §6.4), rédigées par Claude sur des thèmes généraux. À relire par le porteur de projet. Les questions « histoire » issues des données du site viendront en phase 3. reponse = index (0 à 3) dans choix. 08/11/2026 : niveau Skipper relevé à la demande du porteur de projet (questions plus techniques ; les plus simples passent en Moussaillon).",
+ "questions": [
+  {
+   "id": "q-0001",
+   "niveau": 1,
+   "categorie": "vocabulaire",
+   "question": "Sur un bateau, quel côté appelle-t-on « bâbord » ?",
+   "choix": [
+    "Le côté droit en regardant vers l'avant",
+    "Le côté gauche en regardant vers l'avant",
+    "L'arrière du bateau",
+    "Le dessous de la coque"
+   ],
+   "reponse": 1,
+   "explication": "Bâbord est à gauche quand on regarde vers l'avant ; tribord est à droite.",
+   "source": "Vocabulaire maritime usuel",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0002",
+   "niveau": 1,
+   "categorie": "matelotage",
+   "question": "Quel nœud forme une boucle fixe qui ne coulisse pas sous la charge ?",
+   "choix": [
+    "Nœud plat",
+    "Nœud de chaise",
+    "Demi-clé",
+    "Nœud de cabestan"
+   ],
+   "reponse": 1,
+   "explication": "Le nœud de chaise forme une boucle fixe, solide et facile à défaire, même après avoir forcé.",
+   "source": "Matelotage : nœuds marins usuels",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0003",
+   "niveau": 1,
+   "categorie": "vocabulaire",
+   "question": "Comment s'appelle l'avant du bateau ?",
+   "choix": [
+    "La poupe",
+    "La proue",
+    "Le tableau",
+    "La quille"
+   ],
+   "reponse": 1,
+   "explication": "La proue est l'avant du bateau ; la poupe est l'arrière.",
+   "source": "Vocabulaire maritime usuel",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0004",
+   "niveau": 1,
+   "categorie": "meteo",
+   "question": "À quoi sert une girouette ?",
+   "choix": [
+    "À mesurer la force du vent",
+    "À indiquer d'où vient le vent",
+    "À mesurer la pression de l'air",
+    "À mesurer la profondeur"
+   ],
+   "reponse": 1,
+   "explication": "La girouette indique la direction d'où vient le vent. La force se mesure avec un anémomètre.",
+   "source": "Instruments météorologiques usuels",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0005",
+   "niveau": 1,
+   "categorie": "vocabulaire",
+   "question": "Que veut dire « hisser » une voile ?",
+   "choix": [
+    "La monter le long du mât",
+    "La plier",
+    "La réparer",
+    "La laver"
+   ],
+   "reponse": 0,
+   "explication": "Hisser, c'est monter une voile (avec une drisse). L'inverse est affaler.",
+   "source": "Vocabulaire maritime usuel",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0006",
+   "niveau": 1,
+   "categorie": "bateaux",
+   "question": "Un IMOCA mesure 60 pieds. Combien cela fait-il environ en mètres ?",
+   "choix": [
+    "6,50 m",
+    "12 m",
+    "18 m",
+    "32 m"
+   ],
+   "reponse": 2,
+   "explication": "60 pieds font 18,28 m. C'est la longueur de coque de la classe IMOCA.",
+   "source": "Classe IMOCA : longueur de coque",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0007",
+   "niveau": 1,
+   "categorie": "histoire",
+   "question": "D'où part la Route du Rhum ?",
+   "choix": [
+    "Les Sables-d'Olonne",
+    "Saint-Malo",
+    "Le Havre",
+    "Brest"
+   ],
+   "reponse": 1,
+   "explication": "La Route du Rhum part de Saint-Malo et arrive à Pointe-à-Pitre, en Guadeloupe.",
+   "source": "Route du Rhum : parcours",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0008",
+   "niveau": 1,
+   "categorie": "reglementation",
+   "question": "De quelle couleur est le feu de navigation placé à tribord ?",
+   "choix": [
+    "Rouge",
+    "Vert",
+    "Blanc",
+    "Jaune"
+   ],
+   "reponse": 1,
+   "explication": "Le feu de tribord est vert et celui de bâbord est rouge.",
+   "source": "Règlement international pour prévenir les abordages en mer (RIPAM)",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0009",
+   "niveau": 1,
+   "categorie": "vocabulaire",
+   "question": "Comment appelle-t-on la grande voile fixée au mât et à la bôme ?",
+   "choix": [
+    "Le spi",
+    "La grand-voile",
+    "Le foc",
+    "Le tourmentin"
+   ],
+   "reponse": 1,
+   "explication": "La grand-voile est envoyée le long du mât, sa bordure est tenue par la bôme.",
+   "source": "Vocabulaire maritime usuel",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0010",
+   "niveau": 1,
+   "categorie": "meteo",
+   "question": "Dans l'Atlantique Nord, d'où soufflent les alizés ?",
+   "choix": [
+    "Du nord-est",
+    "Du sud-ouest",
+    "De l'ouest",
+    "Du sud"
+   ],
+   "reponse": 0,
+   "explication": "Dans l'hémisphère Nord, les alizés soufflent du nord-est vers l'équateur. Ils poussent les voiliers vers les Antilles.",
+   "source": "Circulation atmosphérique générale",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0011",
+   "niveau": 1,
+   "categorie": "vocabulaire",
+   "question": "Que désigne le mot « barre » sur un voilier ?",
+   "choix": [
+    "La barre qui sert à diriger le bateau",
+    "Le mât",
+    "Une vague",
+    "La ligne d'arrivée"
+   ],
+   "reponse": 0,
+   "explication": "La barre (ou la roue) actionne le safran et permet de diriger le bateau.",
+   "source": "Vocabulaire maritime usuel",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0012",
+   "niveau": 1,
+   "categorie": "histoire",
+   "question": "Le Vendée Globe est une course autour du monde…",
+   "choix": [
+    "En équipage, avec escales",
+    "En solitaire, sans escale et sans assistance",
+    "En double, avec une escale",
+    "À la rame"
+   ],
+   "reponse": 1,
+   "explication": "Le Vendée Globe se court en solitaire, sans escale et sans assistance, au départ des Sables-d'Olonne.",
+   "source": "Vendée Globe : règles de la course",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0101",
+   "niveau": 1,
+   "categorie": "vocabulaire",
+   "question": "Que veut dire « lofer » ?",
+   "choix": [
+    "S'éloigner du lit du vent",
+    "Se rapprocher du lit du vent",
+    "Réduire la voilure",
+    "Changer de voile d'avant"
+   ],
+   "reponse": 1,
+   "explication": "Lofer, c'est remonter vers le vent. Le contraire est abattre.",
+   "source": "Vocabulaire maritime usuel",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0102",
+   "niveau": 2,
+   "categorie": "vocabulaire",
+   "question": "Comment s'appelle le changement d'amure en passant l'arrière du bateau dans le vent ?",
+   "choix": [
+    "Le virement de bord",
+    "L'empannage",
+    "Le lof",
+    "La mise à la cape"
+   ],
+   "reponse": 1,
+   "explication": "L'empannage fait passer l'arrière dans le vent. Le virement de bord fait passer l'avant dans le vent.",
+   "source": "Vocabulaire maritime usuel",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0103",
+   "niveau": 2,
+   "categorie": "meteo",
+   "question": "Sur l'échelle de Beaufort, comment s'appelle un vent de force 4 ?",
+   "choix": [
+    "Petite brise",
+    "Jolie brise",
+    "Vent frais",
+    "Coup de vent"
+   ],
+   "reponse": 1,
+   "explication": "Force 3 : petite brise ; force 4 : jolie brise ; force 6 : vent frais ; force 8 : coup de vent.",
+   "source": "Échelle de Beaufort",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0104",
+   "niveau": 2,
+   "categorie": "reglementation",
+   "question": "Deux voiliers se croisent sur des amures opposées. Lequel doit s'écarter ?",
+   "choix": [
+    "Celui qui est tribord amures",
+    "Celui qui est bâbord amures",
+    "Le plus grand",
+    "Le plus rapide"
+   ],
+   "reponse": 1,
+   "explication": "Le bateau bâbord amures doit s'écarter de celui qui est tribord amures.",
+   "source": "Règles de course à la voile (World Sailing) et RIPAM",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0105",
+   "niveau": 2,
+   "categorie": "matelotage",
+   "question": "À quoi sert le nœud de cabestan ?",
+   "choix": [
+    "À réunir deux cordages",
+    "À amarrer rapidement un cordage sur un espar ou un pieu",
+    "À faire une boucle fixe",
+    "À raccourcir un cordage"
+   ],
+   "reponse": 1,
+   "explication": "Le nœud de cabestan sert à frapper rapidement un cordage sur un espar, un piquet ou un anneau.",
+   "source": "Matelotage : nœuds marins usuels",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0106",
+   "niveau": 1,
+   "categorie": "vocabulaire",
+   "question": "Que veut dire « prendre un ris » ?",
+   "choix": [
+    "Hisser le spi",
+    "Réduire la surface de la grand-voile",
+    "Jeter l'ancre",
+    "Remonter au vent"
+   ],
+   "reponse": 1,
+   "explication": "Prendre un ris, c'est diminuer la surface de la grand-voile quand le vent forcit.",
+   "source": "Vocabulaire maritime usuel",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0107",
+   "niveau": 2,
+   "categorie": "meteo",
+   "question": "Comment appelle-t-on la zone de calmes et d'orages proche de l'équateur ?",
+   "choix": [
+    "Les quarantièmes rugissants",
+    "Le pot au noir",
+    "Le Gulf Stream",
+    "L'anticyclone des Açores"
+   ],
+   "reponse": 1,
+   "explication": "Le pot au noir est la zone de convergence intertropicale : vents faibles et instables, grains orageux.",
+   "source": "Météorologie marine",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0108",
+   "niveau": 2,
+   "categorie": "bateaux",
+   "question": "Sur un IMOCA, à quoi sert la quille pendulaire ?",
+   "choix": [
+    "À freiner le bateau",
+    "À basculer le lest au vent pour redresser le bateau",
+    "À remplacer le safran",
+    "À stocker l'eau douce"
+   ],
+   "reponse": 1,
+   "explication": "La quille pendulaire bascule son bulbe du côté du vent : le bateau gîte moins et porte plus de toile.",
+   "source": "Architecture navale des monocoques de course",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0109",
+   "niveau": 2,
+   "categorie": "vocabulaire",
+   "question": "Quelle est la longueur d'un mille marin ?",
+   "choix": [
+    "1 000 m",
+    "1 609 m",
+    "1 852 m",
+    "2 000 m"
+   ],
+   "reponse": 2,
+   "explication": "Le mille marin mesure 1 852 m. Un nœud est une vitesse d'un mille par heure.",
+   "source": "Unités de navigation",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0110",
+   "niveau": 2,
+   "categorie": "reglementation",
+   "question": "En Europe (région A du balisage), de quelle couleur est la bouée laissée à bâbord en entrant au port ?",
+   "choix": [
+    "Verte",
+    "Rouge",
+    "Jaune",
+    "Noire et jaune"
+   ],
+   "reponse": 1,
+   "explication": "En région A, en venant du large, on laisse les marques rouges à bâbord et les vertes à tribord.",
+   "source": "Système de balisage AISM-IALA, région A",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0111",
+   "niveau": 1,
+   "categorie": "vocabulaire",
+   "question": "Qu'est-ce qu'une écoute ?",
+   "choix": [
+    "Un cordage qui règle l'angle d'une voile",
+    "Un cordage qui sert à hisser une voile",
+    "Un poste de radio",
+    "Une petite voile"
+   ],
+   "reponse": 0,
+   "explication": "L'écoute règle l'ouverture de la voile. La drisse, elle, sert à la hisser.",
+   "source": "Vocabulaire maritime usuel",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0112",
+   "niveau": 1,
+   "categorie": "bateaux",
+   "question": "Que permettent les foils d'un IMOCA ?",
+   "choix": [
+    "De soulager la coque pour aller plus vite",
+    "De mesurer la vitesse",
+    "De produire de l'électricité",
+    "De mouiller l'ancre"
+   ],
+   "reponse": 0,
+   "explication": "Le foil sous le vent crée une portance qui soulage la coque : le bateau frotte moins et accélère.",
+   "source": "Architecture navale des monocoques de course",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0201",
+   "niveau": 3,
+   "categorie": "histoire",
+   "question": "Qui a remporté la première Route du Rhum, en 1978 ?",
+   "choix": [
+    "Éric Tabarly",
+    "Mike Birch",
+    "Michel Malinovsky",
+    "Florence Arthaud"
+   ],
+   "reponse": 1,
+   "explication": "Mike Birch l'a emporté sur un petit trimaran, moins de deux minutes devant Michel Malinovsky.",
+   "source": "Route du Rhum : palmarès",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0202",
+   "niveau": 3,
+   "categorie": "histoire",
+   "question": "Qui a remporté le premier Vendée Globe (1989-1990) ?",
+   "choix": [
+    "Philippe Jeantot",
+    "Titouan Lamazou",
+    "Alain Gautier",
+    "Christophe Auguin"
+   ],
+   "reponse": 1,
+   "explication": "Titouan Lamazou a gagné la première édition, créée par Philippe Jeantot.",
+   "source": "Vendée Globe : palmarès",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0203",
+   "niveau": 3,
+   "categorie": "meteo",
+   "question": "Dans l'hémisphère Nord, dans quel sens le vent tourne-t-il autour d'un anticyclone ?",
+   "choix": [
+    "Dans le sens des aiguilles d'une montre",
+    "Dans le sens inverse des aiguilles d'une montre",
+    "Il ne tourne pas",
+    "Cela dépend de la saison"
+   ],
+   "reponse": 0,
+   "explication": "Autour d'un anticyclone de l'hémisphère Nord, le vent tourne dans le sens des aiguilles d'une montre.",
+   "source": "Météorologie marine",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0204",
+   "niveau": 3,
+   "categorie": "reglementation",
+   "question": "Deux voiliers sont sur la même amure et se recouvrent. Lequel est prioritaire ?",
+   "choix": [
+    "Le bateau au vent",
+    "Le bateau sous le vent",
+    "Le plus grand",
+    "Celui qui est devant"
+   ],
+   "reponse": 1,
+   "explication": "Sur la même amure, le bateau au vent doit s'écarter du bateau sous le vent.",
+   "source": "Règles de course à la voile (World Sailing), règle 11",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0205",
+   "niveau": 3,
+   "categorie": "reglementation",
+   "question": "Comment reconnaît-on une bouée cardinale Nord ?",
+   "choix": [
+    "Deux cônes pointe en haut, noire au-dessus du jaune",
+    "Deux cônes pointe en bas, jaune au-dessus du noir",
+    "Une sphère rouge",
+    "Un cylindre vert"
+   ],
+   "reponse": 0,
+   "explication": "La cardinale Nord porte deux cônes pointés vers le haut ; elle est noire en haut et jaune en bas. On passe au nord de la bouée.",
+   "source": "Système de balisage AISM-IALA",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0206",
+   "niveau": 3,
+   "categorie": "matelotage",
+   "question": "Quel nœud sert à raccourcir un cordage sans le couper ?",
+   "choix": [
+    "Le nœud de jambe de chien",
+    "Le nœud d'écoute",
+    "Le nœud de chaise double",
+    "Le nœud de taquet"
+   ],
+   "reponse": 0,
+   "explication": "La jambe de chien raccourcit un cordage et isole une partie abîmée de tout effort.",
+   "source": "Matelotage : nœuds marins usuels",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0207",
+   "niveau": 3,
+   "categorie": "histoire",
+   "question": "Quels sont les trois grands caps du Vendée Globe ?",
+   "choix": [
+    "Horn, Bonne-Espérance, Leeuwin",
+    "Horn, Finisterre, Vert",
+    "Bonne-Espérance, Gris-Nez, Horn",
+    "Leeuwin, Fréhel, Horn"
+   ],
+   "reponse": 0,
+   "explication": "Les marins laissent à bâbord les caps de Bonne-Espérance, Leeuwin et Horn.",
+   "source": "Vendée Globe : parcours",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0208",
+   "niveau": 3,
+   "categorie": "meteo",
+   "question": "Comment appelle-t-on les vents forts d'ouest des latitudes 40° à 50° Sud ?",
+   "choix": [
+    "Les alizés",
+    "Les quarantièmes rugissants",
+    "Le mistral",
+    "La mousson"
+   ],
+   "reponse": 1,
+   "explication": "Les quarantièmes rugissants, puis les cinquantièmes hurlants, sont la route des tours du monde.",
+   "source": "Météorologie marine",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0209",
+   "niveau": 3,
+   "categorie": "bateaux",
+   "question": "Au portant, pourquoi un IMOCA à foils évite-t-il le plein vent arrière ?",
+   "choix": [
+    "C'est interdit par la jauge",
+    "Il va plus vite au largue et tire des bords en empannant",
+    "Le spi ne peut pas être hissé",
+    "Le safran casse"
+   ],
+   "reponse": 1,
+   "explication": "Le vent apparent chute au plein vent arrière. Un foiler va plus vite au largue et empanne pour progresser.",
+   "source": "Performance des monocoques à foils",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0210",
+   "niveau": 3,
+   "categorie": "vocabulaire",
+   "question": "Que signifie « être à la cape » ?",
+   "choix": [
+    "Naviguer au plus près serré",
+    "Réduire la toile et laisser le bateau dériver lentement pour étaler le mauvais temps",
+    "Être au mouillage",
+    "Doubler un cap"
+   ],
+   "reponse": 1,
+   "explication": "La cape est une allure de sécurité : peu de toile, le bateau tient la mer en avançant très peu.",
+   "source": "Vocabulaire maritime usuel",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0211",
+   "niveau": 3,
+   "categorie": "histoire",
+   "question": "Que signifie le sigle IMOCA ?",
+   "choix": [
+    "International Monohull Open Class Association",
+    "International Maritime Ocean Class Agency",
+    "Institut Marin des Océans et Courses Atlantiques",
+    "International Multihull Offshore Class Association"
+   ],
+   "reponse": 0,
+   "explication": "IMOCA : International Monohull Open Class Association, la classe des monocoques de 60 pieds.",
+   "source": "Classe IMOCA",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0212",
+   "niveau": 3,
+   "categorie": "meteo",
+   "question": "Que mesure un baromètre ?",
+   "choix": [
+    "L'humidité",
+    "La pression atmosphérique",
+    "La température de l'eau",
+    "La vitesse du bateau"
+   ],
+   "reponse": 1,
+   "explication": "Une baisse rapide de la pression annonce souvent l'arrivée d'une dépression et du vent.",
+   "source": "Instruments météorologiques usuels",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0113",
+   "niveau": 2,
+   "categorie": "meteo",
+   "question": "Qu'appelle-t-on le « vent apparent » ?",
+   "choix": [
+    "Le vent annoncé par la météo",
+    "Le vent ressenti à bord, qui combine le vent réel et le vent créé par la vitesse du bateau",
+    "Le vent mesuré au sommet du mât uniquement",
+    "Le vent en rafale"
+   ],
+   "reponse": 1,
+   "explication": "Plus le bateau va vite, plus le vent apparent se décale vers l'avant. Les foilers naviguent presque toujours avec un vent apparent venant de l'avant.",
+   "source": "Théorie de la voile",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0114",
+   "niveau": 2,
+   "categorie": "bateaux",
+   "question": "Que représente la « polaire » d'un voilier ?",
+   "choix": [
+    "La route à suivre vers le pôle",
+    "La vitesse du bateau selon la force du vent et l'angle par rapport au vent",
+    "Le plan de pont",
+    "La liste des voiles à bord"
+   ],
+   "reponse": 1,
+   "explication": "La polaire donne la vitesse cible pour chaque force et angle de vent. Elle sert au routage.",
+   "source": "Performance des voiliers",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0115",
+   "niveau": 2,
+   "categorie": "meteo",
+   "question": "Qu'est-ce que le « routage » en course au large ?",
+   "choix": [
+    "Le choix du port d'arrivée",
+    "Le calcul de la meilleure route à partir des prévisions météo et des performances du bateau",
+    "La réparation des voiles",
+    "Le classement de la course"
+   ],
+   "reponse": 1,
+   "explication": "Le routeur combine fichiers météo et polaires pour trouver la route la plus rapide. Il est interdit d'en recevoir de l'extérieur dans la plupart des courses en solitaire.",
+   "source": "Stratégie en course au large",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0116",
+   "niveau": 2,
+   "categorie": "meteo",
+   "question": "Dans l'hémisphère Nord, dans quel sens le vent tourne-t-il autour d'une dépression ?",
+   "choix": [
+    "Dans le sens des aiguilles d'une montre",
+    "Dans le sens inverse des aiguilles d'une montre",
+    "Il souffle vers l'extérieur",
+    "Il ne tourne pas"
+   ],
+   "reponse": 1,
+   "explication": "Autour d'une dépression de l'hémisphère Nord, le vent tourne dans le sens inverse des aiguilles d'une montre ; c'est l'inverse autour d'un anticyclone.",
+   "source": "Météorologie marine",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0117",
+   "niveau": 2,
+   "categorie": "vocabulaire",
+   "question": "Que signifie la VMG (Velocity Made Good) ?",
+   "choix": [
+    "La vitesse maximale du bateau",
+    "La vitesse utile : la part de la vitesse qui rapproche vraiment du but ou du vent",
+    "La vitesse du vent",
+    "La vitesse moyenne de la course"
+   ],
+   "reponse": 1,
+   "explication": "Aller vite ne suffit pas : il faut aller vite dans la bonne direction. Au portant, on cherche le meilleur compromis entre angle et vitesse.",
+   "source": "Théorie de la voile",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0118",
+   "niveau": 2,
+   "categorie": "meteo",
+   "question": "Qu'est-ce qu'un « grain » ?",
+   "choix": [
+    "Un banc de sable",
+    "Un nuage instable qui apporte rafales, bascules de vent et souvent de la pluie",
+    "Une petite vague",
+    "Une pièce de l'accastillage"
+   ],
+   "reponse": 1,
+   "explication": "Sous un grain, le vent peut forcir et tourner brutalement. Les marins surveillent les grains, surtout dans les alizés la nuit.",
+   "source": "Météorologie marine",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0119",
+   "niveau": 2,
+   "categorie": "reglementation",
+   "question": "Que signifie le sigle DST, comme au large d'Ouessant ?",
+   "choix": [
+    "Distance sans toucher",
+    "Dispositif de séparation du trafic",
+    "Départ sous tempête",
+    "Direction sud-ouest"
+   ],
+   "reponse": 1,
+   "explication": "Un DST organise le trafic des cargos en voies séparées. Les courses en font des zones interdites : y entrer vaut une pénalité.",
+   "source": "Règlement international pour prévenir les abordages en mer (RIPAM), règle 10",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0120",
+   "niveau": 2,
+   "categorie": "bateaux",
+   "question": "À quoi sert un water-ballast sur un IMOCA ?",
+   "choix": [
+    "À stocker l'eau douce",
+    "À embarquer de l'eau de mer du côté au vent pour que le bateau gîte moins",
+    "À refroidir le moteur",
+    "À laver le pont"
+   ],
+   "reponse": 1,
+   "explication": "En remplissant les ballasts au vent, on augmente la raideur à la toile : le bateau porte plus de voile et va plus vite.",
+   "source": "Architecture navale des monocoques de course",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0121",
+   "niveau": 2,
+   "categorie": "reglementation",
+   "question": "À quoi sert l'AIS à bord ?",
+   "choix": [
+    "À mesurer la profondeur",
+    "À voir les navires proches et à se signaler à eux (position, cap, vitesse)",
+    "À recevoir la météo",
+    "À piloter le bateau"
+   ],
+   "reponse": 1,
+   "explication": "L'AIS (système d'identification automatique) émet et reçoit la position des navires. Une alarme prévient d'un risque de collision.",
+   "source": "Équipements de sécurité, réglementation maritime",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0122",
+   "niveau": 2,
+   "categorie": "meteo",
+   "question": "Sur l'échelle de Beaufort, comment s'appelle un vent de force 7 ?",
+   "choix": [
+    "Vent frais",
+    "Grand frais",
+    "Coup de vent",
+    "Tempête"
+   ],
+   "reponse": 1,
+   "explication": "Force 6 : vent frais ; force 7 : grand frais ; force 8 : coup de vent ; force 10 : tempête.",
+   "source": "Échelle de Beaufort",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0123",
+   "niveau": 2,
+   "categorie": "bateaux",
+   "question": "À quoi sert le bout-dehors ?",
+   "choix": [
+    "À amarrer le bateau",
+    "À porter, en avant de l'étrave, le point d'amure des voiles de portant et du code 0",
+    "À hisser la grand-voile",
+    "À tenir la bôme"
+   ],
+   "reponse": 1,
+   "explication": "Le bout-dehors éloigne le point d'amure des voiles légères pour mieux les faire porter.",
+   "source": "Gréement des voiliers de course",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0124",
+   "niveau": 2,
+   "categorie": "vocabulaire",
+   "question": "Une « bascule » de vent, c'est…",
+   "choix": [
+    "Une rafale",
+    "Un changement de direction du vent",
+    "Une chute du baromètre",
+    "Un vent qui tombe complètement"
+   ],
+   "reponse": 1,
+   "explication": "Profiter des bascules est tout l'art de la stratégie : on vire ou on empanne pour rester du bon côté.",
+   "source": "Stratégie de régate",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0301",
+   "niveau": 1,
+   "categorie": "vocabulaire",
+   "question": "Sur un bateau, quel côté appelle-t-on « tribord » ?",
+   "choix": [
+    "Le côté gauche en regardant vers l'avant",
+    "Le côté droit en regardant vers l'avant",
+    "L'avant du bateau",
+    "Le mât"
+   ],
+   "reponse": 1,
+   "explication": "Tribord est à droite quand on regarde vers l'avant, bâbord à gauche.",
+   "source": "Vocabulaire maritime",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0302",
+   "niveau": 1,
+   "categorie": "vocabulaire",
+   "question": "Comment s'appelle l'arrière du bateau ?",
+   "choix": [
+    "La proue",
+    "La poupe",
+    "L'étrave",
+    "Le bau"
+   ],
+   "reponse": 1,
+   "explication": "La poupe est l'arrière ; la proue (ou l'étrave) est l'avant.",
+   "source": "Vocabulaire maritime",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0303",
+   "niveau": 1,
+   "categorie": "vocabulaire",
+   "question": "Que veut dire « affaler » une voile ?",
+   "choix": [
+    "La hisser",
+    "La descendre",
+    "La border",
+    "La plier dans son sac"
+   ],
+   "reponse": 1,
+   "explication": "Affaler, c'est descendre une voile ; le contraire de hisser.",
+   "source": "Vocabulaire maritime",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0304",
+   "niveau": 1,
+   "categorie": "vocabulaire",
+   "question": "Que veut dire « abattre » ?",
+   "choix": [
+    "S'éloigner du lit du vent",
+    "Se rapprocher du lit du vent",
+    "Jeter l'ancre",
+    "Réduire la voilure"
+   ],
+   "reponse": 0,
+   "explication": "Abattre, c'est écarter l'étrave du vent ; lofer, c'est l'en rapprocher.",
+   "source": "Vocabulaire maritime",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0305",
+   "niveau": 1,
+   "categorie": "vocabulaire",
+   "question": "Quel côté est « au vent » ?",
+   "choix": [
+    "Le côté d'où vient le vent",
+    "Le côté où va le vent",
+    "L'arrière du bateau",
+    "Le côté où gîte le bateau"
+   ],
+   "reponse": 0,
+   "explication": "Au vent : le côté d'où souffle le vent ; sous le vent : le côté opposé.",
+   "source": "Vocabulaire maritime",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0306",
+   "niveau": 1,
+   "categorie": "bateaux",
+   "question": "À quoi sert un winch ?",
+   "choix": [
+    "À mesurer le vent",
+    "À tirer sur les cordages, comme un treuil",
+    "À gouverner",
+    "À pomper l'eau"
+   ],
+   "reponse": 1,
+   "explication": "Le winch est un treuil à manivelle qui démultiplie l'effort pour border écoutes et drisses.",
+   "source": "Vocabulaire maritime",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0307",
+   "niveau": 1,
+   "categorie": "bateaux",
+   "question": "Comment appelle-t-on un voilier à trois coques ?",
+   "choix": [
+    "Un catamaran",
+    "Un trimaran",
+    "Un praô",
+    "Un monocoque"
+   ],
+   "reponse": 1,
+   "explication": "Trimaran : trois coques (une centrale et deux flotteurs). Les Ultim et les Ocean Fifty sont des trimarans.",
+   "source": "Classes de course au large",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0308",
+   "niveau": 1,
+   "categorie": "vocabulaire",
+   "question": "Quelle allure est la plus proche du vent ?",
+   "choix": [
+    "Le vent arrière",
+    "Le largue",
+    "Le près",
+    "Le travers"
+   ],
+   "reponse": 2,
+   "explication": "Au près, on remonte contre le vent, à environ 45° de sa direction.",
+   "source": "Vocabulaire maritime",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0309",
+   "niveau": 1,
+   "categorie": "meteo",
+   "question": "Que mesure un anémomètre ?",
+   "choix": [
+    "La pression de l'air",
+    "La vitesse du vent",
+    "La température de l'eau",
+    "La hauteur des vagues"
+   ],
+   "reponse": 1,
+   "explication": "L'anémomètre mesure la vitesse du vent ; la girouette, sa direction.",
+   "source": "Instruments de bord",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0310",
+   "niveau": 1,
+   "categorie": "reglementation",
+   "question": "Quel mot lance un appel de détresse à la radio ?",
+   "choix": [
+    "SÉCURITÉ",
+    "PAN PAN",
+    "MAYDAY",
+    "ALLÔ"
+   ],
+   "reponse": 2,
+   "explication": "MAYDAY, répété trois fois, signale une détresse grave et imminente ; PAN PAN, une urgence.",
+   "source": "Procédures radio maritimes",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0311",
+   "niveau": 1,
+   "categorie": "histoire",
+   "question": "Où arrive la Route du Rhum ?",
+   "choix": [
+    "Fort-de-France",
+    "Pointe-à-Pitre",
+    "Saint-Barthélemy",
+    "Cayenne"
+   ],
+   "reponse": 1,
+   "explication": "La Route du Rhum relie Saint-Malo à Pointe-à-Pitre, en Guadeloupe.",
+   "source": "Route du Rhum",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0312",
+   "niveau": 1,
+   "categorie": "histoire",
+   "question": "De quel port part le Vendée Globe ?",
+   "choix": [
+    "La Rochelle",
+    "Les Sables-d'Olonne",
+    "Lorient",
+    "Brest"
+   ],
+   "reponse": 1,
+   "explication": "Le Vendée Globe part et arrive aux Sables-d'Olonne.",
+   "source": "Vendée Globe",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0313",
+   "niveau": 1,
+   "categorie": "bateaux",
+   "question": "Combien mesure un Mini 6.50 ?",
+   "choix": [
+    "6,50 m",
+    "9 m",
+    "12 m",
+    "65 pieds"
+   ],
+   "reponse": 0,
+   "explication": "Son nom le dit : 6,50 m de long. C'est le bateau de la Mini Transat.",
+   "source": "Classe Mini",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0314",
+   "niveau": 2,
+   "categorie": "bateaux",
+   "question": "Combien mesure environ un Class40 ?",
+   "choix": [
+    "9,14 m",
+    "12,19 m",
+    "15,24 m",
+    "18,28 m"
+   ],
+   "reponse": 1,
+   "explication": "40 pieds font 12,19 m.",
+   "source": "Classe Class40",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0315",
+   "niveau": 2,
+   "categorie": "meteo",
+   "question": "Sur l'échelle de Beaufort, comment s'appelle un vent de force 8 ?",
+   "choix": [
+    "Grand frais",
+    "Coup de vent",
+    "Tempête",
+    "Vent frais"
+   ],
+   "reponse": 1,
+   "explication": "Force 8 : coup de vent (34 à 40 nœuds). Force 7 : grand frais ; force 10 : tempête.",
+   "source": "Échelle de Beaufort (Météo-France)",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0316",
+   "niveau": 2,
+   "categorie": "meteo",
+   "question": "Combien de km/h font 10 nœuds ?",
+   "choix": [
+    "10 km/h",
+    "16 km/h",
+    "18,5 km/h",
+    "25 km/h"
+   ],
+   "reponse": 2,
+   "explication": "Un nœud vaut un mille par heure, soit 1,852 km/h : 10 nœuds font 18,5 km/h.",
+   "source": "Unités marines",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0317",
+   "niveau": 2,
+   "categorie": "reglementation",
+   "question": "Quel canal VHF sert à la veille et aux appels de détresse ?",
+   "choix": [
+    "Canal 6",
+    "Canal 9",
+    "Canal 16",
+    "Canal 72"
+   ],
+   "reponse": 2,
+   "explication": "Le canal 16 est le canal international de détresse, de sécurité et d'appel.",
+   "source": "Procédures radio maritimes",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0318",
+   "niveau": 2,
+   "categorie": "vocabulaire",
+   "question": "Qu'est-ce que le safran ?",
+   "choix": [
+    "La partie immergée du gouvernail",
+    "Une voile d'avant",
+    "Le haut du mât",
+    "Un nœud d'amarrage"
+   ],
+   "reponse": 0,
+   "explication": "Le safran est la pale immergée du gouvernail, qui oriente le bateau.",
+   "source": "Vocabulaire maritime",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0319",
+   "niveau": 2,
+   "categorie": "vocabulaire",
+   "question": "À quoi sert le hale-bas ?",
+   "choix": [
+    "À hisser le spi",
+    "À empêcher la bôme de remonter",
+    "À tendre l'étai",
+    "À relever la quille"
+   ],
+   "reponse": 1,
+   "explication": "Le hale-bas tire la bôme vers le bas et règle la forme de la grand-voile au portant.",
+   "source": "Vocabulaire maritime",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0320",
+   "niveau": 2,
+   "categorie": "histoire",
+   "question": "Que récompense le Trophée Jules Verne ?",
+   "choix": [
+    "La traversée de l'Atlantique la plus rapide",
+    "Le tour du monde à la voile le plus rapide, en équipage",
+    "La victoire au Vendée Globe",
+    "Le plus long parcours en 24 heures"
+   ],
+   "reponse": 1,
+   "explication": "C'est le record du tour du monde à la voile en équipage, sans escale ni assistance.",
+   "source": "Trophée Jules Verne",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0321",
+   "niveau": 2,
+   "categorie": "histoire",
+   "question": "Le Fastnet Rock, que contourne la Rolex Fastnet Race, se trouve au large…",
+   "choix": [
+    "de l'Écosse",
+    "de l'Irlande",
+    "du pays de Galles",
+    "de la Bretagne"
+   ],
+   "reponse": 1,
+   "explication": "Le phare du Fastnet est au large de la pointe sud-ouest de l'Irlande.",
+   "source": "Rolex Fastnet Race",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0322",
+   "niveau": 2,
+   "categorie": "histoire",
+   "question": "La Transat Jacques-Vabre (aujourd'hui Transat Café L'Or) se court…",
+   "choix": [
+    "En solitaire",
+    "En double",
+    "En équipage de dix",
+    "Avec escales"
+   ],
+   "reponse": 1,
+   "explication": "C'est une transatlantique en double, sur plusieurs classes.",
+   "source": "Transat Café L'Or",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0323",
+   "niveau": 2,
+   "categorie": "histoire",
+   "question": "Quelle course en solitaire se court sur un monotype Figaro ?",
+   "choix": [
+    "La Mini Transat",
+    "La Solitaire du Figaro",
+    "La Route du Rhum",
+    "La Volvo Ocean Race"
+   ],
+   "reponse": 1,
+   "explication": "La Solitaire du Figaro se court en étapes, tous sur le même bateau.",
+   "source": "Classe Figaro",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0324",
+   "niveau": 2,
+   "categorie": "meteo",
+   "question": "Au sud de quel pays se trouve le cap Horn ?",
+   "choix": [
+    "Argentine",
+    "Chili",
+    "Afrique du Sud",
+    "Nouvelle-Zélande"
+   ],
+   "reponse": 1,
+   "explication": "Le cap Horn, au sud de la Terre de Feu, est en territoire chilien.",
+   "source": "Géographie",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0325",
+   "niveau": 3,
+   "categorie": "histoire",
+   "question": "Qui a gagné la Route du Rhum 1990 ?",
+   "choix": [
+    "Florence Arthaud",
+    "Laurent Bourgnon",
+    "Philippe Poupon",
+    "Mike Birch"
+   ],
+   "reponse": 0,
+   "explication": "Florence Arthaud l'emporte en 1990 sur le trimaran Pierre 1er.",
+   "source": "Route du Rhum",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0326",
+   "niveau": 3,
+   "categorie": "histoire",
+   "question": "Sur quel bateau Éric Tabarly gagne-t-il la Transat anglaise de 1964 ?",
+   "choix": [
+    "Pen Duick II",
+    "Pen Duick III",
+    "Pen Duick VI",
+    "Manureva"
+   ],
+   "reponse": 0,
+   "explication": "En 1964, Pen Duick II, un ketch de 13,60 m, gagne la Transat anglaise en solitaire.",
+   "source": "Histoire de la course au large",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0327",
+   "niveau": 3,
+   "categorie": "histoire",
+   "question": "Qui a gagné le Vendée Globe 2000-2001 ?",
+   "choix": [
+    "Ellen MacArthur",
+    "Michel Desjoyeaux",
+    "Vincent Riou",
+    "Roland Jourdain"
+   ],
+   "reponse": 1,
+   "explication": "Michel Desjoyeaux gagne sur PRB, devant Ellen MacArthur (Kingfisher).",
+   "source": "Vendée Globe",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0328",
+   "niveau": 3,
+   "categorie": "histoire",
+   "question": "Qui détient le record du Vendée Globe, établi lors de l'édition 2024-2025 en moins de 65 jours ?",
+   "choix": [
+    "François Gabart",
+    "Armel Le Cléac'h",
+    "Alex Thomson",
+    "Charlie Dalin"
+   ],
+   "reponse": 3,
+   "explication": "Charlie Dalin, sur Macif Santé Prévoyance : 64 jours 19 heures 22 minutes (arrivée le 14 janvier 2025). Il bat le record d'Armel Le Cléac'h (74 jours 3 heures 35 minutes, 2017). Corrigé le 12/11/2026 : l'ancienne question donnait encore le record de 2017.",
+   "source": "Vendée Globe (vendeeglobe.org), édition 2024-2025",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0329",
+   "niveau": 3,
+   "categorie": "meteo",
+   "question": "Dans l'hémisphère Sud, dans quel sens le vent tourne-t-il autour d'un anticyclone ?",
+   "choix": [
+    "Dans le sens des aiguilles d'une montre",
+    "Dans le sens inverse des aiguilles d'une montre",
+    "Il ne tourne pas",
+    "Cela dépend de la saison"
+   ],
+   "reponse": 1,
+   "explication": "Tout est inversé par rapport au Nord : autour d'un anticyclone austral, le vent tourne dans le sens inverse des aiguilles d'une montre.",
+   "source": "Météorologie marine",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0330",
+   "niveau": 3,
+   "categorie": "meteo",
+   "question": "Qu'est-ce que le « fetch » ?",
+   "choix": [
+    "Un nuage d'orage",
+    "La distance sur laquelle le vent souffle sur la mer sans obstacle",
+    "Un courant de marée",
+    "Un réglage de voile"
+   ],
+   "reponse": 1,
+   "explication": "Plus le fetch est long, plus les vagues ont la place de grossir.",
+   "source": "Météorologie marine",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0331",
+   "niveau": 3,
+   "categorie": "histoire",
+   "question": "Quelle est la distance théorique (orthodromie) de la Route du Rhum ?",
+   "choix": [
+    "2 500 milles",
+    "3 542 milles",
+    "4 800 milles",
+    "6 000 milles"
+   ],
+   "reponse": 1,
+   "explication": "De Saint-Malo à Pointe-à-Pitre, la route directe fait 3 542 milles.",
+   "source": "Route du Rhum",
+   "url_fiche_site": ""
+  },
+  {
+   "id": "q-0332",
+   "niveau": 3,
+   "categorie": "vocabulaire",
+   "question": "Que veut dire « virer de bord vent devant » ?",
+   "choix": [
+    "Changer d'amure en passant l'étrave dans le vent",
+    "Changer d'amure en passant l'arrière dans le vent",
+    "Faire demi-tour au moteur",
+    "Prendre un ris"
+   ],
+   "reponse": 0,
+   "explication": "Virer vent devant, c'est passer l'étrave dans le vent ; empanner, c'est passer l'arrière.",
+   "source": "Vocabulaire maritime",
+   "url_fiche_site": ""
+  }
+ ]
+}

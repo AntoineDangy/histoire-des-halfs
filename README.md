@@ -12,6 +12,22 @@ Le code est sous licence MIT ([LICENSE](LICENSE)) ; les textes repris de histoir
 > **Ce que le dépôt ne contient pas** : les photos (droits non vérifiés, à rapatrier avec `tools/photos.mjs` et `tools/commons.mjs`)
 > et les adresses mail de particuliers présentes sur les pages d'origine (remplacées par `[adresse retirée]`).
 
+## Le jeu « Course au large »
+
+Le dossier [`jeu/`](jeu/) contient le jeu de course au large au tour par tour, compagnon du site : vraies courses
+(Route du Rhum, Vendée Globe, Fastnet…), vrais skippers, en solo contre l'IA ou en réseau. Version officielle :
+https://course-au-large.pages.dev. Il est indépendant du site : TypeScript, Vite et React, serveur de salons sur
+Cloudflare Workers.
+
+```bash
+cd jeu
+npm install
+npm run dev     # http://localhost:5173
+```
+
+Tests, construction et **déploiement de sa propre version** (site statique et serveur de salons) :
+voir [`jeu/README.md`](jeu/README.md).
+
 ## Chaîne de fabrication
 
 ```
@@ -77,6 +93,7 @@ Dans les fiches bateau, les noms des skippers sont cliquables. Les fiches skippe
 | `tools/photos.mjs` | Rapatriement des photos dans `site/photos/` |
 | `content/ajouts.json` | Ajouts de la rédaction (faits récents, bateaux absents du site d'origine), avec sources |
 | `site/assets/` | CSS (système de design) et JS (recherche, filtres, visionneuse photo, thème) |
+| `jeu/` | Le jeu « Course au large » : moteur, données, interface, serveur de salons (voir `jeu/README.md`) |
 
 ## État des itérations
 

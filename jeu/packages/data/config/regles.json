@@ -1,0 +1,48 @@
+{
+  "_note": "Paramètres généraux des règles (cahier des charges §3). Valeurs initiales à calibrer. de_direction en pas de 22,5° (16 directions) : -2 = le vent tourne de 45° dans le sens inverse des aiguilles d'une montre, +2 = dans le sens des aiguilles. La tendance (bulletin météo) biaise le dé de direction du tour suivant.",
+  "force_min": 1,
+  "force_max": 11,
+  "_note_force_max": "Décision du 11/11/2026 (porteur de projet) : le dé de force n'est plus borné à F8 ; au-delà, mode tempête et dé tempête (F9 à F11).",
+  "de_force": [-2, -1, 0, 0, 1, 2],
+  "de_force_min": [2, 1, 0, 0, 1, 2],
+  "_note_de_force_min": "Règle du porteur de projet (« à F1, pas de baisse »), appliquée le 11/11/2026 : quand le vent général est à F1, le dé de force n'a pas de face négative (les baisses deviennent des hausses) ; sinon le vent restait collé à F1 avec un dé qui affichait -2.",
+  "de_direction": [-2, -2, 0, 0, 2, 2],
+  "de_direction_tendance": { "-1": [-2, -2, -2, 0, 0, 2], "0": [-2, -2, 0, 0, 2, 2], "1": [-2, 0, 0, 2, 2, 2] },
+  "louvoyage": { "coefficient": 0.6, "angle_bords": 40, "_note": "Validé le 09/11/2026 : face au vent, le bateau louvoie avec une voile de près et avance de 60 % de sa distance au près ; voile de portant hissée = reste sur place." },
+  "demi_caps": { "milles_arrivee": 500, "courses": ["rolex-fastnet"], "_note": "Rolex Fastnet Race : 32 caps sur toute la course (décision du porteur de projet du 12/11/2026). Essai décidé par le porteur de projet le 11/11/2026 : à moins de 500 milles de l'arrivée, 32 caps au lieu de 16 (demi-caps de 11,25°, rosace intérieure de la rose des caps). Distance d'une voile à un demi-cap : moyenne exacte des deux allures voisines." },
+  "fronts": { "probabilite": 0.35, "tour_min": 3, "annonce_tours": 2, "duree": 4, "rayons": [9, 15], "vitesse": [4, 1], "forces": [7, 8, 9], "directions": [8, 10, 12], "bascule": 4, "baisse_traine": 2, "max_par_course": 2, "_note": "Fronts météo (09/11/2026) : annoncés 2 tours à l'avance, ils traversent la carte d'ouest en est. Front : vent fort ; traîne : vent basculé de 90° et faibli. Valeurs à calibrer." },
+  "pot_au_noir": { "grain": 0.35, "forces_grain": [6, 7, 8], "forces_calme": [0, 1], "_note": "Décision du 11/11/2026 (remplace celle du 10/11) : un bateau qui entre dans le pot-au-noir s'arrête au milieu, fin de son tour ; au tour suivant il lance le dé : pair, il repart ; impair, il passe son tour." },
+  "molle": { "probabilite": 0.6, "rayon": 2.4, "decalage": [2.2, -0.8], "forces": [1, 2], "_note": "Zone de molle possible à l'approche de l'arrivée (09/11/2026) : vent faible (F1-2) et direction qui change à chaque tour." },
+  "collision": { "reparations": 1, "tours": 1, "_note": "Règle du 10/11/2026 (remplace celle du 09/11) : deux bateaux ne finissent jamais sur la même case ; règle de priorité (même bord : celui qui arrive se déroute d'une case sous le vent, derrière ; bords opposés : bâbord amures passe derrière). Collision seulement dans la brume, quand un bateau finit sur la case d'un concurrent invisible : les deux perdent une carte réparation et sont immobilisés 1 tour. Le Régatier n'entre jamais en collision." },
+  "escale_technique": { "distance_max_milles": 500, "tours": 1, "_note": "Décision du 09/11/2026 (suspense) : après une avarie grave (chavirage, deuxième voile perdue), escale technique au port le plus proche s'il est à moins de 500 milles : réparation complète, 1 tour perdu. Distance à calibrer." },
+  "coefficient_force": [0, 0.3, 0.5, 0.7, 0.85, 1, 1, 1.05, 1, 0.9, 0.75, 0.75, 0.75],
+  "_note_coefficient_force": "Validé le 09/11/2026 : la distance de la table des voiles est multipliée selon la force du vent (indice = force Beaufort) : petit temps lent, pleine vitesse vers F5 à F7, on ralentit dans la tempête.",
+  "de_du_large": { "carte": [4, 5, 6], "question": [2, 3], "_note": "Décision du 11/11/2026 (remplace celle du 10/11) : un seul dé par bateau et par tour. 4-5-6 : carte du large ; 2-3 : question de culture marine (mauvaise réponse : usure de la voile hissée) ; 1 : rien." },
+  "usure": {
+    "seuil": 100,
+    "bandes_force": [3, 5, 6],
+    "par_tour": { "spi": [5, 10, 20, 34], "spi_gros_temps": [3, 4, 6, 10], "gennaker": [4, 8, 15, 25], "code0": [3, 6, 12, 20], "solent": [2, 4, 8, 13], "j3": [1, 2, 4, 7], "reduite": [0, 1, 2, 3] },
+    "mauvaise_reponse": 20,
+    "tours_reference": 10,
+    "_note": "Décision du 10/11/2026 : usure des voiles d'avant à chaque tour d'utilisation, selon la voile et la force (F1-3, F4-5, F6, F7+). Référence d'une transat (10 tours) : spi perdu en 3 tours à F7, gennaker 4, Code 0 5, solent 8, J3 15. Multipliée par la robustesse de la classe et par 10 / tours moyens de la course. La grand-voile ne s'use pas."
+  },
+  "tempete": { "9": [6], "10": [4, 5, 6], "11": [2, 3, 4, 5, 6], "force_max_fronts": 11, "_note": "Décision du 10/11/2026 : au-delà de F8, dé tempête : démâtage (monocoque) ou chavirage (multicoque)." },
+  "anticyclone": { "rapport_fronts": 0.5, "rayons": [11, 9], "vitesse": [0.4, 0], "forces": [3, 4], "duree": 6, "max_par_course": 1, "_note": "Décision du 10/11/2026 : anticyclone qui apparaît au hasard pendant la traversée, deux fois moins souvent qu'un front. Calme au centre, vent qui tourne dans le sens des aiguilles d'une montre autour." },
+  "seuil_risque": [0, 2, 3, 4, 5, 6],
+  "reparations_depart": 2,
+  "voiles_depart": ["reduite", "j3", "solent", "code0", "gennaker", "spi", "spi_gros_temps"],
+  "penalites": [
+    { "id": "demi",        "poids": 4, "texte": "Déplacement divisé par 2" },
+    { "id": "perte_voile", "poids": 2, "texte": "Perte de la voile hissée (le bateau avance quand même)" },
+    { "id": "passe",       "poids": 2, "texte": "Passe le tour suivant" },
+    { "id": "recul",       "poids": 2, "texte": "Recul d'une case au lieu d'avancer" }
+  ],
+  "tours_supplementaires_course_complete": 8,
+  "tours_max": 45,
+  "ia_quiz_reussite": {
+    "facile":    { "1": 0.7,  "2": 0.5, "3": 0.35 },
+    "moyen":     { "1": 0.85, "2": 0.7, "3": 0.5 },
+    "difficile": { "1": 0.95, "2": 0.85, "3": 0.65 }
+  },
+  "beaufort": ["", "Très légère brise", "Légère brise", "Petite brise", "Jolie brise", "Bonne brise", "Vent frais", "Grand frais", "Coup de vent"]
+}

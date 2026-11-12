@@ -32,6 +32,24 @@ Les photos ne sont pas versionnées (droits non vérifiés). Pour les obtenir lo
 - **Pas de photos** dans le dépôt : référencez-les par leur URL et leur licence.
 - Aucune clé d'API ni identifiant de compte (Cloudflare, etc.) dans les commits.
 
+## Contribuer au jeu (`jeu/`)
+
+Prérequis : Node.js 20 ou plus récent.
+
+```bash
+cd jeu
+npm install
+npm run dev          # http://localhost:5173
+npm test             # tests du moteur de règles
+npm run typecheck    # vérification TypeScript
+```
+
+- Les valeurs des règles sont dans `jeu/packages/data/config/*.json`, pas dans le code.
+- Une nouvelle règle va avec un test dans `jeu/packages/engine/test/` et une ligne dans `jeu/docs/decisions-jeu.md`.
+  Les règles de jeu se discutent d'abord dans une issue : décrivez la situation de jeu et ce qui devrait se passer.
+- Skippers et bateaux réels : citez la source de chaque donnée ajoutée. Pas de logo de sponsor, pas de photo.
+- Déployer sa propre version : voir `jeu/README.md`.
+
 ## Signaler un problème
 
 Ouvrez une issue avec la page concernée, ce qui est faux et, si possible, la source qui le corrige.

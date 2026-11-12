@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<!-- Prototype 3D de référence — jeu Course au large (Mémoire du large).
+     Modèle procédural Three.js r149, sans logo ni marquage sponsor. Point de départ, pas modèle définitif.
+     Voir le cahier des charges §10b.3 bis et §10b.4 bis. -->
+
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prototype 3D – Course au large</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;height:100%;background:#07131F;color:#E6EEF5;font-family:Inter,system-ui,sans-serif;overflow:hidden}
+  #scene{position:fixed;inset:0}
+  #scene canvas{display:block;touch-action:none;cursor:grab}
+  #labels{position:fixed;inset:0;pointer-events:none}
+  .tag{position:absolute;left:0;top:0;padding:3px 9px;border-radius:7px;background:rgba(6,24,40,.82);font-size:12px;font-weight:600;white-space:nowrap}
+  .tag.me{background:#3DD6F5;color:#04121F}
+  .panel{position:fixed;background:rgba(6,24,40,.9);border:1px solid #1F3D5A;border-radius:14px;padding:12px 14px;box-sizing:border-box}
+  #top{top:12px;left:12px;right:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+  h1{margin:0;font-family:'Space Grotesk',sans-serif;font-size:17px;letter-spacing:.02em}
+  .sub{font-size:12px;color:#B9CADB}
+  .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  button{font-family:inherit;min-height:40px;padding:0 12px;border-radius:10px;border:1px solid #1F3D5A;background:#0E2133;color:#E6EEF5;font-size:13px;font-weight:600;cursor:pointer}
+  button[aria-pressed="true"]{background:#3DD6F5;border-color:#3DD6F5;color:#04121F}
+  #ctrl{left:12px;bottom:12px;width:min(420px,calc(100% - 24px));display:flex;flex-direction:column;gap:10px}
+  .lbl{font-size:11px;font-weight:600;letter-spacing:.08em;color:#8FA6BC}
+  #note{font-size:13px;color:#B9CADB;line-height:1.45}
+  #deco{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:12px;color:#B9CADB}
+  #deco label{display:flex;align-items:center;gap:6px}
+  input[type=color]{width:34px;height:28px;border:1px solid #1F3D5A;border-radius:6px;background:none;padding:0}
+  input[type=text]{width:78px;height:28px;border:1px solid #1F3D5A;border-radius:6px;background:#0E2133;color:#E6EEF5;padding:0 6px;font-family:inherit}
+  #warn{right:12px;bottom:12px;max-width:300px;font-size:12px;color:#B9CADB;line-height:1.45}
+  @media (max-width:760px){#warn{display:none}}
+</style>
+</head>
+<body>
+<div id="scene"></div>
+<div id="labels"></div>
+
+<div id="top" class="panel">
+  <div>
+    <h1>COURSE AU LARGE · prototype 3D</h1>
+    <div class="sub">IMOCA à foils · <span id="speed"></span></div>
+  </div>
+  <div class="row" role="group" aria-label="Caméra">
+    <button id="btnGen" aria-pressed="false">Vue générale (choix)</button>
+    <button id="btnClose" aria-pressed="true">Vue rapprochée (résolution)</button>
+  </div>
+</div>
+
+<div id="ctrl" class="panel">
+  <div class="lbl">ALLURE</div>
+  <div class="row" role="group" aria-label="Allure">
+    <button data-allure="pres">Près</button>
+    <button data-allure="travers">Travers</button>
+    <button data-allure="largue">Largue</button>
+    <button data-allure="arriere">Grand largue</button>
+    <button id="gybe">Changer d'amure</button>
+  </div>
+  <div id="note"></div>
+  <div class="lbl">DÉCORATION DE VOTRE BATEAU</div>
+  <div id="deco">
+    <label>Coque <input id="cHull" type="color" value="#16263a"></label>
+    <label>Bandes <input id="cStripe" type="color" value="#3dd6f5"></label>
+    <label>Gennaker / spi <input id="cSpi" type="color" value="#ff9f43"></label>
+    <label>N° de voile <input id="num" type="text" value="FRA 00" maxlength="8"></label>
+  </div>
+</div>
+
+<div id="warn" class="panel">
+  <div class="lbl" style="margin-bottom:6px">À SAVOIR</div>
+  Référence photo : IMOCA de dernière génération plan Verdier (vainqueur du Vendée Globe 2024-25). Repris : franc-bord haut et étrave en spatule, double redan avant, roof long avec vie à l'arrière, voiles en membrane anthracite, bôme basse, filières et balcon, foils en V (extrémité remontant vers l'extérieur), outriggers de haubans. Sans logo ni marquage du sponsor. Modèle procédural : la version finale utilisera des modèles d'infographiste relus par un connaisseur.
+  <div style="margin-top:6px">Faites glisser pour tourner autour du bateau, molette pour zoomer.</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script>
+// Prototype 3D — vue rapprochée, IMOCA à foils (modèle procédural)
+(function () {
+  'use strict';
+  const T = THREE;
+  if (T.ColorManagement) T.ColorManagement.legacyMode = false;
+
+  // ---------- Paramètres de jauge (IMOCA, ordres de grandeur) ----------
+  const L = 18.28;       // longueur de coque (60 pieds)
+  const B = 5.6;         // largeur
+  const MAST_H = 28;     // hauteur de mât au-dessus du pont
+  const MAST_Z = -1.0;   // position du mât (proue vers -z)
+
+  const ALLURES = {
+    pres:     { label: 'Près',         twa: 50,  heel: 20, boom: 6,  head: 'j2',  speed: 9,  note: 'Grand-voile bordée, J2. Quille basculée au vent, foil sous le vent sorti.' },
+    travers:  { label: 'Travers',      twa: 90,  heel: 16, boom: 22, head: 'fro', speed: 15, note: 'Code 0 fractionné sur bout-dehors. Allure où le foiler vole le plus.' },
+    largue:   { label: 'Largue',       twa: 130, heel: 11, boom: 40, head: 'a3',  speed: 17, note: 'Gennaker A3. Allure la plus rapide d\'un IMOCA à foils.' },
+    arriere:  { label: 'Grand largue', twa: 155, heel: 6,  boom: 55, head: 'a2',  speed: 13, note: 'Spi A2. Un IMOCA à foils évite le plein vent arrière : il tire des bords et empanne.' }
+  };
+
+  // ---------- Rendu ----------
+  const wrap = document.getElementById('scene');
+  const renderer = new T.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.outputEncoding = T.sRGBEncoding;
+  renderer.toneMapping = T.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 0.95;
+  wrap.appendChild(renderer.domElement);
+
+  const scene = new T.Scene();
+  // ciel en dégradé
+  (function sky() {
+    const c = document.createElement('canvas'); c.width = 2; c.height = 256;
+    const g = c.getContext('2d'); const gr = g.createLinearGradient(0, 0, 0, 256);
+    gr.addColorStop(0, '#5f97c9'); gr.addColorStop(0.55, '#a9cbe6'); gr.addColorStop(1, '#dbe9f3');
+    g.fillStyle = gr; g.fillRect(0, 0, 2, 256);
+    const tx = new T.CanvasTexture(c); tx.encoding = T.sRGBEncoding; scene.background = tx;
+  })();
+  scene.fog = new T.Fog(0xc4dbec, 160, 900);
+
+  const camera = new T.PerspectiveCamera(45, 1, 0.5, 3000);
+  scene.add(new T.HemisphereLight(0xdcecff, 0x1d4b6e, 0.75));
+  const sun = new T.DirectionalLight(0xfff3e0, 1.25); sun.position.set(-80, 120, 60); scene.add(sun);
+
+  // ---------- Mer (vagues sinusoïdales, calcul en coordonnées monde) ----------
+  const SEA = 1100, SEG = 150;
+  const seaGeo = new T.PlaneGeometry(SEA, SEA, SEG, SEG); seaGeo.rotateX(-Math.PI / 2);
+  const seaMat = new T.MeshPhongMaterial({ color: 0x0b4a72, specular: 0x4a7894, shininess: 45, transparent: true, opacity: 0.86, depthWrite: true });
+  const sea = new T.Mesh(seaGeo, seaMat); scene.add(sea);
+  const seaBase = seaGeo.attributes.position.array.slice();
+  const WAVES = [
+    { a: 0.55, k: 0.045, dx: 0.8, dz: 0.6, w: 0.9 },
+    { a: 0.35, k: 0.09,  dx: -0.3, dz: 1.0, w: 1.3 },
+    { a: 0.18, k: 0.2,   dx: 1.0, dz: -0.2, w: 2.1 },
+    { a: 0.08, k: 0.45,  dx: 0.4, dz: 0.9, w: 3.2 }
+  ];
+  function waveH(x, z, t) {
+    let h = 0;
+    for (const w of WAVES) h += w.a * Math.sin((x * w.dx + z * w.dz) * w.k + t * w.w);
+    return h;
+  }
+
+  // ---------- Construction d'un IMOCA ----------
+  function hullStation(t) {
+    // t = 0 poupe, 1 étrave
+    const half = B / 2;
+    let hb;
+    if (t < 0.45) hb = half * (0.84 + 0.16 * Math.sin((t / 0.45) * Math.PI / 2));
+    else { const u = (t - 0.45) / 0.55; hb = half * Math.max(0.0, Math.pow(Math.max(0, 1 - Math.pow(u, 2.6)), 0.5)) * (1 - 0.35 * u); }
+    const top = 1.45 + 0.75 * Math.pow(t, 1.8);              // franc-bord haut, tonture remontant vers l'étrave
+    // fond plat, étrave en spatule relevée (fort rocker avant)
+    const dep = t < 0.55 ? 0.5 + 0.05 * Math.sin(t / 0.55 * Math.PI) : 0.5 - 1.15 * Math.pow((t - 0.55) / 0.45, 1.6);
+    return { hb, top, dep: Math.max(dep, -0.6) };
+  }
+
+  function buildHull(colors) {
+    const S = 64, K = 28, n = 3.8;
+    const pos = [], col = [], idx = [];
+    const cHull = new T.Color(colors.hull), cStripe = new T.Color(colors.stripe), cBottom = new T.Color('#2b3138');
+    for (let i = 0; i <= S; i++) {
+      const t = i / S; const st = hullStation(t);
+      const z = L / 2 - t * L;
+      for (let k = 0; k <= K; k++) {
+        const th = Math.PI * k / K; const c = Math.cos(th), s = Math.sin(th);
+        const x = st.hb * Math.sign(c) * Math.pow(Math.abs(c), 2 / n);
+        const y = st.top - (st.top + st.dep) * Math.pow(Math.abs(s), 2 / n);
+        pos.push(x, y, z);
+        const cc = y > st.top - 0.32 ? cStripe : (y < 0.08 ? cBottom : cHull);
+        col.push(cc.r, cc.g, cc.b);
+      }
+    }
+    for (let i = 0; i < S; i++) for (let k = 0; k < K; k++) {
+      const a = i * (K + 1) + k, b = a + K + 1;
+      idx.push(a, b, a + 1, b, b + 1, a + 1);
+    }
+    const g = new T.BufferGeometry();
+    g.setAttribute('position', new T.Float32BufferAttribute(pos, 3));
+    g.setAttribute('color', new T.Float32BufferAttribute(col, 3));
+    g.setIndex(idx); g.computeVertexNormals();
+    const hull = new T.Mesh(g, new T.MeshStandardMaterial({ vertexColors: true, roughness: 0.35, metalness: 0.05, side: T.DoubleSide }));
+
+    // pont bombé
+    const dp = [], di = [];
+    const J = 12;
+    for (let i = 0; i <= S; i++) {
+      const t = i / S; const st = hullStation(t); const z = L / 2 - t * L;
+      for (let j = 0; j <= J; j++) {
+        const u = -1 + 2 * j / J; const x = u * st.hb;
+        dp.push(x, st.top + 0.12 * (1 - u * u) - 0.005, z);
+      }
+    }
+    for (let i = 0; i < S; i++) for (let j = 0; j < J; j++) {
+      const a = i * (J + 1) + j, b = a + J + 1; di.push(a, a + 1, b, b, a + 1, b + 1);
+    }
+    const dg = new T.BufferGeometry(); dg.setAttribute('position', new T.Float32BufferAttribute(dp, 3)); dg.setIndex(di); dg.computeVertexNormals();
+    const deck = new T.Mesh(dg, new T.MeshStandardMaterial({ color: 0xd9dee3, roughness: 0.8, side: T.DoubleSide }));
+
+    // tableau arrière
+    const st0 = hullStation(0); const tr = [], ti = [];
+    tr.push(0, st0.top * 0.4, L / 2);
+    for (let k = 0; k <= K; k++) { const b = k * 3; tr.push(pos[b], pos[b + 1], pos[b + 2]); }
+    for (let k = 1; k <= K; k++) ti.push(0, k, k + 1);
+    const tg = new T.BufferGeometry(); tg.setAttribute('position', new T.Float32BufferAttribute(tr, 3)); tg.setIndex(ti); tg.computeVertexNormals();
+    const transom = new T.Mesh(tg, new T.MeshStandardMaterial({ color: colors.hull, roughness: 0.4, side: T.DoubleSide }));
+
+    const grp = new T.Group(); grp.add(hull, deck, transom);
+    return grp;
+  }
+
+  function sailGeometry(tack, head, clew, camber, leeSign, segU, segV) {
+    // surface réglée tack->head (guindant) et clew->head (chute), creusée vers le côté sous le vent
+    segU = segU || 14; segV = segV || 18;
+    const pos = [], uv = [], idx = [];
+    for (let v = 0; v <= segV; v++) {
+      const fv = v / segV;
+      const lu = new T.Vector3().lerpVectors(tack, head.luff || head, fv);
+      const le = new T.Vector3().lerpVectors(clew, head.leech || head, fv);
+      const chord = new T.Vector3().subVectors(le, lu);
+      const nrm = new T.Vector3(chord.z, 0, -chord.x).normalize().multiplyScalar(leeSign);
+      for (let u = 0; u <= segU; u++) {
+        const fu = u / segU;
+        const p = new T.Vector3().lerpVectors(lu, le, fu);
+        const depth = camber * chord.length() * Math.sin(Math.PI * Math.pow(fu, 0.8)) * (1 - 0.35 * fv);
+        p.addScaledVector(nrm, depth);
+        pos.push(p.x, p.y, p.z); uv.push(fu, fv);
+      }
+    }
+    for (let v = 0; v < segV; v++) for (let u = 0; u < segU; u++) {
+      const a = v * (segU + 1) + u, b = a + segU + 1; idx.push(a, b, a + 1, b, b + 1, a + 1);
+    }
+    const g = new T.BufferGeometry();
+    g.setAttribute('position', new T.Float32BufferAttribute(pos, 3));
+    g.setAttribute('uv', new T.Float32BufferAttribute(uv, 2));
+    g.setIndex(idx); g.computeVertexNormals();
+    return g;
+  }
+
+  function mainTexture(number, stripe) {
+    const c = document.createElement('canvas'); c.width = 512; c.height = 1024;
+    const g = c.getContext('2d');
+    g.fillStyle = '#25292f'; g.fillRect(0, 0, 512, 1024);            // membrane carbone anthracite
+    g.strokeStyle = 'rgba(255,255,255,0.10)'; g.lineWidth = 4;          // lattes
+    for (let i = 1; i < 9; i++) { g.beginPath(); g.moveTo(0, i * 110); g.lineTo(512, i * 110 - 20); g.stroke(); }
+    g.fillStyle = stripe; g.fillRect(0, 0, 512, 60);
+    g.fillStyle = '#ffffff'; g.font = 'bold 120px Arial, sans-serif'; g.textAlign = 'center';
+    g.save(); g.translate(256, 560); g.fillText(number, 0, 0); g.restore();
+    const tx = new T.CanvasTexture(c); tx.encoding = T.sRGBEncoding; tx.anisotropy = 4; return tx;
+  }
+
+  function buildBoat(opts) {
+    const boat = new T.Group();          // position / cap
+    const body = new T.Group();          // gîte / tangage
+    boat.add(body);
+    const carbon = new T.MeshStandardMaterial({ color: 0x15181c, roughness: 0.45, metalness: 0.2 });
+    const dark = new T.MeshStandardMaterial({ color: 0x23272d, roughness: 0.6 });
+
+    body.add(buildHull(opts));
+
+    // roof / cockpit fermé
+    const roofGeo = new T.CylinderGeometry(1, 1, 8.2, 24, 1, false, -Math.PI / 2, Math.PI); roofGeo.rotateX(Math.PI / 2); roofGeo.scale(1.75, 0.55, 1);
+    const roof = new T.Mesh(roofGeo, new T.MeshStandardMaterial({ color: opts.hull, roughness: 0.4 }));
+    roof.position.set(0, hullStation(0.35).top + 0.12, 3.6); body.add(roof);
+    const glass = new T.Mesh(new T.BoxGeometry(2.6, 0.32, 0.08), new T.MeshStandardMaterial({ color: 0x0b1724, roughness: 0.1, metalness: 0.5 }));
+    glass.position.set(0, hullStation(0.35).top + 0.45, -0.45); glass.rotation.x = -0.9; body.add(glass);
+    // deux redans (double strake) sur l'avant de la coque
+    for (const sx of [-1, 1]) for (const lvl of [0.35, 0.7]) {
+      const pts = [];
+      for (let i = 0; i <= 20; i++) { const t = 0.42 + 0.5 * i / 20; const st = hullStation(t);
+        const y = st.top - (st.top + st.dep) * lvl; const c = Math.pow(Math.max(0, 1 - Math.pow((y - st.top) / -(st.top + st.dep), 3.8 / 2)), 0.5);
+        pts.push(new T.Vector3(sx * (st.hb * Math.max(0.2, c) + 0.03), y, L / 2 - t * L)); }
+      body.add(new T.Mesh(new T.TubeGeometry(new T.CatmullRomCurve3(pts), 40, 0.035, 5, false), dark));
+    }
+    // filières, chandeliers et balcon avant
+    const rail = []; const railMat = new T.LineBasicMaterial({ color: 0xc9d2da });
+    for (const sx of [-1, 1]) { let prev = null;
+      for (let i = 0; i <= 12; i++) { const t = 0.08 + 0.8 * i / 12; const st = hullStation(t); const p = new T.Vector3(sx * st.hb * 0.93, st.top + 0.65, L / 2 - t * L);
+        rail.push(new T.Vector3(p.x, st.top, p.z), p); if (prev) rail.push(prev, p); prev = p; } }
+    const bp = hullStation(0.94); rail.push(new T.Vector3(-bp.hb, bp.top + 0.7, L / 2 - 0.88 * L), new T.Vector3(0, bp.top + 0.75, L / 2 - 0.95 * L), new T.Vector3(0, bp.top + 0.75, L / 2 - 0.95 * L), new T.Vector3(bp.hb, bp.top + 0.7, L / 2 - 0.88 * L));
+    body.add(new T.LineSegments(new T.BufferGeometry().setFromPoints(rail), railMat));
+
+    // mât aile (section elliptique)
+    const deckY = hullStation(0.55).top + 0.1;
+    const mastGeo = new T.CylinderGeometry(0.11, 0.17, MAST_H, 12); mastGeo.scale(1, 1, 2.6);
+    const mast = new T.Mesh(mastGeo, carbon); mast.position.set(0, deckY + MAST_H / 2, MAST_Z); body.add(mast);
+
+    // bout-dehors
+    const bowTop = hullStation(1).top;
+    const sprit = new T.Mesh(new T.CylinderGeometry(0.07, 0.09, 2.6, 8), carbon);
+    sprit.rotation.x = Math.PI / 2; sprit.position.set(0, bowTop - 0.1, -L / 2 - 1.1); body.add(sprit);
+
+    // outriggers (barres latérales) puis haubans frappés à leur extrémité
+    const rig = [];
+    const mastTop = new T.Vector3(0, deckY + MAST_H - 0.4, MAST_Z);
+    const shroudBase = hullStation(0.5);
+    const OZ = MAST_Z + 1.4, OUT = shroudBase.hb + 1.3;
+    for (const sx of [-1, 1]) {
+      const a = new T.Vector3(sx * 0.6, shroudBase.top + 0.15, OZ - 0.6), b = new T.Vector3(sx * OUT, shroudBase.top + 0.45, OZ);
+      const a2 = new T.Vector3(sx * 0.6, shroudBase.top + 0.15, OZ + 0.8);
+      for (const st of [a, a2]) {
+        const len = st.distanceTo(b); const tube = new T.Mesh(new T.CylinderGeometry(0.07, 0.11, len, 8), carbon);
+        tube.position.copy(st).add(b).multiplyScalar(0.5); tube.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), b.clone().sub(st).normalize()); body.add(tube);
+      }
+      rig.push(mastTop, b);
+      rig.push(new T.Vector3(0, deckY + MAST_H * 0.62, MAST_Z), b);
+      rig.push(mastTop, new T.Vector3(sx * hullStation(0.08).hb * 0.9, hullStation(0.08).top, L / 2 - 1.5)); // bastaques
+    }
+    rig.push(new T.Vector3(0, deckY + MAST_H * 0.85, MAST_Z), new T.Vector3(0, bowTop, -L / 2 + 0.3));
+    const rg = new T.BufferGeometry().setFromPoints(rig);
+    body.add(new T.LineSegments(rg, new T.LineBasicMaterial({ color: 0x1a1d22 })));
+
+    // quille pendulaire avec bulbe (pivot sous la coque)
+    const keelPivot = new T.Group(); keelPivot.position.set(0, -0.45, -0.3); body.add(keelPivot);
+    const KEEL = 4.2;
+    const fin = new T.Mesh(new T.BoxGeometry(0.14, KEEL, 0.9), carbon); fin.position.y = -KEEL / 2; keelPivot.add(fin);
+    const bulbGeo = new T.SphereGeometry(0.42, 16, 12); bulbGeo.scale(1, 0.85, 4.2);
+    const bulb = new T.Mesh(bulbGeo, dark); bulb.position.set(0, -KEEL - 0.1, 0.4); keelPivot.add(bulb);
+    boat.userData.keel = keelPivot;
+
+    // foils (sortent du flanc, coude vers le bas) — un de chaque côté
+    function foil(side) {
+      const st = hullStation(0.56);
+      const pts = [
+        new T.Vector3(side * (st.hb - 0.4), 0.45, MAST_Z + 0.4),
+        new T.Vector3(side * (st.hb + 0.5), -0.35, MAST_Z + 0.45),
+        new T.Vector3(side * (st.hb + 1.4), -1.25, MAST_Z + 0.5),
+        new T.Vector3(side * (st.hb + 2.1), -1.55, MAST_Z + 0.55),
+        new T.Vector3(side * (st.hb + 2.9), -1.1, MAST_Z + 0.6),
+        new T.Vector3(side * (st.hb + 3.6), -0.35, MAST_Z + 0.65)
+      ];
+      const curve = new T.CatmullRomCurve3(pts);
+      const shape = new T.Shape(); shape.absellipse(0, 0, 0.06, 0.32, 0, Math.PI * 2, false, 0);
+      const g = new T.ExtrudeGeometry(shape, { steps: 40, bevelEnabled: false, extrudePath: curve });
+      const m = new T.Mesh(g, carbon);
+      const pivot = new T.Group(); pivot.add(m); body.add(pivot);
+      return pivot;
+    }
+    boat.userData.foilPort = foil(-1);
+    boat.userData.foilStar = foil(1);
+
+    // safrans
+    for (const sx of [-1, 1]) {
+      const r = new T.Mesh(new T.BoxGeometry(0.08, 2.4, 0.55), carbon);
+      r.position.set(sx * 1.9, -0.9, L / 2 - 0.6); body.add(r);
+    }
+
+    // grand-voile (corne carrée) dans un repère qui pivote autour du mât
+    const boomPivot = new T.Group(); boomPivot.position.set(0, deckY, MAST_Z); body.add(boomPivot);
+    const BOOM = 7.8, BOOM_Y = 1.25;
+    const boom = new T.Mesh(new T.CylinderGeometry(0.1, 0.1, BOOM, 8), carbon);
+    boom.rotation.x = Math.PI / 2; boom.position.set(0, BOOM_Y, BOOM / 2); boomPivot.add(boom);
+    boat.userData.boomPivot = boomPivot;
+    const mtx = mainTexture(opts.number, opts.stripe), mtxB = mtx.clone();
+    mtxB.repeat.x = -1; mtxB.offset.x = 1; mtxB.needsUpdate = true;
+    boat.userData.mainMat = new T.MeshStandardMaterial({ map: mtx, roughness: 0.85, side: T.FrontSide });
+    boat.userData.mainMatB = new T.MeshStandardMaterial({ map: mtxB, roughness: 0.85, side: T.BackSide });
+    boat.userData.headMat = new T.MeshStandardMaterial({ color: 0x2b2f35, roughness: 0.75, side: T.DoubleSide });
+    boat.userData.spiMat = new T.MeshStandardMaterial({ color: opts.spi, roughness: 0.7, side: T.DoubleSide });
+    boat.userData.body = body;
+    boat.userData.deckY = deckY; boat.userData.bowTop = bowTop;
+    boat.userData.phase = Math.random() * 10;
+    boat.userData.mainMesh = null; boat.userData.headMesh = null;
+    return boat;
+  }
+
+  function rigFor(boat, allureKey, windSide) {
+    // windSide : +1 = vent venant de tribord (sous le vent = bâbord), -1 = l'inverse
+    const A = ALLURES[allureKey]; const ud = boat.userData; const lee = -windSide;
+    const body = ud.body;
+    if (ud.mainMesh) { ud.boomPivot.remove(ud.mainMesh); ud.boomPivot.remove(ud.mainMeshB); ud.mainMesh.geometry.dispose(); }
+    if (ud.headMesh) { body.remove(ud.headMesh); ud.headMesh.geometry.dispose(); }
+
+    // grand-voile dans le repère de la bôme (bôme orientée vers +z)
+    const BOOM = 7.8, BOOM_Y = 1.25;
+    const camberMain = allureKey === 'pres' ? 0.06 : 0.1;
+    const mg = sailGeometry(
+      new T.Vector3(0, BOOM_Y + 0.15, 0.2),
+      { luff: new T.Vector3(0, MAST_H - 0.6, 0.2), leech: new T.Vector3(0, MAST_H - 1.0, 3.0) },
+      new T.Vector3(0, BOOM_Y + 0.15, BOOM - 0.2), camberMain, lee
+    );
+    ud.mainMesh = new T.Mesh(mg, ud.mainMat); ud.mainMeshB = new T.Mesh(mg, ud.mainMatB); ud.boomPivot.add(ud.mainMesh, ud.mainMeshB);
+    ud.boomPivot.rotation.y = lee * T.MathUtils.degToRad(A.boom);
+
+    // voile d'avant
+    const deckY = ud.deckY, bowZ = -L / 2, sprZ = -L / 2 - 2.3, bowY = ud.bowTop;
+    let tack, head, clew, mat, camber;
+    if (A.head === 'j2') {
+      tack = new T.Vector3(0, bowY + 0.3, bowZ + 0.5); head = new T.Vector3(0, deckY + MAST_H * 0.84, MAST_Z - 0.4);
+      clew = new T.Vector3(lee * 1.4, deckY + 0.6, MAST_Z + 2.4); mat = ud.headMat; camber = 0.07;
+    } else if (A.head === 'fro') {
+      tack = new T.Vector3(0, bowY, sprZ); head = new T.Vector3(0, deckY + MAST_H * 0.9, MAST_Z - 0.4);
+      clew = new T.Vector3(lee * 2.9, deckY + 1.0, MAST_Z + 3.4); mat = ud.headMat; camber = 0.1;
+    } else if (A.head === 'a3') {
+      tack = new T.Vector3(0, bowY, sprZ); head = new T.Vector3(0, deckY + MAST_H * 0.9, MAST_Z - 0.6);
+      clew = new T.Vector3(lee * 4.8, deckY + 1.6, MAST_Z + 4.6); mat = ud.spiMat; camber = 0.17;
+    } else {
+      tack = new T.Vector3(-lee * 0.6, bowY + 0.4, sprZ); head = new T.Vector3(0, deckY + MAST_H * 0.92, MAST_Z - 1.2);
+      clew = new T.Vector3(lee * 5.4, deckY + 2.2, MAST_Z + 5.6); mat = ud.spiMat; camber = 0.32;
+    }
+    ud.headMesh = new T.Mesh(sailGeometry(tack, head, clew, camber, lee, 16, 20), mat);
+    body.add(ud.headMesh);
+
+    // quille basculée au vent, foil sous le vent sorti, foil au vent relevé
+    ud.keel.rotation.z = windSide * T.MathUtils.degToRad(allureKey === 'arriere' ? 20 : 38);
+    const down = lee > 0 ? ud.foilStar : ud.foilPort, up = lee > 0 ? ud.foilPort : ud.foilStar;
+    down.rotation.set(0, 0, 0); down.position.set(0, 0, 0);
+    up.rotation.set(0, 0, 0); up.position.set(0, 0, 0);
+    // relevage simplifié : translation vers le haut et rentrée dans le puits
+    up.position.set(lee * 1.5, 0.9, 0);
+    ud.heel = windSide * T.MathUtils.degToRad(A.heel); ud.lift = allureKey === 'pres' ? 0.15 : 0.55; ud.trim = allureKey === 'pres' ? 0.01 : 0.035;
+    ud.speed = A.speed;
+  }
+
+  // ---------- Flotte ----------
+  const fleetDefs = [
+    { name: 'Vous', number: 'FRA 00', hull: '#16263a', stripe: '#3dd6f5', spi: '#ff9f43', off: [0, 0], player: true, sp: 1.0 },
+    { name: 'IA · Albatros', number: 'FRA 11', hull: '#f2f4f6', stripe: '#2e8b57', spi: '#2e8b57', off: [-46, -38], sp: 1.04 },
+    { name: 'IA · Fou de Bassan', number: 'FRA 22', hull: '#5b3fa8', stripe: '#c9a7ff', spi: '#e8eef4', off: [38, 34], sp: 0.97 },
+    { name: 'IA · Puffin', number: 'FRA 33', hull: '#c8102e', stripe: '#ffffff', spi: '#f5c842', off: [85, -10], sp: 0.95 }
+  ];
+  const fleet = fleetDefs.map((d) => {
+    const b = buildBoat(d); b.userData.def = d;
+    b.position.set(d.off[0], 0, d.off[1]); scene.add(b); return b;
+  });
+  const player = fleet[0];
+
+  // Label HTML par bateau
+  const labelsEl = document.getElementById('labels');
+  fleet.forEach((b) => {
+    const el = document.createElement('div'); el.className = 'tag' + (b.userData.def.player ? ' me' : '');
+    el.textContent = b.userData.def.name; labelsEl.appendChild(el); b.userData.label = el;
+  });
+
+  // Sillage (particules)
+  const WAKE_N = 3200;
+  const wakeGeo = new T.BufferGeometry();
+  const wakePos = new Float32Array(WAKE_N * 3), wakeCol = new Float32Array(WAKE_N * 3);
+  const wakeAge = new Float32Array(WAKE_N).fill(99), wakeVel = new Float32Array(WAKE_N * 2);
+  wakeGeo.setAttribute('position', new T.BufferAttribute(wakePos, 3));
+  wakeGeo.setAttribute('color', new T.BufferAttribute(wakeCol, 3));
+  const dot = (function () { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d');
+    const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, 64, 64); return new T.CanvasTexture(c); })();
+  const wake = new T.Points(wakeGeo, new T.PointsMaterial({ size: 1.6, map: dot, vertexColors: true, transparent: true, opacity: 0.85, depthWrite: false }));
+  scene.add(wake);
+  let wakeI = 0;
+  const seaCol = new T.Color(0x0e4f78);
+  function emitWake(b) {
+    const back = new T.Vector3(0, 0, L / 2).applyQuaternion(b.quaternion).add(b.position);
+    for (let n = 0; n < 3; n++) {
+      const i = wakeI = (wakeI + 1) % WAKE_N;
+      wakePos[i * 3] = back.x + (Math.random() - 0.5) * 3.5; wakePos[i * 3 + 1] = 0.25; wakePos[i * 3 + 2] = back.z + Math.random() * 1.5;
+      wakeVel[i * 2] = (Math.random() - 0.5) * 1.6; wakeVel[i * 2 + 1] = 0;
+      wakeAge[i] = 0;
+    }
+  }
+
+  // ---------- État et UI ----------
+  const state = { allure: 'largue', windSide: 1, cam: 'close', camT: 1, camFrom: null };
+  function applyAllure() {
+    fleet.forEach((b) => rigFor(b, state.allure, state.windSide));
+    document.querySelectorAll('[data-allure]').forEach((el) => el.setAttribute('aria-pressed', el.dataset.allure === state.allure));
+    document.getElementById('note').textContent = ALLURES[state.allure].note;
+    document.getElementById('speed').textContent = ALLURES[state.allure].label + ' · ' + (state.windSide > 0 ? 'tribord amures' : 'bâbord amures');
+  }
+  document.querySelectorAll('[data-allure]').forEach((el) => el.addEventListener('click', () => { state.allure = el.dataset.allure; applyAllure(); }));
+  document.getElementById('gybe').addEventListener('click', () => { state.windSide *= -1; orbit.yaw = -orbit.yaw; if (state.cam === 'close') setCam('close'); applyAllure(); });
+
+  function redecorate() {
+    const d = player.userData.def;
+    d.hull = document.getElementById('cHull').value; d.stripe = document.getElementById('cStripe').value;
+    d.spi = document.getElementById('cSpi').value; d.number = (document.getElementById('num').value || 'FRA 00').slice(0, 8);
+    const pos = player.position.clone(), rot = player.rotation.y; scene.remove(player);
+    const nb = buildBoat(d); nb.userData.def = d; nb.userData.label = player.userData.label;
+    nb.position.copy(pos); nb.rotation.y = rot; scene.add(nb); fleet[0] = nb; playerRef = nb;
+    rigFor(nb, state.allure, state.windSide);
+  }
+  let playerRef = player;
+  ['cHull', 'cStripe', 'cSpi'].forEach((id) => document.getElementById(id).addEventListener('change', redecorate));
+  document.getElementById('num').addEventListener('change', redecorate);
+
+  // Caméra : orbite manuelle + deux vues
+  const orbit = { yaw: -1.15, pitch: 0.16, dist: 62 };
+  const overview = { yaw: 0.0, pitch: 1.35, dist: 340 };
+  let dragging = false, lx = 0, ly = 0;
+  renderer.domElement.addEventListener('pointerdown', (e) => { dragging = true; lx = e.clientX; ly = e.clientY; renderer.domElement.setPointerCapture(e.pointerId); });
+  renderer.domElement.addEventListener('pointerup', () => { dragging = false; });
+  renderer.domElement.addEventListener('pointermove', (e) => {
+    if (!dragging || state.cam !== 'close') return;
+    orbit.yaw -= (e.clientX - lx) * 0.006; orbit.pitch = Math.min(1.3, Math.max(0.04, orbit.pitch + (e.clientY - ly) * 0.004));
+    lx = e.clientX; ly = e.clientY;
+  });
+  renderer.domElement.addEventListener('wheel', (e) => { e.preventDefault(); orbit.dist = Math.min(140, Math.max(22, orbit.dist * (1 + Math.sign(e.deltaY) * 0.08))); }, { passive: false });
+
+  function setCam(mode) {
+    state.camFrom = { ...currentCam }; state.cam = mode; state.camT = 0;
+    document.getElementById('btnGen').setAttribute('aria-pressed', mode === 'general');
+    document.getElementById('btnClose').setAttribute('aria-pressed', mode === 'close');
+  }
+  document.getElementById('btnGen').addEventListener('click', () => setCam('general'));
+  document.getElementById('btnClose').addEventListener('click', () => setCam('close'));
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let currentCam = { ...orbit };
+
+  function resize() {
+    const w = wrap.clientWidth, h = wrap.clientHeight;
+    renderer.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', resize); resize();
+
+  applyAllure();
+
+  // ---------- Boucle ----------
+  const clock = new T.Clock(); const tmp = new T.Vector3();
+  function frame() {
+    const dt = Math.min(clock.getDelta(), 0.05); const t = clock.elapsedTime;
+    const heading = 0; // les bateaux avancent vers -z ; le vent tourne autour d'eux selon l'allure
+
+    const lead = fleet[0];
+    lead.position.z -= lead.userData.speed * 0.6 * dt;
+    fleet.forEach((b, i) => {
+      const ud = b.userData;
+      if (i > 0) { b.position.x = ud.def.off[0] + lead.position.x; b.position.z = lead.position.z + ud.def.off[1] + 7 * Math.sin(t * 0.07 + i * 2.1); }
+      b.rotation.y = heading;
+      const h = waveH(b.position.x, b.position.z, t);
+      const hf = waveH(b.position.x, b.position.z - 6, t), ha = waveH(b.position.x, b.position.z + 6, t);
+      b.position.y = h * 0.45 + ud.lift;
+      ud.body.rotation.set(ud.trim + (hf - ha) * 0.04, 0, ud.heel + 0.02 * Math.sin(t * 1.3 + ud.phase), 'YXZ');
+      emitWake(b);
+    });
+
+    // sillage
+    for (let i = 0; i < WAKE_N; i++) {
+      if (wakeAge[i] > 4) { wakePos[i * 3 + 1] = -50; continue; }
+      wakeAge[i] += dt; wakePos[i * 3] += wakeVel[i * 2] * dt;
+      const k = Math.min(1, wakeAge[i] / 4);
+      wakeCol[i * 3] = 1 + (seaCol.r - 1) * k; wakeCol[i * 3 + 1] = 1 + (seaCol.g - 1) * k; wakeCol[i * 3 + 2] = 1 + (seaCol.b - 1) * k;
+      wakePos[i * 3 + 1] = waveH(wakePos[i * 3], wakePos[i * 3 + 2], t) * 0.6 + 0.12;
+    }
+    wakeGeo.attributes.position.needsUpdate = true; wakeGeo.attributes.color.needsUpdate = true;
+
+    // mer centrée sur le joueur
+    const p = fleet[0].position;
+    sea.position.set(Math.round(p.x / 5) * 5, 0, Math.round(p.z / 5) * 5);
+    const arr = seaGeo.attributes.position.array;
+    for (let i = 0; i < arr.length; i += 3) {
+      const wx = seaBase[i] + sea.position.x, wz = seaBase[i + 2] + sea.position.z;
+      arr[i + 1] = waveH(wx, wz, t);
+    }
+    seaGeo.attributes.position.needsUpdate = true; seaGeo.computeVertexNormals();
+
+    // caméra
+    const target = state.cam === 'close' ? orbit : overview;
+    if (state.camT < 1) {
+      state.camT = reduceMotion ? 1 : Math.min(1, state.camT + dt / 1.6);
+      const e = state.camT < 0.5 ? 2 * state.camT * state.camT : 1 - Math.pow(-2 * state.camT + 2, 2) / 2;
+      currentCam = {
+        yaw: state.camFrom.yaw + (target.yaw - state.camFrom.yaw) * e,
+        pitch: state.camFrom.pitch + (target.pitch - state.camFrom.pitch) * e,
+        dist: state.camFrom.dist + (target.dist - state.camFrom.dist) * e
+      };
+    } else currentCam = { ...target };
+    const focus = tmp.set(p.x + (state.cam === 'general' ? 20 : 0), state.cam === 'general' ? 6 : 10, p.z + (state.cam === 'general' ? -10 : 0));
+    camera.position.set(
+      focus.x + currentCam.dist * Math.cos(currentCam.pitch) * Math.sin(currentCam.yaw),
+      focus.y + currentCam.dist * Math.sin(currentCam.pitch),
+      focus.z + currentCam.dist * Math.cos(currentCam.pitch) * Math.cos(currentCam.yaw)
+    );
+    camera.lookAt(focus);
+    sun.position.set(p.x - 80, 120, p.z + 60); sun.target.position.copy(p); sun.target.updateMatrixWorld();
+
+    // labels
+    const w = wrap.clientWidth, h = wrap.clientHeight;
+    fleet.forEach((b) => {
+      const v = new T.Vector3(b.position.x, b.userData.deckY + MAST_H + 3, b.position.z).project(camera);
+      const el = b.userData.label;
+      if (v.z > 1 || v.x < -1.1 || v.x > 1.1 || v.y < -1.1 || v.y > 1.1) { el.style.display = 'none'; return; }
+      el.style.display = 'block';
+      el.style.transform = 'translate(' + ((v.x + 1) / 2 * w) + 'px,' + ((1 - v.y) / 2 * h) + 'px) translate(-50%,-100%)';
+    });
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
