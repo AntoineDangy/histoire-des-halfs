@@ -1,0 +1,3318 @@
+{
+  "Route du Rhum": {
+    "sources_generales": [
+      {
+        "titre": "Route du Rhum (Wikipédia)",
+        "url": "https://fr.wikipedia.org/wiki/Route_du_Rhum"
+      }
+    ],
+    "editions": {
+      "2002": {
+        "source": {
+          "titre": "Route du Rhum 2002 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Route_du_Rhum_2002"
+        },
+        "classes": {
+          "ORMA": [
+            {
+              "rang": 1,
+              "skipper": "Michel Desjoyeaux",
+              "bateau": "Géant",
+              "temps": "13 j 7 h 53 min"
+            },
+            {
+              "rang": 2,
+              "skipper": "Marc Guillemot",
+              "bateau": "Biscuits La Trinitaine",
+              "temps": "13 j 19 h 36 min 18 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Lalou Roucayrol",
+              "bateau": "Banque Populaire",
+              "temps": "14 j 7 h 1 min"
+            }
+          ],
+          "Multi50": [
+            {
+              "rang": 1,
+              "skipper": "Franck-Yves Escoffier",
+              "bateau": "Crêpes Wahou",
+              "temps": "16 j 23 h 9 min 42 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Anne Cazeneuve",
+              "bateau": "YachtingCasino.com",
+              "temps": "17 j 22 h 37 min 7 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Hervé Cleris",
+              "bateau": "Vaincre la mucoviscidose",
+              "temps": "18 j 18 h 55 min 52 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Ellen MacArthur",
+              "bateau": "Kingfisher",
+              "temps": "13 j 13 h 31 min 47 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Mike Golding",
+              "bateau": "Ecover",
+              "temps": "13 j 22 h 49 min 35 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Joé Seeten",
+              "bateau": "Arcelor Dunkerque",
+              "temps": "16 j 51 min 51 s"
+            }
+          ]
+        }
+      },
+      "2006": {
+        "source": {
+          "titre": "Route du Rhum 2006 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Route_du_Rhum_2006"
+        },
+        "classes": {
+          "ORMA": [
+            {
+              "rang": 1,
+              "skipper": "Lionel Lemonchois",
+              "bateau": "Gitana 11",
+              "temps": "7 j 17 h 19 min 6 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Pascal Bidégorry",
+              "bateau": "Banque populaire IV",
+              "temps": "8 j 4 h 25 min 7 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Thomas Coville",
+              "bateau": "Sodeb'O",
+              "temps": "8 j 13 h 39 min 2 s"
+            }
+          ],
+          "Multi50": [
+            {
+              "rang": 1,
+              "skipper": "Franck-Yves Escoffier",
+              "bateau": "Crêpes Whaou!",
+              "temps": "11 j 17 h 28 min 11 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Éric Bruneel",
+              "bateau": "Trilogic",
+              "temps": "13 j 14 h 58 min 35 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Victorien Erussard",
+              "bateau": "Laiterie de Saint-Malo",
+              "temps": "16 j 18 h 29 min 54 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Roland Jourdain",
+              "bateau": "Sill et Veolia",
+              "temps": "12 j 11 h 58 min 58 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Jean Le Cam",
+              "bateau": "VM Matériaux",
+              "temps": "12 j 12 h 26 min 53 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Jean-Pierre Dick",
+              "bateau": "Virbac-Paprec",
+              "temps": "12 j 20 h 27 min 58 s"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Phil Sharp",
+              "bateau": "philsharpracing.com",
+              "temps": "18 j 10 h 21 min 18 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Gildas Morvan",
+              "bateau": "Oyster Funds",
+              "temps": "19 j 8 h 52 min 0 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Ian Munslow",
+              "bateau": "Bolands Mill",
+              "temps": "21 j 9 h 45 min 31 s"
+            }
+          ]
+        }
+      },
+      "2010": {
+        "source": {
+          "titre": "Route du Rhum 2010 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Route_du_Rhum_2010"
+        },
+        "classes": {
+          "Ultim": [
+            {
+              "rang": 1,
+              "skipper": "Franck Cammas",
+              "bateau": "Groupama 3",
+              "temps": "9 j 3 h 14 min 47 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Francis Joyon",
+              "bateau": "IDEC",
+              "temps": "9 j 13 h 50 min 48 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Thomas Coville",
+              "bateau": "Sodeb'O",
+              "temps": "10 j 3 h 13 min 11 s"
+            }
+          ],
+          "Multi50": [
+            {
+              "rang": 1,
+              "skipper": "Lionel Lemonchois",
+              "bateau": "Prince de Bretagne",
+              "temps": "15 j 4 h 50 min 48 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Lalou Roucayrol",
+              "bateau": "Région Aquitaine - Port Médoc",
+              "temps": "15 j 12 h 30 min 14 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Loïc Fequet",
+              "bateau": "Maître Jacques",
+              "temps": "15 j 14 h 28 min 26 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Roland Jourdain",
+              "bateau": "Véolia Environnement",
+              "temps": "13 j 17 h 10 min 56 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Armel Le Cléac'h",
+              "bateau": "Brit Air",
+              "temps": "14 j 1 h 6 min 7 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Marc Guillemot",
+              "bateau": "Safran",
+              "temps": "14 j 12 h 28 min 2 s"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Thomas Ruyant",
+              "bateau": "Destination Dunkerque",
+              "temps": "17 j 23 h 10 min 17 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Nicolas Troussel",
+              "bateau": "Crédit mutuel de Bretagne",
+              "temps": "18 j 2 h 40 min 15 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Yvan Noblet",
+              "bateau": "Appart City",
+              "temps": "18 j 6 h 38 min 17 s"
+            }
+          ]
+        }
+      },
+      "2014": {
+        "source": {
+          "titre": "Route du Rhum 2014 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Route_du_Rhum_2014"
+        },
+        "classes": {
+          "Ultim": [
+            {
+              "rang": 1,
+              "skipper": "Loïck Peyron",
+              "bateau": "Maxi Solo Banque Populaire VII",
+              "temps": "7 j 15 h 8 min 32 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Yann Guichard",
+              "bateau": "Maxi Spindrift 2",
+              "temps": "8 j 5 h 18 min 46 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Sébastien Josse",
+              "bateau": "Gitana XV",
+              "temps": "8 j 14 h 47 min 9 s"
+            }
+          ],
+          "Multi50": [
+            {
+              "rang": 1,
+              "skipper": "Erwan Le Roux",
+              "bateau": "FenetreA Cardinal",
+              "temps": "11 j 5 h 13 min 55 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Lalou Roucayrol",
+              "bateau": "Arkema-Région Aquitaine",
+              "temps": "11 j 21 h 29 min 10 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Gilles Lamiré",
+              "bateau": "Rennes Métropole-Saint Malo Agglomération",
+              "temps": "12 j 10 h 44 min 37 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "François Gabart",
+              "bateau": "Macif",
+              "temps": "12 j 4 h 38 min 55 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Jérémie Beyou",
+              "bateau": "Maitre Coq",
+              "temps": "12 j 12 h 11 min 18 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Marc Guillemot",
+              "bateau": "Safran",
+              "temps": "13 j 1 h 59 min 20 s"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Alex Pella",
+              "bateau": "Tales II",
+              "temps": "16 j 17 h 47 min 8 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Thibaut Vauchel-Camus",
+              "bateau": "Solidaires en Peloton pour la Fondation ARSEP",
+              "temps": "17 j 4 h 33 min 41 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Kito de Pavant",
+              "bateau": "Otio - Bastide Médical",
+              "temps": "17 j 5 h 7 min 3 s"
+            }
+          ]
+        }
+      },
+      "2018": {
+        "source": {
+          "titre": "Route du Rhum 2018 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Route_du_Rhum_2018"
+        },
+        "classes": {
+          "Ultim": [
+            {
+              "rang": 1,
+              "skipper": "Francis Joyon",
+              "bateau": "IDEC Sport",
+              "temps": "7 j 14 h 21 min 47 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "François Gabart",
+              "bateau": "Macif",
+              "temps": "7 j 14 h 28 min 55 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Thomas Coville",
+              "bateau": "Sodebo Ultim",
+              "temps": "16 j 7 h 45 min 36 s"
+            }
+          ],
+          "Multi50": [
+            {
+              "rang": 1,
+              "skipper": "Armel Tripon",
+              "bateau": "Reauté Chocolat",
+              "temps": "11 j 7 h 32 min 40 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Erwan Le Roux",
+              "bateau": "Fenêtréa - Mix Buffet",
+              "temps": "12 j 1 h 9 min 12 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Thibaut Vauchel-Camus",
+              "bateau": "Solidaires en Peloton - ARSEP",
+              "temps": "12 j 9 h 18 min 44 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Paul Meilhat",
+              "bateau": "SMA",
+              "temps": "12 j 11 h 23 min 18 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Yann Eliès",
+              "bateau": "Ucar - Saint Michel",
+              "temps": "12 j 13 h 38 min 30 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Alex Thomson",
+              "bateau": "Hugo Boss",
+              "temps": "12 j 23 h 10 min 58 s",
+              "note": "dont 24 h de pénalité"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Yoann Richomme",
+              "bateau": "Veedol",
+              "temps": "16 j 3 h 22 min 44 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Aymeric Chappellier",
+              "bateau": "Aïna enfance & avenir",
+              "temps": "16 j 11 h 16 min 15 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Phil Sharp",
+              "bateau": "Imerys Clean Energy",
+              "temps": "16 j 13 h 1 min 50 s"
+            }
+          ]
+        }
+      },
+      "2022": {
+        "source": {
+          "titre": "Route du Rhum 2022 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Route_du_Rhum_2022"
+        },
+        "classes": {
+          "Ultim": [
+            {
+              "rang": 1,
+              "skipper": "Charles Caudrelier",
+              "bateau": "Maxi Edmond de Rothschild",
+              "temps": "6 j 19 h 47 min 25 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "François Gabart",
+              "bateau": "SVR-Lazartigue",
+              "temps": "6 j 23 h 3 min 15 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Thomas Coville",
+              "bateau": "Sodebo Ultim 3",
+              "temps": "7 j 6 h 37 min 25 s"
+            }
+          ],
+          "Ocean Fifty": [
+            {
+              "rang": 1,
+              "skipper": "Erwan Le Roux",
+              "bateau": "Koesio",
+              "temps": "10 j 21 h 35 min 52 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Quentin Vlamynck",
+              "bateau": "Arkema",
+              "temps": "10 j 21 h 54 min 5 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Sébastien Rogues",
+              "bateau": "Primonial",
+              "temps": "11 j 3 h 37 min 37 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Thomas Ruyant",
+              "bateau": "LinkedOut",
+              "temps": "11 j 17 h 36 min 25 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Charlie Dalin",
+              "bateau": "Apivia",
+              "temps": "11 j 19 h 38 min 11 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Jérémie Beyou",
+              "bateau": "Charal",
+              "temps": "11 j 21 h 0 min 55 s"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Yoann Richomme",
+              "bateau": "Paprec Arkéa",
+              "temps": "14 j 3 h 8 min 40 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Ambrogio Beccaria",
+              "bateau": "Allagrande Pirelli",
+              "temps": "14 j 7 h 23 min 48 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Corentin Douguet",
+              "bateau": "Queguiner Innoveo",
+              "temps": "14 j 9 h 24 min 12 s"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Transat Jacques-Vabre": {
+    "sources_generales": [
+      {
+        "titre": "Transat Café L'Or, ex-Transat Jacques-Vabre (Wikipédia)",
+        "url": "https://fr.wikipedia.org/wiki/Transat_Café_L'Or"
+      }
+    ],
+    "editions": {
+      "2007": {
+        "source": {
+          "titre": "Transat Jacques-Vabre 2007 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_Jacques-Vabre_2007"
+        },
+        "classes": {
+          "ORMA": [
+            {
+              "rang": 1,
+              "skipper": "Franck Cammas et Stève Ravussin",
+              "bateau": "Groupama 2",
+              "temps": "10 j 0 h 38 min"
+            },
+            {
+              "rang": 2,
+              "skipper": "Lionel Lemonchois et Yann Guichard",
+              "bateau": "Gitana 11",
+              "temps": "10 j 9 h 49 min"
+            },
+            {
+              "rang": 3,
+              "skipper": "Pascal Bidégorry et Yvan Ravussin",
+              "bateau": "Banque Populaire IV",
+              "temps": "10 j 16 h 57 min"
+            }
+          ],
+          "Multi50": [
+            {
+              "rang": 1,
+              "skipper": "Franck-Yves Escoffier et Karine Fauconnier",
+              "bateau": "Crêpes Whaou!"
+            },
+            {
+              "rang": 2,
+              "skipper": "Victorien Erussard et Frédéric Dahirel",
+              "bateau": "Laiterie de Saint-Malo"
+            },
+            {
+              "rang": 3,
+              "skipper": "Anne Caseneuve et Djamina Houdet",
+              "bateau": "Croisières Anne Caseneuve"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Michel Desjoyeaux et Emmanuel Le Borgne",
+              "bateau": "Foncia"
+            },
+            {
+              "rang": 2,
+              "skipper": "Marc Guillemot et Charles Caudrelier",
+              "bateau": "Safran"
+            },
+            {
+              "rang": 3,
+              "skipper": "Bernard Stamm et Tanguy Cariou",
+              "bateau": "Cheminées Poujoulat"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Giovanni Soldini et Pietro D'Ali",
+              "bateau": "Télécom Italia"
+            },
+            {
+              "rang": 2,
+              "skipper": "Dominic Vittet et Thierry Chabagny",
+              "bateau": "ATAO Audio System"
+            },
+            {
+              "rang": 3,
+              "skipper": "Damien Grimont et Erwan Le Roux",
+              "bateau": "Chocolats Monbana"
+            }
+          ]
+        }
+      },
+      "2009": {
+        "source": {
+          "titre": "Transat Jacques-Vabre 2009 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_Jacques-Vabre_2009"
+        },
+        "note": "Seules les classes IMOCA et Multi50 étaient admises.",
+        "classes": {
+          "Multi50": [
+            {
+              "rang": 1,
+              "skipper": "Franck-Yves Escoffier et Erwan Le Roux",
+              "bateau": "Crêpes Whaou!"
+            },
+            {
+              "rang": 2,
+              "skipper": "Loïc Féquet et Victorien Erussard",
+              "bateau": "Guyader pour Urgence Climatique"
+            },
+            {
+              "rang": 3,
+              "skipper": "Lalou Roucayrol et Amaiur Alfaro",
+              "bateau": "Région Aquitaine-Port Medoc"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Marc Guillemot et Charles Caudrelier",
+              "bateau": "Safran"
+            },
+            {
+              "rang": 2,
+              "skipper": "Kito de Pavant et François Gabart",
+              "bateau": "Groupe Bel"
+            },
+            {
+              "rang": 3,
+              "skipper": "Mike Golding et Javier Sansó",
+              "bateau": "Mike Golding Yacht Racing"
+            }
+          ]
+        }
+      },
+      "2011": {
+        "source": {
+          "titre": "Transat Jacques-Vabre 2011 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_Jacques-Vabre_2011"
+        },
+        "note": "Pas de classe de grands multicoques. En Multi50, deux bateaux seulement ont terminé.",
+        "classes": {
+          "Multi50": [
+            {
+              "rang": 1,
+              "skipper": "Yves Le Blevec et Samuel Manuard",
+              "bateau": "Actual",
+              "temps": "17 j 17 h 7 min 43 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Loïc Fequet et Loic Escoffier",
+              "bateau": "Maitre Jacques",
+              "temps": "18 j 22 h 10 min 30 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Jean-Pierre Dick et Jérémie Beyou",
+              "bateau": "Virbac Paprec 3",
+              "temps": "15 j 18 h 13 min 54 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Alex Thomson et Guillermo Altadill",
+              "bateau": "Hugo Boss",
+              "temps": "16 j 9 h 0 min 0 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Armel Le Cléac'h et Christopher Pratt",
+              "bateau": "Banque Populaire VI",
+              "temps": "16 j 15 h 0 min 3 s"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Yannick Bestaven et Eric Drouglazet",
+              "bateau": "Aquarelle.com",
+              "temps": "21 j 17 h 59 min 8 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Damien Seguin et Yoann Richomme",
+              "bateau": "eRDF - Des pieds et des mains",
+              "temps": "22 j 3 h 2 min 0 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Hannah Jenner et Jesse Naimark-Rowse",
+              "bateau": "40 Degrees",
+              "temps": "23 j 4 h 2 min 4 s"
+            }
+          ]
+        }
+      },
+      "2013": {
+        "source": {
+          "titre": "Transat Jacques-Vabre 2013 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_Jacques-Vabre_2013"
+        },
+        "note": "Les grands multicoques couraient en classe MOD70 (deux inscrits).",
+        "classes": {
+          "MOD70": [
+            {
+              "rang": 1,
+              "skipper": "Sébastien Josse et Charles Caudrelier",
+              "bateau": "Edmond de Rothschild",
+              "temps": "11 j 5 h 3 min 54 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Sidney Gavignet et Damian Foxall",
+              "bateau": "Oman Air-Musandam",
+              "temps": "11 j 10 h 4 min 9 s"
+            }
+          ],
+          "Multi50": [
+            {
+              "rang": 1,
+              "skipper": "Erwan Le Roux et Yann Eliès",
+              "bateau": "FenetreA - Cardinal",
+              "temps": "14 j 17 h 50 min 15 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Yves Le Blevec et Kito de Pavant",
+              "bateau": "Actual",
+              "temps": "14 j 22 h 47 min 30 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Gilles Lamiré et Andrea Mura",
+              "bateau": "Rennes Métropole - Saint-Malo Agglomération",
+              "temps": "19 j 16 h 3 min 46 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Vincent Riou et Jean Le Cam",
+              "bateau": "PRB",
+              "temps": "17 j 0 h 41 min 47 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Marc Guillemot et Pascal Bidégorry",
+              "bateau": "Safran",
+              "temps": "17 j 4 h 43 min 23 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Jérémie Beyou et Christopher Pratt",
+              "bateau": "Maître CoQ",
+              "temps": "17 j 5 h 15 min 7 s"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Sébastien Rogues et Fabien Delahaye",
+              "bateau": "GDF Suez",
+              "temps": "20 j 21 h 41 min 25 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Alex Pella et Pablo Santurde",
+              "bateau": "Tales Santander 2014",
+              "temps": "21 j 1 h 22 min 15 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Jörg Riechers et Pierre Brasseur",
+              "bateau": "Mare",
+              "temps": "21 j 3 h 21 min 55 s"
+            }
+          ]
+        }
+      },
+      "2015": {
+        "source": {
+          "titre": "Transat Jacques-Vabre 2015 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_Jacques-Vabre_2015"
+        },
+        "note": "En Ultim, deux bateaux seulement ont terminé.",
+        "classes": {
+          "Ultim": [
+            {
+              "rang": 1,
+              "skipper": "François Gabart et Pascal Bidégorry",
+              "bateau": "Macif",
+              "temps": "12 j 17 h 29 min 27 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Thomas Coville et Jean-Luc Nélias",
+              "bateau": "Sodebo Ultim",
+              "temps": "13 j 1 h 17 min 38 s"
+            }
+          ],
+          "Multi50": [
+            {
+              "rang": 1,
+              "skipper": "Erwan Le Roux et Giancarlo Pedote",
+              "bateau": "FenêtréA Prysmian",
+              "temps": "16 j 22 h 29 min 13 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Thierry Bouchard et Olivier Krauss",
+              "bateau": "Ciela Village",
+              "temps": "17 j 17 h 44 min 51 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Lalou Roucayrol et César Dohy",
+              "bateau": "Arkema",
+              "temps": "20 j 22 h 47 min 55 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Vincent Riou et Sebastien Col",
+              "bateau": "PRB",
+              "temps": "17 j 0 h 22 min 24 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Armel Le Cléac'h et Erwan Tabarly",
+              "bateau": "Banque populaire VIII",
+              "temps": "17 j 8 h 29 min 9 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Yann Elies et Charlie Dalin",
+              "bateau": "Queguiner - Leucémie Espoir",
+              "temps": "17 j 10 h 1 min 23 s"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Yannick Bestaven et Pierre Brasseur",
+              "bateau": "Le Conservateur",
+              "temps": "24 j 8 h 10 min 9 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Maxime Sorel et Sam Manuard",
+              "bateau": "V and B",
+              "temps": "24 j 10 h 4 min 31 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Louis Duc et Christophe Lebas",
+              "bateau": "Carac Advanced Energies",
+              "temps": "25 j 21 h 29 min 52 s"
+            }
+          ]
+        }
+      },
+      "2017": {
+        "source": {
+          "titre": "Transat Jacques-Vabre 2017 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_Jacques-Vabre_2017"
+        },
+        "note": "En Ultim, deux bateaux seulement ont terminé.",
+        "classes": {
+          "Ultim": [
+            {
+              "rang": 1,
+              "skipper": "Thomas Coville et Jean-Luc Nélias",
+              "bateau": "Sodebo Ultim",
+              "temps": "7 j 22 h 7 min 27 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Sébastien Josse et Thomas Rouxel",
+              "bateau": "Gitana 17",
+              "temps": "7 j 23 h 55 min 24 s"
+            }
+          ],
+          "Multi50": [
+            {
+              "rang": 1,
+              "skipper": "Lalou Roucayrol et Alex Pella",
+              "bateau": "Arkema",
+              "temps": "10 j 19 h 14 min 19 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Erwan Le Roux et Vincent Riou",
+              "bateau": "Fenêtréa - Mix Buffet",
+              "temps": "11 j 2 h 51 min 23 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Armel Tripon et Vincent Barnaud",
+              "bateau": "Réauté Chocolat",
+              "temps": "11 j 19 h 44 min 23 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Jean-Pierre Dick et Yann Eliès",
+              "bateau": "St Michel - Virbac",
+              "temps": "13 j 7 h 36 min 46 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Paul Meilhat et Gwénolé Gahinet",
+              "bateau": "SMA",
+              "temps": "13 j 13 h 58 min 3 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Morgan Lagravière et Eric Peron",
+              "bateau": "Des Voiles et Vous !",
+              "temps": "14 j 1 h 31 min 44 s"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Maxime Sorel et Antoine Carpentier",
+              "bateau": "V and B",
+              "temps": "17 j 10 h 44 min 15 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Aymeric Chappellier et Arthur Le Vaillant",
+              "bateau": "Aïna enfance et avenir",
+              "temps": "17 j 11 h 1 min 57 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Phil Sharp et Pablo Santurde",
+              "bateau": "Imerys",
+              "temps": "17 j 15 h 58 min 41 s"
+            }
+          ]
+        }
+      },
+      "2019": {
+        "source": {
+          "titre": "Transat Jacques-Vabre 2019 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_Jacques-Vabre_2019"
+        },
+        "note": "Pas de classe Ultim cette année-là.",
+        "classes": {
+          "Multi50": [
+            {
+              "rang": 1,
+              "skipper": "Gilles Lamiré et Antoine Carpentier",
+              "bateau": "Groupe GCA - Mille et un sourires",
+              "temps": "11 j 16 h 34 min 41 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Thibaut Vauchel-Camus et Fred Duthil",
+              "bateau": "Solidaires en Peloton - ARSEP",
+              "temps": "12 j 2 h 38 min 1 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Sébastien Rogues et Matthieu Souben",
+              "bateau": "Primonial",
+              "temps": "13 j 9 min 42 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Charlie Dalin et Yann Eliès",
+              "bateau": "Apivia",
+              "temps": "13 j 12 h 8 min"
+            },
+            {
+              "rang": 2,
+              "skipper": "Kevin Escoffier et Nicolas Lunven",
+              "bateau": "PRB",
+              "temps": "14 j 3 h 49 min 42 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Jérémie Beyou et Christopher Pratt",
+              "bateau": "Charal",
+              "temps": "14 j 3 h 56 min"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Ian Lipinski et Adrien Hardy",
+              "bateau": "Crédit mutuel",
+              "temps": "17 j 16 h 21 min 23 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Sam Goodchild et Fabien Delahaye",
+              "bateau": "Leyton",
+              "temps": "18 j 0 h 43 min 11 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Aymeric Chappellier et Pierre Leboucher",
+              "bateau": "Aïna Enfance & Avenir",
+              "temps": "18 j 4 h 6 min 45 s"
+            }
+          ]
+        }
+      },
+      "2021": {
+        "source": {
+          "titre": "Transat Jacques-Vabre 2021 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_Jacques-Vabre_2021"
+        },
+        "classes": {
+          "Ultim": [
+            {
+              "rang": 1,
+              "skipper": "Franck Cammas et Charles Caudrelier",
+              "bateau": "Maxi Edmond de Rothschild",
+              "temps": "16 j 1 h 49 min 16 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "François Gabart et Tom Laperche",
+              "bateau": "SVR-Lazartigue",
+              "temps": "16 j 9 h 46 min 11 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Armel Le Cléac'h et Kevin Escoffier",
+              "bateau": "Banque Populaire XI",
+              "temps": "16 j 10 h 39 min 20 s"
+            }
+          ],
+          "Ocean Fifty": [
+            {
+              "rang": 1,
+              "skipper": "Sébastien Rogues et Matthieu Souben",
+              "bateau": "Primonial",
+              "temps": "15 j 13 h 27 min 14 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Erwan Le Roux et Xavier Macaire",
+              "bateau": "Koesio",
+              "temps": "15 j 15 h 55 min 12 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Sam Goodchild et Aymeric Chappellier",
+              "bateau": "Leyton",
+              "temps": "15 j 17 h 15 min 43 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Thomas Ruyant et Morgan Lagravière",
+              "bateau": "Linked Out",
+              "temps": "18 j 1 h 21 min 10 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Charlie Dalin et Paul Meilhat",
+              "bateau": "Apivia",
+              "temps": "18 j 21 h 33 min 31 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Jérémie Beyou et Christopher Pratt",
+              "bateau": "Charal",
+              "temps": "19 j 14 h 59 min 36 s"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Antoine Carpentier et Pablo Santurde Del Arco",
+              "bateau": "Redman",
+              "temps": "21 j 22 h 33 min 30 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Valentin Gautier et Simon Koster",
+              "bateau": "Banque du Léman",
+              "temps": "21 j 23 h 37 min 38 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Cédric Château et Jérémie Mion",
+              "bateau": "Seafrigo - Sogestran",
+              "temps": "22 j 0 h 11 min 53 s"
+            }
+          ]
+        }
+      },
+      "2023": {
+        "source": {
+          "titre": "Transat Jacques-Vabre 2023 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_Jacques-Vabre_2023"
+        },
+        "classes": {
+          "Ultim": [
+            {
+              "rang": 1,
+              "skipper": "Armel Le Cléac'h et Sébastien Josse",
+              "bateau": "Maxi Banque Populaire XI",
+              "temps": "14 j 10 h 14 min 50 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "François Gabart et Tom Laperche",
+              "bateau": "SVR Lazartigue",
+              "temps": "14 j 15 h 5 min 55 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Charles Caudrelier et Erwan Israel",
+              "bateau": "Maxi Edmond de Rothschild",
+              "temps": "16 j 9 h 5 min 43 s"
+            }
+          ],
+          "Ocean Fifty": [
+            {
+              "rang": 1,
+              "skipper": "Thibaut Vauchel-Camus et Quentin Vlamynck",
+              "bateau": "Solidaires en Peloton",
+              "temps": "11 j 11 h 22 min 27 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Fabrice Cahierc et Aymeric Chappellier",
+              "bateau": "Réalités",
+              "temps": "11 j 22 h 42 min 58 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Pierre Quiroga et Ronan Treussart",
+              "bateau": "Viabilis Océans",
+              "temps": "12 j 1 h 53 min 1 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Thomas Ruyant et Morgan Lagravière",
+              "bateau": "For People",
+              "temps": "11 j 21 h 32 min 31 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Yoann Richomme et Yann Eliès",
+              "bateau": "Paprec Arkéa",
+              "temps": "12 j 1 h 41 min 16 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Sam Goodchild et Antoine Koch",
+              "bateau": "For The Planet",
+              "temps": "12 j 1 h 50 min 32 s"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Ambrogio Beccaria et Nicolas Andrieu",
+              "bateau": "Alla Grande Pirelli",
+              "temps": "18 j 12 h 21 min 55 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Achille Nebout et Gildas Mahé",
+              "bateau": "Amarris",
+              "temps": "18 j 20 h 20 min 14 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Alberto Bona et Pablo Santurde Del Arco",
+              "bateau": "Ibsa",
+              "temps": "18 j 21 h 22 min 47 s"
+            }
+          ]
+        }
+      },
+      "2025": {
+        "source": {
+          "titre": "Transat Café L'Or 2025 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_Café_L'Or_2025"
+        },
+        "note": "La course s'appelle Transat Café L'Or depuis 2025. En Class40, course en deux étapes : temps cumulé.",
+        "classes": {
+          "Ultim": [
+            {
+              "rang": 1,
+              "skipper": "Tom Laperche et Franck Cammas",
+              "bateau": "SVR Lazartigue",
+              "temps": "10 j 13 h 3 min 58 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Thomas Coville et Benjamin Schwartz",
+              "bateau": "Sodebo Ultim 3",
+              "temps": "10 j 17 h 30 min 9 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Anthony Marchand et Julien Villion",
+              "bateau": "Actual Ultim 4",
+              "temps": "11 j 8 h 13 min 7 s"
+            }
+          ],
+          "Ocean Fifty": [
+            {
+              "rang": 1,
+              "skipper": "Baptiste Hulin et Thomas Rouxel",
+              "bateau": "Viabilis Oceans",
+              "temps": "12 j 5 h 24 min 30 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Pierre Quiroga et Gaston Morvan",
+              "bateau": "Wewise",
+              "temps": "12 j 5 h 42 min 2 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Luke Berry et Antoine Joubert",
+              "bateau": "Le Rire médecin - Lamotte",
+              "temps": "12 j 5 h 52 min 12 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Jérémie Beyou et Morgan Lagravière",
+              "bateau": "Charal",
+              "temps": "11 j 19 h 45 min 28 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Francesca Clapcich et Will Harris",
+              "bateau": "11th Hour Racing",
+              "temps": "12 j 1 h 32 min 46 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Sam Goodchild et Loïs Berrehar",
+              "bateau": "Macif santé prévoyance",
+              "temps": "12 j 3 h 25 min 47 s"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Guillaume Pirouelle et Cédric Chateau",
+              "bateau": "Seafrigo - Sogestran",
+              "temps": "19 j 2 h 34 min 46 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Corentin Douguet et Axel Tréhin",
+              "bateau": "SNSM Faites un don !",
+              "temps": "19 j 2 h 42 min 7 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "William Mathelin-Moreaux et Pietro Luciani",
+              "bateau": "Les Invincibles",
+              "temps": "19 j 10 h 56 min 54 s"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Vendée Globe": {
+    "sources_generales": [
+      {
+        "titre": "Vendée Globe (Wikipédia)",
+        "url": "https://fr.wikipedia.org/wiki/Vendée_Globe"
+      }
+    ],
+    "editions": {
+      "1989": {
+        "source": {
+          "titre": "Vendée Globe 1989-1990 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Vendée_Globe_1989-1990"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Titouan Lamazou",
+              "bateau": "Écureuil d'Aquitaine II",
+              "temps": "109 j 8 h 48 min 50 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Loïck Peyron",
+              "bateau": "Lada Poch",
+              "temps": "110 j 1 h 18 min 6 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Jean-Luc Van Den Heede",
+              "bateau": "36.15 MET",
+              "temps": "112 j 1 h 14 min 0 s"
+            },
+            {
+              "rang": 4,
+              "skipper": "Philippe Jeantot",
+              "bateau": "Crédit Agricole IV",
+              "temps": "113 j 23 h 47 min 47 s"
+            },
+            {
+              "rang": 5,
+              "skipper": "Pierre Follenfant",
+              "bateau": "TBS-Charente Maritime",
+              "temps": "114 j 21 h 9 min 6 s"
+            }
+          ]
+        }
+      },
+      "1992": {
+        "source": {
+          "titre": "Vendée Globe 1992-1993 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Vendée_Globe_1992-1993"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Alain Gautier",
+              "bateau": "Bagages Superior",
+              "temps": "110 j 2 h 22 min 35 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Jean-Luc Van Den Heede",
+              "bateau": "Groupe Sofap-Helvim",
+              "temps": "116 j 15 h 1 min 11 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Philippe Poupon",
+              "bateau": "Fleury-Michon X",
+              "temps": "117 j 3 h 34 min 24 s"
+            },
+            {
+              "rang": 4,
+              "skipper": "Yves Parlier",
+              "bateau": "Cacolac d'Aquitaine",
+              "temps": "125 j 2 h 42 min 24 s"
+            },
+            {
+              "rang": 5,
+              "skipper": "Nándor Fa",
+              "bateau": "K&H Bank Matav",
+              "temps": "128 j 16 h 5 min 4 s"
+            }
+          ]
+        }
+      },
+      "1996": {
+        "source": {
+          "titre": "Vendée Globe 1996-1997 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Vendée_Globe_1996-1997"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Christophe Auguin",
+              "bateau": "Geodis",
+              "temps": "105 j 20 h 31 min"
+            },
+            {
+              "rang": 2,
+              "skipper": "Marc Thiercelin",
+              "bateau": "Crédit Immobilier de France",
+              "temps": "113 j 8 h 26 min"
+            },
+            {
+              "rang": 3,
+              "skipper": "Hervé Laurent",
+              "bateau": "Groupe LG-Traitmat",
+              "temps": "114 j 16 h 43 min"
+            },
+            {
+              "rang": 4,
+              "skipper": "Éric Dumont",
+              "bateau": "Café Legal-Le Goût",
+              "temps": "116 j 16 h 43 min"
+            },
+            {
+              "rang": 5,
+              "skipper": "Pete Goss",
+              "bateau": "Aqua Quorum",
+              "temps": "126 j 21 h 25 min"
+            }
+          ]
+        }
+      },
+      "2000": {
+        "source": {
+          "titre": "Vendée Globe 2000-2001 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Vendée_Globe_2000-2001"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Michel Desjoyeaux",
+              "bateau": "PRB",
+              "temps": "93 j 3 h 57 min"
+            },
+            {
+              "rang": 2,
+              "skipper": "Ellen MacArthur",
+              "bateau": "Kingfisher",
+              "temps": "94 j 4 h 25 min"
+            },
+            {
+              "rang": 3,
+              "skipper": "Roland Jourdain",
+              "bateau": "Sill Matines La Potagère",
+              "temps": "96 j 1 h 2 min"
+            },
+            {
+              "rang": 4,
+              "skipper": "Marc Thiercelin",
+              "bateau": "Active Wear",
+              "temps": "102 j 20 h 37 min"
+            },
+            {
+              "rang": 5,
+              "skipper": "Dominique Wavre",
+              "bateau": "Union Bancaire Privée",
+              "temps": "105 j 2 h 45 min"
+            }
+          ]
+        }
+      },
+      "2004": {
+        "source": {
+          "titre": "Vendée Globe 2004-2005 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Vendée_Globe_2004-2005"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Vincent Riou",
+              "bateau": "PRB",
+              "temps": "87 j 10 h 47 min 55 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Jean Le Cam",
+              "bateau": "Bonduelle",
+              "temps": "87 j 17 h 20 min 8 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Mike Golding",
+              "bateau": "Ecover",
+              "temps": "88 j 15 h 15 min 13 s"
+            },
+            {
+              "rang": 4,
+              "skipper": "Dominique Wavre",
+              "bateau": "Temenos",
+              "temps": "92 j 17 h 13 min 20 s"
+            },
+            {
+              "rang": 5,
+              "skipper": "Sébastien Josse",
+              "bateau": "VMI",
+              "temps": "93 j 0 h 2 min 10 s"
+            }
+          ]
+        }
+      },
+      "2008": {
+        "source": {
+          "titre": "Vendée Globe 2008-2009 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Vendée_Globe_2008-2009"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Michel Desjoyeaux",
+              "bateau": "Foncia",
+              "temps": "84 j 3 h 9 min 8 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Armel Le Cléac'h",
+              "bateau": "Brit Air",
+              "temps": "89 j 9 h 39 min 35 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Marc Guillemot",
+              "bateau": "Safran",
+              "temps": "95 j 3 h 19 min 36 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Vincent Riou",
+              "bateau": "PRB",
+              "note": "Classé 3e ex aequo (reclassement à la suite du sauvetage de Jean Le Cam), sans temps de course"
+            },
+            {
+              "rang": 4,
+              "skipper": "Samantha Davies",
+              "bateau": "Roxy",
+              "temps": "95 j 4 h 39 min 1 s"
+            },
+            {
+              "rang": 5,
+              "skipper": "Brian Thompson",
+              "bateau": "Bahrain Team Pindar",
+              "temps": "98 j 20 h 29 min 55 s"
+            }
+          ]
+        }
+      },
+      "2012": {
+        "source": {
+          "titre": "Vendée Globe 2012-2013 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Vendée_Globe_2012-2013"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "François Gabart",
+              "bateau": "Macif",
+              "temps": "78 j 2 h 16 min 40 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Armel Le Cléac'h",
+              "bateau": "Banque Populaire",
+              "temps": "78 j 5 h 33 min 52 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Alex Thomson",
+              "bateau": "Hugo Boss",
+              "temps": "80 j 19 h 23 min 43 s"
+            },
+            {
+              "rang": 4,
+              "skipper": "Jean-Pierre Dick",
+              "bateau": "Virbac Paprec 3",
+              "temps": "86 j 3 h 3 min 40 s"
+            },
+            {
+              "rang": 5,
+              "skipper": "Jean Le Cam",
+              "bateau": "SynerCiel",
+              "temps": "88 j 0 h 12 min 58 s"
+            }
+          ]
+        }
+      },
+      "2016": {
+        "source": {
+          "titre": "Vendée Globe 2016-2017 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Vendée_Globe_2016-2017"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Armel Le Cléac'h",
+              "bateau": "Banque populaire VIII",
+              "temps": "74 j 3 h 35 min 46 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Alex Thomson",
+              "bateau": "Hugo Boss",
+              "temps": "74 j 19 h 35 min 15 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Jérémie Beyou",
+              "bateau": "Maître Coq",
+              "temps": "78 j 6 h 38 min 40 s"
+            },
+            {
+              "rang": 4,
+              "skipper": "Jean-Pierre Dick",
+              "bateau": "StMichel-Virbac",
+              "temps": "80 j 1 h 45 min 45 s"
+            },
+            {
+              "rang": 5,
+              "skipper": "Yann Eliès",
+              "bateau": "Quéguiner - Leucémie Espoir",
+              "temps": "80 j 3 h 11 min 9 s"
+            }
+          ]
+        }
+      },
+      "2020": {
+        "source": {
+          "titre": "Vendée Globe 2020-2021 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Vendée_Globe_2020-2021"
+        },
+        "note": "Temps retenus après les compensations accordées par le jury (sauvetage de Kevin Escoffier) : 10 h 15 min pour Yannick Bestaven, 16 h 15 min pour Jean Le Cam, 6 h pour Boris Herrmann.",
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Yannick Bestaven",
+              "bateau": "Maître CoQ IV",
+              "temps": "80 j 3 h 44 min 46 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Charlie Dalin",
+              "bateau": "Apivia",
+              "temps": "80 j 6 h 15 min 47 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Louis Burton",
+              "bateau": "Bureau Vallée 2",
+              "temps": "80 j 10 h 25 min 12 s"
+            },
+            {
+              "rang": 4,
+              "skipper": "Jean Le Cam",
+              "bateau": "Yes We Cam !",
+              "temps": "80 j 13 h 44 min 55 s"
+            },
+            {
+              "rang": 5,
+              "skipper": "Boris Herrmann",
+              "bateau": "Seaexplorer Yacht club de Monaco",
+              "temps": "80 j 14 h 59 min 45 s"
+            }
+          ]
+        }
+      },
+      "2024": {
+        "source": {
+          "titre": "Vendée Globe 2024-2025 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Vendée_Globe_2024-2025"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Charlie Dalin",
+              "bateau": "Macif santé prévoyance",
+              "temps": "64 j 19 h 22 min 49 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Yoann Richomme",
+              "bateau": "Paprec Arkéa",
+              "temps": "65 j 18 h 10 min 2 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Sébastien Simon",
+              "bateau": "Groupe Dubreuil",
+              "temps": "67 j 12 h 25 min 37 s"
+            },
+            {
+              "rang": 4,
+              "skipper": "Jérémie Beyou",
+              "bateau": "Charal",
+              "temps": "74 j 12 h 56 min 54 s"
+            },
+            {
+              "rang": 5,
+              "skipper": "Paul Meilhat",
+              "bateau": "Biotherm",
+              "temps": "74 j 22 h 38 min 15 s"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Mini Transat": {
+    "sources_generales": [
+      {
+        "titre": "Transat 6.50 (Wikipédia)",
+        "url": "https://fr.wikipedia.org/wiki/Transat_6.50"
+      }
+    ],
+    "editions": {
+      "2007": {
+        "source": {
+          "titre": "Transat 6.50, édition 2007 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_6.50#Seizième_édition_2007"
+        },
+        "classes": {
+          "Proto": [
+            {
+              "rang": 1,
+              "skipper": "Yves Le Blevec",
+              "bateau": "Actual",
+              "temps": "23 j 3 h 51 min 24 s",
+              "numero": "624"
+            },
+            {
+              "rang": 2,
+              "skipper": "David Sineau",
+              "bateau": "Région Nord Pas De Calais - Ripolin",
+              "temps": "24 j 0 h 59 min 22 s",
+              "numero": "348"
+            },
+            {
+              "rang": 3,
+              "skipper": "Fabien Despres",
+              "bateau": "Soitec",
+              "temps": "24 j 4 h 19 min 25 s",
+              "numero": "617"
+            }
+          ],
+          "Série": [
+            {
+              "rang": 1,
+              "skipper": "Hervé Piveteau",
+              "temps": "26 j 4 h 31 min 17 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Stéphane Le Diraison",
+              "bateau": "Temps Noir Production",
+              "temps": "26 j 16 h 34 min 24 s",
+              "numero": "539"
+            },
+            {
+              "rang": 3,
+              "skipper": "David Krizek",
+              "bateau": "Atlantik FT",
+              "temps": "26 j 18 h 15 min 37 s",
+              "numero": "516"
+            }
+          ]
+        }
+      },
+      "2009": {
+        "source": {
+          "titre": "Transat 6.50, édition 2009 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_6.50#Dix-septième_édition_2009"
+        },
+        "classes": {
+          "Proto": [
+            {
+              "rang": 1,
+              "skipper": "Thomas Ruyant",
+              "bateau": "Faber France",
+              "temps": "24 j 23 h 40 min 30 s",
+              "numero": "667"
+            },
+            {
+              "rang": 2,
+              "skipper": "Bertrand Delesne",
+              "bateau": "Entreprendre Durablement",
+              "temps": "25 j 3 h 7 min 4 s",
+              "numero": "754"
+            },
+            {
+              "rang": 3,
+              "skipper": "Henry-Paul Schipman",
+              "bateau": "Maison de l'Avenir",
+              "temps": "25 j 5 h 26 min 23 s",
+              "numero": "716"
+            }
+          ],
+          "Série": [
+            {
+              "rang": 1,
+              "skipper": "Francisco Lobato",
+              "bateau": "Roff TMN",
+              "temps": "26 j 19 h 39 min 18 s",
+              "numero": "607"
+            },
+            {
+              "rang": 2,
+              "skipper": "Charlie Dalin",
+              "bateau": "Cherche Sponsor Charliedalin.com",
+              "temps": "27 j 7 h 29 min 10 s",
+              "numero": "435"
+            },
+            {
+              "rang": 3,
+              "skipper": "Xavier Macaire",
+              "bateau": "Masoco Bay",
+              "temps": "27 j 21 h 0 min 14 s",
+              "numero": "472"
+            }
+          ]
+        }
+      },
+      "2011": {
+        "source": {
+          "titre": "Transat 6.50, édition 2011 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_6.50#Dix-huitième_édition_2011"
+        },
+        "classes": {
+          "Proto": [
+            {
+              "rang": 1,
+              "skipper": "David Raison",
+              "bateau": "Teamwork Evolution",
+              "temps": "26 j 3 h 28 min 40 s",
+              "numero": "747"
+            },
+            {
+              "rang": 2,
+              "skipper": "Thomas Normand",
+              "bateau": "Financière de l'Echiquier",
+              "temps": "27 j 2 h 58 min 25 s",
+              "numero": "787"
+            },
+            {
+              "rang": 3,
+              "skipper": "Antoine Rioux",
+              "bateau": "Festival des Pains",
+              "temps": "27 j 12 h 5 min 5 s",
+              "numero": "800"
+            }
+          ],
+          "Série": [
+            {
+              "rang": 1,
+              "skipper": "Gwénolé Gahinet",
+              "temps": "29 j 16 h 46 min 11 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Pierre Brasseur",
+              "bateau": "Voiles Océan",
+              "temps": "29 j 20 h 22 min 35 s",
+              "numero": "552"
+            },
+            {
+              "rang": 3,
+              "skipper": "Benoit Mariette",
+              "bateau": "Odalys Vacances",
+              "temps": "30 j 0 h 42 min 14 s",
+              "numero": "599"
+            }
+          ]
+        }
+      },
+      "2013": {
+        "source": {
+          "titre": "Transat 6.50, édition 2013 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_6.50#Dix-neuvième_édition_2013"
+        },
+        "note": "Première étape annulée ; classement sur l’étape unique Sada - Pointe-à-Pitre.",
+        "classes": {
+          "Proto": [
+            {
+              "rang": 1,
+              "skipper": "Benoît Marie",
+              "bateau": "Benoitmarie.com",
+              "temps": "18 j 13 h 1 min 5 s",
+              "numero": "667"
+            },
+            {
+              "rang": 2,
+              "skipper": "Giancarlo Pedote",
+              "bateau": "Prysmian",
+              "temps": "18 j 15 h 56 min 30 s",
+              "numero": "747"
+            },
+            {
+              "rang": 3,
+              "skipper": "Rémi Fermin",
+              "bateau": "Boréal",
+              "temps": "19 j 13 h 38 min 46 s",
+              "numero": "741"
+            }
+          ],
+          "Série": [
+            {
+              "rang": 1,
+              "skipper": "Aymeric Belloir",
+              "bateau": "Tout le Monde Chante contre le Cancer",
+              "temps": "21 j 9 h 12 min 27 s",
+              "numero": "810"
+            },
+            {
+              "rang": 2,
+              "skipper": "Justine Mettraux",
+              "bateau": "Team Work",
+              "temps": "22 j 22 h 55 min 34 s",
+              "numero": "824"
+            },
+            {
+              "rang": 3,
+              "skipper": "Simon Koster",
+              "bateau": "Go4It",
+              "temps": "23 j 11 h 15 min 59 s",
+              "numero": "819"
+            }
+          ]
+        }
+      },
+      "2015": {
+        "source": {
+          "titre": "Transat 6.50, édition 2015 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_6.50#Vingtième_édition_2015"
+        },
+        "classes": {
+          "Proto": [
+            {
+              "rang": 1,
+              "skipper": "Frédéric Denis",
+              "bateau": "Nautipark",
+              "temps": "19 j 23 h 19 min 55 s",
+              "numero": "800"
+            },
+            {
+              "rang": 2,
+              "skipper": "Luke Berry",
+              "bateau": "Association Rêves",
+              "temps": "20 j 14 h 4 min 49 s",
+              "numero": "453"
+            },
+            {
+              "rang": 3,
+              "skipper": "Ludovic Mechin",
+              "bateau": "Microvitae",
+              "temps": "20 j 15 h 36 min 16 s",
+              "numero": "667"
+            }
+          ],
+          "Série": [
+            {
+              "rang": 1,
+              "skipper": "Ian Lipinski",
+              "bateau": "Entreprise(s) Innovante(s)",
+              "temps": "22 j 9 h 36 min 30 s",
+              "numero": "866"
+            },
+            {
+              "rang": 2,
+              "skipper": "Julien Pulvé",
+              "bateau": "Novintiss",
+              "temps": "22 j 12 h 49 min 4 s",
+              "numero": "880"
+            },
+            {
+              "rang": 3,
+              "skipper": "Tanguy Le Turquais",
+              "bateau": "Terreal",
+              "temps": "23 j 2 h 45 min 43 s",
+              "numero": "835"
+            }
+          ]
+        }
+      },
+      "2017": {
+        "source": {
+          "titre": "Transat 6.50, édition 2017 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_6.50#Vingt-et-unième_édition_2017"
+        },
+        "classes": {
+          "Proto": [
+            {
+              "rang": 1,
+              "skipper": "Ian Lipinski",
+              "bateau": "Griffon.fr",
+              "numero": "865"
+            },
+            {
+              "rang": 2,
+              "skipper": "Joerg Riechers",
+              "bateau": "Lillienthal",
+              "temps": "23 j 20 h 14 min 11 s",
+              "numero": "934"
+            },
+            {
+              "rang": 3,
+              "skipper": "Simon Koster",
+              "bateau": "Eight Cube Sersa",
+              "temps": "24 j 6 h 5 min 40 s",
+              "numero": "888"
+            }
+          ],
+          "Série": [
+            {
+              "rang": 1,
+              "skipper": "Erwan Le Draoulec",
+              "bateau": "Emile Henry",
+              "temps": "24 j 19 h 6 min 30 s",
+              "numero": "895"
+            },
+            {
+              "rang": 2,
+              "skipper": "Clarisse Cremer",
+              "bateau": "TBS",
+              "temps": "25 j 5 h 15 min 25 s",
+              "numero": "902"
+            },
+            {
+              "rang": 3,
+              "skipper": "Benoit Sineau",
+              "bateau": "Cachaca II",
+              "temps": "25 j 8 h 21 min 37 s",
+              "numero": "915"
+            }
+          ]
+        }
+      },
+      "2019": {
+        "source": {
+          "titre": "Transat 6.50, édition 2019 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_6.50#Vingt-deuxième_édition_2019"
+        },
+        "classes": {
+          "Proto": [
+            {
+              "rang": 1,
+              "skipper": "François Jambou",
+              "bateau": "Team BFR Marée Haute Jaune",
+              "temps": "20 j 20 h 31 min 57 s",
+              "numero": "865"
+            },
+            {
+              "rang": 2,
+              "skipper": "Axel Trehin",
+              "bateau": "Project Rescue Ocean",
+              "temps": "21 j 9 h 17 min 22 s",
+              "numero": "945"
+            },
+            {
+              "rang": 3,
+              "skipper": "Morten Bogacki",
+              "bateau": "Otg Lilienthal",
+              "temps": "23 j 16 h 18 min 52 s",
+              "numero": "934"
+            }
+          ],
+          "Série": [
+            {
+              "rang": 1,
+              "skipper": "Ambrogio Beccaria",
+              "bateau": "Géomag",
+              "temps": "21 j 21 h 50 min 55 s",
+              "numero": "943"
+            },
+            {
+              "rang": 2,
+              "skipper": "Nicolas d'Estais",
+              "bateau": "Cheminant- Ursuit",
+              "temps": "22 j 20 h 11 min 41 s",
+              "numero": "905"
+            },
+            {
+              "rang": 3,
+              "skipper": "Benjamin Ferré",
+              "bateau": "Imago Incubateur D'aventures",
+              "temps": "23 j 9 h 49 min 5 s",
+              "numero": "902"
+            }
+          ]
+        }
+      },
+      "2021": {
+        "source": {
+          "titre": "Transat 6.50, édition 2021 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_6.50#Vingt-troisième_édition_2021"
+        },
+        "classes": {
+          "Proto": [
+            {
+              "rang": 1,
+              "skipper": "Pierre Le Roy",
+              "bateau": "Teamwork",
+              "temps": "21 j 2 h 24 min 8 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Fabio Muzzolini",
+              "bateau": "Tartine sans beurre",
+              "temps": "21 j 16 h 30 min 4 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Tanguy Bouroullec",
+              "bateau": "Tollec MP / Pogo",
+              "temps": "22 j 5 h 9 min 36 s"
+            }
+          ],
+          "Série": [
+            {
+              "rang": 1,
+              "skipper": "Hugo Dhallenne",
+              "bateau": "YC Saint Lunaire",
+              "temps": "26 j 2 h 1 min 3 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Alberto Riva",
+              "bateau": "EdiliziAcrobatica",
+              "temps": "26 j 18 h 43 min 5 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Melwin Fink",
+              "bateau": "Signforcom",
+              "temps": "26 j 20 h 20 min 7 s"
+            }
+          ]
+        }
+      },
+      "2023": {
+        "source": {
+          "titre": "Transat 6.50, édition 2023 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_6.50#Vingt-quatrième_édition_2023"
+        },
+        "classes": {
+          "Proto": [
+            {
+              "rang": 1,
+              "skipper": "Federico Waksman",
+              "bateau": "Repremar – Shipping Agency Uruguay",
+              "temps": "23 j 4 h 56 min 39 s",
+              "numero": "1019"
+            },
+            {
+              "rang": 2,
+              "skipper": "Carlos Manera Pascual",
+              "bateau": "Xucla",
+              "temps": "23 j 9 h 13 min 12 s",
+              "numero": "1081"
+            },
+            {
+              "rang": 3,
+              "skipper": "Julien Letissier",
+              "bateau": "Frérots Branchet",
+              "temps": "23 j 22 h 29 min 0 s",
+              "numero": "1069"
+            }
+          ],
+          "Série": [
+            {
+              "rang": 1,
+              "skipper": "Luca Rosetti",
+              "bateau": "Race = Care",
+              "numero": "998"
+            },
+            {
+              "rang": 2,
+              "skipper": "Felix Oberle",
+              "bateau": "Mingulay",
+              "temps": "25 j 10 h 5 min 56 s",
+              "numero": "1028"
+            },
+            {
+              "rang": 3,
+              "skipper": "Thomas André",
+              "bateau": "Diwan",
+              "temps": "25 j 10 h 56 min 35 s",
+              "numero": "929"
+            }
+          ]
+        }
+      },
+      "2025": {
+        "source": {
+          "titre": "Transat 6.50, édition 2025 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Transat_6.50#Vingt-cinquième_édition_2025"
+        },
+        "note": "Première étape annulée (ouragan) ; classement sur la seule étape Santa Cruz de La Palma - Saint-François.",
+        "classes": {
+          "Proto": [
+            {
+              "rang": 1,
+              "skipper": "Mathis Bourgnon",
+              "bateau": "Assomast",
+              "temps": "13 j 17 h 24 min 45 s",
+              "numero": "934"
+            },
+            {
+              "rang": 2,
+              "skipper": "Benoît Marie",
+              "bateau": "Nicomatic - Petit Bateau",
+              "temps": "13 j 21 h 21 min 57 s",
+              "numero": "1067"
+            },
+            {
+              "rang": 3,
+              "skipper": "Alexandre Demange",
+              "bateau": "DMG Mori Sailing Academy 2",
+              "temps": "14 j 3 h 20 min 47 s",
+              "numero": "1048"
+            }
+          ],
+          "Série": [
+            {
+              "rang": 1,
+              "skipper": "Paul Cousin",
+              "bateau": "AFP - Biocombustibles",
+              "temps": "14 j 23 h 39 min 24 s",
+              "numero": "981"
+            },
+            {
+              "rang": 2,
+              "skipper": "Quentin Mocudet",
+              "bateau": "Saveurs et Délices",
+              "temps": "15 j 5 h 12 min 52 s",
+              "numero": "986"
+            },
+            {
+              "rang": 3,
+              "skipper": "Amaury Guérin",
+              "bateau": "Groupe Satov",
+              "temps": "15 j 5 h 57 min 3 s",
+              "numero": "996"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Solitaire du Figaro": {
+    "sources_generales": [
+      {
+        "titre": "Solitaire du Figaro (Wikipédia)",
+        "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro"
+      }
+    ],
+    "editions": {
+      "2003": {
+        "source": {
+          "titre": "Solitaire du Figaro, édition 2003 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro#Parcours_et_palmarès_de_l'édition_2003"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Armel Le Cléac'h",
+              "bateau": "Créaline",
+              "temps": "327 h 8 min 19 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Alain Gautier",
+              "bateau": "Foncia",
+              "ecart": "+ 13 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Michel Desjoyeaux",
+              "bateau": "Géant",
+              "ecart": "+ 1 h 26 min 17 s"
+            }
+          ]
+        }
+      },
+      "2004": {
+        "source": {
+          "titre": "Solitaire du Figaro, édition 2004 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro#Parcours_et_palmarès_de_l'édition_2004"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Charles Caudrelier",
+              "bateau": "Bostik Findley",
+              "temps": "220 h 53 min 54 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Yann Éliès",
+              "bateau": "Groupe Generali Assurances",
+              "ecart": "+ 52 min 35 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Jérémie Beyou",
+              "bateau": "Delta Dore",
+              "ecart": "+ 1 h 24 min 35 s"
+            }
+          ]
+        }
+      },
+      "2005": {
+        "source": {
+          "titre": "Solitaire du Figaro, édition 2005 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro#Parcours_et_palmarès_de_l'édition_2005"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Jérémie Beyou",
+              "bateau": "Delta Dore",
+              "temps": "248 h 49 min 20 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Michel Desjoyeaux",
+              "bateau": "Géant",
+              "ecart": "+ 1 h 20 min 54 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Kito de Pavant",
+              "bateau": "Groupe Bel",
+              "ecart": "+ 1 h 58 min 41 s"
+            }
+          ]
+        }
+      },
+      "2006": {
+        "source": {
+          "titre": "Solitaire du Figaro, édition 2006 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro#Parcours_et_palmarès_de_l'édition_2006"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Nicolas Troussel",
+              "bateau": "Financo",
+              "temps": "12 j 9 h 1 min 56 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Thierry Chabagny",
+              "bateau": "Littoral",
+              "ecart": "+ 1 h 56 min 55 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Gérald Véniard",
+              "bateau": "Scutum",
+              "ecart": "+ 3 h 55 min 28 s"
+            }
+          ]
+        }
+      },
+      "2007": {
+        "source": {
+          "titre": "Solitaire du Figaro, édition 2007 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro#Parcours_et_palmarès_de_l'édition_2007"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Michel Desjoyeaux",
+              "bateau": "Foncia",
+              "temps": "247 h 20 min 47 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Frédéric Duthil",
+              "bateau": "Distinxion",
+              "ecart": "+ 26 min 38 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Corentin Douguet",
+              "bateau": "Leclerc/Bouygues Telecom",
+              "ecart": "+ 1 h 3 min 50 s"
+            }
+          ]
+        }
+      },
+      "2008": {
+        "source": {
+          "titre": "Solitaire du Figaro, édition 2008 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro#Parcours_et_palmarès_de_l'édition_2008"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Nicolas Troussel",
+              "bateau": "Financo",
+              "temps": "226 h 32 min 51 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Gildas Morvan",
+              "bateau": "Cercle Vert",
+              "ecart": "+ 2 h 22 min 15 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Frédéric Duthil",
+              "bateau": "Distinxion",
+              "ecart": "+ 3 h 34 min 38 s"
+            }
+          ]
+        }
+      },
+      "2009": {
+        "source": {
+          "titre": "Solitaire du Figaro, édition 2009 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro#Parcours_et_palmarès_de_l'édition_2009"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Nicolas Lunven",
+              "bateau": "CGPI",
+              "temps": "285 h 56 min 55 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Yann Éliès",
+              "bateau": "Generali",
+              "ecart": "+ 20 min 29 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Frédéric Duthil",
+              "bateau": "Bbox Bouygues Telecom",
+              "ecart": "+ 26 min 14 s"
+            }
+          ]
+        }
+      },
+      "2010": {
+        "source": {
+          "titre": "Solitaire du Figaro, édition 2010 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro#Parcours_et_palmarès_de_l'édition_2010"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Armel Le Cléac'h",
+              "bateau": "Britair",
+              "temps": "252 h 55 min 3 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "François Gabart",
+              "bateau": "Skipper MACIF 2010",
+              "ecart": "+ 1 h 28 min 8 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Corentin Douguet",
+              "bateau": "E.Leclerc Mobile",
+              "ecart": "+ 2 h 36 min 40 s"
+            }
+          ]
+        }
+      },
+      "2011": {
+        "source": {
+          "titre": "Solitaire du Figaro, édition 2011 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro#Parcours_et_palmarès_de_l'édition_2011"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Jérémie Beyou",
+              "bateau": "BPI",
+              "temps": "257 h 8 min 41 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Fabien Delahaye",
+              "bateau": "Port de Caen Ouistreham",
+              "ecart": "+ 34 min 43 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Erwan Tabarly",
+              "bateau": "Nacarat",
+              "ecart": "+ 1 h 7 min 59 s"
+            }
+          ]
+        }
+      },
+      "2012": {
+        "source": {
+          "titre": "Solitaire du Figaro, édition 2012 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro#Parcours_et_palmarès_de_l'édition_2012"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Yann Eliès",
+              "bateau": "Groupe Quéguiner-Journal des entreprises"
+            },
+            {
+              "rang": 2,
+              "skipper": "Morgan Lagravière",
+              "bateau": "Vendée"
+            },
+            {
+              "rang": 3,
+              "skipper": "Nicolas Lunven",
+              "bateau": "Generali"
+            }
+          ]
+        }
+      },
+      "2013": {
+        "source": {
+          "titre": "Solitaire du Figaro, édition 2013 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro#Parcours_et_palmarès_de_l'édition_2013"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Yann Eliès",
+              "bateau": "Groupe Quéguiner-Leucémie Espoir",
+              "temps": "10 j 5 h 28 min 23 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Xavier Macaire",
+              "bateau": "Skipper Hérault",
+              "ecart": "+ 26 min 30 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Morgan Lagravière",
+              "bateau": "Vendée",
+              "ecart": "+ 33 min 6 s"
+            }
+          ]
+        }
+      },
+      "2014": {
+        "source": {
+          "titre": "Solitaire du Figaro, édition 2014 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro#Parcours_et_palmarès_de_l'édition_2014"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Jérémie Beyou",
+              "bateau": "Maître CoQ",
+              "temps": "12 j 19 h 39 min 22 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Corentin Horeau",
+              "bateau": "Bretagne Crédit mutuel performance",
+              "ecart": "+ 17 min 56 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Charlie Dalin",
+              "bateau": "Normandy Elite Team",
+              "ecart": "+ 25 min 47 s"
+            }
+          ]
+        }
+      },
+      "2015": {
+        "source": {
+          "titre": "Solitaire du Figaro 2015 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro_2015"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Yann Eliès",
+              "bateau": "Groupe Quéguiner - Leucémie Espoir",
+              "temps": "11 j 21 h 17 min 14 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Charlie Dalin",
+              "bateau": "Skipper MACIF 2015",
+              "ecart": "+ 25 min 46 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Xavier Macaire",
+              "bateau": "Skipper Hérault",
+              "ecart": "+ 44 min 29 s"
+            }
+          ]
+        }
+      },
+      "2016": {
+        "source": {
+          "titre": "Solitaire du Figaro 2016 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro_2016"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Yoann Richomme",
+              "bateau": "Skipper MACIF 2014",
+              "temps": "9 j 19 h 45 min 12 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Charlie Dalin",
+              "bateau": "Skipper MACIF 2015"
+            },
+            {
+              "rang": 3,
+              "skipper": "Nicolas Lunven",
+              "bateau": "Generali",
+              "temps": "9 j 20 h 40 min 14 s"
+            }
+          ]
+        }
+      },
+      "2017": {
+        "source": {
+          "titre": "Solitaire du Figaro 2017 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro_2017"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Nicolas Lunven",
+              "bateau": "Generali",
+              "temps": "10 j 7 h 8 min 52 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Adrien Hardy",
+              "bateau": "Agir Recouvrement",
+              "temps": "10 j 7 h 43 min 24 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Charlie Dalin",
+              "bateau": "Skipper MACIF 2015",
+              "temps": "10 j 8 h 5 min 53 s"
+            }
+          ]
+        }
+      },
+      "2018": {
+        "source": {
+          "titre": "Solitaire du Figaro 2018 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro_2018"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Sébastien Simon",
+              "bateau": "Bretagne CMB Performance",
+              "temps": "10 j 14 h 12 min 14 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Anthony Marchand",
+              "bateau": "Groupe Royer - Secours Populaire",
+              "ecart": "+ 16 min 9 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Charlie Dalin",
+              "bateau": "Skipper MACIF 2015",
+              "ecart": "+ 26 min 30 s"
+            }
+          ]
+        }
+      },
+      "2019": {
+        "source": {
+          "titre": "Solitaire du Figaro, édition 2019 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro#Parcours_et_palmarès_de_l'édition_2019"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Yoann Richomme",
+              "bateau": "Hellowork-Groupe Télégramme",
+              "temps": "14 j 2 h 20 min 31 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Gildas Mahé",
+              "bateau": "Breizh Cola / Equithé",
+              "ecart": "+ 1 h 13 min 38 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Anthony Marchand",
+              "bateau": "Groupe Royer - Secours populaire",
+              "ecart": "+ 2 h 28 min 4 s"
+            }
+          ]
+        }
+      },
+      "2020": {
+        "source": {
+          "titre": "Solitaire du Figaro, édition 2020 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro#Parcours_et_palmarès_de_l'édition_2020"
+        },
+        "note": "Quatrième étape annulée (manque de vent) ; classement arrêté après la troisième étape.",
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Armel Le Cléac'h",
+              "bateau": "Banque Populaire",
+              "temps": "10 j 1 h 26 min 46 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Frédéric Duthil",
+              "bateau": "Technique Voile-Cabinet Bourhis Generali",
+              "ecart": "+ 10 min 43 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Tom Laperche",
+              "bateau": "Bretagne CMB Espoir",
+              "ecart": "+ 1 h 1 min 7 s"
+            }
+          ]
+        }
+      },
+      "2021": {
+        "source": {
+          "titre": "Solitaire du Figaro 2021 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro_2021"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Pierre Quiroga",
+              "bateau": "Skipper Macif 2019",
+              "temps": "14 j 16 h 24 min 45 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Xavier Macaire",
+              "bateau": "Groupe SNEF",
+              "temps": "14 j 17 h 13 min 7 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Tom Laperche",
+              "bateau": "Bretagne - CMB Performance",
+              "temps": "14 j 18 h 58 min 22 s"
+            }
+          ]
+        }
+      },
+      "2022": {
+        "source": {
+          "titre": "Solitaire du Figaro 2022 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro_2022"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Tom Laperche",
+              "bateau": "Region Bretagne - CMB Performance",
+              "temps": "10 j 20 h 20 min 22 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Guillaume Pirouelle",
+              "bateau": "Région Normandie",
+              "temps": "10 j 21 h 26 min 16 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Achille Nebout",
+              "bateau": "Amarris - Primeo Energie",
+              "temps": "10 j 22 h 0 min 19 s"
+            }
+          ]
+        }
+      },
+      "2023": {
+        "source": {
+          "titre": "Solitaire du Figaro 2023 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro_2023"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Corentin Horeau",
+              "bateau": "Banque Populaire",
+              "temps": "11 j 12 h 59 min 10 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Basile Bourgnon",
+              "bateau": "Edenred",
+              "temps": "11 j 13 h 10 min 2 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Loïs Berrehar",
+              "bateau": "Skipper Macif 2022",
+              "temps": "11 j 13 h 26 min 21 s"
+            }
+          ]
+        }
+      },
+      "2024": {
+        "source": {
+          "titre": "Solitaire du Figaro, édition 2024 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro#Parcours_et_palmarès_de_l'édition_2024"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Tom Dolan",
+              "bateau": "Smurfit Kappa-Kingspan",
+              "temps": "10 j 12 h 59 min 23 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Loïs Berrehar",
+              "bateau": "Skipper Macif 2022",
+              "ecart": "+ 25 min 38 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Gaston Morvan",
+              "bateau": "Région Bretagne - CMB Performance",
+              "ecart": "+ 35 min 15 s"
+            }
+          ]
+        }
+      },
+      "2025": {
+        "source": {
+          "titre": "Solitaire du Figaro, édition 2025 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro#Parcours_et_palmarès_de_l'édition_2025"
+        },
+        "classes": {
+          "Classement général": [
+            {
+              "rang": 1,
+              "skipper": "Alexis Loison",
+              "bateau": "Groupe REEL",
+              "temps": "12 j 7 h 55 min 33 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Charlotte Yven",
+              "bateau": "Skipper Macif 2023",
+              "ecart": "+ 1 h 24 min 24 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Arno Biston",
+              "bateau": "Article.1",
+              "ecart": "+ 1 h 39 min 38 s"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Fastnet Race": {
+    "sources_generales": [
+      {
+        "titre": "Fastnet Race (Wikipédia)",
+        "url": "https://fr.wikipedia.org/wiki/Fastnet_Race"
+      },
+      {
+        "titre": "2023 Fastnet Race (Wikipedia, en)",
+        "url": "https://en.wikipedia.org/wiki/2023_Fastnet_Race"
+      },
+      {
+        "titre": "Rolex Fastnet Race, résultats (site officiel)",
+        "url": "https://www.rolexfastnetrace.com/en/raceresults/results-2021"
+      }
+    ],
+    "editions": {
+      "2019": {
+        "source": {
+          "titre": "Fastnet Race, édition 2019 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Fastnet_Race#2019"
+        },
+        "sources_complementaires": [
+          {
+            "titre": "Rolex Fastnet Race 2019, résultats Open Multihull (site officiel)",
+            "url": "https://www.rolexfastnetrace.com/results/2019/rfr-open-multihull02.html"
+          },
+          {
+            "titre": "Rolex Fastnet Race 2019, résultats IMOCA 60 (site officiel)",
+            "url": "https://www.rolexfastnetrace.com/results/2019/rfr-imoca02.html"
+          },
+          {
+            "titre": "Rolex Fastnet Race 2019, résultats Class40 (site officiel)",
+            "url": "https://www.rolexfastnetrace.com/results/2019/rfr-class-forty02.html"
+          }
+        ],
+        "note": "Vainqueurs d'après Wikipédia ; 2e et 3e places d'après les résultats officiels (provisoires) du RORC.",
+        "classes": {
+          "Ultim": [
+            {
+              "rang": 1,
+              "skipper": "Franck Cammas et Charles Caudrelier",
+              "bateau": "Maxi Edmond de Rothschild",
+              "temps": "1 j 4 h 2 min 26 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "François Gabart",
+              "bateau": "Macif",
+              "temps": "1 j 4 h 3 min 24 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Thomas Coville",
+              "bateau": "Sodebo Ultim 3",
+              "temps": "1 j 5 h 26 min 48 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Jérémie Beyou et Christopher Pratt",
+              "bateau": "Charal",
+              "temps": "2 j 1 h 32 min 28 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Kevin Escoffier",
+              "bateau": "PRB",
+              "temps": "2 j 1 h 55 min 27 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Clarisse Cremer",
+              "bateau": "Banque Populaire",
+              "temps": "2 j 1 h 59 min 15 s"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Luke Berry",
+              "bateau": "Lamotte - Module Création",
+              "temps": "2 j 11 h 13 min 22 s",
+              "equipage": "Corentin Douguet, Frédéric Denis, Arnaud Berland"
+            },
+            {
+              "rang": 2,
+              "skipper": "William Mathelin-Moreaux",
+              "bateau": "Beijaflore",
+              "temps": "2 j 11 h 16 min 6 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Catherine Pourre",
+              "bateau": "Eärendil",
+              "temps": "2 j 12 h 45 min 10 s"
+            }
+          ]
+        }
+      },
+      "2021": {
+        "source": {
+          "titre": "Fastnet Race, édition 2021 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Fastnet_Race#2021"
+        },
+        "sources_complementaires": [
+          {
+            "titre": "Rolex Fastnet Race 2021, résultats Open Multihull (site officiel)",
+            "url": "https://www.rolexfastnetrace.com/results/2021/rfr-open-multihull02.html"
+          },
+          {
+            "titre": "Rolex Fastnet Race 2021, résultats IMOCA 60 (site officiel)",
+            "url": "https://www.rolexfastnetrace.com/results/2021/rfr-imoca02.html"
+          },
+          {
+            "titre": "Rolex Fastnet Race 2021, résultats Class40 (site officiel)",
+            "url": "https://www.rolexfastnetrace.com/results/2021/rfr-class-forty02.html"
+          }
+        ],
+        "note": "Vainqueurs d'après Wikipédia ; 2e et 3e places d'après les résultats officiels (provisoires) du RORC. Temps des vainqueurs Ultim et IMOCA omis : Wikipédia et le site officiel diffèrent.",
+        "classes": {
+          "Ultim": [
+            {
+              "rang": 1,
+              "skipper": "Franck Cammas et Charles Caudrelier",
+              "bateau": "Maxi Edmond de Rothschild"
+            },
+            {
+              "rang": 2,
+              "skipper": "Yves Le Blevec",
+              "bateau": "Actual",
+              "temps": "1 j 18 h 41 min 22 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Thomas Coville",
+              "bateau": "Sodebo Ultim 3",
+              "temps": "1 j 20 h 16 min 36 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Charlie Dalin et Paul Meilhat",
+              "bateau": "Apivia"
+            },
+            {
+              "rang": 2,
+              "skipper": "Jérémie Beyou et Christopher Pratt",
+              "bateau": "Charal",
+              "temps": "2 j 23 h 10 min 47 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Simon Fisher et Justine Mettraux",
+              "bateau": "11th Hour Racing Team",
+              "temps": "2 j 23 h 11 min 15 s"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Antoine Magré",
+              "bateau": "Palanad 3",
+              "temps": "3 j 10 h 27 min 25 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Valentin Gautier",
+              "bateau": "Banque Du Leman",
+              "temps": "3 j 10 h 34 min 20 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Luke Berry",
+              "bateau": "Lamotte - Module Création",
+              "temps": "3 j 10 h 39 min 9 s"
+            }
+          ]
+        }
+      },
+      "2023": {
+        "source": {
+          "titre": "Fastnet Race, édition 2023 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Fastnet_Race#2023"
+        },
+        "sources_complementaires": [
+          {
+            "titre": "2023 Fastnet Race (Wikipedia, en)",
+            "url": "https://en.wikipedia.org/wiki/2023_Fastnet_Race"
+          }
+        ],
+        "note": "Deux Ultim seulement au départ. Troisième IMOCA, temps des deuxième et troisième et Class40 (2e et 3e) d'après l'article anglais.",
+        "classes": {
+          "Ultim": [
+            {
+              "rang": 1,
+              "skipper": "François Gabart et Tom Laperche",
+              "bateau": "SVR-Lazartigue",
+              "temps": "1 j 8 h 38 min 27 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Armel Le Cléac'h",
+              "bateau": "Maxi Banque populaire XI",
+              "temps": "1 j 9 h 36 min 43 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Charlie Dalin et Pascal Bidégorry",
+              "bateau": "Macif santé prévoyance",
+              "temps": "2 j 7 h 16 min 26 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Yoann Richomme et Yann Eliès",
+              "temps": "2 j 7 h 20 min 32 s"
+            },
+            {
+              "rang": 3,
+              "skipper": "Sam Goodchild et Antoine Koch",
+              "bateau": "For The Planet",
+              "temps": "2 j 7 h 43 min 19 s"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Erwan Le Draoulec",
+              "bateau": "Everial",
+              "temps": "3 j 10 h 22 min 6 s",
+              "numero": "177"
+            },
+            {
+              "rang": 2,
+              "skipper": "William Mathelin-Moreaux et Pietro Luciani",
+              "bateau": "Dékuple",
+              "temps": "3 j 10 h 36 min 17 s",
+              "numero": "184"
+            },
+            {
+              "rang": 3,
+              "skipper": "Andrea Fornaro",
+              "bateau": "Influence 2",
+              "temps": "3 j 10 h 43 min 47 s"
+            }
+          ]
+        }
+      },
+      "2025": {
+        "source": {
+          "titre": "Fastnet Race, édition 2025 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Fastnet_Race#2025"
+        },
+        "sources_complementaires": [
+          {
+            "titre": "Rolex Fastnet Race 2025 : Corentin Douguet signe une nouvelle victoire en Class40 (class40.com)",
+            "url": "https://www.class40.com/en/actualites/rolex-fastnet-race-2025-corentin-douguet-signe-une-nouvelle-victoire-en-class40"
+          },
+          {
+            "titre": "Bonafous scores her first IMOCA Class win (imoca.org)",
+            "url": "https://www.imoca.org/en/news/news/bonafous-scores-her-first-imoca-class-win-after-a-close-battle-with-charal-for-rolex-fastnet-race-glory"
+          }
+        ],
+        "note": "Pas de temps pour les places suivantes. Class40 : 2e et 3e places d'après le site de la Class40, qui ne donne pas de temps.",
+        "classes": {
+          "Ultim": [
+            {
+              "rang": 1,
+              "skipper": "Tom Laperche",
+              "bateau": "SVR-Lazartigue",
+              "temps": "1 j 17 h 18 min 4 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Armel Le Cléac'h",
+              "bateau": "Maxi Banque populaire XI",
+              "ecart": "+ 45 min 48 s"
+            }
+          ],
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Élodie Bonafous",
+              "bateau": "Association Petits Princes - Quéguiner",
+              "temps": "2 j 14 h 7 min 15 s"
+            },
+            {
+              "rang": 2,
+              "skipper": "Jérémie Beyou",
+              "bateau": "Charal 2"
+            },
+            {
+              "rang": 3,
+              "skipper": "Yoann Richomme",
+              "bateau": "Paprec Arkéa"
+            }
+          ],
+          "Class40": [
+            {
+              "rang": 1,
+              "skipper": "Corentin Douguet et Axel Trehin",
+              "temps": "3 j 10 h 2 min 1 s",
+              "numero": "209"
+            },
+            {
+              "rang": 2,
+              "skipper": "Pep Costa",
+              "bateau": "VSF Sports",
+              "equipage": "Pablo Santurde, Alexis Thomas, Kevin Bloch"
+            },
+            {
+              "rang": 3,
+              "skipper": "Pietro Luciani, Hugo Picard et Ryan Barkey",
+              "bateau": "Les Invincibles"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "The Ocean Race": {
+    "sources_generales": [
+      {
+        "titre": "The Ocean Race (Wikipédia)",
+        "url": "https://fr.wikipedia.org/wiki/The_Ocean_Race"
+      }
+    ],
+    "editions": {
+      "2017": {
+        "source": {
+          "titre": "Volvo Ocean Race 2017-2018 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/Volvo_Ocean_Race_2017-2018"
+        },
+        "note": "Édition 2017-2018, courue sous le nom de Volvo Ocean Race. Classement aux points.",
+        "classes": {
+          "VO65": [
+            {
+              "rang": 1,
+              "skipper": "Charles Caudrelier",
+              "bateau": "Dongfeng Race Team",
+              "points": 73
+            },
+            {
+              "rang": 2,
+              "skipper": "Xabi Fernández",
+              "bateau": "MAPFRE",
+              "points": 70
+            },
+            {
+              "rang": 3,
+              "skipper": "Bouwe Bekking",
+              "bateau": "Team Brunel",
+              "points": 69
+            }
+          ]
+        }
+      },
+      "2022": {
+        "source": {
+          "titre": "The Ocean Race 2022-2023 (Wikipédia)",
+          "url": "https://fr.wikipedia.org/wiki/The_Ocean_Race_2022-2023"
+        },
+        "note": "Édition 2022-2023. Classement aux points. Les VO65 ne couraient que trois étapes (VO65 Sprint Cup). Pour Holcim-PRB, Team Malizia et Windwhisper, la source nomme deux chefs de bord.",
+        "classes": {
+          "IMOCA": [
+            {
+              "rang": 1,
+              "skipper": "Charlie Enright",
+              "bateau": "11th Hour Racing Team",
+              "points": 37
+            },
+            {
+              "rang": 2,
+              "skipper": "Kevin Escoffier et Benjamin Schwartz",
+              "bateau": "Holcim-PRB",
+              "points": 34
+            },
+            {
+              "rang": 3,
+              "skipper": "Boris Herrmann et Will Harris",
+              "bateau": "Team Malizia",
+              "points": 32
+            }
+          ],
+          "VO65": [
+            {
+              "rang": 1,
+              "skipper": "Pablo Arrarte et Daryl Wislang",
+              "bateau": "Windwhisper Racing Team",
+              "points": 18
+            },
+            {
+              "rang": 2,
+              "skipper": "Jelmer van Beek",
+              "bateau": "Team Jajo",
+              "points": 14
+            },
+            {
+              "rang": 3,
+              "skipper": "Gerwin Jansen",
+              "bateau": "Austrian Ocean Racing powered by Team Genova",
+              "points": 10
+            }
+          ]
+        }
+      }
+    }
+  }
+}

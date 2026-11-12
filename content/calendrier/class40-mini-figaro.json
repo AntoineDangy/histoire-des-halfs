@@ -1,0 +1,1069 @@
+[
+  {
+    "classes": ["Class 40"],
+    "course": "Globe40 2025-2026",
+    "edition": 2025,
+    "debut": "2025-09-14",
+    "fin": "2026-04-15",
+    "depart": "Cadix (Espagne)",
+    "arrivee": "Lorient (France)",
+    "format": "double",
+    "statut": "terminée",
+    "vainqueurs": "Ian Lipinski / Antoine Carpentier (Crédit Mutuel)",
+    "url": "https://www.globe40.com/",
+    "sources": [
+      "https://www.globe40.com/en/",
+      "https://www.globe40.com/en/final-act-of-the-globe40-2025-2026/",
+      "https://www.creditmutuel.fr/fr/alliancefederale/presse/communiques-de-presse/class40-vainqueur-globe40.html",
+      "https://www.sail-world.com/news/289975/Globe40-2025-underway"
+    ],
+    "note": "2e édition du tour du monde en double réservé aux Class40, commencée en 2025 et terminée en 2026 (édition officiellement nommée 2025). Prologue au départ de Lorient le 31/08/2025, « Great Start » de Cadix le 14/09/2025 à 13h00 ; escales Mindelo, La Réunion, Sydney, Valparaiso, Recife. Crédit Mutuel gagne la 6e et dernière étape Recife–Lorient le 15/04/2026 à 8h40 et le classement général devant Belgium Ocean Racing – Curium (Jonas Gerckens). Dernière arrivée (Jangada Racing) le 21/04/2026, cérémonie de clôture le 25/04/2026. « fin » = arrivée du vainqueur."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "RORC Caribbean 600",
+    "edition": 2026,
+    "debut": "2026-02-23",
+    "fin": null,
+    "depart": "Antigua (Antigua-et-Barbuda)",
+    "arrivee": "Antigua (Antigua-et-Barbuda)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "Class40 : Solano (n°213) – Robin Follin, Maxime Bensa, Pierre Quiroga",
+    "url": "https://www.caribbean600.rorc.org/",
+    "sources": [
+      "https://www.class40.com/courses/saison-2026/rorc-caribbean-600-2026",
+      "https://www.class40.com/courses"
+    ],
+    "note": "Course du RORC de 600 milles autour de 11 îles des Caraïbes, départ et arrivée à Antigua. Date de fin non publiée ; temps du vainqueur Class40 : 2 j 18 h 37 min 24 s (5 Class40 classés)."
+  },
+  {
+    "classes": ["Figaro"],
+    "course": "Solo Guy Cotten",
+    "edition": 2026,
+    "debut": "2026-03-06",
+    "fin": "2026-03-14",
+    "depart": "Concarneau (France)",
+    "arrivee": "Concarneau (France)",
+    "format": "solitaire",
+    "statut": "terminée",
+    "vainqueurs": "Paul Morvan ; 2e Arno Biston, 3e Hugo Dhallenne",
+    "url": "https://www.sologuycotten.fr",
+    "sources": [
+      "https://www.sologuycotten.fr",
+      "https://www.classefigarobeneteau.fr/calendrier",
+      "https://www.bateaux.com/article/51488/solo-guy-cotten-2026-paul-morvan-l-emporte-au-general-apres-une-grande-course-engagee"
+    ],
+    "note": "Ex-Solo Concarneau. 1re épreuve du Championnat de France Elite de Course au Large 2026 (coef. 2). Dates de l'événement selon la Classe Figaro Beneteau (6–14 mars) ; bateaux.com indique 6–12 mars. Deux journées de parcours côtiers/construits puis une grande course de 240 milles (arrivées le 12/03), validation du jury le 13/03. Meilleur bizuth : Paul Cousin (7e). Une épreuve « Guy Cotten Académie en Double » s'est tenue en parallèle (non incluse)."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Mini Petrolera",
+    "edition": 2026,
+    "debut": "2026-03-06",
+    "fin": null,
+    "depart": null,
+    "arrivee": null,
+    "format": "solitaire",
+    "statut": "terminée",
+    "vainqueurs": "Série : Alonso Pérez (1056 Marina Rubicon Lanzarote) ; Proto : Felip Moll (931 Gènjol)",
+    "url": "https://www.clubnauticgarraf.com/",
+    "sources": [
+      "https://www.classemini.com/?mode=courses",
+      "https://www.classemini.com/course-fr-552.html"
+    ],
+    "note": "Course de 100 milles (catégorie C) organisée par le Club Nàutic Garraf (Espagne) ; ports de départ et d'arrivée non précisés sur la fiche Classe Mini. Attribution série/proto déduite de la structure des classements Classe Mini (1er tableau = série, 2e tableau = proto, structure vérifiée sur la Mini Atlantique)."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Arcipelago 650",
+    "edition": 2026,
+    "debut": "2026-03-27",
+    "fin": null,
+    "depart": null,
+    "arrivee": null,
+    "format": "double",
+    "statut": "terminée",
+    "vainqueurs": "Série : Marine Crest Guilluy / Mathilde de la Giclais (1121 Battrapa) ; Proto : Giacomo Nicchitta / Nicolò Gamenara (667 Eva Luna)",
+    "url": "https://ycl.it/",
+    "sources": [
+      "https://www.classemini.com/?mode=courses",
+      "https://www.classemini.com/course-fr-546.html"
+    ],
+    "note": "Course de 220 milles (catégorie C) dans l'archipel toscan (Italie) ; ports non précisés sur la fiche Classe Mini. Format déduit du classement (deux skippers par bateau). Attribution série/proto déduite de la structure des classements Classe Mini."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "Spi Ouest-France Banque Populaire Grand Ouest",
+    "edition": 2026,
+    "debut": "2026-04-03",
+    "fin": "2026-04-06",
+    "depart": "La Trinité-sur-Mer (France)",
+    "arrivee": "La Trinité-sur-Mer (France)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "Class40 : Achille Nebout / Ambrogio Beccaria (Amarris, n°182)",
+    "url": "https://evenements.ouest-france.fr/spi",
+    "sources": [
+      "https://www.class40.com/courses/saison-2026/spi-ouest-france-bpgo-2026",
+      "https://www.actunautique.com/2026/04/class40-achille-nebout-s-impose-au-spi-ouest-france-bpgo-2026.html",
+      "https://www.classefigarobeneteau.fr/calendrier"
+    ],
+    "note": "48e édition, régate en parcours côtiers/construits organisée par la SNT, comptant pour le Trophée Class40 Manche-Atlantique (17 Class40 classés). Programme du 2 au 6 avril, premières courses le 3 avril. La Classe Figaro Beneteau inscrit aussi le Spi Ouest-France à son calendrier (Académie), mais un classement Figaro Beneteau 3 n'a pas été vérifié : classe Figaro non retenue ici."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Plastimo Lorient Mini",
+    "edition": 2026,
+    "debut": "2026-04-09",
+    "fin": null,
+    "depart": "Lorient (France)",
+    "arrivee": "Lorient (France)",
+    "format": "double mixte",
+    "statut": "terminée",
+    "vainqueurs": "Série : Margot Vennin / Thomas André (1016 Kefeleg) ; Proto : Carlos Manera Pascual / Chantal Ferrero (1081 Xucla)",
+    "url": "https://www.lorientlabase-courseaularge.fr/fr",
+    "sources": [
+      "https://www.classemini.com/?mode=courses",
+      "https://www.classemini.com/course-fr-537.html"
+    ],
+    "note": "Parcours côtier d'environ 250 milles entre la pointe de Penmarc'h et l'île d'Yeu, réservé aux équipages doubles mixtes ; organisation Lorient Grand Large (directeur de course Yves Le Blevec). Résultats proclamés le 12/04/2026 (55 séries, 13 protos). Attribution série/proto déduite de la structure des classements Classe Mini."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Roma per Due (Roma x2)",
+    "edition": 2026,
+    "debut": "2026-04-11",
+    "fin": null,
+    "depart": "Riva di Traiano (Italie)",
+    "arrivee": "Riva di Traiano (Italie)",
+    "format": "double",
+    "statut": "terminée",
+    "vainqueurs": "Proto : Jannes Llull / Juliane Hausmann (419 Mr Brightside) ; Série : Timothée Marguier / Victor Le Roy (905)",
+    "url": "https://romaper2.com/it/",
+    "sources": [
+      "https://www.classemini.com/course-fr-548.html",
+      "https://www.yacht.de/regatta/mini-transat/roma-per-due-deutsches-mini-duo-siegt-trotz-stuermischer-bedingungen/"
+    ],
+    "note": "Parcours Riva di Traiano – Ventotene – Lipari – Riva di Traiano (540 milles), catégorie B. Résultats proclamés le 18/04/2026. Victoire proto de Llull / Hausmann confirmée par yacht.de."
+  },
+  {
+    "classes": ["Figaro"],
+    "course": "Trophée Banque Populaire Grand Ouest – Sur la route des Îles du Ponant",
+    "edition": 2026,
+    "debut": "2026-04-18",
+    "fin": "2026-04-23",
+    "depart": "Concarneau (France)",
+    "arrivee": "Concarneau (France)",
+    "format": "double",
+    "statut": "terminée",
+    "vainqueurs": "Nicolas Lunven / Tom Goron (PRB) ; 2e Paul Cousin / Alexis Loison, 3e Arno Biston / Arthur Meurisse",
+    "url": "https://www.ultimsailing.com/trophee-banque-populaire-grand-ouest/",
+    "sources": [
+      "https://www.ultimsailing.com/trophee-banque-populaire-grand-ouest/",
+      "https://www.classefigarobeneteau.fr/calendrier",
+      "https://figaronautisme.meteoconsult.fr/actus-nautisme-flash/2026-04-23/87861-superbe-victoire-de-nicolas-lunven-et-tom-goron-a-bord-de-prb-sur-le-trophee-banque-populaire-grand-ouest"
+    ],
+    "note": "3e édition ; 2e épreuve du Championnat de France Elite (coef. 2). Événement du 15 au 25 avril basé à Concarneau ; départ le samedi 18/04 à 15h00 ; parcours porté à 880 milles (marque déplacée au large d'Arcachon) ; arrivée du vainqueur le 23/04 à 3h04. Port d'arrivée non écrit explicitement par l'organisateur (épreuve basée à Concarneau)."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "Paprec 600 Saint-Tropez",
+    "edition": 2026,
+    "debut": "2026-04-20",
+    "fin": null,
+    "depart": "Saint-Tropez (France)",
+    "arrivee": null,
+    "format": "double",
+    "statut": "terminée",
+    "vainqueurs": "Mathieu Claveau / François Verdier (Phare 40, n°142)",
+    "url": "https://www.class40.com/courses/saison-2026/paprec-600-saint-tropez-2026",
+    "sources": [
+      "https://www.class40.com/courses/saison-2026/paprec-600-saint-tropez-2026",
+      "https://www.class40.com/actualites/le-trophee-mediterranee-class40-2026-remporte-par-omar-nass-et-louis-torreilles"
+    ],
+    "note": "Course d'environ 600 milles au départ de Saint-Tropez (Société Nautique de Saint-Tropez), 1re épreuve du Trophée Méditerranée Class40. Port d'arrivée et date de fin non précisés sur la fiche Classe40 ; 7 Class40 (6 classés, 1 abandon)."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "La Trin'40",
+    "edition": 2026,
+    "debut": "2026-04-24",
+    "fin": null,
+    "depart": "La Trinité-sur-Mer (France)",
+    "arrivee": "La Trinité-sur-Mer (France)",
+    "format": "solitaire",
+    "statut": "terminée",
+    "vainqueurs": "Guillaume Pirouelle (Sogestran – Seafrigo, n°197) ; 2e Corentin Douguet, 3e Fabien Delahaye",
+    "url": "https://www.class40.com/courses/saison-2026/la-trin-40-2026",
+    "sources": [
+      "https://www.class40.com/courses/saison-2026/la-trin-40-2026",
+      "https://www.class40.com/courses"
+    ],
+    "note": "Course de 1 200 milles en solitaire, départ le 24/04 à 14h ; organisation SNT / Class40 ; 30 Class40 (29 classés). Date de fin non publiée ; temps du vainqueur 4 j 00 h 30 min 14 s ; remise des prix le 1er mai."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Regata dell'Accademia Navale (RAN 630)",
+    "edition": 2026,
+    "debut": "2026-04-25",
+    "fin": null,
+    "depart": "Livourne (Italie)",
+    "arrivee": "Livourne (Italie)",
+    "format": "double",
+    "statut": "terminée",
+    "vainqueurs": "1er : Alonso Pérez / Francesco Malingri (1056 Marina Rubicon Lanzarote)",
+    "url": "https://ran630.it/",
+    "sources": [
+      "https://www.classemini.com/?mode=courses",
+      "https://www.classemini.com/course-fr-547.html"
+    ],
+    "note": "Parcours Livourne – Porto Cervo – Capri – Livourne (630 milles), catégorie B. Un seul classement Mini publié sur la fiche Classe Mini (13 partants, 12 classés), sans distinction série/proto. Format déduit du classement (deux skippers par bateau)."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Palma Vela – La Larga",
+    "edition": 2026,
+    "debut": "2026-04-25",
+    "fin": null,
+    "depart": "Palma de Majorque (Espagne)",
+    "arrivee": null,
+    "format": "double",
+    "statut": "terminée",
+    "vainqueurs": "Série : Tomás Ruiz / Hugo Ramon Froye (1043 Magikarp) ; Proto : Felip Moll / Gráinne Costigan (931 Gènjol)",
+    "url": "http://www.palmavela.com",
+    "sources": [
+      "https://www.classemini.com/?mode=courses",
+      "https://www.classemini.com/course-fr-556.html"
+    ],
+    "note": "Course de 300 milles (catégorie C) organisée par le Real Club Náutico de Palma. Port d'arrivée non précisé. Format déduit du classement (deux skippers par bateau) ; attribution série/proto déduite de la structure des classements Classe Mini."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "La Pornichet Select 6.50",
+    "edition": 2026,
+    "debut": "2026-05-02",
+    "fin": null,
+    "depart": "Pornichet (France)",
+    "arrivee": "Pornichet (France)",
+    "format": "solitaire",
+    "statut": "terminée",
+    "vainqueurs": "Proto : Julien Letissier (1069 Branchet) ; Série : Pierrig de Kerdrel (1065 AD-Innoveo)",
+    "url": "https://www.ultimsailing.com/la-pornichet-select-6-50/",
+    "sources": [
+      "https://www.classemini.com/?mode=courses",
+      "https://www.classemini.com/course-fr-538.html"
+    ],
+    "note": "Parcours Pornichet – plateau du Four – Les Sables-d'Olonne – Pornichet (300 milles). Résultats proclamés le 05/05/2026. Attribution série/proto déduite de la structure des classements Classe Mini."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "CIC Med Channel Race",
+    "edition": 2026,
+    "debut": "2026-05-03",
+    "fin": null,
+    "depart": "Marseille (France)",
+    "arrivee": "Marseille (France)",
+    "format": "double",
+    "statut": "terminée",
+    "vainqueurs": "Mathieu Claveau / François Verdier (Phare 40, n°142)",
+    "url": "https://www.class40.com/courses/saison-2026/cic-med-channel-race-2026",
+    "sources": [
+      "https://www.class40.com/courses/saison-2026/cic-med-channel-race-2026",
+      "https://www.mysailing.com.au/?p=92562",
+      "https://sail-world.com/news/295763/2026-CIC-Med-Channel-Race-Start"
+    ],
+    "note": "2e édition, environ 1 000 milles (Marseille – îles du Var – Calvi – Sardaigne – Palma – Marseille), organisation Sirius Événements ; départ le dimanche 03/05 à 13h00. Le descriptif de la fiche Classe40 mentionne aussi un « dimanche 27 avril », vraisemblablement hérité de l'édition précédente : le 3 mai est confirmé par l'en-tête de la fiche et par les médias. Date de fin non publiée ; temps du vainqueur 5 j 23 h 19 min 11 s, 10 min 15 s devant Stella Nova."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "Armen Race Uship",
+    "edition": 2026,
+    "debut": "2026-05-14",
+    "fin": null,
+    "depart": "La Trinité-sur-Mer (France)",
+    "arrivee": "La Trinité-sur-Mer (France)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "Class40 : Quentin Le Nabour / Thierry Chabagny (Bleu Blanc Planète Location, n°205)",
+    "url": "https://www.class40.com/courses/saison-2026/armen-race-uship-2026",
+    "sources": [
+      "https://www.class40.com/courses/saison-2026/armen-race-uship-2026",
+      "https://www.class40.com/courses"
+    ],
+    "note": "Parcours Class40 de 320 milles, organisation SNT ; Trophée Class40 Manche-Atlantique ; 16 Class40 (13 classés). Date de fin non publiée ; temps du vainqueur 1 j 14 h 31 min 31 s. Épreuve multi-classes : seule la Class40 est concernée ici."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "Porquerolle's Race",
+    "edition": 2026,
+    "debut": "2026-05-14",
+    "fin": null,
+    "depart": "Porquerolles (France)",
+    "arrivee": "Porquerolles (France)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "Anthony Streicher / François Verdier / Pierre-Laurent Garnero (Phare 40, n°142)",
+    "url": "https://www.class40.com/courses/saison-2026/porquerolle-s-race-2026",
+    "sources": [
+      "https://www.class40.com/courses/saison-2026/porquerolle-s-race-2026",
+      "https://www.class40.com/actualites/le-trophee-mediterranee-class40-2026-remporte-par-omar-nass-et-louis-torreilles"
+    ],
+    "note": "Plusieurs jours de parcours côtiers et une course de nuit (environ 100 milles), organisation Yacht Club de Porquerolles ; épreuve du Trophée Méditerranée Class40. Date de fin non publiée."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Gran Premio d'Italia",
+    "edition": 2026,
+    "debut": "2026-05-17",
+    "fin": null,
+    "depart": null,
+    "arrivee": null,
+    "format": "solitaire",
+    "statut": "annulée",
+    "vainqueurs": null,
+    "url": "https://www.waterfrontsailingclubgenova.it/",
+    "sources": [
+      "https://www.classemini.com/?mode=courses",
+      "https://www.classemini.com/course-fr-549.html"
+    ],
+    "note": "Course de 540 milles en solitaire (catégorie B) prévue en Italie (site de référence : Waterfront Sailing Club Genova). Marquée « annulée / canceled » par la Classe Mini, sans motif publié."
+  },
+  {
+    "classes": ["Figaro"],
+    "course": "La Solitaire du Figaro Paprec",
+    "edition": 2026,
+    "debut": "2026-05-17",
+    "fin": "2026-06-04",
+    "depart": "Perros-Guirec (France)",
+    "arrivee": "Le Havre (France)",
+    "format": "solitaire",
+    "statut": "terminée",
+    "vainqueurs": "Nicolas Lunven (PRB) ; 2e Alexis Thomas (Wings of the Ocean), 3e Paul Morvan (Foricher-French Touch)",
+    "url": "https://www.lasolitaire.com",
+    "sources": [
+      "https://www.lasolitaire.com/post/nicolas-lunven-the-winning-comeback",
+      "https://www.lasolitaire.com/en/etape-1",
+      "https://www.yachtsandyachting.com/news/296776/La-Solitaire-du-Figaro-Paprec-Leg-3-finish",
+      "https://www.bateaux.com/article/51933/solitaire-du-figaro-paprec-tom-dolan-claque-la-premiere-etape-a-vigo",
+      "https://www.yacht.de/fr/regate/courses/la-solitaire-du-figaro-paprec-nico-lunven-l-emporte-boris-herrmann-le-felicite/"
+    ],
+    "note": "57e édition, 3 étapes : Perros-Guirec – Vigo (Espagne, départ le 17/05 à 13h00, 610 milles), Vigo – Pornichet, Pornichet – Le Havre (premier arrivé Paul Morvan le 04/06 à 1h17). Vainqueurs d'étape : Tom Dolan, Paul Loiseau, Paul Morvan. Troisième victoire de Lunven (après 2009 et 2017), 24 min 44 s devant Alexis Thomas. Meilleur bizuth : Paul Loiseau (4e). 3e épreuve du Championnat de France Elite (coef. 5). La Classe annonçait l'événement du 13/05 au 07/06 (arrivée des bateaux et villages compris)."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Mini en Mai",
+    "edition": 2026,
+    "debut": "2026-05-25",
+    "fin": null,
+    "depart": "La Trinité-sur-Mer (France)",
+    "arrivee": "La Trinité-sur-Mer (France)",
+    "format": "solitaire",
+    "statut": "terminée",
+    "vainqueurs": "Proto : Julien Letissier (1069 Branchet) ; Série : Basile Gautier (1116 Technologie Marine)",
+    "url": "http://www.snt-voile.org",
+    "sources": [
+      "https://www.classemini.com/course-fr-539.html",
+      "https://www.sail-world.com/news/296184/"
+    ],
+    "note": "13e édition, organisée par la Société Nautique de La Trinité-sur-Mer ; 2e étape du Championnat de France course au large en solitaire (Mini). Distance annoncée 500 milles dans le titre, 290 milles dans la fiche Classe Mini. Résultats proclamés le 30/05/2026. Victoire de Letissier confirmée par Sail-World ; attribution série/proto déduite de la structure des classements Classe Mini."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "CIC Normandy Channel Race",
+    "edition": 2026,
+    "debut": "2026-05-31",
+    "fin": null,
+    "depart": "Caen (France)",
+    "arrivee": "Caen (France)",
+    "format": "double",
+    "statut": "terminée",
+    "vainqueurs": "Guillaume Pirouelle / Jules Ducelier (Sogestran – Seafrigo, n°197)",
+    "url": "https://www.class40.com/courses/saison-2026/cic-normandy-channel-race-2026",
+    "sources": [
+      "https://www.class40.com/courses/saison-2026/cic-normandy-channel-race-2026",
+      "https://www.cic.fr/fr/groupe-cic/partenariats-et-mecenat/cic-normandy-channel-race.html",
+      "https://www.sail-world.com/news/296495/Normandy-Channel-Race-2026-Preview"
+    ],
+    "note": "17e édition, environ 1 000 milles (Manche, Angleterre, Irlande, mer Celtique), organisation Sirius Événements ; événement du 27/05 au 07/06, départ le dimanche 31/05 à 14h au large de Ouistreham (village au bassin Saint-Pierre de Caen) ; 22 Class40 (18 classés). Date de fin non publiée ; temps du vainqueur 3 j 02 h 20 min 13 s ; 2e VSF Sports (Pep Costa / Pablo Santurde del Arco), 3e Maccaferri Futura (Luca Rosetti / Pierre Brasseur)."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Trophée Marie-Agnès Péron",
+    "edition": 2026,
+    "debut": "2026-06-04",
+    "fin": null,
+    "depart": "Douarnenez (France)",
+    "arrivee": "Douarnenez (France)",
+    "format": "solitaire",
+    "statut": "terminée",
+    "vainqueurs": "Proto : Julien Letissier (1069 Branchet) ; Série : Joseph Cloarec (994 Mini Fifty Fifty)",
+    "url": "http://map.winchesclub.org",
+    "sources": [
+      "https://www.classemini.com/?mode=courses",
+      "https://www.classemini.com/course-fr-540.html"
+    ],
+    "note": "Course de 220 milles entre Douarnenez et le plateau des Birvideaux, organisée par le Winches Club ; 3e épreuve du Championnat de France Mini en solitaire. Résultats proclamés le 06/06/2026. Attribution série/proto déduite de la structure des classements Classe Mini."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Mini Fastnet",
+    "edition": 2026,
+    "debut": "2026-06-14",
+    "fin": null,
+    "depart": "Douarnenez (France)",
+    "arrivee": "Douarnenez (France)",
+    "format": "double",
+    "statut": "terminée",
+    "vainqueurs": "Proto : Caroline Boulé / Benoît Marie (1067 Nicomatic – Petit Bateau) ; Série : Eliot Poughon / Basile Gautier (1105 Zeste de Citron)",
+    "url": "http://minifastnet.winchesclub.org",
+    "sources": [
+      "https://www.classemini.com/?mode=courses",
+      "https://www.classemini.com/course-fr-541.html"
+    ],
+    "note": "40e édition, 600 milles entre Douarnenez et le phare du Fastnet (Irlande), organisation Winches Club ; résultats proclamés le 20/06/2026 (54 séries, 11 protos). Le temps affiché pour le vainqueur proto (3 j 04 h 40 min) paraît incohérent avec ceux de ses poursuivants (≈ 3 j 20 h) : à vérifier. Attribution série/proto déduite de la structure des classements Classe Mini."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "Round Ireland Yacht Race",
+    "edition": 2026,
+    "debut": "2026-06-20",
+    "fin": null,
+    "depart": "Wicklow (Irlande)",
+    "arrivee": "Wicklow (Irlande)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "Class40 : VSF Sports (n°181) – Pep Costa, Pablo Santurde del Arco, Kevin Bloch, Louis Dubois",
+    "url": "https://roundireland.ie/",
+    "sources": [
+      "https://www.class40.com/courses/saison-2026/round-ireland-yacht-race-2026",
+      "https://www.sail-world.com/news/297446/Fleet-arrives-in-Wicklow-in-Round-Ireland-Race",
+      "https://afloat.ie/sail/events/round-ireland/item/69919-round-ireland-yacht-race-2026-set-for-june-start-notice-of-race-published"
+    ],
+    "note": "Course biennale d'environ 704 milles autour de l'Irlande, organisée par le Wicklow Sailing Club avec le RORC et le Royal Irish Yacht Club ; départ le samedi 20/06 à 13h00 (monocoques) ; division Class40 (8 bateaux). La fiche Classe40 cite Dún Laoghaire en en-tête mais Wicklow dans son descriptif ; l'organisateur confirme Wicklow. Date de fin non publiée ; temps du vainqueur Class40 4 j 21 h 25 min 13 s."
+  },
+  {
+    "classes": ["Class 40", "Mini 6.50"],
+    "course": "Massilia Cup Offshore – Trophée Barcelona",
+    "edition": 2026,
+    "debut": "2026-06-21",
+    "fin": null,
+    "depart": "Marseille (France)",
+    "arrivee": "Marseille (France)",
+    "format": "double (Class40) ; solitaire et double (Mini)",
+    "statut": "terminée",
+    "vainqueurs": "Class40 : Omar Naas / Louis Torreilles (Stella Nova, n°134) ; Mini solo – Série : Tomás Ruiz (1043), Proto : Jannes Llull (419 Mr. Brightside)",
+    "url": "http://www.cntl-marseille.com",
+    "sources": [
+      "https://www.class40.com/courses/saison-2026/massilia-cup-offshore-trophee-barcelona-2026",
+      "https://www.class40.com/en/actualites/massilia-cup-26",
+      "https://www.classemini.com/course-fr-555.html",
+      "https://www.classemini.com/course-fr-561.html"
+    ],
+    "note": "Organisation Club Nautique et Touristique du Lacydon (Marseille), événement du 19 au 28/06 ; épreuve née de la fusion de la Corsica Med et de la Duo Max (destination Barcelone les années paires, Macinaggio les années impaires). Class40 : 600 milles avec escale à Barcelone puis manche retour vers Marseille ; Stella Nova gagne de 2 min devant Aquamarin (Chris Kerl / Luis Brito). Mini : courses de 500 milles en solo (14 séries, 2 protos) et en double (aucun classement publié sur la fiche Classe Mini) ; parcours Mini non détaillé. Date de fin non publiée."
+  },
+  {
+    "classes": ["Figaro"],
+    "course": "Tour Voile",
+    "edition": 2026,
+    "debut": "2026-06-24",
+    "fin": "2026-07-12",
+    "depart": "Cherbourg-en-Cotentin (France)",
+    "arrivee": "Larmor-Plage (France)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "Région Bretagne – CMB Espoir",
+    "url": "https://www.facebook.com/TourVoile/",
+    "sources": [
+      "https://www.classefigarobeneteau.fr/calendrier",
+      "https://www.boatingnz.co.nz/2026/07/tour-voile-2026-closes-with-celebration-of-growth-learning-and-competitive-racing-in-brittany-waters/",
+      "https://figaronautisme.meteoconsult.fr/actus-nautisme-flash/2026-07-13/90371-lequipage-region-bretagne-cmb-vainqueur-du-tour-voile-2026"
+    ],
+    "note": "4e édition de la nouvelle formule, en équipage sur Figaro Beneteau 3 : 32 régates réparties sur cinq villes (Cherbourg-en-Cotentin, Saint-Malo, Plérin, Camaret-sur-Mer, Larmor-Plage), clôture le dimanche 12/07 à Larmor-Plage. Date de début selon le calendrier de la Classe Figaro Beneteau. Podium complet non retrouvé."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Calvados Cup – Course 1",
+    "edition": 2026,
+    "debut": "2026-06-27",
+    "fin": null,
+    "depart": "Douarnenez (France)",
+    "arrivee": "Deauville (France)",
+    "format": "non précisé",
+    "statut": "annulée",
+    "vainqueurs": null,
+    "url": "https://www.helloasso.com/associations/deauville-yacht-club/evenements/calvados-cup-2026",
+    "sources": [
+      "https://www.classemini.com/?mode=courses",
+      "https://www.classemini.com/course-fr-543.html"
+    ],
+    "note": "Liaison Douarnenez – Deauville de 270 milles (catégorie C), organisation Deauville Yacht Club. Marquée « annulée – cancelled » par la Classe Mini, sans motif publié ; type d'équipage non renseigné."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Calvados Cup – Course 2",
+    "edition": 2026,
+    "debut": "2026-07-03",
+    "fin": null,
+    "depart": "Deauville (France)",
+    "arrivee": "Douarnenez (France)",
+    "format": "solitaire",
+    "statut": "annulée",
+    "vainqueurs": null,
+    "url": "https://www.helloasso.com/associations/deauville-yacht-club/evenements/calvados-cup-2026",
+    "sources": [
+      "https://www.classemini.com/?mode=courses",
+      "https://www.classemini.com/course-fr-544.html"
+    ],
+    "note": "Nouveau parcours 2026 Deauville – Douarnenez en solo (500 milles, catégorie B), prévu comme 4e étape du Championnat de France course au large en solitaire (Mini). Marquée « annulée – cancelled » par la Classe Mini, sans motif publié."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "Drheam Cup",
+    "edition": 2026,
+    "debut": "2026-07-12",
+    "fin": null,
+    "depart": "Cherbourg-en-Cotentin (France)",
+    "arrivee": "Lorient (France)",
+    "format": "solitaire",
+    "statut": "terminée",
+    "vainqueurs": "Class40 : Corentin Douguet (SNSM – Faites un don, n°209) ; 2e Guillaume Pirouelle, 3e Robin Follin",
+    "url": "https://drheam-cup.com",
+    "sources": [
+      "https://www.class40.com/courses/saison-2026/drheam-cup-2026",
+      "https://www.class40.com/courses"
+    ],
+    "note": "6e édition, 1 000 milles en solitaire, qualificative pour la Route du Rhum ; nouvelle arrivée à Lorient ; 37 Class40 (32 classés). Arrivées estimées du 14 au 17/07, remise des prix le 18/07 : date de fin exacte non publiée ; temps du vainqueur 4 j 15 h 13 min 30 s. Épreuve multi-classes : seule la Class40 est concernée ici."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Solo Med",
+    "edition": 2026,
+    "debut": "2026-07-15",
+    "fin": null,
+    "depart": null,
+    "arrivee": null,
+    "format": "solitaire",
+    "statut": "terminée",
+    "vainqueurs": "Série : Tomás Ruiz (1043 Magikarp)",
+    "url": "https://www.bisc.cat/entrena/vela-oceanica/regata-solomed",
+    "sources": [
+      "https://www.classemini.com/?mode=courses",
+      "https://www.classemini.com/course-fr-560.html"
+    ],
+    "note": "Course de 600 milles en solitaire (catégorie B) organisée par le Barcelona International Sailing Center (Espagne) ; ports non précisés. Résultats proclamés le 23/07/2026 (14 séries). Un seul proto listé (931 Gènjol, Felip Moll) sans statut clair : vainqueur proto non retenu."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Mini Atlantique – Les Sables d'Olonne – Les Açores",
+    "edition": 2026,
+    "debut": "2026-07-22",
+    "fin": "2026-08-16",
+    "depart": "Les Sables-d'Olonne (France)",
+    "arrivee": "Les Sables-d'Olonne (France)",
+    "format": "solitaire",
+    "statut": "terminée",
+    "vainqueurs": "Proto : Julien Letissier (1069 Branchet) ; Série : Ronan Jézégou (1119 Irish Express)",
+    "url": "https://lessables-lesacores650.fr/",
+    "sources": [
+      "https://lessables-lesacores650.fr/",
+      "https://www.classemini.com/course-fr-557.html"
+    ],
+    "note": "11e édition de l'ancienne « Les Sables – Les Açores – Les Sables », 1 300 milles en deux étapes avec escale à Horta (départ de Horta le 05/08) ; catégorie A, 5e étape du Championnat de France Mini en solitaire ; organisation Les Sables d'Olonne Vendée Course au Large. Dates officielles « du 22 juillet au 16 août 2026 », dernière arrivée le 16/08 à 17h48."
+  },
+  {
+    "classes": ["Figaro"],
+    "course": "Fig'Armor",
+    "edition": 2026,
+    "debut": "2026-08-03",
+    "fin": "2026-08-07",
+    "depart": "Lorient (France)",
+    "arrivee": "Lorient (France)",
+    "format": "solitaire et double",
+    "statut": "terminée",
+    "vainqueurs": null,
+    "url": "https://www.voile-bretagne.com/fr/pages/Figarmor-Tableau_officiel/",
+    "sources": [
+      "https://www.classefigarobeneteau.fr/calendrier",
+      "https://www.classefigarobeneteau.fr/mediacenter/uploads/avis-de-course-fig%27armor-2026.pdf",
+      "https://www.yacht.de/en/regatta/races/fig-armor-favourite-wins-the-figaro-a-steep-learning-curve-for-lake-constance-sailors/"
+    ],
+    "note": "Course d'environ 48 h au départ de Lorient La Base, en solo et en double (dates de l'avis de course : du lundi 3 au vendredi 7 août). Yacht.de (08/08/2026) rapporte la victoire en double de Hugo Dhallenne / Chloé Le Bars (Skipper Macif), mais ce résultat n'a pas été recoupé par une source officielle, et le vainqueur solo n'a pas été trouvé : vainqueurs laissés à null."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "Round Britain and Ireland Race",
+    "edition": 2026,
+    "debut": "2026-08-09",
+    "fin": null,
+    "depart": "Cowes (Royaume-Uni)",
+    "arrivee": "Cowes (Royaume-Uni)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "Class40 : Swift (n°206) – Greg Leonard, Gérald Véniard, Miranda Merron",
+    "url": "https://roundbritainandireland.rorc.org/",
+    "sources": [
+      "https://www.class40.com/courses/saison-2026/round-britain-and-ireland-race-2026",
+      "https://www.class40.com/courses"
+    ],
+    "note": "Course du RORC de 1 805 milles autour des îles Britanniques et de l'Irlande. 3 Class40 : Swift 1er, Gambit 2e, Penfret disqualifié. Date de fin non publiée ; temps du vainqueur Class40 9 j 01 h 58 min 34 s."
+  },
+  {
+    "classes": ["Figaro"],
+    "course": "L'Aventura",
+    "edition": 2026,
+    "debut": "2026-08-23",
+    "fin": "2026-09-12",
+    "depart": "Port-Bourgenay, Talmont-Saint-Hilaire (France)",
+    "arrivee": "Île d'Yeu (France)",
+    "format": "double",
+    "statut": "terminée",
+    "vainqueurs": "Paul Loiseau / Victor Le Pape (Région Bretagne – CMB Espoir), classement avant jury",
+    "url": "https://www.laventura.live",
+    "sources": [
+      "https://www.laventura.live/actualites",
+      "https://www.laventura.live/programme",
+      "https://figaronautisme.meteoconsult.fr/actus-nautisme-flash/2026-09-12/92219-laventura-hugo-dhallenne-et-chloe-le-bars-remportent-la-deuxieme-etape-paul-loiseau-et-victor-le-pape-simposent-au-general"
+    ],
+    "note": "1re édition ; 4e et dernière épreuve du Championnat de France Elite 2026 (coef. 3). Étape 1 Port-Bourgenay – Lagos (Portugal) en laissant Madère à bâbord, départ le 23/08 (vainqueurs Loiseau / Le Pape en 8 j 01 h 05 min 45 s) ; étape 2 Lagos – Île d'Yeu, départ le 06/09 (vainqueurs Hugo Dhallenne / Chloé Le Bars, Skipper Macif, en 6 j 08 h 23 min 08 s) ; verdict et remise des prix le 12/09. Le classement final officiel (PDF publié le 13/09) n'a pas pu être lu : le général est donné « avant jury ». Épreuve annexe L'Aventurinha non incluse."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "40 Malouine La Trinquette",
+    "edition": 2026,
+    "debut": "2026-09-03",
+    "fin": "2026-09-04",
+    "depart": "Saint-Malo (France)",
+    "arrivee": "Saint-Malo (France)",
+    "format": "double",
+    "statut": "terminée",
+    "vainqueurs": "Alexis Loison / Pierrick Letouze (Groupe REEL, n°215)",
+    "url": "https://snbsm.com/habitable/regates-et-manifestations-nautiques/40-malouine/",
+    "sources": [
+      "https://www.class40.com/courses/saison-2026/40-malouine-la-trinquette-2026",
+      "https://www.class40.com/actualites/premiere-course-premiere-victoire"
+    ],
+    "note": "6e édition, environ 150 milles entre Saint-Malo et les îles Anglo-Normandes, organisée par la SNBSM ; course au large les 3 et 4/09 (édition du 3 au 6/09 avec des régates en équipage le week-end) ; Trophée Class40 Manche-Atlantique. 15 Class40 (13 classés) ; temps du vainqueur 23 h 13 min 22 s."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Ministorique du Crouesty",
+    "edition": 2026,
+    "debut": "2026-09-04",
+    "fin": null,
+    "depart": "Le Crouesty, Arzon (France)",
+    "arrivee": null,
+    "format": "solitaire et double",
+    "statut": "terminée",
+    "vainqueurs": "Solo – Série : Simon Hunter (856 Rapscallion), Proto : Julien Villey (611 Huracan) ; Double : Adrien Limal / Kilian Cabanes (832 Mini Poch')",
+    "url": "http://www.ycca.fr",
+    "sources": [
+      "https://www.classemini.com/?mode=courses",
+      "https://www.classemini.com/course-fr-558.html",
+      "https://www.classemini.com/course-fr-559.html"
+    ],
+    "note": "Course de 500 milles réservée aux Minis « d'ancienne génération », en solo (catégorie B, coef. 3) et en double (coef. 2) ; site de référence Yacht Club du Crouesty-Arzon. Parcours et port d'arrivée non précisés. Attribution série/proto déduite de la structure des classements Classe Mini (en double, un seul classement publié)."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Regata delle Isole",
+    "edition": 2026,
+    "debut": "2026-09-10",
+    "fin": null,
+    "depart": null,
+    "arrivee": null,
+    "format": "double",
+    "statut": "terminée",
+    "vainqueurs": "Série : Francesco Renella / Tommaso Stella (1078 Morgane) ; Proto : Giacomo Nicchitta / Carlo Levantino (667 Eva Luna)",
+    "url": "https://www.pmyc.it/",
+    "sources": [
+      "https://www.classemini.com/?mode=courses",
+      "https://www.classemini.com/course-fr-550.html"
+    ],
+    "note": "Course de 220 milles (catégorie C) en Italie ; ports non précisés sur la fiche Classe Mini. Format déduit du classement (deux skippers par bateau) ; attribution série/proto déduite de la structure des classements Classe Mini."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Mini Barcelona",
+    "edition": 2026,
+    "debut": "2026-09-11",
+    "fin": null,
+    "depart": "Barcelone (Espagne)",
+    "arrivee": null,
+    "format": "solitaire",
+    "statut": "terminée",
+    "vainqueurs": "1er : Alonso Pérez (1056 Marina Rubicon Lanzarote)",
+    "url": "https://maritimbarcelona.sailti.com/es/default/races",
+    "sources": [
+      "https://www.classemini.com/?mode=courses",
+      "https://www.classemini.com/course-fr-551.html"
+    ],
+    "note": "Course de 300 milles en solitaire (catégorie B, coef. 3) organisée par le Reial Club Marítim de Barcelona ; parcours non précisé. Un seul classement publié (8 classés, 2 abandons), sans distinction série/proto ; temps du vainqueur 2 j 10 h 20 min."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Duo Concarneau",
+    "edition": 2026,
+    "debut": "2026-09-17",
+    "fin": null,
+    "depart": "Concarneau (France)",
+    "arrivee": "Concarneau (France)",
+    "format": "double",
+    "statut": "terminée",
+    "vainqueurs": "Proto : Robinson Pozzoli / Éléanore Delbecq Charrier (1026 Uoum) ; Série : Naho Takahara / Paul Cousin (998 Seven x Seven)",
+    "url": "https://duoconcarneau.blogspot.com/",
+    "sources": [
+      "https://www.classemini.com/?mode=courses",
+      "https://www.classemini.com/course-fr-542.html"
+    ],
+    "note": "Course de 300 milles en double au départ de Concarneau (départ 14h), zone de course entre Brest et Les Sables-d'Olonne ; organisation Société des Régates de Concarneau ; résultats proclamés le 20/09/2026 (39 séries, 8 protos). Attribution série/proto déduite de la structure des classements Classe Mini."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "La Chrono 6.50",
+    "edition": 2026,
+    "debut": "2026-09-25",
+    "fin": null,
+    "depart": null,
+    "arrivee": null,
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "Série : Itzel Marie Diaz (552 Kaïros) ; Proto : Jean-Baptiste Crocquet (198 Karen Liquid')",
+    "url": "https://www.classemini.com/course-fr-545.html",
+    "sources": [
+      "https://www.classemini.com/",
+      "https://www.classemini.com/course-fr-545.html"
+    ],
+    "note": "Épreuve de 3 jours organisée par la Classe Mini autour de l'île de Groix (100 milles, catégorie D, coefficient 0), départ le 25/09 à 9h00 ; port non précisé. Résultats proclamés le 27/09/2026 (16 séries, 8 protos), temps non publiés. Attribution série/proto déduite de la structure des classements Classe Mini."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "Cannes – Malta Race",
+    "edition": 2026,
+    "debut": "2026-10-05",
+    "fin": null,
+    "depart": "Cannes (France)",
+    "arrivee": "La Valette (Malte)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "Matic Vrecko (Optimus Prime, n°130)",
+    "url": "https://rmyc.org/races/2026-cannes-malta-race/",
+    "sources": [
+      "https://www.class40.com/courses/saison-2026/cannes-malta-race-2026",
+      "https://www.class40.com/actualites/victoire-slovene-sur-la-cannes-malta-race"
+    ],
+    "note": "Course d'environ 606 milles née d'un accord entre le Royal Malta Yacht Club et le Yacht Club de Cannes ; 3 Class40 au départ ; épreuve du Trophée Méditerranée Class40. Équipage slovène vainqueur en 4 j 10 h 42 min 53 s ; date d'arrivée non publiée explicitement."
+  },
+  {
+    "classes": ["Figaro"],
+    "course": "National Figaro 3 en équipage",
+    "edition": 2026,
+    "debut": "2026-10-08",
+    "fin": "2026-10-11",
+    "depart": "Lorient (France)",
+    "arrivee": "Lorient (France)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "Foricher-French Touch (Paul Morvan) ; 2e Région Bretagne – CMB Espoir (Paul Loiseau), 3e Région Normandie (Paul Cousin)",
+    "url": "https://www.classefigarobeneteau.fr/fr",
+    "sources": [
+      "https://www.classefigarobeneteau.fr/fr/actualites/national-figaro-3-en-equipage-et-a-la-fin-c-est-foricher-french-touch-qui-gagne",
+      "https://www.classefigarobeneteau.fr/calendrier"
+    ],
+    "note": "6e édition, basée à Lorient La Base : 28 bateaux, six manches dans les coureaux de Groix (dont un tour de l'île). Dates selon le calendrier de la Classe (trois jours de régate)."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "Rolex Middle Sea Race",
+    "edition": 2026,
+    "debut": "2026-10-17",
+    "fin": null,
+    "depart": "La Valette (Malte)",
+    "arrivee": "La Valette (Malte)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "Class40 : Stella Nova (n°134) – Louis Torreilles, Edgard Vincens, Benoît Tuduri, Pierre-Benoît Chillaud",
+    "url": "https://www.rolexmiddlesearace.com/",
+    "sources": [
+      "https://www.class40.com/courses/saison-2026/middle-sea-race-2026",
+      "https://www.class40.com/actualites/le-trophee-mediterranee-class40-2026-remporte-par-omar-nass-et-louis-torreilles"
+    ],
+    "note": "47e édition, 606 milles autour de la Sicile, organisée par le Royal Malta Yacht Club. Dernière épreuve du Trophée Méditerranée Class40 2026, remporté grâce à cette victoire par Omar Naas / Louis Torreilles. Optimus Prime (n°130) classé DSQ. Date de fin non publiée ; temps du vainqueur Class40 3 j 14 h 05 min."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "Route du Rhum – Destination Guadeloupe",
+    "edition": 2026,
+    "debut": "2026-11-01",
+    "fin": null,
+    "depart": "Saint-Malo (France)",
+    "arrivee": "Pointe-à-Pitre (Guadeloupe, France)",
+    "format": "solitaire",
+    "statut": "en cours",
+    "vainqueurs": null,
+    "url": "https://www.routedurhum.com/",
+    "sources": [
+      "https://www.class40.com/courses/saison-2026/route-du-rhum-destination-guadeloupe-2026",
+      "https://www.imoca.org/en/news/news/the-13th-route-du-rhum-destination-guadeloupe-will-set-sail-on-november-1-2026",
+      "https://www.class40.com/actualites/bye-bye-saint-malo-rendez-vous-a-pointe-a-pitre"
+    ],
+    "note": "13e édition, 3 500 milles en solitaire, organisation OC Sport Pen Duick ; départ le dimanche 01/11/2026 (13h02 annoncé) ; 49 Class40 annoncés, catégorie la plus nombreuse, aux côtés des Ultim, IMOCA, Ocean Fifty et Rhum Mono/Multi (seule la Class40 est concernée ici). Course en cours au 03/11/2026."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "RORC Caribbean 600",
+    "edition": 2027,
+    "debut": "2027-02-22",
+    "fin": null,
+    "depart": "Antigua (Antigua-et-Barbuda)",
+    "arrivee": "Antigua (Antigua-et-Barbuda)",
+    "format": "équipage",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://www.caribbean600.rorc.org/",
+    "sources": [
+      "https://www.caribbean600.rorc.org/",
+      "https://www.class40.com/courses/saison-2027/rorc-caribbean-600-2027"
+    ],
+    "note": "Départ le lundi 22/02/2027 selon le RORC. Première épreuve du nouveau Trophée des propriétaires Class40."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "Défi Atlantique",
+    "edition": 2027,
+    "debut": "2027-03-07",
+    "fin": null,
+    "depart": "Pointe-à-Pitre (Guadeloupe, France)",
+    "arrivee": "La Rochelle (France)",
+    "format": "équipage (2 minimum)",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://www.defi-atlantique.com/",
+    "sources": [
+      "https://www.defi-atlantique.com/",
+      "https://www.class40.com/courses/saison-2027/defi-atlantique-2027"
+    ],
+    "note": "Transat retour organisée par Grand Pavois Organisation avec la Class40, escale à Horta (Açores) ; départ de Guadeloupe le dimanche 07/03/2027. Les dates d'escale et d'arrivée affichées sur le site officiel sont contradictoires (en partie héritées de l'édition 2023) : non retenues."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "CIC Med Channel Race",
+    "edition": 2027,
+    "debut": null,
+    "fin": null,
+    "depart": "Marseille (France)",
+    "arrivee": "Marseille (France)",
+    "format": "double",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://www.class40.com/courses/saison-2027/cic-med-channel-race-2027",
+    "sources": [
+      "https://www.class40.com/courses/saison-2027/cic-med-channel-race-2027",
+      "https://www.class40.com/en/courses?annee=2027"
+    ],
+    "note": "Le calendrier Class40 2027 l'indique au 21 mars 2027 avec la mention « dates à confirmer ». Boucle d'environ 1 000 milles (Marseille – îles du Var – Calvi – Sardaigne – Palma – Marseille), organisation Sirius Événements, Trophée Méditerranée."
+  },
+  {
+    "classes": ["Figaro"],
+    "course": "Transat Paprec",
+    "edition": 2027,
+    "debut": "2027-04-18",
+    "fin": null,
+    "depart": "Concarneau (France)",
+    "arrivee": "Saint-Barthélemy (France)",
+    "format": "double mixte",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://www.transatpaprec.com",
+    "sources": [
+      "https://www.transatpaprec.com/post/the-18th-edition-of-the-transat-paprec-will-set-sail-from-concarneau-on-april-18-2027",
+      "https://figaronautisme.meteoconsult.fr/actus-nautisme-courses/2026-07-01/89970-transat-paprec-2027-cap-sur-une-18e-edition-toujours-plus-mixte-et-plus-relevee",
+      "https://www.classefigarobeneteau.fr/calendrier"
+    ],
+    "note": "18e édition, en double mixte obligatoire sur Figaro Beneteau 3 ; départ le 18/04/2027 à 13h02 de Concarneau, marque de parcours à La Palma (Canaries) à laisser à tribord, arrivée à Gustavia ; 3 890 milles (environ 17 jours). Avis de course publié le 1er juillet 2026, organisation OC Sport Pen Duick."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "Paprec 600 Saint-Tropez",
+    "edition": 2027,
+    "debut": "2027-04-19",
+    "fin": null,
+    "depart": "Saint-Tropez (France)",
+    "arrivee": null,
+    "format": "double",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://www.class40.com/en/courses/saison-2027/paprec-600-saint-tropez-2027",
+    "sources": [
+      "https://www.class40.com/en/courses/saison-2027/paprec-600-saint-tropez-2027",
+      "https://www.class40.com/en/courses?annee=2027"
+    ],
+    "note": "600 milles, organisation Société Nautique de Saint-Tropez, Trophée Méditerranée ; date du calendrier Class40 2027 (non marquée « à confirmer »)."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "La Trin'40 Le Havre",
+    "edition": 2027,
+    "debut": null,
+    "fin": null,
+    "depart": null,
+    "arrivee": null,
+    "format": "non confirmé",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://www.class40.com/courses/saison-2027/la-trin-40-le-havre-a-confirmer-2027",
+    "sources": [
+      "https://www.class40.com/courses/saison-2027/la-trin-40-le-havre-a-confirmer-2027",
+      "https://www.class40.com/en/courses?annee=2027"
+    ],
+    "note": "Inscrite « à confirmer » au calendrier Class40 2027 (10 mai 2027), « entre l'Armen et la NCR », organisation SNT. Parcours, ports et format non confirmés (la fiche indique « équipage » alors que l'édition 2026 se courait en solitaire)."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "CIC Normandy Channel Race",
+    "edition": 2027,
+    "debut": "2027-05-30",
+    "fin": null,
+    "depart": "Caen (France)",
+    "arrivee": "Caen (France)",
+    "format": "double",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://www.class40.com/en/courses/saison-2027/cic-normandy-channel-race-2027",
+    "sources": [
+      "https://www.class40.com/en/courses/saison-2027/cic-normandy-channel-race-2027",
+      "https://figaronautisme.meteoconsult.fr/actus-nautisme-courses/2026-10-01/92808-cic-normandy-channel-race-2027-apres-une-edition-record-cap-sur-la-18e-edition"
+    ],
+    "note": "18e édition, 1 000 milles, organisation Sirius Événements, Trophée Class40 Manche-Atlantique ; départ annoncé le 30/05/2027. Ports non écrits sur la fiche 2027 (Caen d'après les éditions précédentes et l'annonce de la 18e édition)."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "Massilia Cup Offshore",
+    "edition": 2027,
+    "debut": null,
+    "fin": null,
+    "depart": "Marseille (France)",
+    "arrivee": null,
+    "format": "double",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://www.class40.com/en/courses/saison-2027/massilia-cup-offshore-dates-a-confirmer-2027",
+    "sources": [
+      "https://www.class40.com/en/courses/saison-2027/massilia-cup-offshore-dates-a-confirmer-2027",
+      "https://www.class40.com/courses/saison-2026/massilia-cup-offshore-trophee-barcelona-2026"
+    ],
+    "note": "Calendrier Class40 2027 : 20 juin 2027 « dates à confirmer », 600 milles, organisation CNTL Marseille, Trophée Méditerranée. D'après la fiche 2026, destination Corse (Macinaggio) les années impaires. Participation des Mini 6.50 en 2027 non annoncée."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "Les Sables – Horta",
+    "edition": 2027,
+    "debut": null,
+    "fin": null,
+    "depart": "Les Sables-d'Olonne (France)",
+    "arrivee": "Les Sables-d'Olonne (France)",
+    "format": "double",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://www.class40.com/en/courses/saison-2027/les-sables-horta-2027",
+    "sources": [
+      "https://www.class40.com/en/courses/saison-2027/les-sables-horta-2027",
+      "https://www.class40.com/en/courses?annee=2027"
+    ],
+    "note": "Calendrier Class40 2027 : 2 juillet 2027 « dates à confirmer ». Course de 2 540 milles en double avec escale à Horta (Açores), réservée aux Class40, comptant pour le championnat. Organisateur non précisé sur la fiche."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "Rolex Fastnet Race",
+    "edition": 2027,
+    "debut": "2027-07-24",
+    "fin": null,
+    "depart": "Cowes (Royaume-Uni)",
+    "arrivee": "Cherbourg-en-Cotentin (France)",
+    "format": "équipage",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://www.rolexfastnetrace.com/",
+    "sources": [
+      "https://www.class40.com/en/courses/saison-2027/rolex-fastnet-race-2027",
+      "https://www.sail-world.com/news/291511/2027-Admirals-Cup-Notice-of-Race-published",
+      "https://figaronautisme.meteoconsult.fr/actus-nautisme-courses/2026-09-25/92635-rolex-fastnet-race-2027-cherbourg-se-prepare-au-retour-de-la-plus-grande-course-au-large-du-monde"
+    ],
+    "note": "Course du RORC (environ 700 milles), départ le samedi 24/07/2027, course au large finale de l'Admiral's Cup 2027 ; arrivée à Cherbourg-en-Cotentin. Inscrite au Trophée Class40 Manche-Atlantique et au Trophée des propriétaires. Avis de course propre à la Fastnet 2027 non consulté."
+  },
+  {
+    "classes": ["Mini 6.50"],
+    "course": "Mini Transat Legallais",
+    "edition": 2027,
+    "debut": "2027-09-12",
+    "fin": null,
+    "depart": "La Rochelle (France)",
+    "arrivee": "Salvador de Bahia (Brésil)",
+    "format": "solitaire",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://www.classemini.com",
+    "sources": [
+      "https://www.bateaux.com/article/50985/la-mini-transat-revient-a-la-rochelle-et-retrouve-salvador-de-bahia-pour-les-editions-2027-et-2029",
+      "https://www.sail-world.com/news/297817/The-Mini-Transat-returns-to-La-Rochelle-in-2027",
+      "https://figaronautisme.meteoconsult.fr/actus-nautisme-flash/2026-09-19/92429-yannick-bestaven-parrain-de-la-mini-transat-legallais-2027"
+    ],
+    "note": "Transat en solitaire en deux étapes : La Rochelle – Las Palmas de Gran Canaria (Espagne), puis Las Palmas – Salvador de Bahia ; départ le 12/09/2027. Legallais partenaire-titre des éditions 2027 et 2029, parrain Yannick Bestaven. Site officiel de l'édition non identifié (url = Classe Mini). Pas de Mini Transat en 2026 (course des années impaires)."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "Rolex Middle Sea Race",
+    "edition": 2027,
+    "debut": null,
+    "fin": null,
+    "depart": "La Valette (Malte)",
+    "arrivee": "La Valette (Malte)",
+    "format": "équipage",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://www.rolexmiddlesearace.com/",
+    "sources": [
+      "https://www.class40.com/en/courses/saison-2027/rolex-middle-sea-race-dates-a-confirmer-2027",
+      "https://www.class40.com/en/courses?annee=2027"
+    ],
+    "note": "Calendrier Class40 2027 : 16 octobre 2027 « dates à confirmer » ; Trophée Méditerranée et Trophée des propriétaires."
+  },
+  {
+    "classes": ["Class 40"],
+    "course": "Transat Café L'Or",
+    "edition": 2027,
+    "debut": null,
+    "fin": null,
+    "depart": "Le Havre (France)",
+    "arrivee": null,
+    "format": "double",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://www.transatcafelor.org",
+    "sources": [
+      "https://www.class40.com/en/courses/saison-2027/transat-cafe-l-or-normandie-le-havre-2027",
+      "https://www.sail-world.com/news/288283/Transat-Cafe-Lor-calling-for-next-destinatation",
+      "https://www.imoca.org/en/transat-cafe-l-or"
+    ],
+    "note": "18e édition de l'ex-Transat Jacques Vabre (course biennale en double au départ du Havre). Le calendrier Class40 2027 indique un départ le 31 octobre 2027 vers la Martinique, mais le site officiel ne publie encore rien sur 2027 et l'organisateur a lancé un appel à candidatures pour la destination, annoncée « fin 2026 » : date et arrivée laissées à null."
+  },
+  {
+    "classes": ["Figaro"],
+    "course": "La Solitaire du Figaro Paprec",
+    "edition": 2027,
+    "debut": null,
+    "fin": null,
+    "depart": null,
+    "arrivee": null,
+    "format": "solitaire",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://www.lasolitaire.com",
+    "sources": [
+      "https://figaronautisme.meteoconsult.fr/actus-nautisme-courses/solitaire-du-figaro/2026-07-16/90479-la-solitaire-du-figaro-ouvre-un-nouveau-chapitre-de-son-histoire-en-2028",
+      "https://www.actunautique.com/2026/07/la-solitaire-du-figaro-abandonnera-le-figaro-beneteau-3-en-2028-quel-avenir-pour-la-classe-figaro.html",
+      "https://www.yacht.de/fr/regate/courses/la-solitaire-du-figaro-une-revolution-au-figaro-un-changement-de-classe-radical/"
+    ],
+    "note": "58e édition annoncée comme la dernière disputée sur Figaro Beneteau 3 (passage en Ocean Fifty à partir de 2028, annonce de juillet 2026). Dates, villes et parcours non publiés au 03/11/2026."
+  }
+]

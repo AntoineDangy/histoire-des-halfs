@@ -1,0 +1,29 @@
+# Comptes et caches locaux (Cloudflare Wrangler : identifiant de compte)
+.wrangler/
+node_modules/
+.env
+.env.*
+
+# Copies privées (originaux avec adresses mail non masquées)
+_private/
+
+# Photos : droits non vérifiés, à rapatrier localement avec tools/photos.mjs et tools/commons.mjs
+site/photos/
+_source/commons/files/
+*.jpg
+*.JPG
+*.jpeg
+*.JPEG
+*.png
+*.PNG
+*.gif
+*.GIF
+*.webp
+*.tif
+*.tiff
+*.bmp
+
+# Divers
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,171 @@
+/* Designs : sélectionnés par <html data-design="…"> (Moderne / Rétro dans l'en-tête, tous en bas de page, mémorisé, ou ?design=…).
+   Le design par défaut (« Moderne ») est celui de style.css ; chaque variante ne redéfinit que ses jetons et quelques formes. */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Archivo+Black&display=swap');
+
+/* Sélecteur de design */
+.design-picker { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .85rem; }
+.design-picker span { opacity: .8; margin-right: 2px; }
+.design-picker button { font: inherit; font-size: .82rem; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.3); background: transparent; color: inherit; cursor: pointer; }
+.design-picker button[aria-pressed="true"] { background: #f5f1e8; color: #0f2a44; }
+
+/* ------------------------------------------------------------------ Rétro web
+   Clin d'œil assumé au site d'origine (FrontPage, fin des années 1990) : fond jaune pâle, liens bleus soulignés,
+   Verdana et Times, bordures en relief. La structure et la navigation restent celles du nouveau site. */
+:root[data-design="retro"] {
+  --sail: #ffffcc; --sail-2: #ffff99; --paper: #ffffee; --ink: #000; --ink-2: #222; --muted: #555;
+  --navy: #000080; --navy-2: #000080; --spi: #800000; --brass: #806000; --sea: #0000ee; --line: #999966;
+  --radius: 0; --shadow: none;
+  --font-display: 'Times New Roman', Times, serif; --font-ui: Verdana, Geneva, Arial, sans-serif; --font-num: 'Courier New', Courier, monospace;
+  color-scheme: light;
+}
+:root[data-design="retro"] body { font-size: 14px; line-height: 1.5; background: var(--sail); }
+:root[data-design="retro"] a { color: #0000ee; text-decoration: underline; }
+:root[data-design="retro"] a:visited { color: #551a8b; }
+:root[data-design="retro"] a:hover { color: #ff0000; }
+:root[data-design="retro"] .site-header { background: #c0c0c0; color: #000; border-bottom: 2px outset #fff; position: static; }
+:root[data-design="retro"] .site-header .brand, :root[data-design="retro"] .nav a, :root[data-design="retro"] .nav .nav-top { color: #000080; }
+:root[data-design="retro"] .brand b { font-family: 'Times New Roman', serif; font-size: 1.2rem; text-transform: uppercase; letter-spacing: .04em; }
+:root[data-design="retro"] .brand small { color: #800000; opacity: 1; }
+:root[data-design="retro"] .nav a { text-decoration: underline; border-radius: 0; font-weight: 700; font-size: .78rem; padding: 8px 7px; }
+:root[data-design="retro"] .nav a:hover, :root[data-design="retro"] .nav a[aria-current], :root[data-design="retro"] .nav-group.current > .nav-top { background: #000080; color: #fff; }
+:root[data-design="retro"] .dropdown { background: #ffffee; border: 2px outset #fff; border-radius: 0; }
+:root[data-design="retro"] .search-box input { background: #fff; color: #000; border: 2px inset #fff; border-radius: 0; }
+:root[data-design="retro"] .search-box input::placeholder { color: #666; }
+:root[data-design="retro"] .search-box svg { color: #000; }
+:root[data-design="retro"] .menu-btn { color: #000080; }
+:root[data-design="retro"] .hero { background: var(--sail); color: #000; text-align: center; border-bottom: 3px double #800000; }
+:root[data-design="retro"] .hero .waves { display: none; }
+:root[data-design="retro"] .hero .wrap { padding: 28px 0 22px; }
+:root[data-design="retro"] .hero h1 { color: #000080; max-width: none; text-transform: uppercase; font-size: clamp(1.7rem, 4vw, 2.6rem); text-decoration: underline; }
+:root[data-design="retro"] .hero .lead { margin-inline: auto; color: #800000; font-style: italic; }
+:root[data-design="retro"] .eyebrow { color: #800000; }
+:root[data-design="retro"] .stats { justify-content: center; }
+:root[data-design="retro"] .stats div b { color: #000080; font-family: 'Times New Roman', serif; }
+:root[data-design="retro"] .card, :root[data-design="retro"] .facts, :root[data-design="retro"] .frise-wrap, :root[data-design="retro"] .edition, :root[data-design="retro"] .race, :root[data-design="retro"] .table-wrap, :root[data-design="retro"] .notice, :root[data-design="retro"] details.raw {
+  border: 2px outset #fff; background: #ffffee; border-radius: 0; box-shadow: none;
+}
+:root[data-design="retro"] .feature { background: #000080; border: 2px outset #8080ff; border-radius: 0; }
+:root[data-design="retro"] .feature::after { display: none; }
+:root[data-design="retro"] .feature b { font-family: 'Times New Roman', serif; text-transform: uppercase; }
+:root[data-design="retro"] .feature .eyebrow { color: #ffff99; }
+:root[data-design="retro"] .feature-count { color: #ffff00; }
+:root[data-design="retro"] table.boats { border-collapse: collapse; }
+:root[data-design="retro"] table.boats th, :root[data-design="retro"] table.boats td { border: 1px solid #999966; }
+:root[data-design="retro"] table.boats th { background: #ffff99; color: #800000; }
+:root[data-design="retro"] .subnav a, :root[data-design="retro"] .alpha button, :root[data-design="retro"] .cal-filter button, :root[data-design="retro"] .years a {
+  border-radius: 0; border: 2px outset #fff; background: #c0c0c0; color: #000; text-decoration: none;
+}
+:root[data-design="retro"] .subnav a[aria-current], :root[data-design="retro"] .alpha button[aria-pressed="true"], :root[data-design="retro"] .cal-filter button[aria-pressed="true"] { border-style: inset; background: #a0a0a0; color: #000; }
+:root[data-design="retro"] .sail { color: #800000; font-weight: 700; }
+:root[data-design="retro"] h2 { color: #000080; text-decoration: underline; }
+:root[data-design="retro"] .pill, :root[data-design="retro"] .badge, :root[data-design="retro"] .race-status { border-radius: 0; }
+:root[data-design="retro"] .gallery a, :root[data-design="retro"] .card-img { border-radius: 0; border: 2px outset #fff; }
+:root[data-design="retro"] .site-footer { background: #c0c0c0; color: #000; border-top: 2px outset #fff; text-align: center; }
+:root[data-design="retro"] .site-footer a { color: #0000ee; }
+:root[data-design="retro"] .design-picker button { border: 2px outset #fff; border-radius: 0; background: #c0c0c0; color: #000; }
+:root[data-design="retro"] .design-picker button[aria-pressed="true"] { border-style: inset; background: #a0a0a0; color: #000; }
+:root[data-design="retro"] .theme-toggle { display: none; }
+:root[data-design="retro"] .site-header .design-switch { background: none; border: 0; padding: 0; gap: 4px; }
+/* Photos : à l'ancienne, encadrées et posées dans la page (pas de fond photo ni de voile). Dans le titre, la mosaïque
+   devient une rangée de vignettes sous le texte, comme les bandeaux de photos du site d'origine. */
+:root[data-design="retro"] .hero { display: flex; flex-direction: column; }
+:root[data-design="retro"] .hero.has-photo::before, :root[data-design="retro"] .hero.has-mosaic::before, :root[data-design="retro"] .feature.with-photo::before { display: none; }
+:root[data-design="retro"] .hero-bg { position: static; order: 2; width: min(420px, 90%); height: auto; aspect-ratio: 4 / 3; margin: 0 auto 24px; border: 3px outset #fff; }
+:root[data-design="retro"] .hero-mosaic { position: static; order: 2; width: auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 0 16px 24px; }
+:root[data-design="retro"] .hero-mosaic img { width: 150px; height: 108px; border: 3px outset #fff; }
+:root[data-design="retro"] .hero.has-photo h1, :root[data-design="retro"] .hero.has-mosaic h1 { text-shadow: none; }
+:root[data-design="retro"] .feature.with-photo { min-height: 0; justify-content: flex-start; }
+:root[data-design="retro"] .feature-bg { position: static; order: -1; height: 140px; border: 2px inset #8080ff; }
+:root[data-design="retro"] .feature.with-photo:hover .feature-bg, :root[data-design="retro"] .pcard:hover .ph img { transform: none; }
+:root[data-design="retro"] .feature:hover, :root[data-design="retro"] .pcard:hover, :root[data-design="retro"] a.card:hover { transform: none; box-shadow: none; }
+:root[data-design="retro"] .pcard { border: 2px outset #fff; border-radius: 0; background: #ffffee; }
+:root[data-design="retro"] .pcard .ph { border-bottom: 1px solid #999966; padding: 6px; background: #ffffee; }
+:root[data-design="retro"] .pcard b { font-family: 'Times New Roman', serif; color: #0000ee; text-decoration: underline; }
+:root[data-design="retro"] .boat-cover { margin: 0 0 12px; border-radius: 0; border: 2px inset #fff; }
+
+/* En-têtes clairs : la grand-voile du logo, blanche par défaut, prend la couleur de l'encre. */
+:root[data-design="retro"] .brand svg path:first-child { fill: #000080; }
+:root[data-design="revue"] .brand svg path:first-child { fill: #231a12; }
+
+/* ------------------------------------------------------------------ Revue 1980
+   L'esprit des revues nautiques d'époque citées par l'auteur : papier ivoire, typographie de presse, filets, petites capitales. */
+:root[data-design="revue"] {
+  --sail: #f3ead8; --sail-2: #e8dcc2; --paper: #faf5e9; --ink: #231a12; --ink-2: #4a3b2c; --muted: #7a6a58;
+  --navy: #231a12; --navy-2: #3a2c1f; --spi: #b3261e; --brass: #8a6d2f; --sea: #1f4e6b; --line: #cbb994;
+  --radius: 0; --shadow: none;
+  --font-display: 'Libre Caslon Text', Georgia, serif; --font-ui: 'Source Serif 4', Georgia, serif; --font-num: 'Libre Caslon Text', Georgia, serif;
+  color-scheme: light;
+}
+:root[data-design="revue"] body { background: var(--sail); font-size: 17px; }
+:root[data-design="revue"] .site-header { background: var(--paper); color: var(--ink); border-bottom: 1px solid var(--ink); box-shadow: 0 3px 0 -1px var(--paper), 0 4px 0 -1px var(--ink); }
+:root[data-design="revue"] .site-header .brand, :root[data-design="revue"] .nav a { color: var(--ink); }
+:root[data-design="revue"] .brand b { font-style: italic; font-size: 1.4rem; }
+:root[data-design="revue"] .brand small { font-variant: small-caps; letter-spacing: .12em; text-transform: none; }
+:root[data-design="revue"] .nav a { font-variant: small-caps; letter-spacing: .06em; font-size: 1rem; }
+:root[data-design="revue"] .nav a:hover, :root[data-design="revue"] .nav a[aria-current], :root[data-design="revue"] .nav-group.current > .nav-top { background: transparent; color: var(--spi); text-decoration: underline; }
+:root[data-design="revue"] .search-box input { background: transparent; color: var(--ink); border: 0; border-bottom: 1px solid var(--ink); border-radius: 0; }
+:root[data-design="revue"] .search-box input::placeholder { color: var(--muted); }
+:root[data-design="revue"] .search-box svg, :root[data-design="revue"] .menu-btn { color: var(--ink); }
+:root[data-design="revue"] .hero { background: var(--sail); color: var(--ink); border-bottom: 3px double var(--ink); }
+:root[data-design="revue"] .hero .waves { display: none; }
+:root[data-design="revue"] .hero .wrap { padding: 40px 0 28px; }
+:root[data-design="revue"] .hero h1 { color: var(--ink); font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 700; max-width: 18ch; }
+:root[data-design="revue"] .hero .lead { color: var(--ink-2); font-style: italic; opacity: 1; }
+:root[data-design="revue"] .hero .lead::first-letter { font-family: var(--font-display); font-size: 3em; float: left; line-height: .9; margin: 4px 8px 0 0; color: var(--spi); font-style: normal; }
+:root[data-design="revue"] .eyebrow { color: var(--spi); font-variant: small-caps; text-transform: none; letter-spacing: .14em; font-size: .95rem; }
+:root[data-design="revue"] .stats div b { color: var(--ink); }
+:root[data-design="revue"] .card, :root[data-design="revue"] .facts, :root[data-design="revue"] .frise-wrap, :root[data-design="revue"] .edition, :root[data-design="revue"] .race, :root[data-design="revue"] .table-wrap, :root[data-design="revue"] .notice, :root[data-design="revue"] details.raw {
+  background: var(--paper); border: 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); border-radius: 0; box-shadow: none;
+}
+:root[data-design="revue"] .feature { background: var(--paper); color: var(--ink); border: 0; border-top: 4px solid var(--spi); border-bottom: 1px solid var(--ink); border-radius: 0; }
+:root[data-design="revue"] .feature::after { display: none; }
+:root[data-design="revue"] .feature b { color: var(--ink); }
+:root[data-design="revue"] .feature .meta { color: var(--ink-2); }
+:root[data-design="revue"] .feature .eyebrow { color: var(--spi); }
+:root[data-design="revue"] h2 { font-style: italic; border-bottom: 1px solid var(--ink); padding-bottom: 4px; }
+:root[data-design="revue"] .family h3, :root[data-design="revue"] table.boats th { font-variant: small-caps; text-transform: none; letter-spacing: .1em; }
+:root[data-design="revue"] .subnav a, :root[data-design="revue"] .alpha button, :root[data-design="revue"] .cal-filter button, :root[data-design="revue"] .pill, :root[data-design="revue"] .badge, :root[data-design="revue"] .race-status { border-radius: 0; }
+:root[data-design="revue"] .subnav a[aria-current], :root[data-design="revue"] .alpha button[aria-pressed="true"], :root[data-design="revue"] .cal-filter button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); }
+:root[data-design="revue"] .gallery img, :root[data-design="revue"] .card-img { filter: sepia(.25) contrast(1.02); }
+:root[data-design="revue"] .gallery a { border-radius: 0; }
+:root[data-design="revue"] .site-footer { background: var(--ink); color: var(--sail); }
+:root[data-design="revue"] .theme-toggle { display: none; }
+:root[data-design="revue"] .site-header .design-switch { border-color: var(--ink); background: transparent; }
+:root[data-design="revue"] .site-header .design-switch button { color: var(--ink); font-family: var(--font-ui); }
+:root[data-design="revue"] .site-header .design-switch button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+/* Photos d'époque : légèrement virées sépia, voile ivoire du côté du texte. */
+:root[data-design="revue"] .hero-bg, :root[data-design="revue"] .hero-mosaic img, :root[data-design="revue"] .feature-bg, :root[data-design="revue"] .pcard img, :root[data-design="revue"] .boat-cover img { filter: sepia(.35) contrast(1.05); }
+:root[data-design="revue"] .hero.has-photo::before, :root[data-design="revue"] .hero.has-mosaic::before { background: linear-gradient(90deg, var(--sail) 42%, color-mix(in srgb, var(--sail) 40%, transparent) 70%, transparent 100%); }
+:root[data-design="revue"] .hero.has-photo h1, :root[data-design="revue"] .hero.has-mosaic h1 { text-shadow: none; }
+:root[data-design="revue"] .feature.with-photo::before { background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--paper) 70%, transparent) 45%, var(--paper) 78%); }
+:root[data-design="revue"] .pcard { border-radius: 0; border: 0; border-top: 2px solid var(--ink); }
+:root[data-design="revue"] .boat-cover { border-radius: 0; }
+@media (max-width: 900px) {
+  :root[data-design="revue"] .hero.has-photo::before, :root[data-design="revue"] .hero.has-mosaic::before { background: color-mix(in srgb, var(--sail) 85%, transparent); }
+}
+
+/* ------------------------------------------------------------------ Régate
+   Moderne et contrasté : fond sombre, grands titres condensés, numéros de voile en vedette. */
+:root[data-design="regate"] {
+  --sail: #0b1622; --sail-2: #13212f; --paper: #111e2b; --ink: #eef3f7; --ink-2: #b9c6d1; --muted: #7f93a3;
+  --navy: #060d15; --navy-2: #0b1622; --spi: #ff6a2b; --brass: #ffc23d; --sea: #4fc3f7; --line: #22364a;
+  --radius: 4px; --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --font-display: 'Archivo Black', 'Barlow Condensed', sans-serif; --font-num: 'Barlow Condensed', sans-serif;
+  color-scheme: dark;
+}
+:root[data-design="regate"] body { background: var(--sail); }
+:root[data-design="regate"] .site-header { background: var(--navy); border-bottom: 3px solid var(--spi); }
+:root[data-design="regate"] .hero { background: linear-gradient(135deg, #060d15 0%, #0f2a44 60%, #1b3d5e 100%); }
+:root[data-design="regate"] .hero .waves { color: var(--sail); }
+:root[data-design="regate"] .hero h1 { max-width: 20ch; text-transform: uppercase; font-size: clamp(2.2rem, 6.5vw, 4.6rem); letter-spacing: -.01em; line-height: 1; }
+:root[data-design="regate"] .hero .lead { color: var(--ink-2); }
+:root[data-design="regate"] h2 { text-transform: uppercase; letter-spacing: .02em; }
+:root[data-design="regate"] .eyebrow { color: var(--spi); }
+:root[data-design="regate"] .stats div b { color: var(--spi); font-size: 3rem; }
+:root[data-design="regate"] .sail { color: var(--spi); }
+:root[data-design="regate"] .sail.big { font-size: 2.6rem; }
+:root[data-design="regate"] .card, :root[data-design="regate"] .race, :root[data-design="regate"] .edition { background: var(--paper); border-color: var(--line); }
+:root[data-design="regate"] .feature { background: linear-gradient(160deg, #16314c, #0a1520); border-top-color: var(--spi); }
+:root[data-design="regate"] .feature-count { color: var(--brass); }
+:root[data-design="regate"] table.boats tr:hover td { background: #172a3c; }
+:root[data-design="regate"] .theme-toggle { display: none; }

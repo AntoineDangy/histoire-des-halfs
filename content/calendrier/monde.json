@@ -1,0 +1,502 @@
+[
+  {
+    "classes": ["Grandes courses"],
+    "course": "Clipper 2025-26 Round the World Yacht Race",
+    "edition": 2025,
+    "debut": "2025-08-31",
+    "fin": "2026-07-25",
+    "depart": "Portsmouth (Royaume-Uni)",
+    "arrivee": "Portsmouth (Royaume-Uni)",
+    "format": "équipage (amateurs, flotte monotype de 10 bateaux)",
+    "statut": "terminée",
+    "vainqueurs": "Classement général : Team GOSH (skipper Oli Irvine, second Otto Kurlow), devant Team London Business School et Team Scotland.",
+    "url": "https://www.clipperroundtheworld.com/",
+    "sources": [
+      "https://www.clipperroundtheworld.com/news-and-events/article/portsmouth-announcement",
+      "https://www.clipperroundtheworld.com/",
+      "https://www.sail-world.com/news/298373/Youngest-ever-professional-pair-take-Clipper-win",
+      "https://www.yacht.de/en/regatta/races/clipper-round-the-world-race-youngest-winning-duo-take-overall-victory/"
+    ],
+    "note": "14e édition du Clipper Race, tour du monde en 8 étapes (13 courses) ; départ de Gunwharf Quays le 31 août 2025, retour de la flotte à Portsmouth le 25 juillet 2026. Édition à cheval sur 2025 et 2026 (champ edition = année de départ). Team GOSH a remporté 7 des 13 courses et s'est assurée la victoire avant l'arrivée finale."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "Cape2Rio Race",
+    "edition": 2025,
+    "debut": "2025-12-27",
+    "fin": null,
+    "depart": "Le Cap (Afrique du Sud)",
+    "arrivee": "Rio de Janeiro (Brésil)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "Line honours : Vineta (J/V 43, Felix Scheder-Bieschin) en 16 j 7 h 44 min 15 s, arrivée le 12 janvier 2026. Temps compensé (handicap) : Alexforbes Angel Wings (équipage jeunes de la RCYC Sailing Academy, skipper Sibu Sizatu), selon la presse.",
+    "url": "https://cape2riorace.com/",
+    "sources": [
+      "https://cape2riorace.com/line-honours-claimed-as-seamanship-and-resolve-define-cape2rio-2025/",
+      "https://cape2riorace.com/past_races/2025-cape-to-rio/",
+      "https://www.yacht.de/en/regatta/races/cape-to-rio-race-vineta-takes-line-honours-cape-town-youngsters-strong/",
+      "https://www.ewn.co.za/2026/01/19/youth-crew-defies-mid-ocean-breakdown-to-win-2025-cape2rio-on-handicap",
+      "https://www.icoyc.org/news/youth-crew-wins-cape2rio/"
+    ],
+    "note": "Édition officiellement intitulée « 2025 » par l'organisateur (Royal Cape Yacht Club), parfois appelée « Cape2Rio 2026 » : départ le 27 décembre 2025, course disputée pour l'essentiel en janvier 2026 ; 12 partants. Il n'y a pas d'autre édition en 2026. La page résultats du site officiel affiche des classements contradictoires (Atalanta / Ray of Light, apparemment non mis à jour) ; la victoire en temps compensé d'Alexforbes Angel Wings est rapportée par plusieurs médias concordants (EWN, ICOYC, Alexforbes) mais n'est pas confirmée sur le site officiel. Date de clôture/remise des prix non confirmée."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "RORC Transatlantic Race",
+    "edition": 2026,
+    "debut": "2026-01-11",
+    "fin": null,
+    "depart": "Arrecife, Lanzarote (Espagne)",
+    "arrivee": "English Harbour (Antigua-et-Barbuda)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "IRC Overall (temps compensé) : Palanad 4 (Mach 50, Olivier et Antoine Magre, FRA). Line honours monocoque : Raven (Baltic 111, skipper Damien Durchon) en 6 j 22 h 27 min 47 s, record monocoque. Line honours multicoque : Argo (MOD70, Jason Carroll, USA) en 4 j 23 h 51 min 15 s, record multicoque.",
+    "url": "https://rorctransatlantic.rorc.org/",
+    "sources": [
+      "https://rorctransatlantic.rorc.org/2026-destination-antigua",
+      "https://www.sail-world.com/news/293166/RORC-Transatlantic-Race-overall-winner-declared",
+      "https://www.sail-world.com/news/293412/RORC-Transatlantic-Race-summary",
+      "https://www.thestar.com.my/sport/others/2026/01/23/sailing-radical-design-family-bond-and-a-transatlantic-triumph-for-the-magres"
+    ],
+    "note": "12e édition, organisée par le RORC avec l'International Maxi Association et le Yacht Club de France ; départ de Marina Lanzarote (Calero Marinas) ; environ 2 995 milles. Argo arrivé le 16 janvier, Raven le 18 janvier ; vainqueur IRC déclaré le 22 janvier 2026. Date de clôture/remise des prix non confirmée."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "RORC Caribbean 600",
+    "edition": 2026,
+    "debut": "2026-02-23",
+    "fin": "2026-02-27",
+    "depart": "English Harbour (Antigua-et-Barbuda)",
+    "arrivee": "English Harbour (Antigua-et-Barbuda)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "IRC Overall (temps compensé) : Leopard 3 (Farr 100, Joost Schuijff). Line honours monocoque : Black Jack 100 (Remon Vos) en 1 j 20 h 31 min 36 s. Line honours multicoque : Argo (MOD70, Jason Carroll, USA) en 1 j 12 h 01 min 46 s.",
+    "url": "https://caribbean600.rorc.org/",
+    "sources": [
+      "https://caribbean600.rorc.org/how-to-follow-the-2026-rorc-caribbean-600",
+      "https://caribbean600.rorc.org/2026-rorc-caribbean-600-worthy-of-its-legacy",
+      "https://afloat.ie/sail/events/caribbean-600/item/70461-leopard-3-wins-irc-overall-in-caribbean-600"
+    ],
+    "note": "17e édition ; départ devant Fort Charlotte, parcours de 600 milles autour de 11 îles des Caraïbes ; remise des prix à l'Antigua Yacht Club le vendredi 27 février 2026. Deuxième victoire IRC de Leopard 3 (après 2024)."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "Rolex China Sea Race",
+    "edition": 2026,
+    "debut": "2026-03-04",
+    "fin": null,
+    "depart": "Hong Kong (Chine)",
+    "arrivee": "Subic Bay (Philippines)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "IRC Overall (temps compensé) : Seawolf (Ker 42 custom, William Liu). Line honours : Team Alive-Rampage (R/P 66, Philip Turner) en 49 h 55 min, arrivée le 6 mars 2026.",
+    "url": "https://www.rolexchinasearace.com/",
+    "sources": [
+      "https://www.rolexchinasearace.com/single-post/seawolf-takes-irc-overall-in-the-2026-rolex-china-sea-race",
+      "https://www.rolexchinasearace.com/single-post/team-alive-rampage-takes-line-honours-in-the-2026-rolex-china-sea-race",
+      "https://www.sail-world.com/news/294293/Seawolf-takes-IRC-Overall-in-Rolex-China-Sea-Race"
+    ],
+    "note": "Course de 565 milles organisée par le Royal Hong Kong Yacht Club (avec le Manila Yacht Club et le Subic Bay Yacht Club) ; 20 partants depuis Victoria Harbour. Temps de line honours : 49 h 55 min 46 s selon le site officiel, 49 h 55 min 08 s selon d'autres sources. Remise des prix à Subic Bay programmée le 8 mars et cérémonie officielle au RHKYC le 18 mars 2026 (non confirmées par le site officiel) : date de fin laissée à null. Course bisannuelle : prochaine édition en 2028."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "Range Rover Sardinia Cup",
+    "edition": 2026,
+    "debut": "2026-05-31",
+    "fin": "2026-06-07",
+    "depart": "Porto Cervo (Italie)",
+    "arrivee": "Porto Cervo (Italie)",
+    "format": "équipage (championnat par équipes de clubs, IRC)",
+    "statut": "terminée",
+    "vainqueurs": "Équipe Royal Ocean Racing Club (Ino Veritas, James Neville ; Garm, Per Roman), devant Yacht Club Costa Smeralda et RORC Gold. Classe SC1 : Ino Veritas ; classe SC2 : Ran (Niklas Zennström).",
+    "url": "https://www.yccs.it/",
+    "sources": [
+      "https://www.yccs.it/en/news-pag1/royal_ocean_racing_club_team_claims_2026_range_rover_sardinia_cup-1292.html",
+      "https://afloat.ie/sail/sailing-clubs/royal-ocean-racing-club/item/71694-rorc-team-wins-2026-sardinia-cup-in-porto-cervo",
+      "https://www.sail-world.com/news/290003/IRC-Rating-Rule-unites-Admirals-Cup-and-Sardinia-Cup"
+    ],
+    "note": "Championnat international par équipes sous IRC (régates et course au large), organisé par le Yacht Club Costa Smeralda depuis 1978, en alternance avec l'Admiral's Cup (années paires). Prochaine édition annoncée du 4 au 11 juin 2028."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "Loro Piana Giraglia",
+    "edition": 2026,
+    "debut": "2026-06-13",
+    "fin": "2026-06-20",
+    "depart": "Saint-Tropez (France)",
+    "arrivee": "Gênes (Italie)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "Course au large, IRC Overall (temps compensé) : Arkas Blue Moon (TP52, Bernard Arkas, TUR), Loro Piana Challenge Trophy. Line honours : ARCA SGR (Furio Benussi) en 1 j 1 h 05 min 56 s, devant Magic Carpet E.",
+    "url": "https://www.yachtclubitaliano.it/en/event/loro-piana-giraglia",
+    "sources": [
+      "https://www.yachtclubitaliano.it/en/news/loro-piana-giraglia-2026",
+      "https://www.rorc.org/the-dragons-passage-to-loro-piana-giraglia-glory",
+      "https://www.pressmare.it/en/yacht-club/yacht-club-italiano/2026-06-18/arca-sgr-wins-dramatic-loro-piana-giraglia-line-honours-duel-90838"
+    ],
+    "note": "73e édition de la Giraglia (anciennement Rolex Giraglia), organisée par le Yacht Club Italiano avec la Société Nautique de Saint-Tropez. Régates côtières à Saint-Tropez du 13 au 16 juin, départ de la course au large (241 milles via le rocher de la Giraglia) le 17 juin, remise des prix au Yacht Club Italiano à Gênes le 20 juin."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "Newport Bermuda Race",
+    "edition": 2026,
+    "debut": "2026-06-19",
+    "fin": "2026-06-27",
+    "depart": "Newport, Rhode Island (États-Unis)",
+    "arrivee": "St. David's Head (Bermudes)",
+    "format": "équipage (et division double)",
+    "statut": "terminée",
+    "vainqueurs": "St. David's Lighthouse Trophy (temps compensé, division principale) : Nicole (Cal 40, Thomas Campbell). Line honours et Gibbs Hill Lighthouse Trophy : Black Jack 100 (Remon Vos, skipper Tristan Le Brun) en 1 j 11 h 26 min 46 s.",
+    "url": "https://bermudarace.com/",
+    "sources": [
+      "https://bermudarace.com/54th-race-is-one-for-the-history-books/",
+      "https://bermudarace.com/wp-content/uploads/2026/07/NBR-Prize-List-2026-2026-Recipients.pdf",
+      "https://bermudarace.com/prize-giving-will-be-live-streamed/",
+      "https://www.sail-world.com/news/297327/Black-Jack-100-wins-Newport-Bermuda-Race"
+    ],
+    "note": "54e édition ; près de 150 partants ; départ de Fort Adams. Autres divisions : Finisterre, Argyll (Hinckley SW 48, Christopher Burnham) ; Double-Handed, Bella (Hinckley SW 52, Tony Giarratana et Paul Kanev). Temps de Black Jack 100 à moins d'une heure du record de 2016. Remise des prix à Government House le samedi 27 juin 2026."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "Round Ireland Yacht Race",
+    "edition": 2026,
+    "debut": "2026-06-20",
+    "fin": null,
+    "depart": "Wicklow (Irlande)",
+    "arrivee": "Wicklow (Irlande)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "Line honours et IRC Overall (temps compensé) : Khumbu (Botin 56, Guy Gillon).",
+    "url": "https://roundireland.ie/",
+    "sources": [
+      "https://rorc.org/khumbu-confirmed-overall-winner-of-round-ireland-race-2026",
+      "https://www.sailing.ie/News/id/15581",
+      "https://www.sailing.ie/News/id/15554",
+      "https://afloat.ie/sail/events/round-ireland/item/71916-khumbu-claims-line-honours-in-round-ireland-race"
+    ],
+    "note": "Tour de l'Irlande de 704 milles organisé par le Wicklow Sailing Club avec le RORC et le Royal Irish Yacht Club ; course bisannuelle (années paires). Khumbu a franchi la ligne le mercredi 24 juin au matin. Remise des prix reportée : 26 juin selon sailing.ie, samedi 27 juin selon le RORC ; date de fin non confirmée."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "Pacific Cup",
+    "edition": 2026,
+    "debut": "2026-07-06",
+    "fin": "2026-07-24",
+    "depart": "San Francisco, Californie (États-Unis)",
+    "arrivee": "Kaneohe, Oahu, Hawaï (États-Unis)",
+    "format": "équipage (et divisions double)",
+    "statut": "terminée",
+    "vainqueurs": "ORR Overall (temps compensé) : Ragtime (Spencer 65, Tina Roberts). PHRF Overall : Viva (Cal 40, Don Jesberg).",
+    "url": "https://pacificcup.org/",
+    "sources": [
+      "https://pacificcup.org/post/golden-gate-goodbyes-nine-boats-charge-out-sea-2026-pacific-cup-begins",
+      "https://pacificcup.org/post/2026-awards-tonight",
+      "https://pacificcup.org/articles",
+      "https://www.latitude38.com/lectronic/high-times-2026-pacific-cup/"
+    ],
+    "note": "Course bisannuelle (années paires) organisée par le Pacific Cup Yacht Club ; départs échelonnés devant le St. Francis Yacht Club à partir du lundi 6 juillet 2026 ; 48 bateaux arrivés à Kaneohe Bay ; remise des prix le 24 juillet 2026. Le vainqueur en temps réel n'est pas retenu ici faute de confirmation officielle."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "Chicago Yacht Club Race to Mackinac",
+    "edition": 2026,
+    "debut": "2026-07-10",
+    "fin": null,
+    "depart": "Chicago, Illinois (États-Unis)",
+    "arrivee": "Mackinac Island, Michigan (États-Unis)",
+    "format": "équipage (et division double)",
+    "statut": "terminée",
+    "vainqueurs": "Mackinac Trophy (grands bateaux de la Racing Division, temps compensé) : Mockingbird (GL52, Chris Duhon). Mackinac Cup (petits bateaux) : Rambler (J/99, Jim Nachtman). Line honours : Whitehawk (ketch de 104 pieds, Peter Thornton).",
+    "url": "https://www.cycracetomackinac.com/",
+    "sources": [
+      "https://www.cycracetomackinac.com/news/2026-race-to-mackinac-starts-july-10-11",
+      "https://www.sail-world.com/news/298026/2026-Race-to-Mackinac-recap",
+      "https://sailmagazine.com/racing/117th-chicago-mac/"
+    ],
+    "note": "117e édition ; départ de la Cruising Division le vendredi 10 juillet, de la Racing Division le samedi 11 juillet 2026. Cinquième line honours consécutif pour Whitehawk. Whitehawk Trophy (Cruising Division) : Sociable (Beneteau First 44, Robert Arzbaecher). Date de clôture non confirmée."
+  },
+  {
+    "classes": ["Grandes courses", "Half Tonners"],
+    "course": "Seldén Half Ton Classics Cup",
+    "edition": 2026,
+    "debut": "2026-08-01",
+    "fin": "2026-08-07",
+    "depart": "Hankø (Norvège)",
+    "arrivee": "Hankø (Norvège)",
+    "format": "équipage (régates et course longue distance, IRC)",
+    "statut": "terminée",
+    "vainqueurs": "Classement général IRC : 2Farr (IRL 2269, Farr Half Ton, Rich Matzinger et Bill Menninger, USA), devant The Pub (Berret, NOR) et Harmony (Humphreys, IRL). Classement Vintage : Antheor (Andrieu one-off, NOR).",
+    "url": "https://halftonclassicscup.com/",
+    "sources": [
+      "https://halftonclassicscup.com/",
+      "https://www.sailracesystem.no/regattamal.php?regatta=3990&resultat=1",
+      "https://afloat.ie/sail/sailing-classes/half-tonners/item/72499-hawaii-win-half-ton-classics-in-norway-howth-take-third",
+      "https://www.sail-world.com/news/293954/40-teams-enter-Selden-Half-Ton-Classics-Cup"
+    ],
+    "note": "Organisée par le Royal Norwegian Yacht Club (KNS) avec Half Ton Class Europe et Half Ton Class Norway ; 41 half tonners inscrits avant l'épreuve ; 8 courses dont une longue distance. 2Farr conserve le trophée remporté en 2025. Aucune édition 2027 annoncée à ce jour."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "RORC Round Britain & Ireland Race",
+    "edition": 2026,
+    "debut": "2026-08-09",
+    "fin": null,
+    "depart": "Cowes (Royaume-Uni)",
+    "arrivee": "Cowes (Royaume-Uni)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "IRC Overall (temps compensé), line honours monocoque et IRC Zero : Pace (Volvo 70, Johnny Vincent).",
+    "url": "https://roundbritainandireland.rorc.org/",
+    "sources": [
+      "https://roundbritainandireland.rorc.org/",
+      "https://roundbritainandireland.rorc.org/50th-anniversary-edition-of-the-rorc-round-britain-ireland-race-notice-of-race",
+      "https://afloat.ie/sail/events/round-ireland-and-britain-race/item/72656-irish-duo-mcwilliam-and-carroll-celebrate-overall-victory-with-pace-in-round-britain-and-ireland-race"
+    ],
+    "note": "Édition du 50e anniversaire de la course quadriennale du RORC (anciennement Sevenstar Round Britain & Ireland Race) ; environ 1 805 milles ; 32 partants ; départ de la ligne du Royal Yacht Squadron le dimanche 9 août 2026 ; Pace déclaré vainqueur IRC le 19 août. Date de fin/remise des prix non confirmée."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "The Ocean Race Atlantic",
+    "edition": 2026,
+    "debut": "2026-09-02",
+    "fin": null,
+    "depart": "New York (États-Unis)",
+    "arrivee": "Lorient (France)",
+    "format": "équipage (IMOCA, équipages mixtes paritaires)",
+    "statut": "terminée",
+    "vainqueurs": "United by the Ocean (IMOCA, skipper Paul Meilhat), devant Team Francesca Clapcich powered by 11th Hour Racing (à 9 min) et DMG Mori Global One (Kojiro Shiraishi).",
+    "url": "https://www.theoceanrace.com/en/atlantic/2026",
+    "sources": [
+      "https://www.theoceanrace.com/en/atlantic/2026",
+      "https://www.courseaularge.com/the-ocean-race-atlantic-une-belle-course.html",
+      "https://www.marinelink.com/blogs/blog/french-crew-wins-ocean-race-atlantic-final-in-a-nailbiting-105474"
+    ],
+    "note": "1re édition, sprint transatlantique d'environ 3 000 milles pour 6 IMOCA en équipage. Parade de départ à New York le 1er septembre, départ officiel le 2 septembre ; arrivée du vainqueur à Lorient le jeudi 10 septembre 2026, les quatre premiers en 27 minutes ; Embrace the Challenge et MSIG Europe arrivés ensuite (date exacte du dernier arrivant non confirmée, d'où fin à null). Épreuve de la classe IMOCA, aussi traitée dans le calendrier IMOCA."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "McIntyre Golden Globe Race",
+    "edition": 2026,
+    "debut": "2026-09-06",
+    "fin": null,
+    "depart": "Les Sables-d'Olonne (France)",
+    "arrivee": "Les Sables-d'Olonne (France)",
+    "format": "solitaire (sans escale, sans assistance, navigation traditionnelle)",
+    "statut": "en cours",
+    "vainqueurs": null,
+    "url": "https://goldengloberace.com/",
+    "sources": [
+      "https://goldengloberace.com/",
+      "https://www.sail-world.com/news/299624/Golden-Globe-Race-underway",
+      "https://figaronautisme.meteoconsult.fr/actus-nautisme-courses/2026-09-06/92013-golden-globe-race-2026-16-marins-repartent-autour-du-monde-comme-en-1968"
+    ],
+    "note": "4e édition ; 16 skippers au départ le dimanche 6 septembre 2026 ; tour du monde d'environ 30 000 milles par les caps de Bonne-Espérance, Leeuwin et Horn, sur voiliers de série, sans GPS. Durée attendue de 7 à 8 mois selon l'organisation : arrivées attendues en 2027, date non connue."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "Rolex Middle Sea Race",
+    "edition": 2026,
+    "debut": "2026-10-17",
+    "fin": "2026-10-24",
+    "depart": "La Valette (Malte)",
+    "arrivee": "La Valette (Malte)",
+    "format": "équipage",
+    "statut": "terminée",
+    "vainqueurs": "IRC Overall (temps compensé) : Django 7X (Wallyrocket 71, Giovanni Lombardi Stronati). Line honours monocoque : Black Jack 100 (Remon Vos, skipper Tristan Le Brun), arrivé le 19 octobre.",
+    "url": "https://www.rolexmiddlesearace.com/",
+    "sources": [
+      "https://www.rolexmiddlesearace.com/?p=14726",
+      "https://rmyc.org/django-7x-secures-the-47th-rolex-middle-sea-race/",
+      "https://www.sail-world.com/news/300927/Django-7x-wins-the-2026-Rolex-Middle-Sea-Race",
+      "https://www.yacht.de/en/regatta/races/rolex-middle-sea-race-django-7x-wins-the-race-round-sicily/"
+    ],
+    "note": "47e édition ; 606 milles autour de la Sicile au départ du Grand Harbour ; 107 partants ; organisée par le Royal Malta Yacht Club, qui a confirmé la victoire de Django 7X le 21 octobre ; remise des prix le 24 octobre 2026 à la Sacra Infermeria."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "Rolex Sydney Hobart Yacht Race",
+    "edition": 2026,
+    "debut": "2026-12-26",
+    "fin": null,
+    "depart": "Sydney (Australie)",
+    "arrivee": "Hobart (Australie)",
+    "format": "équipage",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://rolexsydneyhobart.com/",
+    "sources": [
+      "https://rolexsydneyhobart.com/",
+      "https://www.nsw.gov.au/driving-boating-and-transport/boating-and-marine/using-waterways-boating-and-transport-information/boating-on-sydney-harbour/sydney-harbour-major-events/rolex-sydney-to-hobart-yacht-race",
+      "https://www.sail-world.com/news/296458/?source=rss"
+    ],
+    "note": "81e édition ; 628 milles ; organisée par le Cruising Yacht Club of Australia avec le Royal Yacht Club of Tasmania ; départ le samedi 26 décembre 2026 à 13 h dans la baie de Sydney ; inscriptions closes le 23 octobre avec 107 partants annoncés par l'organisateur."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "RORC Transatlantic Race",
+    "edition": 2027,
+    "debut": "2027-01-10",
+    "fin": null,
+    "depart": "Arrecife, Lanzarote (Espagne)",
+    "arrivee": "Antigua (Antigua-et-Barbuda)",
+    "format": "équipage",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://rorctransatlantic.rorc.org/",
+    "sources": [
+      "https://rorctransatlantic.rorc.org/from-atlantic-racing-to-caribbean-classic",
+      "https://www.sail-world.com/news/293412/RORC-Transatlantic-Race-summary",
+      "https://afloat.ie/sail/events/rorc-transatlantic/item/71273-entries-open-for-2027-rorc-atlantic-and-caribbean-races"
+    ],
+    "note": "13e édition ; départ le dimanche 10 janvier 2027 de Marina Lanzarote ; inscriptions ouvertes. Fin non annoncée."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "The Ocean Race",
+    "edition": 2027,
+    "debut": "2027-01-17",
+    "fin": "2027-07-05",
+    "depart": "Alicante (Espagne)",
+    "arrivee": "AMAALA, mer Rouge (Arabie saoudite)",
+    "format": "équipage (IMOCA, en étapes)",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://www.theoceanrace.com/en/round-the-world/2027",
+    "sources": [
+      "https://www.theoceanrace.com/en/round-the-world/2027",
+      "https://www.theoceanrace.com/en/news/15723_Alicante-Gathers-The-Ocean-Races-International-Elite-for-Pre-Start-Stakeholders-Conference-Ahead-of-January-2027-Launch",
+      "https://www.sail-world.com/news/293133/The-Ocean-Race-2027-promises-the-ultimate-test"
+    ],
+    "note": "15e édition du tour du monde en équipage ; départ d'Alicante le 17 janvier 2027 ; escales prévues : Auckland (20 février-14 mars), Itajaí (31 mars-18 avril), St. Pete-Clearwater (4-16 mai), Cascais (26 mai-6 juin) ; Grand Finale à AMAALA du 1er au 5 juillet 2027 (programme officiel). Première étape Alicante-Auckland d'environ 14 000 milles, la plus longue de l'histoire de la course. Épreuve de la classe IMOCA, aussi traitée dans le calendrier IMOCA."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "RORC Caribbean 600",
+    "edition": 2027,
+    "debut": "2027-02-22",
+    "fin": null,
+    "depart": "English Harbour (Antigua-et-Barbuda)",
+    "arrivee": "English Harbour (Antigua-et-Barbuda)",
+    "format": "équipage",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://caribbean600.rorc.org/",
+    "sources": [
+      "https://caribbean600.rorc.org/from-atlantic-racing-to-caribbean-classic",
+      "https://caribbean600.rorc.org/2026-rorc-caribbean-600-worthy-of-its-legacy"
+    ],
+    "note": "18e édition ; départ devant Fort Charlotte le lundi 22 février 2027. Fin non annoncée."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "Transpacific Yacht Race (Transpac)",
+    "edition": 2027,
+    "debut": "2027-07-06",
+    "fin": null,
+    "depart": "Los Angeles, Californie (États-Unis)",
+    "arrivee": "Honolulu, Hawaï (États-Unis)",
+    "format": "équipage",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://transpacyc.com/",
+    "sources": [
+      "https://www.sail-world.com/news/296655/Get-ready-to-race-in-the-2027-Transpac",
+      "https://www.latitude38.com/lectronic/registration-for-the-2027-transpac-is-now-open/"
+    ],
+    "note": "54e édition, organisée par le Transpacific Yacht Club ; 2 225 milles ; départs échelonnés les 6, 8 et 10 juillet 2027 ; inscriptions ouvertes. Course des années impaires : pas d'édition en 2026. Fin non annoncée."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "Admiral's Cup",
+    "edition": 2027,
+    "debut": "2027-07-13",
+    "fin": "2027-07-28",
+    "depart": "Cowes (Royaume-Uni)",
+    "arrivee": "Cherbourg-en-Cotentin (France)",
+    "format": "équipage (équipes de deux bateaux par club, IRC)",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://admiralscup.rorc.org/",
+    "sources": [
+      "https://admiralscup.rorc.org/25th-edition-of-the-admirals-cup-entries-open-1-july-2026",
+      "https://afloat.ie/sail/events/admiral-s-cup/item/69355-2027-admiral-s-cup-notice-of-race-sets-13-28-july-dates",
+      "https://www.sail-world.com/news/291511/2027-Admirals-Cup-Notice-of-Race-published"
+    ],
+    "note": "25e édition, organisée par le RORC depuis Cowes : course au large courte, régates dans le Solent et Rolex Fastnet Race (départ le 24 juillet) ; dates du 13 au 28 juillet 2027 selon l'avis de course, remise des prix finale à Cherbourg. Inscriptions ouvertes du 1er juillet 2026 au 28 février 2027."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "Rolex Fastnet Race",
+    "edition": 2027,
+    "debut": "2027-07-24",
+    "fin": null,
+    "depart": "Cowes (Royaume-Uni)",
+    "arrivee": "Cherbourg-en-Cotentin (France)",
+    "format": "équipage",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://rolexfastnetrace.com/",
+    "sources": [
+      "https://rolexfastnetrace.com/",
+      "https://admiralscup.rorc.org/25th-edition-of-the-admirals-cup-entries-open-1-july-2026",
+      "https://figaronautisme.meteoconsult.fr/actus-nautisme-courses/2026-09-25/92635-rolex-fastnet-race-2027-cherbourg-se-prepare-au-retour-de-la-plus-grande-course-au-large-du-monde"
+    ],
+    "note": "52e édition, organisée par le RORC ; environ 695 milles via le Fastnet Rock ; départ de la ligne du Royal Yacht Squadron le samedi 24 juillet 2027 ; intégrée à l'Admiral's Cup 2027. Événement annoncé du 22 au 30 juillet 2027 par Figaro Nautisme, date de fin non confirmée par le site officiel. Course des années impaires : pas d'édition en 2026."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "Global Solo Challenge",
+    "edition": 2027,
+    "debut": "2027-08-28",
+    "fin": null,
+    "depart": "Vigo (Espagne)",
+    "arrivee": "Vigo (Espagne)",
+    "format": "solitaire (tour du monde sans escale, départs échelonnés)",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://globalsolochallenge.com/",
+    "sources": [
+      "https://globalsolochallenge.com/notice-of-event-2027/",
+      "https://www.yacht.de/en/regatta/races/global-solo-challenge-new-starting-harbour-for-the-solo-circumnavigators-and-first-entries/",
+      "https://www.sail-world.com/news/294009/Global-Solo-Challenge-skippers-meet-in-Vigo"
+    ],
+    "note": "2e édition (2027-28), départ et arrivée au Real Club Náutico de Vigo (la 1re édition partait d'A Coruña). Départs échelonnés selon le potentiel des bateaux : 28 août 2027 = premier groupe selon l'avis de course, les bateaux les plus rapides partant plus tard ; une page du site évoque aussi le 23 octobre 2027 (à confirmer). 23 skippers inscrits en février 2026. Pas d'édition en 2026."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "McIntyre Ocean Globe Race",
+    "edition": 2027,
+    "debut": "2027-09-12",
+    "fin": null,
+    "depart": null,
+    "arrivee": null,
+    "format": "équipage (amateurs, voiliers de série 48-65 pieds et ex-Whitbread, IRC, en étapes)",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://oceangloberace.com/",
+    "sources": [
+      "https://oceangloberace.com/",
+      "https://www.sailingscuttlebutt.com/2026/07/20/could-this-be-you-in-2027/",
+      "https://www.pressmare.it/en/regattas/golden-globe-race/2026-04-22/2027-mcintyre-go-like-it-1973-89447"
+    ],
+    "note": "2e édition ; départ d'Europe le 12 septembre 2027, port de départ et d'arrivée non annoncés (la 1re édition était partie de Southampton). Environ 27 000 milles en 4 étapes : Europe-Le Cap, Le Cap-Auckland, Auckland-Punta del Este (cap Horn), Punta del Este-Europe ; arrivée prévue en avril 2028. Neuf équipes en préparation (juillet 2026)."
+  },
+  {
+    "classes": ["Grandes courses"],
+    "course": "Clipper 2027-28 Round the World Yacht Race",
+    "edition": 2027,
+    "debut": null,
+    "fin": null,
+    "depart": null,
+    "arrivee": null,
+    "format": "équipage (amateurs, nouvelle flotte monotype Clipper RX)",
+    "statut": "à venir",
+    "vainqueurs": null,
+    "url": "https://www.clipperroundtheworld.com/",
+    "sources": [
+      "https://www.clipperroundtheworld.com/news-and-events/article/two-brand-new-host-ports-announced-for-the-clipper-2027-28-race",
+      "https://www.clipperroundtheworld.com/"
+    ],
+    "note": "Édition 2027-28 annoncée par l'organisateur (recrutement en cours, nouvelle flotte Clipper RX, escales inédites à St. Thomas, îles Vierges américaines, et St. John's, Canada, en 2028). Date et port de départ non annoncés officiellement : un appel d'offres d'hôtes évoquait le 29 août 2027, non confirmé."
+  }
+]

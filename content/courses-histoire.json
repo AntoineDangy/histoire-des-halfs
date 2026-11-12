@@ -1,0 +1,962 @@
+{
+  "1000 Race": {
+    "titre": "1000 Race",
+    "creation": 2018,
+    "resume": "Course IMOCA née en 2018 sous le nom de Bermudes 1000 Race et organisée par Sea to See. Son parcours en boucle, de 1 000 à 2 000 milles dans l'Atlantique, contourne le plus souvent le rocher du Fastnet. Courue en solitaire (en double en 2023), elle n'a pas eu lieu en 2020, 2021, 2024 et 2025.",
+    "editions": [
+      { "annee": 2026, "vainqueurs": [ { "classe": "IMOCA", "skipper": "Sam Goodchild", "bateau": "Macif Santé Prévoyance" } ] },
+      { "annee": 2023, "vainqueurs": [ { "classe": "IMOCA (double)", "skipper": "Thomas Ruyant et Morgan Lagravière", "bateau": "For People" } ] },
+      { "annee": 2022, "vainqueurs": [ { "classe": "IMOCA", "skipper": "Charlie Dalin", "bateau": "Apivia" } ] },
+      { "annee": 2019, "vainqueurs": [ { "classe": "IMOCA", "skipper": "Sébastien Simon", "bateau": "Arkéa-Paprec" } ] },
+      { "annee": 2018, "vainqueurs": [ { "classe": "IMOCA", "skipper": "Paul Meilhat", "bateau": "SMA" } ] }
+    ],
+    "sources": [
+      { "titre": "1000 Race", "url": "https://fr.wikipedia.org/wiki/1000_Race", "langue": "fr" }
+    ]
+  },
+  "Admiral's Cup": {
+    "titre": "Admiral's Cup",
+    "creation": 1957,
+    "resume": "Créée en 1957 par le Royal Ocean Racing Club, cette compétition biennale opposait des équipes nationales de trois voiliers sur plusieurs manches, dont deux courses au large : la Channel Race et le Fastnet. Disputée entre yacht-clubs en 2003, elle n'a plus été courue ensuite jusqu'à son retour en 2025.",
+    "editions": [
+      { "annee": 2025, "vainqueurs": [ { "classe": "Classement par équipes", "equipe": "Yacht Club de Monaco" } ] },
+      { "annee": 2003, "vainqueurs": [ { "classe": "Classement par équipes", "equipe": "Royal Prince Alfred Yacht Club (Australie)" } ] },
+      { "annee": 1999, "vainqueurs": [ { "classe": "Classement par équipes", "equipe": "Pays-Bas" } ] },
+      { "annee": 1997, "vainqueurs": [ { "classe": "Classement par équipes", "equipe": "États-Unis" } ] },
+      { "annee": 1995, "vainqueurs": [ { "classe": "Classement par équipes", "equipe": "Italie" } ] },
+      { "annee": 1993, "vainqueurs": [ { "classe": "Classement par équipes", "equipe": "Allemagne" } ] },
+      { "annee": 1991, "vainqueurs": [ { "classe": "Classement par équipes", "equipe": "France" } ] },
+      { "annee": 1989, "vainqueurs": [ { "classe": "Classement par équipes", "equipe": "Royaume-Uni" } ] },
+      { "annee": 1987, "vainqueurs": [ { "classe": "Classement par équipes", "equipe": "Nouvelle-Zélande" } ] },
+      { "annee": 1985, "vainqueurs": [ { "classe": "Classement par équipes", "equipe": "Allemagne" } ] }
+    ],
+    "sources": [
+      { "titre": "Admiral's Cup", "url": "https://fr.wikipedia.org/wiki/Admiral's_Cup", "langue": "fr" },
+      { "titre": "Admiral's Cup", "url": "https://en.wikipedia.org/wiki/Admiral's_Cup", "langue": "en" }
+    ]
+  },
+  "Armen Race Uship": {
+    "titre": "Armen Race",
+    "creation": 2011,
+    "resume": "Créée en 2011 par la Société nautique de La Trinité-sur-Mer, cette course part de La Trinité et y revient. Son parcours, ajusté selon la météo, passe en principe par le phare d'Ar-Men, Belle-Île et l'île d'Yeu. Elle accueille, en solitaire ou en équipage, multicoques, IMOCA, Class40, monotypes, IRC et Mini 6.50.",
+    "editions": [
+      { "annee": 2025, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "Armel Le Cléac'h", "bateau": "Banque Populaire XI" },
+        { "classe": "Ocean Fifty", "skipper": "Erwan Le Draoulec, Tanguy Le Turquais et Tom Laperche", "bateau": "Lazare" },
+        { "classe": "Class40", "skipper": "Damien Jenner, Jérome Lesieur et Stéphane Le Diraison", "bateau": "Kpler" }
+      ] },
+      { "annee": 2024, "vainqueurs": [
+        { "classe": "Ocean Fifty", "skipper": "Sébastien Rogues", "bateau": "Primonial" },
+        { "classe": "Class40", "skipper": "Nicolas Guibal et Simon Kervarrec", "bateau": "Esatco" },
+        { "classe": "Mini 6.50 (série)", "skipper": "Martin Brochard et Gaëtan Falc'hun", "bateau": "Martin d'eau douce" }
+      ] },
+      { "annee": 2023, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "Anthony Marchand", "bateau": "Actual" },
+        { "classe": "Ocean Fifty", "skipper": "Armel Tripon", "bateau": "Les P'tits Doudous" },
+        { "classe": "IMOCA", "skipper": "Arnaud Boissières", "bateau": "La Mie Câline" },
+        { "classe": "Class40", "skipper": "Achille Nebout et Gildas Mahé", "bateau": "Amarris" }
+      ] },
+      { "annee": 2022, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "Yves Le Blevec", "bateau": "Actual" }
+      ] },
+      { "annee": 2019, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "Thomas Coville", "bateau": "Sodebo Ultim 3" }
+      ] },
+      { "annee": 2017, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "François Gabart", "bateau": "Macif" },
+        { "classe": "Multi50", "skipper": "Armel Tripon", "bateau": "Réauté Chocolat" },
+        { "classe": "IMOCA", "skipper": "Paul Meilhat", "bateau": "SMA" },
+        { "classe": "Class40", "skipper": "Burkhard Keese", "bateau": "Stella Nova" }
+      ] },
+      { "annee": 2016, "vainqueurs": [
+        { "classe": "Multi50", "skipper": "Gilles Buekenhout", "bateau": "Nootka" },
+        { "classe": "IMOCA", "skipper": "Thomas Ruyant", "bateau": "Le Souffle du Nord" },
+        { "classe": "Class40", "skipper": "Massimo Juris", "bateau": "Colombre XL" }
+      ] },
+      { "annee": 2015, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "Roland Jourdain", "bateau": "Musandam Oman Sail" },
+        { "classe": "Multi50", "skipper": "Erwan Le Roux", "bateau": "FenetreA - Prysmian" },
+        { "classe": "IMOCA", "skipper": "Paul Meilhat", "bateau": "SMA" },
+        { "classe": "Class40", "skipper": "Thibaut Vauchel-Camus", "bateau": "Solidaires en Peloton - ARSEP" }
+      ] }
+    ],
+    "sources": [
+      { "titre": "Armen Race", "url": "https://fr.wikipedia.org/wiki/Armen_Race", "langue": "fr" }
+    ]
+  },
+  "Cape2Rio Race": {
+    "titre": "Cape to Rio",
+    "creation": 1971,
+    "resume": "Lancée en 1971, cette course transatlantique part du Cap, en Afrique du Sud, vers l'Amérique du Sud. Longtemps appelée Cape to Rio, elle a surtout fini à Rio de Janeiro, mais aussi à Punta del Este ou Salvador de Bahia, pour un parcours d'environ 5 800 km. En 2014, Maserati, mené par Giovanni Soldini, y a établi un record.",
+    "editions": [
+      { "annee": 2020, "vainqueurs": [ { "classe": "Temps réel", "skipper": "Craig Sutherland", "bateau": "LoveWater" } ] }
+    ],
+    "sources": [
+      { "titre": "South Atlantic Race", "url": "https://en.wikipedia.org/wiki/South_Atlantic_Race", "langue": "en" }
+    ]
+  },
+  "Chicago Yacht Club Race to Mackinac": {
+    "titre": "Race to Mackinac",
+    "creation": 1898,
+    "resume": "Organisée chaque année par le Chicago Yacht Club depuis 1898, cette course traverse le lac Michigan sur 289 milles nautiques, du phare du port de Chicago jusqu'au chenal de Round Island, devant l'île Mackinac. Elle a été suspendue en 2020. Le record monocoque, 22 h 24 min 23 s, a été établi en 2024 par l'équipe Maverick.",
+    "sources": [
+      { "titre": "Chicago Yacht Club Race to Mackinac", "url": "https://en.wikipedia.org/wiki/Chicago_Yacht_Club_Race_to_Mackinac", "langue": "en" }
+    ]
+  },
+  "Clipper 2025-26 Round the World Yacht Race": {
+    "titre": "Clipper Round the World Yacht Race",
+    "creation": 1996,
+    "resume": "Imaginée en 1995 par Sir Robin Knox-Johnston et courue depuis 1996, cette course autour du monde par étapes embarque des équipiers amateurs payants, encadrés par des skippers professionnels, sur des voiliers identiques. Biennale (sans édition en 2004), elle peut se courir sur une ou plusieurs étapes, après une formation obligatoire de quatre semaines.",
+    "editions": [
+      { "annee": 2023, "vainqueurs": [ { "classe": "Classement général", "bateau": "Ha Long Bay, Viet Nam" } ] },
+      { "annee": 2019, "vainqueurs": [ { "classe": "Classement général", "bateau": "Qingdao" } ] },
+      { "annee": 2017, "vainqueurs": [ { "classe": "Classement général", "skipper": "Wendy Tuck", "bateau": "Sanya Serenity Coast" } ] },
+      { "annee": 2015, "vainqueurs": [ { "classe": "Classement général", "skipper": "Olivier Cardin", "bateau": "LMAX Exchange" } ] },
+      { "annee": 2013, "vainqueurs": [ { "classe": "Classement général", "skipper": "Eric Holden", "bateau": "Henri Lloyd" } ] },
+      { "annee": 2011, "vainqueurs": [ { "classe": "Classement général", "skipper": "Richard Hewson", "bateau": "Gold Coast Australia" } ] },
+      { "annee": 2009, "vainqueurs": [ { "classe": "Classement général", "skipper": "Brendan Hall", "bateau": "Spirit of Australia" } ] },
+      { "annee": 2007, "vainqueurs": [ { "classe": "Classement général", "skipper": "Jerry Crew et Duggie Gillespie", "bateau": "New York" } ] },
+      { "annee": 2005, "vainqueurs": [ { "classe": "Classement général", "skipper": "Dave Pryce et Mark Preedy", "bateau": "westernaustralia.com" } ] },
+      { "annee": 2002, "vainqueurs": [ { "classe": "Classement général", "skipper": "Johnathan Brockhouse, Ed Green et Simon Rowell", "bateau": "Jersey" } ] }
+    ],
+    "sources": [
+      { "titre": "Clipper Round the World Yacht Race", "url": "https://en.wikipedia.org/wiki/Clipper_Round_the_World_Yacht_Race", "langue": "en" },
+      { "titre": "List of Clipper Round the World Yacht Race results", "url": "https://en.wikipedia.org/wiki/List_of_Clipper_Round_the_World_Yacht_Race_results", "langue": "en" }
+    ]
+  },
+  "Clipper 2027-28 Round the World Yacht Race": {
+    "titre": "Clipper Round the World Yacht Race",
+    "creation": 1996,
+    "resume": "Imaginée en 1995 par Sir Robin Knox-Johnston et courue depuis 1996, cette course autour du monde par étapes embarque des équipiers amateurs payants, encadrés par des skippers professionnels, sur des voiliers identiques. Biennale (sans édition en 2004), elle peut se courir sur une ou plusieurs étapes, après une formation obligatoire de quatre semaines.",
+    "editions": [
+      { "annee": 2023, "vainqueurs": [ { "classe": "Classement général", "bateau": "Ha Long Bay, Viet Nam" } ] },
+      { "annee": 2019, "vainqueurs": [ { "classe": "Classement général", "bateau": "Qingdao" } ] },
+      { "annee": 2017, "vainqueurs": [ { "classe": "Classement général", "skipper": "Wendy Tuck", "bateau": "Sanya Serenity Coast" } ] },
+      { "annee": 2015, "vainqueurs": [ { "classe": "Classement général", "skipper": "Olivier Cardin", "bateau": "LMAX Exchange" } ] },
+      { "annee": 2013, "vainqueurs": [ { "classe": "Classement général", "skipper": "Eric Holden", "bateau": "Henri Lloyd" } ] },
+      { "annee": 2011, "vainqueurs": [ { "classe": "Classement général", "skipper": "Richard Hewson", "bateau": "Gold Coast Australia" } ] },
+      { "annee": 2009, "vainqueurs": [ { "classe": "Classement général", "skipper": "Brendan Hall", "bateau": "Spirit of Australia" } ] },
+      { "annee": 2007, "vainqueurs": [ { "classe": "Classement général", "skipper": "Jerry Crew et Duggie Gillespie", "bateau": "New York" } ] },
+      { "annee": 2005, "vainqueurs": [ { "classe": "Classement général", "skipper": "Dave Pryce et Mark Preedy", "bateau": "westernaustralia.com" } ] },
+      { "annee": 2002, "vainqueurs": [ { "classe": "Classement général", "skipper": "Johnathan Brockhouse, Ed Green et Simon Rowell", "bateau": "Jersey" } ] }
+    ],
+    "sources": [
+      { "titre": "Clipper Round the World Yacht Race", "url": "https://en.wikipedia.org/wiki/Clipper_Round_the_World_Yacht_Race", "langue": "en" },
+      { "titre": "List of Clipper Round the World Yacht Race results", "url": "https://en.wikipedia.org/wiki/List_of_Clipper_Round_the_World_Yacht_Race_results", "langue": "en" }
+    ]
+  },
+  "Défi Atlantique": {
+    "titre": "Défi Atlantique",
+    "creation": 2003,
+    "resume": "Transatlantique retour créée en 2003 de Salvador de Bahia à La Rochelle, en IMOCA et en solitaire. Relancée en 2019 et 2023 par Grand Pavois Organisation et la Class40, elle ramène des Class40 de Pointe-à-Pitre à La Rochelle au retour de la Route du Rhum, avec au moins deux marins à bord et une escale à Horta.",
+    "editions": [
+      { "annee": 2023, "vainqueurs": [ { "classe": "Class40", "skipper": "Ian Lipinski, Antoine Carpentier et Rémi Fermin", "bateau": "Crédit Mutuel" } ] },
+      { "annee": 2019, "vainqueurs": [ { "classe": "Class40", "skipper": "Aymeric Chappellier, Eric Quesnel et Rodrigue Cabaz", "bateau": "Aïna Enfance et Avenir" } ] },
+      { "annee": 2003, "vainqueurs": [ { "classe": "IMOCA", "skipper": "Mike Golding", "bateau": "Ecover" } ] }
+    ],
+    "sources": [
+      { "titre": "Défi atlantique", "url": "https://fr.wikipedia.org/wiki/Défi_atlantique", "langue": "fr" }
+    ]
+  },
+  "Drheam Cup": {
+    "titre": "Drheam Cup",
+    "creation": 2016,
+    "resume": "Course au large créée en 2016 à l'initiative de Jacques Civilise et disputée les années paires, principalement entre Cherbourg-en-Cotentin et La Trinité-sur-Mer. Plusieurs parcours, d'environ 600 à 1 000 milles, accueillent Ultim, Ocean Fifty, IMOCA, Class40, Figaro, Mini, IRC et voiliers classiques, en solitaire, en double ou en équipage.",
+    "editions": [
+      { "annee": 2022, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "Tom Laperche", "bateau": "SVR Lazartigue" },
+        { "classe": "Ocean Fifty", "skipper": "Sam Goodchild", "bateau": "Leyton" },
+        { "classe": "Class40", "skipper": "Xavier Macaire", "bateau": "Groupe SNEF" },
+        { "classe": "Figaro Bénéteau 3", "skipper": "Basile Bourgnon et Robin Follin", "bateau": "Edenred" }
+      ] },
+      { "annee": 2020, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "Franck Cammas et Charles Caudrelier", "bateau": "Maxi Edmond de Rothschild" },
+        { "classe": "Multi50", "skipper": "Thibaut Vauchel-Camus", "bateau": "Solidaires en Peloton - ARSEP" },
+        { "classe": "Class40", "skipper": "Ian Lipinski", "bateau": "Crédit Mutuel" },
+        { "classe": "Figaro (solitaire)", "skipper": "Sam Goodchild", "bateau": "Leyton" }
+      ] },
+      { "annee": 2018, "vainqueurs": [
+        { "classe": "Multi50", "skipper": "Thibaut Vauchel-Camus", "bateau": "Solidaires en Peloton - ARSEP" },
+        { "classe": "IMOCA", "skipper": "Sam Davies", "bateau": "Initiatives Cœur" },
+        { "classe": "Class40", "skipper": "Yoann Richomme", "bateau": "Veedol" }
+      ] },
+      { "annee": 2016, "vainqueurs": [
+        { "classe": "Multi50", "skipper": "Lalou Roucayrol", "bateau": "Arkema" },
+        { "classe": "IMOCA", "skipper": "Thomas Ruyant", "bateau": "Le Souffle du Nord" },
+        { "classe": "Class40", "skipper": "Massimo Juris", "bateau": "Colombre XL" },
+        { "classe": "Mini 6.50", "skipper": "Romain Bolzinger", "bateau": "Raoul Pastèque" }
+      ] }
+    ],
+    "sources": [
+      { "titre": "Drheam Cup", "url": "https://fr.wikipedia.org/wiki/Drheam_Cup", "langue": "fr" }
+    ]
+  },
+  "Drheam-Cup – Grand Prix de France de Course au Large": {
+    "titre": "Drheam Cup",
+    "creation": 2016,
+    "resume": "Course au large créée en 2016 à l'initiative de Jacques Civilise et disputée les années paires, principalement entre Cherbourg-en-Cotentin et La Trinité-sur-Mer. Plusieurs parcours, d'environ 600 à 1 000 milles, accueillent Ultim, Ocean Fifty, IMOCA, Class40, Figaro, Mini, IRC et voiliers classiques, en solitaire, en double ou en équipage.",
+    "editions": [
+      { "annee": 2022, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "Tom Laperche", "bateau": "SVR Lazartigue" },
+        { "classe": "Ocean Fifty", "skipper": "Sam Goodchild", "bateau": "Leyton" },
+        { "classe": "Class40", "skipper": "Xavier Macaire", "bateau": "Groupe SNEF" },
+        { "classe": "Figaro Bénéteau 3", "skipper": "Basile Bourgnon et Robin Follin", "bateau": "Edenred" }
+      ] },
+      { "annee": 2020, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "Franck Cammas et Charles Caudrelier", "bateau": "Maxi Edmond de Rothschild" },
+        { "classe": "Multi50", "skipper": "Thibaut Vauchel-Camus", "bateau": "Solidaires en Peloton - ARSEP" },
+        { "classe": "Class40", "skipper": "Ian Lipinski", "bateau": "Crédit Mutuel" },
+        { "classe": "Figaro (solitaire)", "skipper": "Sam Goodchild", "bateau": "Leyton" }
+      ] },
+      { "annee": 2018, "vainqueurs": [
+        { "classe": "Multi50", "skipper": "Thibaut Vauchel-Camus", "bateau": "Solidaires en Peloton - ARSEP" },
+        { "classe": "IMOCA", "skipper": "Sam Davies", "bateau": "Initiatives Cœur" },
+        { "classe": "Class40", "skipper": "Yoann Richomme", "bateau": "Veedol" }
+      ] },
+      { "annee": 2016, "vainqueurs": [
+        { "classe": "Multi50", "skipper": "Lalou Roucayrol", "bateau": "Arkema" },
+        { "classe": "IMOCA", "skipper": "Thomas Ruyant", "bateau": "Le Souffle du Nord" },
+        { "classe": "Class40", "skipper": "Massimo Juris", "bateau": "Colombre XL" },
+        { "classe": "Mini 6.50", "skipper": "Romain Bolzinger", "bateau": "Raoul Pastèque" }
+      ] }
+    ],
+    "sources": [
+      { "titre": "Drheam Cup", "url": "https://fr.wikipedia.org/wiki/Drheam_Cup", "langue": "fr" }
+    ]
+  },
+  "Global Solo Challenge": {
+    "titre": "Global Solo Challenge",
+    "creation": 2023,
+    "resume": "Tour du monde en solitaire et sans escale par les trois caps, fondé par Marco Nannini et couru pour la première fois en 2023. Ouvert aux monocoques de plus de 32 pieds, il échelonne les départs selon le potentiel des bateaux, les plus lents partant les premiers ; sans classes, la victoire revient au premier à couper la ligne.",
+    "editions": [
+      { "annee": 2023, "vainqueurs": [ { "classe": "Classement général", "skipper": "Philippe Delamare", "bateau": "Mowgli" } ] }
+    ],
+    "sources": [
+      { "titre": "Global Solo Challenge", "url": "https://en.wikipedia.org/wiki/Global_Solo_Challenge", "langue": "en" }
+    ]
+  },
+  "Globe40 2025-2026": {
+    "titre": "Globe40",
+    "creation": 2022,
+    "resume": "Tour du monde en Class40, en double et par étapes, organisé par Sirius Événements. La première édition s'est courue en 2022-2023 ; la deuxième est partie de Cadix le 14 septembre 2025 et s'est achevée à Lorient en avril 2026.",
+    "editions": [
+      { "annee": 2025, "vainqueurs": [ { "classe": "Class40", "skipper": "Ian Lipinski et Antoine Carpentier", "bateau": "Crédit Mutuel" } ] },
+      { "annee": 2022, "vainqueurs": [ { "classe": "Class40", "skipper": "Frans Budel et Ysbrand Endt", "bateau": "Sec Hayai" } ] }
+    ],
+    "sources": [
+      { "titre": "Globe 40 2025-2026", "url": "https://fr.wikipedia.org/wiki/Globe_40_2025-2026", "langue": "fr" },
+      { "titre": "Globe 40 2022-2023", "url": "https://fr.wikipedia.org/wiki/Globe_40_2022-2023", "langue": "fr" }
+    ]
+  },
+  "La Solitaire du Figaro Paprec": {
+    "titre": "La Solitaire du Figaro",
+    "creation": 1970,
+    "resume": "Créée en 1970 par Jean-Louis Guillemard et Jean-Michel Barrault sous le nom de Course de l'Aurore, qu'elle a porté jusqu'en 1979, cette course se dispute en solitaire et par étapes sur monotypes. Depuis sa 50e édition, en 2019, elle se court sur Figaro Bénéteau 3. Paprec en est le partenaire titre depuis 2023.",
+    "sources": [
+      { "titre": "Solitaire du Figaro", "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro", "langue": "fr" }
+    ]
+  },
+  "Loro Piana Giraglia": {
+    "titre": "Giraglia",
+    "creation": 1953,
+    "resume": "Créée en 1953 avec Beppe Croce et organisée par le Yacht Club Italiano, cette course n'a jamais été interrompue. Partie de Saint-Tropez, la flotte contourne l'île du Levant puis l'îlot de la Giraglia, au large du cap Corse, avant de rallier Gênes, soit 243 milles. Ex-Giraglia Rolex Cup, elle s'appelle aujourd'hui Loro Piana Giraglia.",
+    "sources": [
+      { "titre": "Giraglia (section Régate)", "url": "https://fr.wikipedia.org/wiki/Giraglia", "langue": "fr" },
+      { "titre": "Giraglia Rolex Cup", "url": "https://en.wikipedia.org/wiki/Giraglia_Rolex_Cup", "langue": "en" }
+    ]
+  },
+  "McIntyre Golden Globe Race": {
+    "titre": "Golden Globe Race",
+    "creation": 1968,
+    "resume": "Organisé en 1968 par le Sunday Times, le Golden Globe fut le premier tour du monde en solitaire, sans escale ni assistance ; seul Robin Knox-Johnston, sur Suhaili, l'acheva, en 313 jours. Relancée en 2018 au départ des Sables-d'Olonne, l'épreuve impose des bateaux et équipements comparables à ceux d'origine, la navigation au sextant et aucune technologie moderne.",
+    "editions": [
+      { "annee": 2022, "vainqueurs": [ { "classe": "Classement général", "skipper": "Kirsten Neuschäfer", "bateau": "Minnehaha" } ] },
+      { "annee": 2018, "vainqueurs": [ { "classe": "Classement général", "skipper": "Jean-Luc Van Den Heede", "bateau": "Matmut" } ] },
+      { "annee": 1968, "vainqueurs": [ { "classe": "Classement général", "skipper": "Robin Knox-Johnston", "bateau": "Suhaili" } ] }
+    ],
+    "sources": [
+      { "titre": "Golden Globe Challenge", "url": "https://fr.wikipedia.org/wiki/Golden_Globe_Challenge", "langue": "fr" },
+      { "titre": "Golden Globe Race 2018", "url": "https://fr.wikipedia.org/wiki/Golden_Globe_Race_2018", "langue": "fr" },
+      { "titre": "Golden Globe Race 2022", "url": "https://fr.wikipedia.org/wiki/Golden_Globe_Race_2022", "langue": "fr" }
+    ]
+  },
+  "McIntyre Ocean Globe Race": {
+    "titre": "Ocean Globe Race",
+    "creation": 2023,
+    "resume": "Tour du monde en équipage et par étapes imaginé par Don McIntyre pour les 50 ans de la première course autour du monde en équipage (1973). Hors sécurité, la technologie moderne est interdite sur ces yachts comparables à ceux de l'époque. La première édition a relié Southampton à Cowes (2023-2024), via Le Cap, Auckland et Punta del Este.",
+    "editions": [
+      { "annee": 2023, "vainqueurs": [
+        { "classe": "Classement IRC (temps compensé)", "skipper": "Heather Thomas", "bateau": "Maiden" },
+        { "classe": "Temps réel", "skipper": "Marie Tabarly", "bateau": "Pen Duick VI" }
+      ] }
+    ],
+    "sources": [
+      { "titre": "Ocean Globe Race", "url": "https://fr.wikipedia.org/wiki/Ocean_Globe_Race", "langue": "fr" },
+      { "titre": "Ocean Globe Race", "url": "https://en.wikipedia.org/wiki/Ocean_Globe_Race", "langue": "en" }
+    ]
+  },
+  "Mini Atlantique – Les Sables d'Olonne – Les Açores": {
+    "titre": "Les Sables – Les Açores – Les Sables",
+    "creation": 2006,
+    "resume": "Course en solitaire et sans assistance réservée aux Mini 6.50, créée en 2006 par Les Sables d'Olonne Vendée Course au Large et disputée les années paires. Le parcours, d'environ 2 600 milles en deux étapes, relie Les Sables-d'Olonne à Horta, aux Açores, avant le retour vers la Vendée.",
+    "editions": [
+      { "annee": 2024, "vainqueurs": [ { "classe": "Proto", "skipper": "Alexandre Demange" }, { "classe": "Série", "skipper": "Antonin Chapot" } ] },
+      { "annee": 2022, "vainqueurs": [ { "classe": "Proto", "skipper": "Pierre Le Roy" }, { "classe": "Série", "skipper": "Leo Bothorel" } ] },
+      { "annee": 2020, "vainqueurs": [ { "classe": "Proto", "skipper": "Tanguy Bouroullec" }, { "classe": "Série", "skipper": "Leo Debiesse" } ] },
+      { "annee": 2018, "vainqueurs": [ { "classe": "Proto", "skipper": "François Jambou" }, { "classe": "Série", "skipper": "Ambrogio Beccaria" } ] },
+      { "annee": 2016, "vainqueurs": [ { "classe": "Proto", "skipper": "Ian Lipinski" }, { "classe": "Série", "skipper": "Tanguy Bouroullec" } ] },
+      { "annee": 2014, "vainqueurs": [ { "classe": "Proto", "skipper": "Giancarlo Pedote" }, { "classe": "Série", "skipper": "Jonas Gerckens" } ] },
+      { "annee": 2012, "vainqueurs": [ { "classe": "Proto", "skipper": "Aymeric Chappellier" }, { "classe": "Série", "skipper": "Aymeric Belloir" } ] },
+      { "annee": 2010, "vainqueurs": [ { "classe": "Proto", "skipper": "Bertrand Delesne" }, { "classe": "Série", "skipper": "Xavier Macaire" } ] },
+      { "annee": 2008, "vainqueurs": [ { "classe": "Proto", "skipper": "Pierre Rolland" }, { "classe": "Série", "skipper": "Francisco Lobato" } ] },
+      { "annee": 2006, "vainqueurs": [ { "classe": "Proto", "skipper": "Adrien Hardy" }, { "classe": "Série", "skipper": "Gerard Marin" } ] }
+    ],
+    "sources": [
+      { "titre": "Les Sables - Les Açores - Les Sables", "url": "https://fr.wikipedia.org/wiki/Les_Sables_-_Les_Açores_-_Les_Sables", "langue": "fr" }
+    ]
+  },
+  "Mini Fastnet": {
+    "titre": "Mini-Fastnet",
+    "creation": 1984,
+    "resume": "Course en double réservée aux Mini 6.50, créée en 1984 et organisée par le Winches Club. Au départ et à l'arrivée de Douarnenez, les duos vont contourner le phare du Fastnet, au large du sud-ouest de l'Irlande, sur un parcours d'environ 600 milles, avec un classement pour les prototypes et un autre pour les bateaux de série.",
+    "editions": [
+      { "annee": 2026, "vainqueurs": [
+        { "classe": "Proto", "skipper": "Caroline Boule et Benoit Marie", "bateau": "Nicomatic - Petit Bateau" },
+        { "classe": "Série", "skipper": "Eliot Poughon et Basile Gautier", "bateau": "Zeste de Citron" }
+      ] },
+      { "annee": 2025, "vainqueurs": [
+        { "classe": "Proto", "skipper": "Benoit Marie et Federico Waksman", "bateau": "Nicomatic - Petit Bateau" },
+        { "classe": "Série", "skipper": "Eliot Poughon et Basile Gautier", "bateau": "Zeste de Citron" }
+      ] },
+      { "annee": 2024, "vainqueurs": [
+        { "classe": "Proto", "skipper": "Alexandre Demange et Benoit Mariette", "bateau": "DMG Mori Sailing Academy 2" },
+        { "classe": "Série", "skipper": "Quentin Mocudet et Margaux Chanceaulme", "bateau": "Ascodal / Saveurs & Délices" }
+      ] },
+      { "annee": 2023, "vainqueurs": [
+        { "classe": "Proto", "skipper": "Manera Pascual et Federico Norman", "bateau": "Xucla" },
+        { "classe": "Série", "skipper": "Michaël Gendebien et Quentin Riché", "bateau": "Barillec Marine - Actemium" }
+      ] },
+      { "annee": 2022, "vainqueurs": [
+        { "classe": "Proto", "skipper": "Victor Mathieu et François Jambou", "bateau": "Univers 650" },
+        { "classe": "Série", "skipper": "Victoire Martinet et Nicolas d'Estais", "bateau": "Minion" }
+      ] },
+      { "annee": 2021, "vainqueurs": [
+        { "classe": "Proto", "skipper": "Tanguy Bouroullec et Guillaume L'Hostis", "bateau": "Pogo Foiler - Chaffoil" },
+        { "classe": "Série", "skipper": "Gaël Ledoux et Julien Pulvé", "bateau": "Haloflame/ilots.site" }
+      ] },
+      { "annee": 2019, "vainqueurs": [
+        { "classe": "Proto", "skipper": "Axel Trehin et Thomas Coville", "bateau": "Cherche Partenaire" },
+        { "classe": "Série", "skipper": "Ambrogio Beccaria et Alberto Riva", "bateau": "Géomag" }
+      ] },
+      { "annee": 2018, "vainqueurs": [
+        { "classe": "Proto", "skipper": "Axel Trehin et Frédéric Denis", "bateau": "Tartine cherche du Beurre" },
+        { "classe": "Série", "skipper": "Ambrogio Beccaria et Tanguy Le Turquais", "bateau": "Wanted Sponsor" }
+      ] },
+      { "annee": 2017, "vainqueurs": [
+        { "classe": "Proto", "skipper": "Ian Lipinski et David Raison", "bateau": "Griffon.fr" },
+        { "classe": "Série", "skipper": "Erwan Le Draoulec et Clarisse Crémer", "bateau": "Émile Henry" }
+      ] }
+    ],
+    "sources": [
+      { "titre": "Mini-Fastnet", "url": "https://fr.wikipedia.org/wiki/Mini-Fastnet", "langue": "fr" }
+    ]
+  },
+  "Mini Transat Legallais": {
+    "titre": "Mini Transat",
+    "creation": 1977,
+    "resume": "Créée en 1977 par Bob Salmon, cette transatlantique en solitaire et sans assistance se court les années impaires sur des voiliers de 6,50 m de la Classe Mini, classés en prototypes et en séries. De 2001 à 2011, elle menait à Salvador de Bahia ; son parcours récent relie Les Sables-d'Olonne à Saint-François, en Guadeloupe.",
+    "editions": [
+      { "annee": 2025, "vainqueurs": [
+        { "classe": "Proto", "skipper": "Mathis Bourgnon", "bateau": "Assomast" },
+        { "classe": "Série", "skipper": "Paul Cousin", "bateau": "AFP - Biocombustibles" }
+      ] },
+      { "annee": 2023, "vainqueurs": [
+        { "classe": "Proto", "skipper": "Federico Waksman", "bateau": "Repremar – Shipping Agency Uruguay" },
+        { "classe": "Série", "skipper": "Luca Rosetti", "bateau": "Race = Care" }
+      ] },
+      { "annee": 2021, "vainqueurs": [
+        { "classe": "Proto", "skipper": "Pierre Le Roy", "bateau": "Teamwork" },
+        { "classe": "Série", "skipper": "Hugo Dhallenne", "bateau": "YC Saint-Lunaire" }
+      ] },
+      { "annee": 2019, "vainqueurs": [
+        { "classe": "Proto", "skipper": "François Jambou", "bateau": "Team BFR Marée Haute Jaune" },
+        { "classe": "Série", "skipper": "Ambrogio Beccaria", "bateau": "Géomag" }
+      ] },
+      { "annee": 2017, "vainqueurs": [
+        { "classe": "Proto", "skipper": "Ian Lipinski", "bateau": "Griffon.fr" },
+        { "classe": "Série", "skipper": "Erwan Le Draoulec", "bateau": "Émile Henry" }
+      ] },
+      { "annee": 2015, "vainqueurs": [
+        { "classe": "Proto", "skipper": "Frédéric Denis", "bateau": "Nautipark" },
+        { "classe": "Série", "skipper": "Ian Lipinski", "bateau": "Entreprise(s) Innovante(s)" }
+      ] },
+      { "annee": 2013, "vainqueurs": [
+        { "classe": "Proto", "skipper": "Benoît Marie", "bateau": "benoitmarie.com" },
+        { "classe": "Série", "skipper": "Aymeric Belloir", "bateau": "Tout Le Monde Chante Contre Le Cancer" }
+      ] },
+      { "annee": 2011, "vainqueurs": [
+        { "classe": "Proto", "skipper": "David Raison", "bateau": "Teamwork Evolution" },
+        { "classe": "Série", "skipper": "Gwénolé Gahinet", "bateau": "Voiles Océan" }
+      ] },
+      { "annee": 2009, "vainqueurs": [
+        { "classe": "Proto", "skipper": "Thomas Ruyant", "bateau": "Faber France" },
+        { "classe": "Série", "skipper": "Francisco Lobato", "bateau": "Roff TMN" }
+      ] },
+      { "annee": 2007, "vainqueurs": [
+        { "classe": "Proto", "skipper": "Yves Le Blevec", "bateau": "Actual" },
+        { "classe": "Série", "skipper": "Hervé Piveteau", "bateau": "Jules-Cartoffset" }
+      ] }
+    ],
+    "sources": [
+      { "titre": "Transat 6.50", "url": "https://fr.wikipedia.org/wiki/Transat_6.50", "langue": "fr" }
+    ]
+  },
+  "Newport Bermuda Race": {
+    "titre": "Newport Bermuda Race",
+    "creation": 1906,
+    "resume": "Née en 1906, cette course biennale relie Newport (Rhode Island) aux Bermudes, soit environ 635 milles, avec une arrivée devant le Royal Bermuda Yacht Club, à Hamilton. Elle est organisée par des bénévoles du Cruising Club of America et du Royal Bermuda Yacht Club ; le départ est donné en juin.",
+    "editions": [
+      { "annee": 2024, "vainqueurs": [
+        { "classe": "St. David's Lighthouse Trophy", "bateau": "Carina" },
+        { "classe": "Temps réel", "skipper": "Roy Disney", "bateau": "Pyewacket 70" }
+      ] },
+      { "annee": 2022, "vainqueurs": [
+        { "classe": "St. David's Lighthouse Trophy", "bateau": "Illusion" },
+        { "classe": "Temps réel", "skipper": "Jason Carroll", "bateau": "Argo" }
+      ] },
+      { "annee": 2018, "vainqueurs": [
+        { "classe": "St. David's Lighthouse Trophy", "bateau": "Grundoon" },
+        { "classe": "Temps réel", "skipper": "George David", "bateau": "Rambler 88" }
+      ] },
+      { "annee": 2016, "vainqueurs": [
+        { "classe": "St. David's Lighthouse Trophy", "bateau": "Warrior Won" },
+        { "classe": "Temps réel", "skipper": "Ken Read", "bateau": "Comanche" }
+      ] },
+      { "annee": 2014, "vainqueurs": [
+        { "classe": "St. David's Lighthouse Trophy", "bateau": "Actaea" },
+        { "classe": "Temps réel", "skipper": "George Sakellaris", "bateau": "Shockwave" }
+      ] },
+      { "annee": 2012, "vainqueurs": [
+        { "classe": "St. David's Lighthouse Trophy", "bateau": "Carina" },
+        { "classe": "Temps réel", "bateau": "Med Spirit" }
+      ] },
+      { "annee": 2010, "vainqueurs": [
+        { "classe": "St. David's Lighthouse Trophy", "bateau": "Carina" },
+        { "classe": "Temps réel", "bateau": "Speedboat" }
+      ] },
+      { "annee": 2008, "vainqueurs": [
+        { "classe": "St. David's Lighthouse Trophy", "bateau": "Sinn Fein" },
+        { "classe": "Temps réel", "bateau": "Speedboat" }
+      ] },
+      { "annee": 2006, "vainqueurs": [
+        { "classe": "St. David's Lighthouse Trophy", "bateau": "Sinn Fein" },
+        { "classe": "Temps réel", "bateau": "Bella Mente" }
+      ] }
+    ],
+    "sources": [
+      { "titre": "Bermuda Race", "url": "https://fr.wikipedia.org/wiki/Bermuda_Race", "langue": "fr" },
+      { "titre": "Newport Bermuda Race", "url": "https://en.wikipedia.org/wiki/Newport_Bermuda_Race", "langue": "en" }
+    ]
+  },
+  "Ocean Fifty Series – Act 1 Sainte-Maxime": {
+    "titre": "Ocean Fifty Series",
+    "resume": "Championnat par points de la classe Ocean Fifty, multicoques de 50 pieds appelés Multi50 jusqu'en mars 2021, qui récompense en fin de saison les équipes du circuit. La naissance de la classe a donné lieu à une première course dédiée, le Pro Sailing Tour, lancée en mai 2021.",
+    "editions": [
+      { "annee": 2025, "vainqueurs": [ { "classe": "Classement du championnat", "skipper": "Baptiste Hulin", "bateau": "Viabilis Oceans" } ] },
+      { "annee": 2024, "vainqueurs": [ { "classe": "Classement du championnat", "skipper": "Sébastien Rogues", "bateau": "Primonial" } ] }
+    ],
+    "sources": [
+      { "titre": "Ocean Fifty", "url": "https://fr.wikipedia.org/wiki/Ocean_Fifty", "langue": "fr" }
+    ]
+  },
+  "Ocean Fifty Series – Act 2 Ajaccio": {
+    "titre": "Ocean Fifty Series",
+    "resume": "Championnat par points de la classe Ocean Fifty, multicoques de 50 pieds appelés Multi50 jusqu'en mars 2021, qui récompense en fin de saison les équipes du circuit. La naissance de la classe a donné lieu à une première course dédiée, le Pro Sailing Tour, lancée en mai 2021.",
+    "editions": [
+      { "annee": 2025, "vainqueurs": [ { "classe": "Classement du championnat", "skipper": "Baptiste Hulin", "bateau": "Viabilis Oceans" } ] },
+      { "annee": 2024, "vainqueurs": [ { "classe": "Classement du championnat", "skipper": "Sébastien Rogues", "bateau": "Primonial" } ] }
+    ],
+    "sources": [
+      { "titre": "Ocean Fifty", "url": "https://fr.wikipedia.org/wiki/Ocean_Fifty", "langue": "fr" }
+    ]
+  },
+  "Pacific Cup": {
+    "titre": "Pacific Cup",
+    "creation": 1980,
+    "resume": "Course organisée les années paires depuis 1980 par le Pacific Cup Yacht Club, de San Francisco à Kaneohe, à Hawaï, soit environ 2 070 milles nautiques. Elle alterne avec la Transpac, qui rallie Hawaï depuis Los Angeles les années impaires.",
+    "sources": [
+      { "titre": "Pacific Cup (yacht race)", "url": "https://en.wikipedia.org/wiki/Pacific_Cup_(yacht_race)", "langue": "en" }
+    ]
+  },
+  "Retour à La Base": {
+    "titre": "Retour à La Base",
+    "creation": 2007,
+    "resume": "Transatlantique IMOCA en solitaire, sans escale ni assistance, créée en 2007 comme course retour de la Transat Jacques-Vabre. Son nom et son parcours ont varié : Transat Ecover B to B depuis Salvador de Bahia, Transat B to B depuis Saint-Barthélemy, Transat Saint Barth-Port la Forêt, puis Retour à La Base, de Fort-de-France à Lorient, en 2023.",
+    "editions": [
+      { "annee": 2023, "vainqueurs": [ { "classe": "IMOCA", "skipper": "Yoann Richomme", "bateau": "Paprec Arkéa" } ] },
+      { "annee": 2015, "vainqueurs": [ { "classe": "IMOCA", "skipper": "Sébastien Josse", "bateau": "Edmond de Rothschild" } ] },
+      { "annee": 2011, "vainqueurs": [ { "classe": "IMOCA", "skipper": "François Gabart", "bateau": "Macif" } ] },
+      { "annee": 2007, "vainqueurs": [ { "classe": "IMOCA", "skipper": "Loïck Peyron", "bateau": "Gitana Eighty" } ] }
+    ],
+    "sources": [
+      { "titre": "Transat B to B", "url": "https://fr.wikipedia.org/wiki/Transat_B_to_B", "langue": "fr" }
+    ]
+  },
+  "Rolex China Sea Race": {
+    "titre": "China Sea Race",
+    "creation": 1962,
+    "resume": "Course au large biennale organisée par le Royal Hong Kong Yacht Club depuis 1962. Partis du port de Hong Kong, les voiliers rallient la baie de Subic, aux Philippines, au terme d'environ 565 milles nautiques.",
+    "sources": [
+      { "titre": "China Sea Race", "url": "https://en.wikipedia.org/wiki/China_Sea_Race", "langue": "en" }
+    ]
+  },
+  "Rolex Fastnet Race": {
+    "titre": "Fastnet Race",
+    "creation": 1925,
+    "resume": "Créée en 1925 et organisée par le Royal Ocean Racing Club, la course part de Cowes et contourne le rocher du Fastnet, au sud-ouest de l'Irlande. L'arrivée, longtemps jugée à Plymouth, a lieu à Cherbourg depuis 2021, pour 695 milles. Elle se court en août les années impaires. En 1979, une tempête y fit 18 morts.",
+    "editions": [
+      { "annee": 2025, "vainqueurs": [
+        { "classe": "Temps réel", "skipper": "Tom Laperche", "bateau": "SVR-Lazartigue" },
+        { "classe": "IRC (Fastnet Challenge Cup)", "skipper": "Alexis Loison et Jean-Pierre Kelbert", "bateau": "Léon" },
+        { "classe": "IMOCA", "skipper": "Élodie Bonafous", "bateau": "Association Petits Princes - Quéguiner" },
+        { "classe": "Class40", "skipper": "Corentin Douguet et Axel Trehin", "bateau": "Faites un don sur SNSM.org" }
+      ] },
+      { "annee": 2023, "vainqueurs": [
+        { "classe": "Temps réel", "skipper": "François Gabart et Tom Laperche", "bateau": "SVR-Lazartigue" },
+        { "classe": "IRC (Fastnet Challenge Cup)", "skipper": "Max Klink", "bateau": "Caro" },
+        { "classe": "IMOCA", "skipper": "Charlie Dalin et Pascal Bidégorry", "bateau": "Macif Santé Prévoyance" },
+        { "classe": "Class40", "skipper": "Erwan Le Draoulec", "bateau": "Everial" }
+      ] },
+      { "annee": 2021, "vainqueurs": [
+        { "classe": "Temps réel", "skipper": "Franck Cammas et Charles Caudrelier", "bateau": "Maxi Edmond de Rothschild" },
+        { "classe": "IRC (Fastnet Challenge Cup)", "skipper": "Thomas Kneen", "bateau": "Sunrise" },
+        { "classe": "IMOCA", "skipper": "Charlie Dalin et Paul Meilhat", "bateau": "Apivia" },
+        { "classe": "Class40", "skipper": "Antoine Magré", "bateau": "Palanad 3" }
+      ] },
+      { "annee": 2019, "vainqueurs": [
+        { "classe": "Temps réel", "skipper": "Franck Cammas et Charles Caudrelier", "bateau": "Maxi Edmond de Rothschild" },
+        { "classe": "IRC (Fastnet Challenge Cup)", "skipper": "Charlie Enright", "bateau": "Wizard" },
+        { "classe": "IMOCA", "skipper": "Jérémie Beyou et Christopher Pratt", "bateau": "Charal" },
+        { "classe": "Class40", "skipper": "Luke Berry", "bateau": "Lamotte - Module Création" }
+      ] },
+      { "annee": 2017, "vainqueurs": [
+        { "classe": "Temps réel", "skipper": "Ned Collier Wakefield", "bateau": "Concise 10" },
+        { "classe": "IRC (Fastnet Challenge Cup)", "skipper": "Didier Gaudoux", "bateau": "Lann Ael 2" },
+        { "classe": "IMOCA", "skipper": "Paul Meilhat et Gwénolé Gahinet", "bateau": "SMA" },
+        { "classe": "Class40", "skipper": "Maxime Sorel", "bateau": "V and B" }
+      ] },
+      { "annee": 2015, "vainqueurs": [
+        { "classe": "Temps réel", "skipper": "Yann Guichard et Dona Bertarelli", "bateau": "Maxi Spindrift 2" },
+        { "classe": "IRC (Fastnet Challenge Cup)", "skipper": "Géry Trentesaux", "bateau": "Courrier du Léon" },
+        { "classe": "IMOCA", "skipper": "Vincent Riou et Sébastien Col", "bateau": "PRB" },
+        { "classe": "Class40", "skipper": "Gonzalo Botin", "bateau": "Tales II" }
+      ] },
+      { "annee": 2013, "vainqueurs": [
+        { "classe": "Temps réel", "skipper": "Yann Guichard", "bateau": "Maxi Spindrift 2" },
+        { "classe": "IRC (Fastnet Challenge Cup)", "skipper": "Alexis Loison et Pascal Loison", "bateau": "Night and Day" },
+        { "classe": "IMOCA", "skipper": "François Gabart et Michel Desjoyeaux", "bateau": "Macif" },
+        { "classe": "Class40", "skipper": "Sébastien Rogues", "bateau": "GDF Suez" }
+      ] },
+      { "annee": 2011, "vainqueurs": [
+        { "classe": "Temps réel", "skipper": "Loïck Peyron", "bateau": "Banque Populaire V" },
+        { "classe": "IRC (Fastnet Challenge Cup)", "skipper": "Niklas Zennström", "bateau": "Rán 2" },
+        { "classe": "IMOCA", "skipper": "Vincent Riou et Jean Le Cam", "bateau": "PRB" },
+        { "classe": "Class40", "skipper": "Tanguy de Lamotte", "bateau": "Initiatives-Alex Olivier" }
+      ] },
+      { "annee": 2009, "vainqueurs": [
+        { "classe": "Temps réel", "skipper": "Mike Slade", "bateau": "ICAP Leopard" },
+        { "classe": "IRC (Fastnet Challenge Cup)", "skipper": "Niklas Zennström", "bateau": "Rán 2" },
+        { "classe": "Class40", "skipper": "Tanguy de Lamotte", "bateau": "Initiatives Saveurs - Novedia Group" }
+      ] },
+      { "annee": 2007, "vainqueurs": [
+        { "classe": "Temps réel", "skipper": "Mike Slade", "bateau": "ICAP Leopard" },
+        { "classe": "IRC (Fastnet Challenge Cup)", "skipper": "Ger O'Rourke", "bateau": "Chieftain" },
+        { "classe": "IMOCA", "skipper": "Vincent Riou et Sébastien Josse", "bateau": "PRB" }
+      ] }
+    ],
+    "sources": [
+      { "titre": "Fastnet Race", "url": "https://fr.wikipedia.org/wiki/Fastnet_Race", "langue": "fr" }
+    ]
+  },
+  "Rolex Middle Sea Race": {
+    "titre": "Middle Sea Race",
+    "creation": 1968,
+    "resume": "Fondée en 1968 par le Royal Malta Yacht Club et le Royal Ocean Racing Club, puis organisée par le club maltais, cette course de 607 milles part de Malte et y revient après un tour de la Sicile, en passant notamment par Lampedusa, Pantelleria et les îles Égades et Éoliennes.",
+    "sources": [
+      { "titre": "Middle Sea Race", "url": "https://en.wikipedia.org/wiki/Middle_Sea_Race", "langue": "en" }
+    ]
+  },
+  "Rolex Sydney Hobart Yacht Race": {
+    "titre": "Sydney-Hobart",
+    "creation": 1945,
+    "resume": "Organisée depuis 1945 par le Cruising Yacht Club of Australia, avec le Royal Yacht Club of Tasmania, la course part de Sydney chaque 26 décembre et s'achève à Hobart, après environ 630 milles. L'édition 1998, prise dans un violent coup de vent, a coûté la vie à six marins et vu couler cinq bateaux. L'édition 2020 a été annulée.",
+    "editions": [
+      { "annee": 2025, "vainqueurs": [
+        { "classe": "Temps réel", "bateau": "Comanche" },
+        { "classe": "Temps compensé (Tattersall Cup)", "skipper": "Alexis Loison", "bateau": "Min River" }
+      ] },
+      { "annee": 2024, "vainqueurs": [
+        { "classe": "Temps réel", "bateau": "Law Connect" },
+        { "classe": "Temps compensé (Tattersall Cup)", "bateau": "Celestial V70" }
+      ] },
+      { "annee": 2023, "vainqueurs": [
+        { "classe": "Temps réel", "skipper": "Christian Beck", "bateau": "Law Connect" },
+        { "classe": "Temps compensé (Tattersall Cup)", "bateau": "Alive" }
+      ] },
+      { "annee": 2022, "vainqueurs": [
+        { "classe": "Temps réel", "bateau": "Andoo Comanche" },
+        { "classe": "Temps compensé (Tattersall Cup)", "bateau": "Celestial" }
+      ] },
+      { "annee": 2021, "vainqueurs": [
+        { "classe": "Temps réel", "bateau": "Black Jack" },
+        { "classe": "Temps compensé (Tattersall Cup)", "bateau": "Ichi Ban" }
+      ] },
+      { "annee": 2019, "vainqueurs": [
+        { "classe": "Temps réel", "bateau": "Comanche" },
+        { "classe": "Temps compensé (Tattersall Cup)", "bateau": "Ichi Ban" }
+      ] },
+      { "annee": 2018, "vainqueurs": [
+        { "classe": "Temps réel", "bateau": "Wild Oats XI" },
+        { "classe": "Temps compensé (Tattersall Cup)", "bateau": "Alive" }
+      ] },
+      { "annee": 2017, "vainqueurs": [
+        { "classe": "Temps réel", "bateau": "LDV Comanche" },
+        { "classe": "Temps compensé (Tattersall Cup)", "bateau": "Ichi Ban" }
+      ] },
+      { "annee": 2016, "vainqueurs": [
+        { "classe": "Temps réel", "bateau": "Perpetual LOYAL" },
+        { "classe": "Temps compensé (Tattersall Cup)", "bateau": "Giacomo" }
+      ] },
+      { "annee": 2015, "vainqueurs": [
+        { "classe": "Temps réel", "bateau": "Comanche" },
+        { "classe": "Temps compensé (Tattersall Cup)", "bateau": "Balance" }
+      ] }
+    ],
+    "sources": [
+      { "titre": "Sydney-Hobart", "url": "https://fr.wikipedia.org/wiki/Sydney-Hobart", "langue": "fr" },
+      { "titre": "Sydney to Hobart Yacht Race", "url": "https://en.wikipedia.org/wiki/Sydney_to_Hobart_Yacht_Race", "langue": "en" }
+    ]
+  },
+  "Route du Rhum – Destination Guadeloupe": {
+    "titre": "Route du Rhum",
+    "creation": 1978,
+    "resume": "Transatlantique en solitaire créée en 1978 et disputée tous les quatre ans entre Saint-Malo et Pointe-à-Pitre, en Guadeloupe. Sans escale mais avec assistance autorisée, elle réunit plusieurs classes de multicoques et de monocoques, des Ultim aux Class40 en passant par les catégories Rhum. OC Sport Pen Duick l'organise depuis 2006.",
+    "editions": [
+      { "annee": 2022, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "Charles Caudrelier", "bateau": "Maxi Edmond de Rothschild" },
+        { "classe": "Ocean Fifty", "skipper": "Erwan Le Roux", "bateau": "Koesio" },
+        { "classe": "IMOCA", "skipper": "Thomas Ruyant", "bateau": "LinkedOut" },
+        { "classe": "Class40", "skipper": "Yoann Richomme", "bateau": "Paprec Arkéa" }
+      ] },
+      { "annee": 2018, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "Francis Joyon", "bateau": "IDEC Sport" },
+        { "classe": "Multi50", "skipper": "Armel Tripon", "bateau": "Réauté Chocolat" },
+        { "classe": "IMOCA", "skipper": "Paul Meilhat", "bateau": "SMA" },
+        { "classe": "Class40", "skipper": "Yoann Richomme", "bateau": "Veedol" }
+      ] },
+      { "annee": 2014, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "Loïck Peyron", "bateau": "Banque Populaire VII" },
+        { "classe": "Multi50", "skipper": "Erwan Le Roux", "bateau": "FenetreA Cardinal" },
+        { "classe": "IMOCA", "skipper": "François Gabart", "bateau": "Macif" },
+        { "classe": "Class40", "skipper": "Alex Pella", "bateau": "Tales II" }
+      ] },
+      { "annee": 2010, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "Franck Cammas", "bateau": "Groupama 3" },
+        { "classe": "Multi50", "skipper": "Lionel Lemonchois", "bateau": "Prince de Bretagne" },
+        { "classe": "IMOCA", "skipper": "Roland Jourdain", "bateau": "Veolia Environnement" },
+        { "classe": "Class40", "skipper": "Thomas Ruyant", "bateau": "Destination Dunkerque" }
+      ] },
+      { "annee": 2006, "vainqueurs": [
+        { "classe": "Classement général", "skipper": "Lionel Lemonchois", "bateau": "Gitana 11" },
+        { "classe": "Multi50", "skipper": "Franck-Yves Escoffier", "bateau": "Crêpes Whaou" },
+        { "classe": "IMOCA", "skipper": "Roland Jourdain", "bateau": "Sill et Veolia" },
+        { "classe": "Class40", "skipper": "Phil Sharp", "bateau": "PSR" }
+      ] },
+      { "annee": 2002, "vainqueurs": [
+        { "classe": "Classement général", "skipper": "Michel Desjoyeaux", "bateau": "Géant" },
+        { "classe": "Multi50", "skipper": "Franck-Yves Escoffier", "bateau": "Crêpes Whaou" },
+        { "classe": "IMOCA", "skipper": "Ellen MacArthur", "bateau": "Kingfisher" }
+      ] },
+      { "annee": 1998, "vainqueurs": [
+        { "classe": "Classement général", "skipper": "Laurent Bourgnon", "bateau": "Primagaz" },
+        { "classe": "Multi50", "skipper": "Franck-Yves Escoffier", "bateau": "Deleage Diazo" },
+        { "classe": "IMOCA", "skipper": "Thomas Coville", "bateau": "Aquitaine Innovations" }
+      ] },
+      { "annee": 1994, "vainqueurs": [
+        { "classe": "Classement général", "skipper": "Laurent Bourgnon", "bateau": "Primagaz" }
+      ] },
+      { "annee": 1990, "vainqueurs": [
+        { "classe": "Classement général", "skipper": "Florence Arthaud", "bateau": "Pierre 1er" }
+      ] },
+      { "annee": 1986, "vainqueurs": [
+        { "classe": "Classement général", "skipper": "Philippe Poupon", "bateau": "Fleury Michon VIII" }
+      ] }
+    ],
+    "sources": [
+      { "titre": "Route du Rhum", "url": "https://fr.wikipedia.org/wiki/Route_du_Rhum", "langue": "fr" }
+    ]
+  },
+  "Round Ireland Yacht Race": {
+    "titre": "Round Ireland Yacht Race",
+    "creation": 1980,
+    "resume": "Tour de l'Irlande de 704 milles disputé tous les deux ans depuis 1980, au départ et à l'arrivée de Wicklow. La course est organisée par le Wicklow Sailing Club, en association avec le Royal Irish Yacht Club et le Royal Ocean Racing Club.",
+    "editions": [
+      { "annee": 2018, "vainqueurs": [
+        { "classe": "Classement général", "skipper": "Niall Dowling", "bateau": "Baraka GP" },
+        { "classe": "Temps réel", "skipper": "Niall Dowling", "bateau": "Baraka GP" }
+      ] },
+      { "annee": 2016, "vainqueurs": [
+        { "classe": "Classement général", "skipper": "George David", "bateau": "Rambler 88" },
+        { "classe": "Temps réel", "skipper": "George David", "bateau": "Rambler 88" }
+      ] },
+      { "annee": 2014, "vainqueurs": [
+        { "classe": "Classement général", "skipper": "Richard Harris", "bateau": "Tanit" },
+        { "classe": "Temps réel", "skipper": "David Ryan", "bateau": "Monster Project" }
+      ] },
+      { "annee": 2012, "vainqueurs": [
+        { "classe": "Classement général", "skipper": "Bernard et Laurent Gouy", "bateau": "Inis Mor" },
+        { "classe": "Temps réel", "skipper": "Enda O'Coineen", "bateau": "Green Dragon" }
+      ] },
+      { "annee": 2010, "vainqueurs": [
+        { "classe": "Classement général", "skipper": "Piet Vroon", "bateau": "Tonnerre de Breskens 3" },
+        { "classe": "Temps réel", "skipper": "Piet Vroon", "bateau": "Tonnerre de Breskens 3" }
+      ] },
+      { "annee": 2008, "vainqueurs": [
+        { "classe": "Classement général", "skipper": "Aodhan Fitzgerald", "bateau": "Ireland West" },
+        { "classe": "Temps réel", "skipper": "Mike Slade", "bateau": "ICAP Leopard" }
+      ] },
+      { "annee": 2006, "vainqueurs": [
+        { "classe": "Classement général", "skipper": "Eric Lisson", "bateau": "Cavatina" },
+        { "classe": "Temps réel", "bateau": "Konica Minolta Zara" }
+      ] }
+    ],
+    "sources": [
+      { "titre": "Round Ireland Yacht Race", "url": "https://en.wikipedia.org/wiki/Round_Ireland_Yacht_Race", "langue": "en" }
+    ]
+  },
+  "Solo Guy Cotten": {
+    "titre": "Solo Guy Cotten",
+    "resume": "Course au large annuelle en solitaire sur monotypes Figaro Bénéteau, organisée par la Société des Régates de Concarneau, avec départ et arrivée à Concarneau. Elle s'est auparavant appelée Solo-portsdefrance.com.",
+    "editions": [
+      { "annee": 2025, "vainqueurs": [ { "classe": "Figaro Bénéteau", "skipper": "Alexis Thomas", "bateau": "Wings of the Ocean" } ] },
+      { "annee": 2024, "vainqueurs": [ { "classe": "Figaro Bénéteau", "skipper": "Loïs Berrehar", "bateau": "Skipper Macif 2022" } ] },
+      { "annee": 2023, "vainqueurs": [ { "classe": "Figaro Bénéteau", "skipper": "Guillaume Pirouelle", "bateau": "Région Normandie" } ] },
+      { "annee": 2022, "vainqueurs": [ { "classe": "Figaro Bénéteau", "skipper": "Tom Laperche", "bateau": "Région Bretagne - CMB Performance" } ] },
+      { "annee": 2021, "vainqueurs": [ { "classe": "Figaro Bénéteau", "skipper": "Xavier Macaire", "bateau": "Team SNEF" } ] },
+      { "annee": 2020, "vainqueurs": [ { "classe": "Figaro Bénéteau", "skipper": "Pierre Quiroga", "bateau": "Skipper Macif 2019" } ] },
+      { "annee": 2019, "vainqueurs": [ { "classe": "Figaro Bénéteau", "skipper": "Armel Le Cléac'h", "bateau": "Banque Populaire" } ] },
+      { "annee": 2018, "vainqueurs": [ { "classe": "Figaro Bénéteau", "skipper": "Anthony Marchand", "bateau": "Groupe Royer – Secours Populaire" } ] },
+      { "annee": 2017, "vainqueurs": [ { "classe": "Figaro Bénéteau", "skipper": "Charlie Dalin", "bateau": "Skipper Macif 2015" } ] },
+      { "annee": 2016, "vainqueurs": [ { "classe": "Figaro Bénéteau", "skipper": "Charlie Dalin", "bateau": "Skipper Macif 2015" } ] }
+    ],
+    "sources": [
+      { "titre": "Solo Guy Cotten", "url": "https://fr.wikipedia.org/wiki/Solo_Guy_Cotten", "langue": "fr" }
+    ]
+  },
+  "Spi Ouest-France Banque Populaire Grand Ouest": {
+    "titre": "Spi Ouest-France",
+    "creation": 1978,
+    "resume": "Rendez-vous de régates créé en 1978 et organisé par la Société nautique de La Trinité-sur-Mer. Chaque année, généralement en avril, de nombreuses classes de voiliers s'y affrontent en baie de Quiberon ; l'édition 2023 a réuni 439 équipages et près de 2 200 marins.",
+    "sources": [
+      { "titre": "Spi Ouest-France", "url": "https://fr.wikipedia.org/wiki/Spi_Ouest-France", "langue": "fr" }
+    ]
+  },
+  "The Ocean Race": {
+    "titre": "The Ocean Race",
+    "creation": 1973,
+    "resume": "Tour du monde en équipage et par étapes réservé aux monocoques, couru pour la première fois en 1973. Appelée Whitbread Round the World Race jusqu'en 1998, puis Volvo Ocean Race de 2001 à 2018, l'épreuve a ensuite pris son nom actuel. L'édition 2022-2023, d'Alicante à Gênes, a réuni IMOCA à foils et monotypes VO65.",
+    "editions": [
+      { "annee": 2022, "vainqueurs": [
+        { "classe": "IMOCA", "skipper": "Charlie Enright", "bateau": "11th Hour Racing (Malama)" },
+        { "classe": "VO65", "skipper": "Pablo Arrarte et Daryl Wislang", "bateau": "WindWhisper Racing Team" }
+      ] },
+      { "annee": 2017, "vainqueurs": [ { "classe": "Classement général", "skipper": "Charles Caudrelier", "bateau": "Dongfeng Race Team" } ] },
+      { "annee": 2014, "vainqueurs": [ { "classe": "Classement général", "skipper": "Ian Walker", "bateau": "Abu Dhabi Ocean Racing" } ] },
+      { "annee": 2011, "vainqueurs": [ { "classe": "Classement général", "skipper": "Franck Cammas", "bateau": "Groupama 4" } ] },
+      { "annee": 2008, "vainqueurs": [ { "classe": "Classement général", "skipper": "Torben Grael", "bateau": "Ericsson 4" } ] },
+      { "annee": 2005, "vainqueurs": [ { "classe": "Classement général", "skipper": "Mike Sanderson", "bateau": "ABN AMRO One" } ] },
+      { "annee": 2001, "vainqueurs": [ { "classe": "Classement général", "skipper": "John Kostecki", "bateau": "Illbruck Challenge" } ] },
+      { "annee": 1997, "vainqueurs": [ { "classe": "Classement général", "skipper": "Paul Cayard", "bateau": "EF Language" } ] },
+      { "annee": 1993, "vainqueurs": [ { "classe": "Classement général", "skipper": "Grant Dalton", "bateau": "NZ Endeavour" } ] },
+      { "annee": 1989, "vainqueurs": [ { "classe": "Classement général", "skipper": "Peter Blake", "bateau": "Steinlager 2" } ] }
+    ],
+    "sources": [
+      { "titre": "The Ocean Race", "url": "https://fr.wikipedia.org/wiki/The_Ocean_Race", "langue": "fr" }
+    ]
+  },
+  "Tour Voile": {
+    "titre": "Tour Voile",
+    "creation": 1978,
+    "resume": "Créé en 1978 par Bernard Decré et Jérôme Reboul sous le nom de Tour de France à la voile, rebaptisé Tour Voile en 2018, ce rendez-vous annuel fait courir des équipages sur bateaux monotypes, par étapes le long du littoral. Après le Diam 24 (2015-2021), la flotte navigue sur Figaro Bénéteau 3 depuis 2023.",
+    "editions": [
+      { "annee": 2026, "vainqueurs": [ { "classe": "Classement général", "skipper": "Paul Loiseau", "bateau": "Région Bretagne - CMB espoir" } ] },
+      { "annee": 2025, "vainqueurs": [ { "classe": "Classement général", "skipper": "Alexandre Boite", "bateau": "Paprec By Normandy Inshore Program" } ] },
+      { "annee": 2024, "vainqueurs": [ { "classe": "Classement général", "skipper": "Arthur Meurisse", "bateau": "Dunkerque Voile" } ] },
+      { "annee": 2023, "vainqueurs": [ { "classe": "Classement général", "skipper": "Paul Morvan", "bateau": "Équipe Bretagne Jeunes Habitable" } ] },
+      { "annee": 2021, "vainqueurs": [ { "classe": "Classement général", "skipper": "Clément Cron", "bateau": "Groupe Atlantic" } ] },
+      { "annee": 2019, "vainqueurs": [ { "classe": "Classement général", "skipper": "Valentin Bellet", "bateau": "Team Beijaflore" } ] },
+      { "annee": 2018, "vainqueurs": [ { "classe": "Classement général", "skipper": "Quentin Delapierre", "bateau": "Lorina Limonade - Golfe du Morbihan" } ] },
+      { "annee": 2017, "vainqueurs": [ { "classe": "Classement général", "skipper": "Damien Seguin et Damien Iehl", "bateau": "Fondation FDJ - Des pieds et des mains" } ] },
+      { "annee": 2016, "vainqueurs": [ { "classe": "Classement général", "skipper": "Quentin Delapierre et Matthieu Salomon", "bateau": "Lorina Limonade - Golfe du Morbihan" } ] },
+      { "annee": 2015, "vainqueurs": [ { "classe": "Classement général", "skipper": "Xavier Revil et François Morvan", "bateau": "Spindrift" } ] }
+    ],
+    "sources": [
+      { "titre": "Tour de France à la voile", "url": "https://fr.wikipedia.org/wiki/Tour_de_France_à_la_voile", "langue": "fr" }
+    ]
+  },
+  "Transat Café L'Or": {
+    "titre": "Transat Café L'Or",
+    "creation": 1993,
+    "resume": "Transatlantique biennale créée en 1993 au départ du Havre et appelée Transat Jacques-Vabre jusqu'en 2024. Courue en solitaire la première fois, elle se dispute en double, sans escale ni assistance, depuis 1995. Son arrivée a varié (Carthagène, Salvador de Bahia, Puerto Limón, Itajaí) ; elle est jugée à Fort-de-France depuis 2021.",
+    "editions": [
+      { "annee": 2025, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "Tom Laperche et Franck Cammas", "bateau": "SVR Lazartigue" },
+        { "classe": "Ocean Fifty", "skipper": "Baptiste Hulin et Thomas Rouxel", "bateau": "Viabilis Oceans" },
+        { "classe": "IMOCA", "skipper": "Jérémie Beyou et Morgan Lagravière", "bateau": "Charal" },
+        { "classe": "Class40", "skipper": "Guillaume Pirouelle et Cédric Chateau", "bateau": "Seafrigo Sogestran" }
+      ] },
+      { "annee": 2023, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "Armel Le Cléac'h et Sébastien Josse", "bateau": "Banque Populaire XI" },
+        { "classe": "Ocean Fifty", "skipper": "Thibaut Vauchel-Camus et Quentin Vlamynck", "bateau": "Solidaires en Peloton" },
+        { "classe": "IMOCA", "skipper": "Thomas Ruyant et Morgan Lagravière", "bateau": "For People" },
+        { "classe": "Class40", "skipper": "Ambrogio Beccaria et Nicolas Andrieu", "bateau": "Alla Grande-Pirelli" }
+      ] },
+      { "annee": 2021, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "Franck Cammas et Charles Caudrelier", "bateau": "Maxi Edmond de Rothschild" },
+        { "classe": "Ocean Fifty", "skipper": "Sébastien Rogues et Matthieu Souben", "bateau": "Primonial" },
+        { "classe": "IMOCA", "skipper": "Thomas Ruyant et Morgan Lagravière", "bateau": "Linked Out" },
+        { "classe": "Class40", "skipper": "Antoine Carpentier et Pablo Santurde Del Arco", "bateau": "Redman" }
+      ] },
+      { "annee": 2019, "vainqueurs": [
+        { "classe": "Multi50", "skipper": "Gilles Lamiré et Antoine Carpentier", "bateau": "Groupe GCA - Mille et un sourires" },
+        { "classe": "IMOCA", "skipper": "Charlie Dalin et Yann Eliès", "bateau": "Apivia" },
+        { "classe": "Class40", "skipper": "Ian Lipinski et Adrien Hardy", "bateau": "Crédit Mutuel" }
+      ] },
+      { "annee": 2017, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "Thomas Coville et Jean-Luc Nelias", "bateau": "Sodebo Ultim" },
+        { "classe": "Multi50", "skipper": "Lalou Roucayrol et Alex Pella", "bateau": "Arkema" },
+        { "classe": "IMOCA", "skipper": "Jean-Pierre Dick et Yann Eliès", "bateau": "StMichel-Virbac" },
+        { "classe": "Class40", "skipper": "Maxime Sorel et Antoine Carpentier", "bateau": "V and B - Vaincre la mucoviscidose" }
+      ] },
+      { "annee": 2015, "vainqueurs": [
+        { "classe": "Ultim", "skipper": "François Gabart et Pascal Bidégorry", "bateau": "Macif" },
+        { "classe": "Multi50", "skipper": "Erwan Le Roux et Giancarlo Pedote", "bateau": "FenetreA - Prysmian" },
+        { "classe": "IMOCA", "skipper": "Vincent Riou et Sébastien Col", "bateau": "PRB" },
+        { "classe": "Class40", "skipper": "Yannick Bestaven et Pierre Brasseur", "bateau": "Le Conservateur" }
+      ] },
+      { "annee": 2013, "vainqueurs": [
+        { "classe": "MOD70", "skipper": "Sébastien Josse et Charles Caudrelier", "bateau": "Edmond de Rothschild" },
+        { "classe": "Multi50", "skipper": "Erwan Le Roux et Yann Eliès", "bateau": "FenetreA - Cardinal" },
+        { "classe": "IMOCA", "skipper": "Vincent Riou et Jean Le Cam", "bateau": "PRB" },
+        { "classe": "Class40", "skipper": "Sébastien Rogues et Fabien Delahaye", "bateau": "GDF Suez" }
+      ] },
+      { "annee": 2011, "vainqueurs": [
+        { "classe": "Multi50", "skipper": "Yves Le Blevec et Samuel Manuard", "bateau": "Actual" },
+        { "classe": "IMOCA", "skipper": "Jean-Pierre Dick et Jérémie Beyou", "bateau": "Virbac Paprec 3" },
+        { "classe": "Class40", "skipper": "Yannick Bestaven et Éric Drouglazet", "bateau": "Aquarelle.com" }
+      ] },
+      { "annee": 2009, "vainqueurs": [
+        { "classe": "Multi50", "skipper": "Franck-Yves Escoffier et Erwan Le Roux", "bateau": "Crêpes Whaou" },
+        { "classe": "IMOCA", "skipper": "Marc Guillemot et Charles Caudrelier", "bateau": "Safran" }
+      ] },
+      { "annee": 2007, "vainqueurs": [
+        { "classe": "Multicoques 60 pieds", "skipper": "Franck Cammas et Stève Ravussin", "bateau": "Groupama 2" },
+        { "classe": "Multi50", "skipper": "Franck-Yves Escoffier et Karine Fauconnier", "bateau": "Crêpes Whaou" },
+        { "classe": "IMOCA", "skipper": "Michel Desjoyeaux et Emmanuel Le Borgne", "bateau": "Foncia" },
+        { "classe": "Monocoques 40 pieds", "skipper": "Giovanni Soldini et Pietro d'Ali", "bateau": "Telecom Italia" }
+      ] }
+    ],
+    "sources": [
+      { "titre": "Transat Café L'Or", "url": "https://fr.wikipedia.org/wiki/Transat_Café_L'Or", "langue": "fr" }
+    ]
+  },
+  "Transat Paprec": {
+    "titre": "Transat Paprec",
+    "creation": 1992,
+    "resume": "Transatlantique en double sur monotypes Figaro Bénéteau, disputée tous les deux ans depuis 1992. Successivement appelée Transat Lorient-St-Barth', Transat AG2R et Transat AG2R La Mondiale, elle relie depuis 2006 Concarneau à Saint-Barthélemy, sans escale ni assistance, avec une marque aux Canaries. Depuis 2023, tous les équipages sont mixtes.",
+    "editions": [
+      { "annee": 2025, "vainqueurs": [ { "classe": "Figaro Bénéteau (double)", "skipper": "Charlotte Yven et Hugo Dhallenne", "bateau": "Skipper Macif" } ] },
+      { "annee": 2023, "vainqueurs": [ { "classe": "Figaro Bénéteau (double)", "skipper": "Loïs Berrehar et Charlotte Yven", "bateau": "Skipper Macif" } ] },
+      { "annee": 2021, "vainqueurs": [ { "classe": "Figaro Bénéteau (double)", "skipper": "Nils Palmieri et Julien Villion", "bateau": "TeamWork" } ] },
+      { "annee": 2018, "vainqueurs": [ { "classe": "Figaro Bénéteau (double)", "skipper": "Adrien Hardy et Thomas Ruyant", "bateau": "AGIR Recouvrement" } ] },
+      { "annee": 2016, "vainqueurs": [ { "classe": "Figaro Bénéteau (double)", "skipper": "Thierry Chabagny et Erwan Tabarly", "bateau": "Gédimat" } ] },
+      { "annee": 2014, "vainqueurs": [ { "classe": "Figaro Bénéteau (double)", "skipper": "Gwénolé Gahinet et Paul Meilhat", "bateau": "Safran Guy Cotten" } ] },
+      { "annee": 2012, "vainqueurs": [ { "classe": "Figaro Bénéteau (double)", "skipper": "Gildas Morvan et Charlie Dalin", "bateau": "Cercle vert" } ] },
+      { "annee": 2010, "vainqueurs": [ { "classe": "Figaro Bénéteau (double)", "skipper": "Armel Le Cléac'h et Fabien Delahaye", "bateau": "Brit Air" } ] },
+      { "annee": 2008, "vainqueurs": [ { "classe": "Figaro Bénéteau (double)", "skipper": "Laurent Pellecuer et Jean-Paul Mouren", "bateau": "SNEF et Cliptol Sport" } ] },
+      { "annee": 2006, "vainqueurs": [ { "classe": "Figaro Bénéteau (double)", "skipper": "Kito de Pavant et Pietro d'Ali", "bateau": "Groupe Bel" } ] }
+    ],
+    "sources": [
+      { "titre": "Transat Paprec", "url": "https://fr.wikipedia.org/wiki/Transat_Paprec", "langue": "fr" }
+    ]
+  },
+  "Transpacific Yacht Race (Transpac)": {
+    "titre": "Transpac",
+    "creation": 1906,
+    "resume": "Créée en 1906 et organisée par le Transpacific Yacht Club, cette course biennale des années impaires relie la Californie à Hawaï : départ au large du phare de Point Fermin, à Los Angeles, arrivée devant le phare de Diamond Head, à Honolulu, soit 2 225 milles nautiques.",
+    "editions": [
+      { "annee": 2017, "vainqueurs": [ { "classe": "Temps réel", "skipper": "Manouch Moshayedi", "bateau": "Rio 100" } ] },
+      { "annee": 2015, "vainqueurs": [ { "classe": "Temps réel", "skipper": "Manouch Moshayedi", "bateau": "Rio 100" } ] },
+      { "annee": 2013, "vainqueurs": [ { "classe": "Temps réel", "skipper": "Dave Askew", "bateau": "Wizard" } ] },
+      { "annee": 2011, "vainqueurs": [ { "classe": "Temps réel", "skipper": "Hap Fauth", "bateau": "Bella Mente" } ] },
+      { "annee": 2009, "vainqueurs": [ { "classe": "Temps réel", "skipper": "Neville Crichton", "bateau": "Alfa Romeo" } ] },
+      { "annee": 2007, "vainqueurs": [ { "classe": "Temps réel", "skipper": "Roy Pat Disney", "bateau": "Pyewacket" } ] }
+    ],
+    "sources": [
+      { "titre": "Transpacific Yacht Race", "url": "https://fr.wikipedia.org/wiki/Transpacific_Yacht_Race", "langue": "fr" },
+      { "titre": "Transpacific Yacht Race", "url": "https://en.wikipedia.org/wiki/Transpacific_Yacht_Race", "langue": "en" }
+    ]
+  },
+  "Trophée Jules Verne – tentative Sodebo Ultim 3": {
+    "titre": "Trophée Jules-Verne",
+    "creation": 1992,
+    "resume": "Créé en octobre 1992, ce trophée récompense le tour du monde à la voile le plus rapide en équipage, sans escale ni assistance, sur 21 760 milles orthodromiques, départ et arrivée entre Ouessant et le cap Lizard. Record actuel : Thomas Coville et son équipage (Sodebo Ultim 3), 40 j 10 h 45 min 50 s en janvier 2026.",
+    "editions": [
+      { "annee": 2026, "vainqueurs": [ { "classe": "Record", "skipper": "Thomas Coville", "bateau": "Sodebo Ultim 3" } ] },
+      { "annee": 2017, "vainqueurs": [ { "classe": "Record", "skipper": "Francis Joyon", "bateau": "Idec Sport" } ] },
+      { "annee": 2012, "vainqueurs": [ { "classe": "Record", "skipper": "Loïck Peyron", "bateau": "Maxi Banque Populaire V" } ] },
+      { "annee": 2010, "vainqueurs": [ { "classe": "Record", "skipper": "Franck Cammas", "bateau": "Groupama 3" } ] },
+      { "annee": 2005, "vainqueurs": [ { "classe": "Record", "skipper": "Bruno Peyron", "bateau": "Orange II" } ] },
+      { "annee": 2004, "vainqueurs": [ { "classe": "Record", "skipper": "Olivier de Kersauson", "bateau": "Géronimo" } ] },
+      { "annee": 2002, "vainqueurs": [ { "classe": "Record", "skipper": "Bruno Peyron", "bateau": "Orange" } ] },
+      { "annee": 1997, "vainqueurs": [ { "classe": "Record", "skipper": "Olivier de Kersauson", "bateau": "Sport-Elec" } ] },
+      { "annee": 1994, "vainqueurs": [ { "classe": "Record", "skipper": "Peter Blake et Robin Knox-Johnston", "bateau": "Enza New Zealand" } ] },
+      { "annee": 1993, "vainqueurs": [ { "classe": "Record", "skipper": "Bruno Peyron", "bateau": "Commodore Explorer" } ] }
+    ],
+    "sources": [
+      { "titre": "Trophée Jules-Verne", "url": "https://fr.wikipedia.org/wiki/Trophée_Jules-Verne", "langue": "fr" }
+    ]
+  },
+  "Trophée Jules Verne – tentative The Famous Project CIC": {
+    "titre": "Trophée Jules-Verne",
+    "creation": 1992,
+    "resume": "Créé en octobre 1992, ce trophée récompense le tour du monde à la voile le plus rapide en équipage, sans escale ni assistance, sur 21 760 milles orthodromiques, départ et arrivée entre Ouessant et le cap Lizard. Record actuel : Thomas Coville et son équipage (Sodebo Ultim 3), 40 j 10 h 45 min 50 s en janvier 2026.",
+    "editions": [
+      { "annee": 2026, "vainqueurs": [ { "classe": "Record", "skipper": "Thomas Coville", "bateau": "Sodebo Ultim 3" } ] },
+      { "annee": 2017, "vainqueurs": [ { "classe": "Record", "skipper": "Francis Joyon", "bateau": "Idec Sport" } ] },
+      { "annee": 2012, "vainqueurs": [ { "classe": "Record", "skipper": "Loïck Peyron", "bateau": "Maxi Banque Populaire V" } ] },
+      { "annee": 2010, "vainqueurs": [ { "classe": "Record", "skipper": "Franck Cammas", "bateau": "Groupama 3" } ] },
+      { "annee": 2005, "vainqueurs": [ { "classe": "Record", "skipper": "Bruno Peyron", "bateau": "Orange II" } ] },
+      { "annee": 2004, "vainqueurs": [ { "classe": "Record", "skipper": "Olivier de Kersauson", "bateau": "Géronimo" } ] },
+      { "annee": 2002, "vainqueurs": [ { "classe": "Record", "skipper": "Bruno Peyron", "bateau": "Orange" } ] },
+      { "annee": 1997, "vainqueurs": [ { "classe": "Record", "skipper": "Olivier de Kersauson", "bateau": "Sport-Elec" } ] },
+      { "annee": 1994, "vainqueurs": [ { "classe": "Record", "skipper": "Peter Blake et Robin Knox-Johnston", "bateau": "Enza New Zealand" } ] },
+      { "annee": 1993, "vainqueurs": [ { "classe": "Record", "skipper": "Bruno Peyron", "bateau": "Commodore Explorer" } ] }
+    ],
+    "sources": [
+      { "titre": "Trophée Jules-Verne", "url": "https://fr.wikipedia.org/wiki/Trophée_Jules-Verne", "langue": "fr" }
+    ]
+  },
+  "Vendée Arctique – Les Sables d'Olonne": {
+    "titre": "Vendée Arctique",
+    "creation": 2020,
+    "resume": "Course IMOCA en solitaire créée en 2020 par la SAEM Vendée, organisatrice du Vendée Globe, et intégrée au circuit IMOCA Globe Series. Le départ et l'arrivée sont jugés aux Sables-d'Olonne.",
+    "editions": [
+      { "annee": 2022, "vainqueurs": [ { "classe": "IMOCA", "skipper": "Charlie Dalin", "bateau": "Apivia" } ] },
+      { "annee": 2020, "vainqueurs": [ { "classe": "IMOCA", "skipper": "Jérémie Beyou", "bateau": "Charal" } ] }
+    ],
+    "sources": [
+      { "titre": "Vendée Arctique", "url": "https://fr.wikipedia.org/wiki/Vendée_Arctique", "langue": "fr" }
+    ]
+  }
+}

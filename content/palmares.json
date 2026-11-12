@@ -1,0 +1,1120 @@
+{
+  "note": "Palmarès des courses phares qui ne figurent pas au calendrier de la saison (content/courses-histoire.json les couvre sinon). Un vainqueur et son bateau par édition, d'après la source indiquée.",
+  "vendee-globe": {
+    "titre": "Vendée Globe",
+    "sources": [
+      {
+        "titre": "Vendée Globe (Wikipedia, en)",
+        "url": "https://en.wikipedia.org/wiki/Vend%C3%A9e_Globe"
+      }
+    ],
+    "editions": [
+      {
+        "annee": 2024,
+        "vainqueurs": [
+          {
+            "skipper": "Charlie Dalin",
+            "bateau": "Macif Santé Prévoyance"
+          }
+        ]
+      },
+      {
+        "annee": 2020,
+        "vainqueurs": [
+          {
+            "skipper": "Yannick Bestaven",
+            "bateau": "Maître Coq IV"
+          }
+        ]
+      },
+      {
+        "annee": 2016,
+        "vainqueurs": [
+          {
+            "skipper": "Armel Le Cléac'h",
+            "bateau": "Banque Populaire VIII"
+          }
+        ]
+      },
+      {
+        "annee": 2012,
+        "vainqueurs": [
+          {
+            "skipper": "François Gabart",
+            "bateau": "Macif"
+          }
+        ]
+      },
+      {
+        "annee": 2008,
+        "vainqueurs": [
+          {
+            "skipper": "Michel Desjoyeaux",
+            "bateau": "Foncia"
+          }
+        ]
+      },
+      {
+        "annee": 2004,
+        "vainqueurs": [
+          {
+            "skipper": "Vincent Riou",
+            "bateau": "PRB 2"
+          }
+        ]
+      },
+      {
+        "annee": 2000,
+        "vainqueurs": [
+          {
+            "skipper": "Michel Desjoyeaux",
+            "bateau": "PRB 2"
+          }
+        ]
+      },
+      {
+        "annee": 1996,
+        "vainqueurs": [
+          {
+            "skipper": "Christophe Auguin",
+            "bateau": "Geodis"
+          }
+        ]
+      },
+      {
+        "annee": 1992,
+        "vainqueurs": [
+          {
+            "skipper": "Alain Gautier",
+            "bateau": "Bagages Superior"
+          }
+        ]
+      },
+      {
+        "annee": 1989,
+        "vainqueurs": [
+          {
+            "skipper": "Titouan Lamazou",
+            "bateau": "Écureuil d'Aquitaine II"
+          }
+        ]
+      }
+    ],
+    "disparus": [
+      {
+        "annee": 1997,
+        "skipper": "Gerry Roufs",
+        "note": "Disparu en mer pendant le Vendée Globe 1996-1997."
+      }
+    ]
+  },
+  "mini-transat": {
+    "titre": "Mini Transat",
+    "note": "Éditions 1977-2005 d'après l'article Transat 6.50 ; les éditions suivantes viennent des articles d'édition (content/resultats.json, content/courses-histoire.json). Numéro : numéro de coque donné par l'article.",
+    "sources": [
+      {
+        "titre": "Transat 6.50 (Wikipédia)",
+        "url": "https://fr.wikipedia.org/wiki/Transat_6.50"
+      }
+    ],
+    "editions": [
+      {
+        "annee": 2005,
+        "vainqueurs": [
+          {
+            "classe": "Proto",
+            "skipper": "Corentin Douguet",
+            "bateau": "E. Leclerc - Bouygues Telecom",
+            "numero": "433"
+          },
+          {
+            "classe": "Série",
+            "skipper": "Peter Laureyssens",
+            "bateau": "Wellments",
+            "numero": "438"
+          }
+        ]
+      },
+      {
+        "annee": 2003,
+        "vainqueurs": [
+          {
+            "classe": "Proto",
+            "skipper": "Armel Tripon",
+            "bateau": "Moulin Roty",
+            "numero": "151"
+          },
+          {
+            "classe": "Série",
+            "skipper": "Erwan Tymen",
+            "bateau": "Pogo 2 Navy Lest",
+            "numero": "426"
+          }
+        ]
+      },
+      {
+        "annee": 2001,
+        "vainqueurs": [
+          {
+            "classe": "Proto",
+            "skipper": "Yannick Bestaven",
+            "bateau": "Aquarelle.com",
+            "numero": "304"
+          },
+          {
+            "classe": "Série",
+            "skipper": "Olivier Desport",
+            "bateau": "My Workplace",
+            "numero": "237"
+          }
+        ]
+      },
+      {
+        "annee": 1999,
+        "vainqueurs": [
+          {
+            "classe": "Proto",
+            "skipper": "Sébastien Magnen",
+            "bateau": "Jeanneau-Voile Magazine",
+            "numero": "198"
+          },
+          {
+            "classe": "Série",
+            "skipper": "Christian Bouroullec",
+            "bateau": "Pogo",
+            "numero": "167"
+          }
+        ]
+      },
+      {
+        "annee": 1997,
+        "vainqueurs": [
+          {
+            "classe": "Proto",
+            "skipper": "Sébastien Magnen",
+            "bateau": "Karen Liquid",
+            "numero": "198"
+          },
+          {
+            "classe": "Série",
+            "skipper": "Erwan Grouhel",
+            "bateau": "Le Bateau du Fret Aérien",
+            "numero": "175"
+          }
+        ]
+      },
+      {
+        "annee": 1995,
+        "vainqueurs": [
+          {
+            "classe": "Proto",
+            "skipper": "Yvan Bourgnon",
+            "bateau": "Omapi Saint Brevin",
+            "numero": "291"
+          },
+          {
+            "classe": "Série",
+            "skipper": "Erwan Grouhel",
+            "bateau": "Rococo",
+            "numero": "6"
+          }
+        ]
+      },
+      {
+        "annee": 1993,
+        "vainqueurs": [
+          {
+            "classe": "Proto",
+            "skipper": "Thierry Dubois",
+            "bateau": "Amnesty International",
+            "numero": "132"
+          },
+          {
+            "classe": "Série",
+            "skipper": "Laurent Vancutsem",
+            "bateau": "Coco Virus",
+            "numero": "20"
+          }
+        ]
+      },
+      {
+        "annee": 1991,
+        "vainqueurs": [
+          {
+            "classe": "Proto",
+            "skipper": "Damien Grimont",
+            "bateau": "GTM Entrepose",
+            "numero": "84"
+          },
+          {
+            "classe": "Série",
+            "skipper": "Goulven Guillou",
+            "bateau": "Ar Begenn"
+          }
+        ]
+      },
+      {
+        "annee": 1989,
+        "vainqueurs": [
+          {
+            "classe": "Proto",
+            "skipper": "Philippe Vicariot",
+            "bateau": "Thom Pouss"
+          },
+          {
+            "classe": "Série",
+            "skipper": "Loïck Blanken",
+            "bateau": "Bi-Energie Douarnenez"
+          }
+        ]
+      },
+      {
+        "annee": 1987,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Gilles Chiorri",
+            "bateau": "Exa"
+          }
+        ]
+      },
+      {
+        "annee": 1985,
+        "vainqueurs": [
+          {
+            "classe": "Proto",
+            "skipper": "Yves Parlier",
+            "bateau": "Aquitaine"
+          }
+        ]
+      },
+      {
+        "annee": 1983,
+        "vainqueurs": [
+          {
+            "classe": "Proto",
+            "skipper": "Stéphane Poughon",
+            "bateau": "Voiles Cudennec"
+          }
+        ]
+      },
+      {
+        "annee": 1981,
+        "vainqueurs": [
+          {
+            "classe": "Proto",
+            "skipper": "Jacques Peignon",
+            "bateau": "Iles du Ponant"
+          }
+        ]
+      },
+      {
+        "annee": 1979,
+        "vainqueurs": [
+          {
+            "classe": "Proto",
+            "skipper": "Norton Smith",
+            "bateau": "American Express"
+          },
+          {
+            "classe": "Série",
+            "skipper": "Guy Royant"
+          }
+        ]
+      },
+      {
+        "annee": 1977,
+        "vainqueurs": [
+          {
+            "classe": "Proto",
+            "skipper": "Daniel Gilard",
+            "bateau": "Petit Dauphin"
+          }
+        ]
+      }
+    ]
+  },
+  "route-du-rhum": {
+    "titre": "Route du Rhum",
+    "note": "Premier arrivé, toutes classes confondues, d’après l’article Route du Rhum.",
+    "sources": [
+      {
+        "titre": "Route du Rhum (Wikipédia)",
+        "url": "https://fr.wikipedia.org/wiki/Route_du_Rhum"
+      }
+    ],
+    "editions": [
+      {
+        "annee": 1998,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Laurent Bourgnon",
+            "bateau": "Primagaz"
+          }
+        ]
+      },
+      {
+        "annee": 1994,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Laurent Bourgnon",
+            "bateau": "Primagaz"
+          }
+        ]
+      },
+      {
+        "annee": 1990,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Florence Arthaud",
+            "bateau": "Pierre 1er"
+          }
+        ]
+      },
+      {
+        "annee": 1986,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Philippe Poupon",
+            "bateau": "Fleury Michon VIII"
+          }
+        ]
+      },
+      {
+        "annee": 1982,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Marc Pajot",
+            "bateau": "Elf Aquitaine"
+          }
+        ]
+      },
+      {
+        "annee": 1978,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Mike Birch",
+            "bateau": "Olympus Photo"
+          }
+        ]
+      }
+    ]
+  },
+  "transat-jacques-vabre": {
+    "titre": "Transat Jacques-Vabre",
+    "note": "1993-2005 d’après l’article Transat Jacques-Vabre : premier multicoque et premier monocoque de chaque classe. Les 60 pieds monocoques sont les IMOCA ; les multicoques de 50 pieds, l’ancêtre des Multi50.",
+    "sources": [
+      {
+        "titre": "Transat Jacques-Vabre (Wikipédia)",
+        "url": "https://fr.wikipedia.org/wiki/Transat_Jacques-Vabre"
+      }
+    ],
+    "editions": [
+      {
+        "annee": 2005,
+        "vainqueurs": [
+          {
+            "classe": "Multicoques 60 pieds",
+            "skipper": "Pascal Bidégorry et Lionel Lemonchois",
+            "bateau": "Banque Populaire IV"
+          },
+          {
+            "classe": "Multi50",
+            "skipper": "Franck-Yves Escoffier et Kevin Escoffier",
+            "bateau": "Crêpes Whaou"
+          },
+          {
+            "classe": "IMOCA",
+            "skipper": "Jean-Pierre Dick et Loïck Peyron",
+            "bateau": "Virbac Paprec"
+          },
+          {
+            "classe": "Monocoques 50 pieds",
+            "skipper": "Joe Harris et Josh Hall",
+            "bateau": "Gryphon Solo"
+          }
+        ]
+      },
+      {
+        "annee": 2003,
+        "vainqueurs": [
+          {
+            "classe": "Multicoques 60 pieds",
+            "skipper": "Franck Cammas et Franck Proffit",
+            "bateau": "Groupama"
+          },
+          {
+            "classe": "Multi50",
+            "skipper": "Ross Hobson et Andy Newman",
+            "bateau": "Mollymawk"
+          },
+          {
+            "classe": "IMOCA",
+            "skipper": "Jean-Pierre Dick et Nicolas Abiven",
+            "bateau": "Virbac"
+          },
+          {
+            "classe": "Monocoques 50 pieds",
+            "skipper": "Conrad Humphreys et Paul Larsen",
+            "bateau": "Hellomoto"
+          }
+        ]
+      },
+      {
+        "annee": 2001,
+        "vainqueurs": [
+          {
+            "classe": "Multicoques 60 pieds",
+            "skipper": "Franck Cammas et Stève Ravussin",
+            "bateau": "Groupama"
+          },
+          {
+            "classe": "IMOCA",
+            "skipper": "Roland Jourdain et Gaël Le Cléac’h",
+            "bateau": "Sill"
+          },
+          {
+            "classe": "Monocoques 50 pieds",
+            "skipper": "Alex Bennett et Paul Larsen",
+            "bateau": "One Dream One Mission"
+          }
+        ]
+      },
+      {
+        "annee": 1999,
+        "vainqueurs": [
+          {
+            "classe": "Multicoques 60 pieds",
+            "skipper": "Loïck Peyron et Franck Proffit",
+            "bateau": "Fujicolor II"
+          },
+          {
+            "classe": "IMOCA",
+            "skipper": "Thomas Coville et Hervé Jan",
+            "bateau": "Sodebo"
+          },
+          {
+            "classe": "Monocoques 50 pieds",
+            "skipper": "Emma Richards et Miranda Merron",
+            "bateau": "Pindar"
+          }
+        ]
+      },
+      {
+        "annee": 1997,
+        "vainqueurs": [
+          {
+            "classe": "Multicoques 60 pieds",
+            "skipper": "Laurent Bourgnon et Yvan Bourgnon",
+            "bateau": "Primagaz"
+          },
+          {
+            "classe": "IMOCA",
+            "skipper": "Yves Parlier et Éric Tabarly",
+            "bateau": "Aquitaine Innovations"
+          }
+        ]
+      },
+      {
+        "annee": 1995,
+        "vainqueurs": [
+          {
+            "classe": "Multicoques 60 pieds",
+            "skipper": "Paul Vatine et Roland Jourdain",
+            "bateau": "Région Haute-Normandie"
+          },
+          {
+            "classe": "IMOCA",
+            "skipper": "Jean Maurel et Fred Dahirel",
+            "bateau": "Côte d’Or"
+          }
+        ]
+      },
+      {
+        "annee": 1993,
+        "vainqueurs": [
+          {
+            "classe": "Multicoques 60 pieds",
+            "skipper": "Paul Vatine",
+            "bateau": "Région Haute-Normandie"
+          },
+          {
+            "classe": "IMOCA",
+            "skipper": "Yves Parlier",
+            "bateau": "Cacolac d’Aquitaine"
+          }
+        ]
+      }
+    ]
+  },
+  "the-ocean-race": {
+    "titre": "The Ocean Race",
+    "note": "Vainqueurs d’après l’article The Ocean Race (Whitbread jusqu’en 1998, Volvo Ocean Race de 2001 à 2018). Année : celle du départ.",
+    "sources": [
+      {
+        "titre": "The Ocean Race (Wikipédia)",
+        "url": "https://fr.wikipedia.org/wiki/The_Ocean_Race"
+      }
+    ],
+    "editions": [
+      {
+        "annee": 2022,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Charlie Enright",
+            "bateau": "11th Hour Racing (Malama)"
+          }
+        ]
+      },
+      {
+        "annee": 2017,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Charles Caudrelier",
+            "bateau": "Dongfeng Race Team"
+          }
+        ]
+      },
+      {
+        "annee": 2014,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Ian Walker",
+            "bateau": "Abu Dhabi Ocean Racing"
+          }
+        ]
+      },
+      {
+        "annee": 2011,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Franck Cammas",
+            "bateau": "Groupama 4"
+          }
+        ]
+      },
+      {
+        "annee": 2008,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Torben Grael",
+            "bateau": "Ericsson 4"
+          }
+        ]
+      },
+      {
+        "annee": 2005,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Mike Sanderson",
+            "bateau": "ABN AMRO One"
+          }
+        ]
+      },
+      {
+        "annee": 2001,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "John Kostecki",
+            "bateau": "Illbruck Challenge"
+          }
+        ]
+      },
+      {
+        "annee": 1997,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Paul Cayard",
+            "bateau": "EF Language"
+          }
+        ]
+      },
+      {
+        "annee": 1993,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Grant Dalton",
+            "bateau": "NZ Endeavour"
+          }
+        ]
+      },
+      {
+        "annee": 1989,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Peter Blake",
+            "bateau": "Steinlager 2"
+          }
+        ]
+      },
+      {
+        "annee": 1985,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Lionel Péan",
+            "bateau": "L’Esprit d’Équipe"
+          }
+        ]
+      },
+      {
+        "annee": 1981,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Cornelius van Rietschoten",
+            "bateau": "Flyer II"
+          }
+        ]
+      },
+      {
+        "annee": 1977,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Cornelius van Rietschoten",
+            "bateau": "Flyer"
+          }
+        ]
+      },
+      {
+        "annee": 1973,
+        "vainqueurs": [
+          {
+            "classe": "Classement général",
+            "skipper": "Ramón Carlín",
+            "bateau": "Sayula II"
+          }
+        ]
+      }
+    ]
+  },
+  "fastnet-race": {
+    "titre": "Fastnet Race",
+    "note": "Vainqueur au classement général en temps compensé (Fastnet Challenge Cup), 1925-2005, d’après le tableau de l’article anglais ; propriétaire ou skipper. Les éditions suivantes viennent de content/courses-histoire.json.",
+    "sources": [
+      {
+        "titre": "Fastnet Race (Wikipedia, en)",
+        "url": "https://en.wikipedia.org/wiki/Fastnet_Race"
+      }
+    ],
+    "editions": [
+      {
+        "annee": 2005,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Jean-Yves Chateau",
+            "bateau": "Iromiguy"
+          }
+        ]
+      },
+      {
+        "annee": 2003,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Charles Dunstone",
+            "bateau": "Nokia Enigma"
+          }
+        ]
+      },
+      {
+        "annee": 2001,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Piet Vroon",
+            "bateau": "Tonnerre de Breskens"
+          }
+        ]
+      },
+      {
+        "annee": 1999,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Catherine Chabaud",
+            "bateau": "Whirlpool-Europe 2"
+          }
+        ]
+      },
+      {
+        "annee": 1997,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Gunnar Ekdahl",
+            "bateau": "Royal Blue"
+          }
+        ]
+      },
+      {
+        "annee": 1995,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Ludde Ingvall",
+            "bateau": "Nicorette"
+          }
+        ]
+      },
+      {
+        "annee": 1991,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "John Humphries et Matt Humphries",
+            "bateau": "Min-O-Din"
+          }
+        ]
+      },
+      {
+        "annee": 1989,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "John Calvert-Jones et Tom Blackaller",
+            "bateau": "Great News"
+          }
+        ]
+      },
+      {
+        "annee": 1987,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Stephen Fein",
+            "bateau": "Irish Independent / Full Pelt"
+          }
+        ]
+      },
+      {
+        "annee": 1985,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Peter Whipp",
+            "bateau": "Panda"
+          }
+        ]
+      },
+      {
+        "annee": 1983,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Maller et Snoeren",
+            "bateau": "Shamrock"
+          }
+        ]
+      },
+      {
+        "annee": 1981,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Taylor et Volterys",
+            "bateau": "Mordicus"
+          }
+        ]
+      },
+      {
+        "annee": 1979,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Ted Turner",
+            "bateau": "Tenacious"
+          }
+        ]
+      },
+      {
+        "annee": 1977,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "David Allen",
+            "bateau": "Imp"
+          }
+        ]
+      },
+      {
+        "annee": 1975,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Richard et Harvey Bagnall",
+            "bateau": "Golden Delicious"
+          }
+        ]
+      },
+      {
+        "annee": 1973,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Erling Lorentzen",
+            "bateau": "Saga"
+          }
+        ]
+      },
+      {
+        "annee": 1971,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Syd Fischer",
+            "bateau": "Ragamuffin"
+          }
+        ]
+      },
+      {
+        "annee": 1969,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Dick Carter",
+            "bateau": "Red Rooster"
+          }
+        ]
+      },
+      {
+        "annee": 1967,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Éric Tabarly",
+            "bateau": "Pen Duick III"
+          }
+        ]
+      },
+      {
+        "annee": 1965,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Dick Carter",
+            "bateau": "Rabbit"
+          }
+        ]
+      },
+      {
+        "annee": 1963,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Derek Boyer",
+            "bateau": "Clarion of Wight"
+          }
+        ]
+      },
+      {
+        "annee": 1961,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Otto van der Vorm",
+            "bateau": "Zwerver II"
+          }
+        ]
+      },
+      {
+        "annee": 1959,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Sven Hansen",
+            "bateau": "Anitra"
+          }
+        ]
+      },
+      {
+        "annee": 1957,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Dick Nye",
+            "bateau": "Carina"
+          }
+        ]
+      },
+      {
+        "annee": 1955,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Dick Nye",
+            "bateau": "Carina"
+          }
+        ]
+      },
+      {
+        "annee": 1953,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Michael Newton",
+            "bateau": "Favona"
+          }
+        ]
+      },
+      {
+        "annee": 1951,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Owen Aisher",
+            "bateau": "Yeoman"
+          }
+        ]
+      },
+      {
+        "annee": 1949,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "John Illingworth",
+            "bateau": "Myth of Malham"
+          }
+        ]
+      },
+      {
+        "annee": 1947,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "John Illingworth",
+            "bateau": "Myth of Malham"
+          }
+        ]
+      },
+      {
+        "annee": 1939,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Ike Bell",
+            "bateau": "Bloodhound"
+          }
+        ]
+      },
+      {
+        "annee": 1937,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Kees Bruynzeel",
+            "bateau": "Zeearend"
+          }
+        ]
+      },
+      {
+        "annee": 1935,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Philip LeBoutillier",
+            "bateau": "Stormy Weather"
+          }
+        ]
+      },
+      {
+        "annee": 1933,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Roderick Stephens",
+            "bateau": "Dorade"
+          }
+        ]
+      },
+      {
+        "annee": 1931,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Roderick Stephens",
+            "bateau": "Dorade"
+          }
+        ]
+      },
+      {
+        "annee": 1930,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "E. G. Martin",
+            "bateau": "Jolie Brise"
+          }
+        ]
+      },
+      {
+        "annee": 1929,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "E. G. Martin",
+            "bateau": "Jolie Brise"
+          }
+        ]
+      },
+      {
+        "annee": 1928,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Paul Hammond",
+            "bateau": "Niña"
+          }
+        ]
+      },
+      {
+        "annee": 1927,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Baron Stalbridge",
+            "bateau": "Tally Ho"
+          }
+        ]
+      },
+      {
+        "annee": 1926,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "Royal Engineers",
+            "bateau": "Ilex"
+          }
+        ]
+      },
+      {
+        "annee": 1925,
+        "vainqueurs": [
+          {
+            "classe": "Fastnet Challenge Cup (temps compensé)",
+            "skipper": "E. G. Martin",
+            "bateau": "Jolie Brise"
+          }
+        ]
+      }
+    ]
+  }
+}
