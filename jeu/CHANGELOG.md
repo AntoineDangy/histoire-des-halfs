@@ -1,7 +1,7 @@
 # Journal des versions
 
 ## 12/11/2026 · le jeu devient open source
-- Demande du propriétaire : le jeu est publié dans le dépôt public https://github.com/AntoineDangy/histoire-des-halfs (dossier `jeu/`), sous licence MIT, et chacun peut le déployer. README réécrit (démarrer, tester, déployer son serveur de salons et son site). L'adresse du serveur de salons se règle à la construction (`VITE_SERVEUR`), le serveur officiel restant la valeur par défaut. Non recopiés : le livret de règles du jeu MB de 1987, les photos de référence des bateaux, les images de travail. Recopie : `outils/open-source/publier-jeu.mjs` (à la racine du dépôt privé).
+- Demande du propriétaire : le jeu est publié dans le dépôt public https://github.com/AntoineDangy/histoire-des-halfs (dossier `jeu/`), sous licence MIT, et chacun peut le déployer. README réécrit (démarrer, tester, déployer son serveur de salons et son site). L'adresse du serveur de salons se règle à la construction (`VITE_SERVEUR`), le serveur officiel restant la valeur par défaut. Non recopiés : le livret de règles du jeu MB de 1987, les photos de référence des bateaux, les images de travail. Recopie : `outils/open-source/publier.mjs` (à la racine du dépôt privé), qui met à jour tout le dépôt public (site, données, outils et jeu).
 
 ## Mise en ligne 44042581 (12/11/2026), serveur réseau inchangé (50ed74b3) · numéro de version à l'accueil
 Avec l'accord du propriétaire (« Publish both ») ; vérifié en ligne : « Version 0.4.196 · mise à jour le 12 novembre 2026 à 11 h 59 ». Le site est mis en ligne en même temps (adf6b9f4, « Version 1.0.173 »).
