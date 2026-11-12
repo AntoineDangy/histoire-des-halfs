@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import type { EtatPartie, NiveauIA, ReglagesSalon } from '@cal/engine';
-import { bateauDef, competenceDef, D, familleDef, NIVEAUX_IA, nomClasse, REGLAGES_DEFAUT, skippersDe } from '../commun';
+import { NIVEAU_QUIZ_DEFAUT, niveauQuizValide } from '@cal/engine';
+import type { EtatPartie, NiveauIA, NiveauQuiz, ReglagesSalon } from '@cal/engine';
+import { bateauDef, competenceDef, D, DE_LARGE, faces, familleDef, NIVEAUX_IA, NIVEAUX_QUIZ, nomClasse, REGLAGES_DEFAUT, skippersDe } from '../commun';
 import { Connexion, creerSalon, EtatConnexion } from '../reseau';
 import Jeu from './Jeu';
 
@@ -17,6 +18,14 @@ export default function Reseau({ codeInitial, onRetour, onFin }: Props) {
       return localStorage.getItem('cal-nom') ?? '';
     } catch {
       return '';
+    }
+  });
+  // Niveau des questions : choisi par chaque joueur dans le salon, mémorisé sur l'appareil (12/11/2026).
+  const [niveauQuiz, setNiveauQuiz] = useState<NiveauQuiz>(() => {
+    try {
+      return niveauQuizValide(Number(localStorage.getItem('cal-niveau-quiz'))) ?? NIVEAU_QUIZ_DEFAUT;
+    } catch {
+      return NIVEAU_QUIZ_DEFAUT;
     }
   });
   const [mode, setMode] = useState<'choix' | 'creer' | 'rejoindre'>(codeInitial ? 'rejoindre' : 'choix');
@@ -36,10 +45,20 @@ export default function Reseau({ codeInitial, onRetour, onFin }: Props) {
       /* sans conséquence */
     }
     conn.current?.fermer();
-    conn.current = new Connexion(c, nom.trim() || 'Skipper', (e) => setCx({ ...e }));
+    conn.current = new Connexion(c, nom.trim() || 'Skipper', (e) => setCx({ ...e }), niveauQuiz);
     const url = new URL(window.location.href);
     url.searchParams.set('salon', c);
     window.history.replaceState(null, '', url.toString());
+  };
+
+  const choisirNiveau = (n: NiveauQuiz) => {
+    setNiveauQuiz(n);
+    try {
+      localStorage.setItem('cal-niveau-quiz', String(n));
+    } catch {
+      /* sans conséquence */
+    }
+    conn.current?.envoyer({ t: 'niveauQuiz', niveau: n });
   };
 
   const creer = async () => {
@@ -121,7 +140,10 @@ export default function Reseau({ codeInitial, onRetour, onFin }: Props) {
                   <b>{j.nom}</b>
                   {j.hote && <span className="tag-joueur">hôte</span>}
                   {i === cx.moiIndex && <span className="muted">(vous)</span>}
-                  <span className="muted" style={{ marginLeft: 'auto' }}>{j.skipperId ? D.skippers.find((k) => k.id === j.skipperId)?.nom_affiche : 'choisit son skipper…'}</span>
+                  <span className="muted" style={{ marginLeft: 'auto' }}>
+                    {j.skipperId ? D.skippers.find((k) => k.id === j.skipperId)?.nom_affiche : 'choisit son skipper…'}
+                    {s.reglages.options.quiz && ` · questions ${NIVEAUX_QUIZ[j.niveauQuiz ?? NIVEAU_QUIZ_DEFAUT]}`}
+                  </span>
                 </li>
               ))}
               {Array.from({ length: Math.max(0, s.reglages.nbBateaux - s.joueurs.length) }, (_, i) => (
@@ -129,6 +151,18 @@ export default function Reseau({ codeInitial, onRetour, onFin }: Props) {
               ))}
             </ul>
           </div>
+
+          {s.reglages.options.quiz && moi && (
+            <div className="panneau" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <span className="lbl">Vos questions de culture marine</span>
+              <div className="segment">
+                {([1, 2, 3] as NiveauQuiz[]).map((n) => (
+                  <button key={n} aria-pressed={(moi.niveauQuiz ?? NIVEAU_QUIZ_DEFAUT) === n} onClick={() => choisirNiveau(n)}>{NIVEAUX_QUIZ[n]}</button>
+                ))}
+              </div>
+              <span className="muted" style={{ fontSize: 13 }}>Chacun choisit le niveau de ses propres questions, jusqu'au départ.</span>
+            </div>
+          )}
 
           <h2 style={{ fontSize: 20 }}>{moi?.skipperId ? 'Votre skipper' : 'Choisissez votre skipper'}</h2>
           <div className="cartes">
@@ -208,8 +242,8 @@ export default function Reseau({ codeInitial, onRetour, onFin }: Props) {
                 ))}
               </div>
             </div>
-            <label className="case-cocher"><input type="checkbox" checked={reglages.options.quiz} onChange={(e) => setReglages({ ...reglages, options: { ...reglages.options, quiz: e.target.checked } })} /> Questions de culture marine (dé du large : 3 ou 4)</label>
-            <label className="case-cocher"><input type="checkbox" checked={reglages.options.evenements !== false} onChange={(e) => setReglages({ ...reglages, options: { ...reglages.options, evenements: e.target.checked } })} /> Cartes du large (dé du large : 5 ou 6)</label>
+            <label className="case-cocher"><input type="checkbox" checked={reglages.options.quiz} onChange={(e) => setReglages({ ...reglages, options: { ...reglages.options, quiz: e.target.checked } })} /> Questions de culture marine (dé du large : {faces(DE_LARGE.question)} ; chaque joueur choisit son niveau dans le salon)</label>
+            <label className="case-cocher"><input type="checkbox" checked={reglages.options.evenements !== false} onChange={(e) => setReglages({ ...reglages, options: { ...reglages.options, evenements: e.target.checked } })} /> Cartes du large (dé du large : {faces(DE_LARGE.carte)})</label>
             <div className="barre-actions">
               <button className="btn" onClick={() => setMode('choix')}>← Retour</button>
               <button className="btn btn-principal" disabled={!nom.trim()} onClick={creer}>Créer le salon</button>

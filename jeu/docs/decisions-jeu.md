@@ -4,6 +4,7 @@
 
 | Date | Décision |
 |---|---|
+| 12/11/2026 | **Jeu en réseau : chaque joueur choisit le niveau de ses questions** de culture marine (Moussaillon, Skipper, Vieux loup de mer), dans le salon, jusqu'au départ (demande du porteur de projet). Par défaut : Skipper (niveau 2), comme avant ; le choix est mémorisé sur l'appareil. Les IA restent au niveau 2. Protocole : `niveauQuiz` dans `JoueurSalon` et le message `rejoindre`, message `niveauQuiz` (`packages/engine/src/reseau.ts`). |
 | 12/11/2026 | **Navigateur et Météorologue : malus seulement pour les grands changements** (passage près ↔ portant ; virage de 90° et plus). **Une même coque peut être menée par plusieurs skippers** dans le jeu, sans importance. |
 | 12/11/2026 | **Compétences en un mot, liées à la vraie vie du marin** (remplacent les traits de caractère) ; 15 skippers en IMOCA, Class40 et Ocean Fifty, skippers actuels de la classe d'abord ; plus de femmes en IMOCA ; Kevin Escoffier n'apparaît pas dans le jeu. Navigateur et Météorologue **estiment** le prochain vent (force / orientation), avec un risque d'erreur (juste 3 fois sur 4), et perdent 1 case à chaque changement de voile / de cap. Détail : `conception/competences.md`. |
 | 12/11/2026 | **Une même coque peut figurer plusieurs fois en Ultim sous ses noms successifs**, chacune avec le skipper qui l'a menée (confirmé par le porteur de projet) : Macif / Actual / Actual Ultim 3 (trimaran de 2015), Gitana 17 / Maxi Edmond de Rothschild, Idec Sport / IDEC. Groupe Dubreuil est l'ex-11th Hour Racing (2021). |

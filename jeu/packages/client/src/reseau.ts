@@ -1,5 +1,5 @@
 // Connexion au serveur de salons (jeu en réseau).
-import type { Action, EtatPartie, MessageClient, MessageServeur, ReglagesSalon, VueSalon } from '@cal/engine';
+import type { Action, EtatPartie, MessageClient, MessageServeur, NiveauQuiz, ReglagesSalon, VueSalon } from '@cal/engine';
 
 /**
  * Adresse du serveur de salons. Par défaut, celui de la version officielle ; pour un autre déploiement ou en local,
@@ -46,7 +46,7 @@ export class Connexion {
   readonly jeton: string;
   etat: EtatConnexion = { salon: null, moiIndex: -1, etat: null, moi: null, ontChoisi: [], erreur: null, connecte: false };
 
-  constructor(readonly code: string, private nom: string, private surChange: (e: EtatConnexion) => void) {
+  constructor(readonly code: string, private nom: string, private surChange: (e: EtatConnexion) => void, private niveauQuiz?: NiveauQuiz) {
     this.jeton = jetonPour(code);
     this.ouvrir();
   }
@@ -57,7 +57,7 @@ export class Connexion {
     ws.onopen = () => {
       this.essais = 0;
       this.maj({ connecte: true, erreur: null });
-      this.envoyer({ t: 'rejoindre', jeton: this.jeton, nom: this.nom });
+      this.envoyer({ t: 'rejoindre', jeton: this.jeton, nom: this.nom, niveauQuiz: this.niveauQuiz });
     };
     ws.onmessage = (e) => {
       const m = JSON.parse(e.data as string) as MessageServeur;

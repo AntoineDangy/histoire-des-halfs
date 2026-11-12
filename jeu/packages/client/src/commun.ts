@@ -4,6 +4,14 @@ import type { Donnees, NiveauIA, OptionsPartie, ParticipantParams } from '@cal/e
 
 export const D = donneesBrutes as unknown as Donnees;
 
+/** Faces du dé du large, selon la configuration (regles.json : 4-5-6 carte, 2-3 question, 1 rien depuis le 11/11/2026). */
+export const DE_LARGE = (() => {
+  const r = D.regles.de_du_large ?? { carte: [4, 5, 6], question: [2, 3] };
+  return { carte: r.carte, question: r.question, rien: [1, 2, 3, 4, 5, 6].filter((n) => !r.carte.includes(n) && !r.question.includes(n)) };
+})();
+/** « 4, 5 ou 6 ». */
+export const faces = (l: number[]) => (l.length > 1 ? `${l.slice(0, -1).join(', ')} ou ${l[l.length - 1]}` : String(l[0] ?? '—'));
+
 /** Textes d'interface partagés (préparation à l'internationalisation, §0.5). */
 export const RISQUES = [
   { couleur: 'var(--r0)', texte: '#04121f', icone: '○', libelle: 'Aucun risque', court: 'Nul' },

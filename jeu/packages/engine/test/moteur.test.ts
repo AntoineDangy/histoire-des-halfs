@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { donneesBrutes } from '../../data/index';
 import {
   angleAllure, appliquer, bateauxAttendus, calculerDistance, calculerRisque, choisirIA, classement, compilerCarte,
-  controlerJournal, creerPartie, dansAlize, distanceAttendue, distanceRestanteCase, facesForce, humainsAttendus, perteCarte, rejouer, terreFine, tracerChemin, ventCourant,
+  controlerJournal, creerPartie, dansAlize, distanceAttendue, distanceRestanteCase, facesForce, humainsAttendus, NIVEAU_QUIZ_DEFAUT, niveauQuizValide, perteCarte, rejouer, terreFine, tracerChemin, ventCourant,
 } from '../src/index';
 import type { Action, CourseDef, Donnees, EtatPartie, ParamsPartie } from '../src/index';
 
@@ -490,6 +490,38 @@ describe('enchaînement des tours', () => {
         e = appliquer(d, e, { type: 'ChoisirCapEtVoile', bateauId: h.id, choix: choisirIA(d, e, h.id, { utilisableMaintenant: true }) });
       }
     }
+  });
+});
+
+describe('jeu en réseau : niveau des questions de chaque joueur (12/11/2026)', () => {
+  it("chaque joueur humain reçoit les questions du niveau qu'il a choisi", () => {
+    // Dé du large réglé pour donner une question à chaque tour, sans carte.
+    const dd: Donnees = { ...d, regles: { ...d.regles, de_du_large: { carte: [], question: [1, 2, 3, 4, 5, 6] } } };
+    const p = params(5, 2, { quiz: true }); // l'option evenements: false couperait tout le dé du large, questions comprises
+    p.participants[0].niveauQuiz = 1;
+    p.participants[1].niveauQuiz = 3;
+    let e = creerPartie(dd, p);
+    const vus: Record<string, number[]> = {};
+    for (let garde = 0; garde < 80 && e.phase !== 'fin' && Object.values(vus).flat().length < 8; garde++) {
+      if (e.attente) {
+        const a = e.attente;
+        if (a.type === 'quiz') (vus[a.bateauId] ??= []).push(a.niveau);
+        e = a.type === 'relance' ? appliquer(dd, e, { type: 'RepondreRelance', bateauId: a.bateauId, relancer: false })
+          : a.type === 'quiz' ? appliquer(dd, e, { type: 'RepondreQuiz', bateauId: a.bateauId, reponse: -1 })
+          : appliquer(dd, e, { type: 'JouerReparation', bateauId: a.bateauId, jouer: false });
+        continue;
+      }
+      const h = humainsAttendus(e)[0];
+      e = appliquer(dd, e, { type: 'ChoisirCapEtVoile', bateauId: h.id, choix: choisirIA(dd, e, h.id, { utilisableMaintenant: true }) });
+    }
+    expect(vus.b1?.length).toBeGreaterThan(0);
+    expect(vus.b2?.length).toBeGreaterThan(0);
+    expect([...new Set(vus.b1)]).toEqual([1]);
+    expect([...new Set(vus.b2)]).toEqual([3]);
+  });
+  it('un niveau reçu par le réseau est ramené à un niveau connu, 2 par défaut', () => {
+    expect([1, 2, 3, 0, 4, '2', null, undefined].map(niveauQuizValide)).toEqual([1, 2, 3, null, null, null, null, null]);
+    expect(NIVEAU_QUIZ_DEFAUT).toBe(2);
   });
 });
 

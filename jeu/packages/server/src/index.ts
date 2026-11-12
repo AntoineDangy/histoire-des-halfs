@@ -4,6 +4,7 @@ import { DurableObject } from 'cloudflare:workers';
 import { donneesBrutes } from '../../data/index';
 import {
   angleAllure, appliquer, bateau, choisirIA, competence, creerPartie, decisionReparationIA, humainsAttendus, masquerEtat, MAX_HUMAINS,
+  NIVEAU_QUIZ_DEFAUT, niveauQuizValide,
 } from '../../engine/src/index';
 import type { Action, Donnees, EtatPartie, JoueurSalon, MessageClient, MessageServeur, ParticipantParams, ReglagesSalon, VueSalon } from '../../engine/src/index';
 
@@ -95,7 +96,7 @@ export class Salon extends DurableObject<Env> {
       return this.envoyer(ws, { t: 'erreur', message: 'Message illisible' });
     }
     try {
-      if (msg.t === 'rejoindre') return await this.rejoindre(ws, msg.jeton, msg.nom);
+      if (msg.t === 'rejoindre') return await this.rejoindre(ws, msg.jeton, msg.nom, msg.niveauQuiz);
       const jeton = (ws.deserializeAttachment() as { jeton?: string } | null)?.jeton;
       const joueur = s.joueurs.find((j) => j.jeton === jeton);
       if (!joueur) return this.envoyer(ws, { t: 'erreur', message: 'Rejoignez d\'abord le salon' });
@@ -105,6 +106,14 @@ export class Salon extends DurableObject<Env> {
           if (s.joueurs.some((j) => j !== joueur && j.skipperId === msg.skipperId)) throw new Error('Ce skipper est déjà pris');
           if (!D.skippers.some((k) => k.id === msg.skipperId && k.classe === (s.reglages.classe ?? 'IMOCA'))) throw new Error('Skipper inconnu dans cette classe');
           joueur.skipperId = msg.skipperId;
+          break;
+        }
+        case 'niveauQuiz': {
+          // Chacun choisit le niveau de ses propres questions, jusqu'au départ (demande du porteur de projet, 12/11/2026).
+          if (s.etat) throw new Error('La course est déjà lancée');
+          const n = niveauQuizValide(msg.niveau);
+          if (!n) throw new Error('Niveau de questions inconnu');
+          joueur.niveauQuiz = n;
           break;
         }
         case 'reglages': {
@@ -146,13 +155,16 @@ export class Salon extends DurableObject<Env> {
     this.diffuser();
   }
 
-  private async rejoindre(ws: WebSocket, jeton: string, nom: string) {
+  private async rejoindre(ws: WebSocket, jeton: string, nom: string, niveauQuiz?: unknown) {
     const s = this.s!;
     let j = s.joueurs.find((x) => x.jeton === jeton);
     if (!j) {
       if (s.etat) return this.envoyer(ws, { t: 'erreur', message: 'La course a déjà commencé' });
       if (s.joueurs.length >= MAX_HUMAINS) return this.envoyer(ws, { t: 'erreur', message: `Salon complet (${MAX_HUMAINS} joueurs au plus)` });
-      j = { jeton, nom: (nom || 'Skipper').slice(0, 18), skipperId: null, connecte: true, hote: s.joueurs.length === 0, bateauId: null };
+      j = {
+        jeton, nom: (nom || 'Skipper').slice(0, 18), skipperId: null, connecte: true, hote: s.joueurs.length === 0, bateauId: null,
+        niveauQuiz: niveauQuizValide(niveauQuiz) ?? NIVEAU_QUIZ_DEFAUT,
+      };
       s.joueurs.push(j);
     }
     j.connecte = true;
@@ -181,8 +193,8 @@ export class Salon extends DurableObject<Env> {
       return c ? { coSkipperId: c } : {};
     };
     const participants: ParticipantParams[] = [
-      ...s.joueurs.map((j) => ({ nom: j.nom, type: 'humain' as const, niveauQuiz: 2 as const, skipperId: j.skipperId!, ...co(j.skipperId!) })),
-      ...ia.map((id) => ({ nom: 'IA', type: 'ia' as const, niveauIA: s.reglages.niveauIA, niveauQuiz: 2 as const, skipperId: id, ...co(id) })),
+      ...s.joueurs.map((j) => ({ nom: j.nom, type: 'humain' as const, niveauQuiz: j.niveauQuiz ?? NIVEAU_QUIZ_DEFAUT, skipperId: j.skipperId!, ...co(j.skipperId!) })),
+      ...ia.map((id) => ({ nom: 'IA', type: 'ia' as const, niveauIA: s.reglages.niveauIA, niveauQuiz: NIVEAU_QUIZ_DEFAUT, skipperId: id, ...co(id) })),
     ];
     s.etat = creerPartie(D, { courseId, classe: s.reglages.classe ?? 'IMOCA', graine: Math.floor(Math.random() * 1e9), participants, options: s.reglages.options });
     s.joueurs.forEach((j, i) => (j.bateauId = s.etat!.bateaux[i].id));
@@ -222,7 +234,7 @@ export class Salon extends DurableObject<Env> {
     const s = this.s!;
     return {
       code: s.code, statut: s.etat ? 'course' : 'salon', reglages: s.reglages, maxHumains: MAX_HUMAINS,
-      joueurs: s.joueurs.map(({ nom, skipperId, connecte, hote, bateauId }) => ({ nom, skipperId, connecte, hote, bateauId })),
+      joueurs: s.joueurs.map(({ nom, skipperId, connecte, hote, bateauId, niveauQuiz }) => ({ nom, skipperId, connecte, hote, bateauId, niveauQuiz: niveauQuiz ?? NIVEAU_QUIZ_DEFAUT })),
     };
   }
 

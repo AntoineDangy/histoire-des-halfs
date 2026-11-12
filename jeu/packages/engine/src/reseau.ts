@@ -14,6 +14,9 @@ export interface ReglagesSalon {
   delaiQuiz: number;
 }
 
+/** Niveau des questions de culture marine : 1 Moussaillon, 2 Skipper, 3 Vieux loup de mer. */
+export type NiveauQuiz = 1 | 2 | 3;
+
 export interface JoueurSalon {
   nom: string;
   skipperId: string | null;
@@ -21,6 +24,16 @@ export interface JoueurSalon {
   hote: boolean;
   /** Bateau attribué une fois la course lancée. */
   bateauId: string | null;
+  /** Niveau de ses questions, choisi par chaque joueur avant le départ (12/11/2026). Absent (anciens salons) : 2. */
+  niveauQuiz?: NiveauQuiz;
+}
+
+/** Niveau des questions si le joueur n'en a pas choisi : Skipper, comme avant le 12/11/2026. */
+export const NIVEAU_QUIZ_DEFAUT: NiveauQuiz = 2;
+
+/** Niveau reçu d'un joueur (message réseau), ramené à un niveau connu. */
+export function niveauQuizValide(n: unknown): NiveauQuiz | null {
+  return n === 1 || n === 2 || n === 3 ? n : null;
 }
 
 export interface VueSalon {
@@ -32,8 +45,10 @@ export interface VueSalon {
 }
 
 export type MessageClient =
-  | { t: 'rejoindre'; jeton: string; nom: string }
+  /** niveauQuiz : niveau mémorisé par l'appareil, pris seulement à la première arrivée dans le salon. */
+  | { t: 'rejoindre'; jeton: string; nom: string; niveauQuiz?: NiveauQuiz }
   | { t: 'skipper'; skipperId: string }
+  | { t: 'niveauQuiz'; niveau: NiveauQuiz }
   | { t: 'reglages'; reglages: ReglagesSalon }
   | { t: 'lancer' }
   | { t: 'action'; action: Action }

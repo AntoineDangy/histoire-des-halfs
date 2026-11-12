@@ -1,5 +1,13 @@
 # Journal des versions
 
+## Mise en ligne 1dea1110 (12/11/2026), serveur réseau 911f3a56 · chacun choisit le niveau de ses questions
+Avec l'accord du propriétaire (« Merge and publish ») : branche `mises-a-jour-jeu` fusionnée dans `main`, jeu « Version 0.4.200 ». Vérifié en ligne : essai à deux joueurs sur le serveur publié (mêmes résultats qu'en local) et salon ouvert dans le navigateur (choix du niveau, liste des équipages, choix mémorisé ; faces du dé du large justes sur « Créer une partie »).
+
+- Demande du porteur de projet. Dans le salon d'attente, chaque joueur choisit le niveau de ses propres questions de culture marine (Moussaillon, Skipper, Vieux loup de mer) jusqu'au départ ; la liste des équipages montre le niveau de chacun. Avant, le serveur donnait le niveau 2 à tout le monde. Le choix est mémorisé sur l'appareil et repris à la prochaine partie ; sans choix, niveau 2. Les IA restent au niveau 2.
+- Écran « Créer une partie » : les faces du dé du large sont lues dans la configuration (il affichait encore 3-4 pour les questions et 5-6 pour les cartes, au lieu de 2-3 et 4-5-6).
+- Vérifié : 2 tests ajoutés (51 tests), et essai du serveur de salons en local avec deux joueurs (niveau mémorisé à l'arrivée, changement de niveau, niveau inconnu refusé, niveaux transmis aux bateaux au départ, plus de changement après le départ).
+- **À la mise en ligne, publier aussi le serveur réseau** (le protocole change). Un ancien serveur ignore simplement le nouveau message : tout le monde reste au niveau 2.
+
 ## 12/11/2026 · le jeu devient open source
 - Demande du propriétaire : le jeu est publié dans le dépôt public https://github.com/AntoineDangy/histoire-des-halfs (dossier `jeu/`), sous licence MIT, et chacun peut le déployer. README réécrit (démarrer, tester, déployer son serveur de salons et son site). L'adresse du serveur de salons se règle à la construction (`VITE_SERVEUR`), le serveur officiel restant la valeur par défaut. Non recopiés : le livret de règles du jeu MB de 1987, les photos de référence des bateaux, les images de travail. Recopie : `outils/open-source/publier.mjs` (à la racine du dépôt privé), qui met à jour tout le dépôt public (site, données, outils et jeu).
 

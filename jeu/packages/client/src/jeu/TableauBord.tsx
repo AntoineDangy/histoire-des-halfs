@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { alizeApres, alizeEn, dansAlize, frontSur, ventCourant } from '@cal/engine';
 import { ANGLE_MIN, angleAllure, apercuCap, bateau, usureParTour, choisirIA, demiCapsPermis, NB_DIR, nomAllure, nomCap, NOMS_ALLURES, NOMS_DIR, NOMS_DIR_LONGS, norm, peutRecoudre, surCaseAbri } from '@cal/engine';
 import type { Choix, EtatPartie } from '@cal/engine';
-import { competenceDef, D, RISQUES } from '../commun';
+import { competenceDef, D, DE_LARGE, faces, RISQUES } from '../commun';
 import { voitTendance } from '@cal/engine';
 
 export function Girouette({ direction, taille = 40, force }: { direction: number; taille?: number; force?: number }) {
@@ -59,13 +59,6 @@ function BarreUsure({ usure, ajout }: { usure: number; ajout: number }) {
 }
 
 /** Explication en clair pour la voile choisie : usure, dé du large, tempête. */
-/** Faces du dé du large, selon la configuration (regles.json). */
-const DE_LARGE = (() => {
-  const r = D.regles.de_du_large ?? { carte: [4, 5, 6], question: [2, 3] };
-  return { carte: r.carte, question: r.question, rien: [1, 2, 3, 4, 5, 6].filter((n) => !r.carte.includes(n) && !r.question.includes(n)) };
-})();
-const faces = (l: number[]) => (l.length > 1 ? `${l.slice(0, -1).join(', ')} ou ${l[l.length - 1]}` : String(l[0] ?? '—'));
-
 function ExplicationVoile({ nomVoile, usure, ajout, noir, quiz, reparations, force }: {
   nomVoile: string; usure: number; ajout: number; noir: boolean; quiz: boolean; reparations: number; force: number;
 }) {
