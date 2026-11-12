@@ -1,0 +1,48 @@
+{
+ "_lisez-moi": "Corrections vérifiées de l'architecte, du chantier ou de l'année de construction d'un bateau, quand la fiche d'origine (ou sa lecture) se trompe. Clé : dossier d'origine. Chaque correction donne sa preuve et ses sources (décision du propriétaire du 10/11/2026 : le site assume une seule version, vérifiée).",
+ "Histoire des 60'/A57.htm": {
+  "annee": "2025",
+  "preuve": "L'en-tête de la fiche porte « 1986 », faute de frappe : la fiche elle-même annonce la construction dès juillet 2024 et une mise à l'eau prévue en janvier 2025 ; mise à l'eau le 18/02/2025 selon la classe IMOCA.",
+  "sources": ["https://www.imoca.org/fr/bateaux/association-petits-princes-qu-guiner"]
+ },
+ "Histoire des 40' monos/CQ97.htm": {
+  "annee": "2010",
+  "preuve": "La fiche indique « 2010 First Launch MAXVMG » ; lancement 2010 selon la Class40 (n° 97).",
+  "sources": ["https://www.class40.com/bateaux/97-fortissimo"]
+ },
+ "Histoire des 60'/A44.htm": {
+  "chantier": "CDK Technologies",
+  "preuve": "Coque construite par CDK Technologies à Port-la-Forêt, puis foils et finitions chez MerConcept à Concarneau (équipe 11th Hour Racing) ; chantier CDK Technologies selon la classe IMOCA.",
+  "sources": ["https://11thhourracing.org/malama-and-alakai-a-tribute-to-ocean-health/", "https://www.imoca.org/fr/bateaux/canada-ocean-racing-be-water-positive"]
+ },
+ "Histoire des 40' monos/CQ102.htm": {
+  "chantier": "Cookson Boats",
+  "preuve": "Kiwi 40 FC construit à Auckland par Cookson Boats ; BT Boats est la société qui a commandé et commercialisé le modèle. La fiche d'origine parle elle-même d'un « Cookson-built Farr-designed Class 40 ».",
+  "sources": ["https://www.sail-world.com/-74897", "https://www.class40.com/bateaux/102-privateer"]
+ },
+ "Histoire des 40' monos/CQ107.htm": {
+  "chantier": "Cookson Boats",
+  "preuve": "Deuxième Kiwi 40 FC, construit chez Cookson Boats pour Michel Kleinjans ; BT Boats est la société qui commercialise le modèle.",
+  "sources": ["https://www.sail-world.com/-74897", "https://www.class40.com/bateaux/107-mussolo-40"]
+ },
+ "Histoire des 40' monos/CQ118.htm": {
+  "chantier": "Hakes Marine",
+  "preuve": "Troisième Kiwi 40 FC ; Farr Yacht Design cite Cookson Boats et Hakes Marine comme constructeurs du modèle, et la Class40 attribue ce bateau à Hakes Marine.",
+  "sources": ["https://farrdesign.com/yacht/685.html", "https://www.class40.com/bateaux/118-oakcliff-ocean-racing"]
+ },
+ "Histoire des 40' monos/CQ194.htm": {
+  "chantier": "V1D2",
+  "preuve": "Communiqué de Groupe Berkem (octobre 2022) : construction du Class40 au chantier V1D2 à Caen ; chantier V1D2 selon la Class40.",
+  "sources": ["https://www.groupeberkem.com/en/news/groupe-berkem-the-new-class40-boat-being-built-for-offshore-racer-edgard-vincens/", "https://www.class40.com/bateaux/194-groupe-berkem"]
+ },
+ "Histoire des 40' monos/CQ17.htm": {
+  "architecte": "Axel de Beaufort",
+  "preuve": "La fiche écrit « Plan Nacira », nom du modèle et de la marque ; l'architecte est Axel de Beaufort selon la Class40.",
+  "sources": ["https://www.class40.com/bateaux/17-nacira"]
+ },
+ "Histoire des 60 ORMA/Max 19.htm": {
+  "annee": "2026",
+  "preuve": "La fiche date le bateau de 2025 (année de construction annoncée) ; la mise à l'eau a eu lieu le 14 février 2026 selon Wikipédia. Correction demandée par le propriétaire le 12/11/2026.",
+  "sources": ["https://fr.wikipedia.org/wiki/Gitana_18"]
+ }
+}

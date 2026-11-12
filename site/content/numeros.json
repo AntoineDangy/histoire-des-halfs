@@ -1,0 +1,71 @@
+{
+  "note": "Décision du propriétaire du 09/11/2026 : dans les classes anciennes, le numéro « à la mise à l'eau » est celui de la liste de l'auteur ; le numéro de l'en-tête de la fiche reste parmi les numéros portés. Clé : dossier d'origine. Ces 17 bateaux avaient changé de numéro quand leur en-tête a enfin été lu.",
+  "Histoire des 60 ORMA/M14.htm": {
+    "numero": "M 14",
+    "entete": "21"
+  },
+  "Trois Quart/Amoress.htm": {
+    "numero": "S 5401",
+    "entete": "S 5402"
+  },
+  "Trois Quart/Arlikone.htm": {
+    "numero": "F 8104",
+    "entete": "F 8109"
+  },
+  "Trois Quart/Astraka.htm": {
+    "numero": "F 6918",
+    "entete": "F 4845"
+  },
+  "Trois Quart/Bateleur.htm": {
+    "numero": "K 8800",
+    "entete": "IRL 5693"
+  },
+  "Trois Quart/Cole.htm": {
+    "numero": "KA 1667",
+    "entete": "KA 3541"
+  },
+  "Trois Quart/Extension.htm": {
+    "numero": "KA 4214",
+    "entete": "KA 14214"
+  },
+  "Trois Quart/Gaviota.htm": {
+    "numero": "G 3333",
+    "entete": "USA 40458"
+  },
+  "Trois Quart/Hot August.htm": {
+    "numero": "KA 630",
+    "entete": "KA 4630"
+  },
+  "Trois Quart/Lion.htm": {
+    "numero": "K 828",
+    "entete": "F 9231"
+  },
+  "Trois Quart/DB1 LUV.htm": {
+    "numero": "G 2220",
+    "entete": "G 2939"
+  },
+  "Trois Quart/Matika.htm": {
+    "numero": "KA 528",
+    "entete": "KA 524"
+  },
+  "Trois Quart/Nike.htm": {
+    "numero": "KA A 3",
+    "entete": "KA A 25"
+  },
+  "Trois Quart/C33 Panache.htm": {
+    "numero": "K 3933",
+    "entete": "K 4139"
+  },
+  "Trois Quart/Peppermint.htm": {
+    "numero": "K 4153",
+    "entete": "FRA 9722"
+  },
+  "Trois Quart/C33 Poulico.htm": {
+    "numero": "F 7061",
+    "entete": "FRA 3061"
+  },
+  "Trois Quart/XUtopia.htm": {
+    "numero": "D 1188",
+    "entete": "IRL 3939"
+  }
+}

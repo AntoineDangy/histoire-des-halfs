@@ -1,0 +1,11 @@
+{
+  "note": "Dossiers de l'auteur sans chiffre dans leur nom qui racontent pourtant la vie d'un seul bateau sous ses noms successifs (décision du propriétaire du 09/11/2026, cas de Groupama 3 présenté comme cinq bateaux). Par défaut, un dossier sans chiffre (Peterson.htm, Berret.htm) réunit plusieurs bateaux. Vérifié sur l'en-tête de chaque dossier. Ne pas ajouter « F Morvan » (l'auteur doute : « le même ou différents bateaux ? »), ni « FAntares » et « CQ California Condor » (deux bateaux).",
+  "dossiers": {
+    "Histoire des 60 ORMA/Max Groupama.htm": "« Max 8 GROUPAMA 3, Tri », construit en 2006 ; devenu Banque Populaire VII, Lending Club 2, Idec Sport",
+    "Histoire des 60 ORMA/Max CA.htm": "« Max CA O5 Crédit Agricole II, Cata, 85 », plan Ollier 1984",
+    "Histoire des 60 ORMA/Formule TAG.htm": "« M2 FORMULE TAG cata, 7 », Irens 1983",
+    "Histoire des 40' monos/FEridan.htm": "« ERIDAN IV », First Class Challenge 1993",
+    "Histoire des 40' monos/Fport la vie.htm": "« Port La Vie II, FRA 14579 », First Class Challenge 1992",
+    "Histoire des 40' monos/CQ Gwaihir.htm": "« GWAIHIR, USA 52814 », plan Roger Martin 2007"
+  }
+}

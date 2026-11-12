@@ -1,0 +1,6 @@
+"niveau","nom","base","coefficient_flotte","definition"
+"1","Monuments","300","non","Courses majeures tous les 4 ans (Vendée Globe, Route du Rhum, The Ocean Race…)"
+"2","Grandes courses","150","oui","Grandes courses tous les 2 ans + course phare annuelle d'une classe (Transat Jacques Vabre, transat Figaro, Mini Transat, Solitaire du Figaro…)"
+"3","Régates historiques","50","oui","Régates côtières historiques et prestigieuses uniquement (Spi Ouest-France, Rolex Fastnet Race, Sydney-Hobart…)"
+"4","Championnat de saison","25","oui","Courses comptant pour le championnat de saison d'une classe"
+"0","Non retenue","0","—","Toutes les autres courses et régates"

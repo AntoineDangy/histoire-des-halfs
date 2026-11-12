@@ -1,0 +1,4200 @@
+{
+ "_lisez-moi": "Données des sites officiels de classe, rapprochées des fiches du site par outils/officiel/rapprocher.py (régénéré, ne pas corriger à la main : fixer un rapprochement dans officiel-rapprochements.json). Affichées « selon la classe », sans remplacer les données de l'auteur.",
+ "imoca": {
+  "source": "https://www.imoca.org/fr/bateaux",
+  "date": "2026-11-10",
+  "bateaux": [
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/11th-hour-racing",
+    "nom": "11TH HOUR RACING",
+    "numero": "USA 171",
+    "skipper": "Francesca CLAPCICH",
+    "bapteme": "11th Hour Racing",
+    "architecte": "VPLP",
+    "construction": "2022, Multiplast",
+    "mise_a_l_eau": "19/07/2022",
+    "foils": "Oui",
+    "annee": 2022,
+    "chantier": "Multiplast",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "The Ocean Race Atlantic",
+      "rang": "2ème",
+      "skipper": "Francesca CLAPCICH",
+      "temps": "7j 23h 48min 7s"
+     },
+     {
+      "annee": "2026",
+      "course": "Vendée Arctique - Les Sables d'Olonne",
+      "rang": "5ème",
+      "skipper": "Francesca CLAPCICH",
+      "temps": "8j 20h 01min 11s"
+     },
+     {
+      "annee": "2026",
+      "course": "1000 Race",
+      "rang": "5ème",
+      "skipper": "Francesca CLAPCICH",
+      "temps": "5j 10h 45min 45s"
+     },
+     {
+      "annee": "2025",
+      "course": "Transat Café L'OR",
+      "rang": "2ème",
+      "skipper": "Francesca CLAPCICH",
+      "temps": "12j 01h 32min 46s"
+     },
+     {
+      "annee": "2025",
+      "course": "The Ocean Race Europe",
+      "rang": "4ème",
+      "skipper": "Boris HERRMANN",
+      "temps": "27 POINTS"
+     },
+     {
+      "annee": "2025",
+      "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+      "rang": "4ème",
+      "skipper": "Will HARRIS",
+      "temps": "6j 06h 04min 26s"
+     },
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "12ème",
+      "skipper": "Boris HERRMANN",
+      "temps": "80j 10h 16min 41s"
+     }
+    ],
+    "fiche_site": "imoca/malizia-sea-explorer/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/4cad-eole-performance",
+    "nom": "4CAD - EOLE PERFORMANCE",
+    "numero": null,
+    "skipper": "Benjamin DUTREUX",
+    "architecte": "Antoine Koch / GSEA / Finot-Conq",
+    "foils": "Non",
+    "palmares": [],
+    "fiche_site": "imoca/4cad/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/allagrande-mapei",
+    "nom": "ALLAGRANDE MAPEI",
+    "numero": "ITA 37",
+    "skipper": "Ambrogio BECCARIA",
+    "bapteme": "ALLAGRANDE",
+    "architecte": "Antoine Koch et Finot-Conq",
+    "construction": "2022, CDK Technologies",
+    "mise_a_l_eau": "16/03/2023",
+    "foils": "Oui",
+    "annee": 2022,
+    "chantier": "CDK Technologies",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "2ème",
+      "skipper": "Ambrogio BECCARIA",
+      "temps": "1j 17h 05min 37s"
+     },
+     {
+      "annee": "2026",
+      "course": "Vendée Arctique - Les Sables d'Olonne",
+      "rang": "Vainqueur",
+      "skipper": "Ambrogio BECCARIA",
+      "temps": "8j 14h 05min 50s"
+     },
+     {
+      "annee": "2025",
+      "course": "Transat Café L'OR",
+      "rang": "4ème",
+      "skipper": "Ambrogio BECCARIA",
+      "temps": "12j 07h 24min 19s"
+     },
+     {
+      "annee": "2025",
+      "course": "The Ocean Race Europe",
+      "rang": "5ème",
+      "skipper": "Ambrogio BECCARIA",
+      "temps": "55 POINTS"
+     },
+     {
+      "annee": "2025",
+      "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+      "rang": "",
+      "skipper": "Thomas RUYANT",
+      "temps": "Abandon"
+     },
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "7ème",
+      "skipper": "Thomas RUYANT",
+      "temps": "75j 16h 47min 27s"
+     },
+     {
+      "annee": "2024",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "7ème",
+      "skipper": "Thomas RUYANT",
+      "temps": "1j 20h 51min 09s"
+     }
+    ],
+    "fiche_site": "imoca/for-people/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/anett-kalhyge",
+    "nom": "ANETT - KALHYGE",
+    "numero": null,
+    "skipper": "Jean-Baptiste DARAMY",
+    "bapteme": "Caroline",
+    "architecte": "Farr Yacht Design",
+    "construction": "2007, Nouvelle-Zélande",
+    "mise_a_l_eau": "19/08/2008",
+    "foils": "Non",
+    "annee": 2007,
+    "chantier": "Nouvelle-Zélande",
+    "palmares": [
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "29ème",
+      "skipper": "Oliver HEER",
+      "temps": "99j 05h 27min 34s"
+     },
+     {
+      "annee": "2024",
+      "course": "New York Vendée - Les Sables d'Olonne",
+      "rang": "24ème",
+      "skipper": "Oliver HEER",
+      "temps": "15h 00h 01min 02s"
+     },
+     {
+      "annee": "2024",
+      "course": "The Transat CIC",
+      "rang": "25ème",
+      "skipper": "Oliver HEER",
+      "temps": "18j 10h 49min 32s"
+     },
+     {
+      "annee": "2023",
+      "course": "Transat Café L'OR",
+      "rang": "",
+      "skipper": "Oliver HEER",
+      "temps": "Abandon"
+     },
+     {
+      "annee": "2023",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "21ème",
+      "skipper": "Oliver HEER",
+      "temps": "2j 09h 51min 20s"
+     },
+     {
+      "annee": "2023",
+      "course": "Rolex Fastnet Race",
+      "rang": "19ème",
+      "skipper": "Oliver HEER",
+      "temps": "2d 16h 42m 15s"
+     },
+     {
+      "annee": "2022",
+      "course": "Route du Rhum-Destination Guadeloupe",
+      "rang": "32ème",
+      "skipper": "Oliver HEER",
+      "temps": "17j 00h 22min 55s"
+     }
+    ],
+    "fiche_site": "imoca/gitana-eighty/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/april-marine-recherche-co-partenaire",
+    "nom": "APRIL MARINE - RECHERCHE CO-PARTENAIRE",
+    "numero": "FRA 9",
+    "skipper": "Arnaud BOISSIÈRES",
+    "bapteme": "GOMILÉO",
+    "architecte": "VPLP Verdier",
+    "construction": "2015, Green Marine, Southampton",
+    "mise_a_l_eau": "01/09/2015",
+    "foils": "Oui",
+    "annee": 2015,
+    "chantier": "Green Marine, Southampton",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "Vendée Arctique - Les Sables d'Olonne",
+      "rang": "7ème",
+      "skipper": "Arnaud BOISSIÈRES",
+      "temps": "10j 13h 12min 36s"
+     },
+     {
+      "annee": "2026",
+      "course": "1000 Race",
+      "rang": "7ème",
+      "skipper": "Arnaud BOISSIÈRES",
+      "temps": "6j 2h 39min 8s"
+     },
+     {
+      "annee": "2025",
+      "course": "Transat Café L'OR",
+      "rang": "9ème",
+      "skipper": "Arnaud BOISSIÈRES",
+      "temps": "13j 16h 48min 32s"
+     },
+     {
+      "annee": "2025",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "5ème",
+      "skipper": "Benjamin DUTREUX",
+      "temps": "1d 20h 40min 00s"
+     },
+     {
+      "annee": "2025",
+      "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+      "rang": "8ème",
+      "skipper": "Benjamin DUTREUX",
+      "temps": "6j 19h 51min 17s"
+     },
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "10ème",
+      "skipper": "Benjamin DUTREUX",
+      "temps": "77j 03h 39min 24s"
+     },
+     {
+      "annee": "2024",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "9ème",
+      "skipper": "Benjamin DUTREUX",
+      "temps": "1j 21h 35min 49s"
+     }
+    ],
+    "fiche_site": "imoca/hugo-boss/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/association-petits-princes-qu-guiner",
+    "nom": "ASSOCIATION PETITS PRINCES - QUÉGUINER",
+    "numero": "FRA 62",
+    "skipper": "Elodie BONAFOUS",
+    "bapteme": "HORIZON 29",
+    "architecte": "Guillaume Verdier",
+    "construction": "2024, CDK & MerConcept",
+    "mise_a_l_eau": "18/02/2025",
+    "foils": "Oui",
+    "annee": 2024,
+    "chantier": "CDK & MerConcept",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "6ème",
+      "skipper": "Elodie BONAFOUS",
+      "temps": "1j 22h 26min 55s"
+     },
+     {
+      "annee": "2026",
+      "course": "Vendée Arctique - Les Sables d'Olonne",
+      "rang": "4ème",
+      "skipper": "Elodie BONAFOUS",
+      "temps": "8j 19h 07min 59s"
+     },
+     {
+      "annee": "2026",
+      "course": "1000 Race",
+      "rang": "4ème",
+      "skipper": "Elodie BONAFOUS",
+      "temps": "5j 09h 54min 11s"
+     },
+     {
+      "annee": "2025",
+      "course": "Transat Café L'OR",
+      "rang": "8ème",
+      "skipper": "Elodie BONAFOUS",
+      "temps": "13j 07h 07min 02s"
+     },
+     {
+      "annee": "2025",
+      "course": "Rolex Fastnet Race",
+      "rang": "Vainqueur",
+      "skipper": "Elodie BONAFOUS",
+      "temps": "2d 14h 7min 05s"
+     },
+     {
+      "annee": "2025",
+      "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+      "rang": "2ème",
+      "skipper": "Elodie BONAFOUS",
+      "temps": "6j 03h 40min 27s"
+     }
+    ],
+    "fiche_site": "imoca/horizon29/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/banque-populaire-14",
+    "nom": "BANQUE POPULAIRE 14",
+    "numero": "FRA 14",
+    "skipper": "Loïs BERREHAR",
+    "bapteme": "Banque Populaire 14",
+    "architecte": "Antoine Koch",
+    "construction": "2027, CDK Technologies",
+    "foils": "Oui",
+    "annee": 2027,
+    "chantier": "CDK Technologies",
+    "palmares": [],
+    "fiche_site": "imoca/banque-populaire-xiv/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/bureau-vall-e",
+    "nom": "BUREAU VALLÉE",
+    "numero": "FRA 2",
+    "skipper": "Davy BEAUDART",
+    "bapteme": "Jack In The Box",
+    "architecte": "Sam Manuard",
+    "construction": "2019, Black Pepper Yachts",
+    "mise_a_l_eau": "31/01/2020",
+    "foils": "Oui",
+    "annee": 2019,
+    "chantier": "Black Pepper Yachts",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "8ème",
+      "skipper": "Davy BEAUDART",
+      "temps": "2j 9h 33min 22s"
+     },
+     {
+      "annee": "2025",
+      "course": "Transat Café L'OR",
+      "rang": "7ème",
+      "skipper": "Louis BURTON",
+      "temps": "12j 22h 51min 36s"
+     },
+     {
+      "annee": "2025",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "7ème",
+      "skipper": "Louis BURTON",
+      "temps": "1d 20h 59min 52s"
+     },
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "",
+      "skipper": "Louis BURTON",
+      "temps": "Abandon le 04/12/2024"
+     },
+     {
+      "annee": "2024",
+      "course": "New York Vendée - Les Sables d'Olonne",
+      "rang": "10ème",
+      "skipper": "Louis BURTON",
+      "temps": "13j 04h 46min 31s"
+     },
+     {
+      "annee": "2024",
+      "course": "The Transat CIC",
+      "rang": "9ème",
+      "skipper": "Louis BURTON",
+      "temps": "9j 04h 37min 38s"
+     },
+     {
+      "annee": "2023",
+      "course": "Retour à La Base",
+      "rang": "7ème",
+      "skipper": "Louis BURTON",
+      "temps": "10j 04h 33min 11s"
+     }
+    ],
+    "fiche_site": "imoca/l-occitane/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/caf-joyeux",
+    "nom": "CAFÉ JOYEUX",
+    "numero": "FRA 30",
+    "skipper": "Nico D'ESTAIS",
+    "bapteme": "Théophile Solo Sailor",
+    "architecte": "VPLP - Verdier",
+    "construction": "2010, CDK Technologies",
+    "mise_a_l_eau": "16/08/2011",
+    "foils": "Non",
+    "annee": 2010,
+    "chantier": "CDK Technologies",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "9ème",
+      "skipper": "Nico D'ESTAIS",
+      "temps": "2j 14h 14min 17s"
+     },
+     {
+      "annee": "2026",
+      "course": "Vendée Arctique - Les Sables d'Olonne",
+      "rang": "6ème",
+      "skipper": "Nico D'ESTAIS",
+      "temps": "10j 07h 15min 22s"
+     },
+     {
+      "annee": "2026",
+      "course": "1000 Race",
+      "rang": "6ème",
+      "skipper": "Nico D'ESTAIS",
+      "temps": "5j 17h 30min 27s"
+     },
+     {
+      "annee": "2025",
+      "course": "Transat Café L'OR",
+      "rang": "13ème",
+      "skipper": "Nico D'ESTAIS",
+      "temps": "15j 09h 31min 16s"
+     },
+     {
+      "annee": "2025",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "4ème",
+      "skipper": "Nico D'ESTAIS",
+      "temps": "1d 20h 27min 47s"
+     },
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "16ème",
+      "skipper": "Benjamin FERRÉ",
+      "temps": "84j 23h 19min 39s"
+     },
+     {
+      "annee": "2024",
+      "course": "The Transat CIC",
+      "rang": "",
+      "skipper": "Benjamin FERRÉ",
+      "temps": "Abandon"
+     }
+    ],
+    "fiche_site": "imoca/macif/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/canada-ocean-racing-be-water-positive",
+    "nom": "CANADA OCEAN RACING - BE WATER POSITIVE",
+    "numero": "CAN 80",
+    "skipper": "Scott SHAWYER",
+    "bapteme": "EMIRA IV",
+    "architecte": "Guillaume Verdier",
+    "construction": "2021, CDK Technologies",
+    "mise_a_l_eau": "24/08/2021",
+    "foils": "Oui",
+    "annee": 2021,
+    "chantier": "CDK Technologies",
+    "palmares": [
+     {
+      "annee": "2025",
+      "course": "The Ocean Race Europe",
+      "rang": "6ème",
+      "skipper": "Scott SHAWYER",
+      "temps": "18 POINTS"
+     },
+     {
+      "annee": "2025",
+      "course": "Rolex Fastnet Race",
+      "rang": "",
+      "skipper": "Scott SHAWYER",
+      "temps": "ABANDON"
+     },
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "3ème",
+      "skipper": "Sébastien SIMON",
+      "temps": "67j 12h 25min 37s"
+     },
+     {
+      "annee": "2024",
+      "course": "New York Vendée - Les Sables d'Olonne",
+      "rang": "4ème",
+      "skipper": "Sébastien SIMON",
+      "temps": "12h 03h 02min 01s"
+     },
+     {
+      "annee": "2024",
+      "course": "The Transat CIC",
+      "rang": "10ème",
+      "skipper": "Sébastien SIMON",
+      "temps": "9j 20h 02min 35s"
+     },
+     {
+      "annee": "2023",
+      "course": "Retour à La Base",
+      "rang": "19ème",
+      "skipper": "Sébastien SIMON",
+      "temps": "11j 18h 36min 00s"
+     },
+     {
+      "annee": "2023",
+      "course": "Transat Café L'OR",
+      "rang": "18ème",
+      "skipper": "Sébastien SIMON",
+      "temps": "14j 08h 53min 04s"
+     }
+    ],
+    "fiche_site": "imoca/11th-hours-racing-2/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/charal",
+    "nom": "CHARAL",
+    "numero": "FRA 3",
+    "skipper": "Jérémie BEYOU",
+    "bapteme": "Charal",
+    "architecte": "Sam Manuard",
+    "construction": "2022, CDK Technologies, Lorient",
+    "mise_a_l_eau": "11/07/2022",
+    "foils": "Oui",
+    "annee": 2022,
+    "chantier": "CDK Technologies, Lorient",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "3ème",
+      "skipper": "Jérémie BEYOU",
+      "temps": "1j 18h 19min 25s"
+     },
+     {
+      "annee": "2025",
+      "course": "Transat Café L'OR",
+      "rang": "Vainqueur",
+      "skipper": "Jérémie BEYOU",
+      "temps": "11j 19h 45min 18s"
+     },
+     {
+      "annee": "2025",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "3ème",
+      "skipper": "Jérémie BEYOU",
+      "temps": "1d 19h 45min 48s"
+     },
+     {
+      "annee": "2025",
+      "course": "Rolex Fastnet Race",
+      "rang": "2ème",
+      "skipper": "Jérémie BEYOU",
+      "temps": "2d 14h 15min 20s"
+     },
+     {
+      "annee": "2025",
+      "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+      "rang": "5ème",
+      "skipper": "Jérémie BEYOU",
+      "temps": "6j 06h 43min 06s"
+     },
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "4ème",
+      "skipper": "Jérémie BEYOU",
+      "temps": "74j 12h 56min 54s"
+     },
+     {
+      "annee": "2024",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "3ème",
+      "skipper": "Jérémie BEYOU",
+      "temps": "1j 20h 10min 25s"
+     }
+    ],
+    "fiche_site": "imoca/charal-2/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/coup-de-pouce",
+    "nom": "COUP DE POUCE",
+    "numero": "FRA 123",
+    "skipper": "Manuel COUSIN",
+    "bapteme": "Diaboleo Vanille",
+    "architecte": "VPLP - Verdier",
+    "construction": "2010, CDK Technologies, Port La Forêt",
+    "mise_a_l_eau": "18/09/2010",
+    "foils": "Oui",
+    "annee": 2010,
+    "chantier": "CDK Technologies, Port La Forêt",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "",
+      "skipper": "Manuel COUSIN",
+      "temps": "ABANDON"
+     },
+     {
+      "annee": "2026",
+      "course": "Vendée Arctique - Les Sables d'Olonne",
+      "rang": "8ème",
+      "skipper": "Manuel COUSIN",
+      "temps": "13j 21h 08min 40s"
+     },
+     {
+      "annee": "2025",
+      "course": "Transat Café L'OR",
+      "rang": "15ème",
+      "skipper": "Manuel COUSIN",
+      "temps": "18j 00h 58min 14s"
+     },
+     {
+      "annee": "2025",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "11ème",
+      "skipper": "Manuel COUSIN",
+      "temps": "1d 22h 37min 28s"
+     },
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "",
+      "skipper": "Arnaud BOISSIÈRES",
+      "temps": "Abandon le 30/01/2025"
+     },
+     {
+      "annee": "2024",
+      "course": "The Transat CIC",
+      "rang": "",
+      "skipper": "Arnaud BOISSIÈRES",
+      "temps": "Abandon"
+     },
+     {
+      "annee": "2023",
+      "course": "Retour à La Base",
+      "rang": "16ème",
+      "skipper": "Arnaud BOISSIÈRES",
+      "temps": "11j 14h 59min 02s"
+     }
+    ],
+    "fiche_site": "imoca/foncia/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/demain-c-est-loin-1",
+    "nom": "DEMAIN C'EST LOIN",
+    "numero": "FRA 22",
+    "skipper": "Nicolas ROUGER",
+    "bapteme": "OC7",
+    "architecte": "Bruce Farr Yacht Design",
+    "construction": "2007, Offshore Challenges Sailing Team, Cowes, Royaume-Uni",
+    "mise_a_l_eau": "25/06/2007",
+    "foils": "Non",
+    "annee": 2007,
+    "chantier": "Offshore Challenges Sailing Team, Cowes, Royaume-Uni",
+    "palmares": [
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "23ème",
+      "skipper": "Guirec SOUDÉE",
+      "temps": "89j 20h 16min 20s"
+     },
+     {
+      "annee": "2024",
+      "course": "The Transat CIC",
+      "rang": "17ème",
+      "skipper": "Guirec SOUDÉE",
+      "temps": "10j 19h 08min 02s"
+     },
+     {
+      "annee": "2023",
+      "course": "Retour à La Base",
+      "rang": "24ème",
+      "skipper": "Guirec SOUDÉE",
+      "temps": "12j 09h 17min 45s"
+     },
+     {
+      "annee": "2023",
+      "course": "Transat Café L'OR",
+      "rang": "20ème",
+      "skipper": "Guirec SOUDÉE",
+      "temps": "14j 11h 32min 55s"
+     },
+     {
+      "annee": "2023",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "",
+      "skipper": "Guirec SOUDÉE",
+      "temps": "DNS"
+     },
+     {
+      "annee": "2023",
+      "course": "Rolex Fastnet Race",
+      "rang": "20ème",
+      "skipper": "Guirec SOUDÉE",
+      "temps": "2d 17h 4m 55s"
+     },
+     {
+      "annee": "2023",
+      "course": "1000 Race",
+      "rang": "",
+      "skipper": "Guirec SOUDÉE",
+      "temps": "Abandon"
+     }
+    ],
+    "fiche_site": "imoca/bt/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/dmg-mori-global-one",
+    "nom": "DMG MORI GLOBAL ONE",
+    "numero": "JPN 11",
+    "skipper": "Kojiro SHIRAISHI",
+    "bapteme": "DMG MORI GLOBAL ONE",
+    "architecte": "Guillaume Verdier",
+    "construction": "2026, Multiplast, Vannes (France)",
+    "mise_a_l_eau": "06/07/2026",
+    "foils": "Oui",
+    "annee": 2026,
+    "chantier": "Multiplast, Vannes (France)",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "The Ocean Race Atlantic",
+      "rang": "3ème",
+      "skipper": "Kojiro SHIRAISHI",
+      "temps": "8j 0h 1min 40s"
+     }
+    ],
+    "fiche_site": "imoca/dmg-mori-global-one/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/embrace-the-challenge",
+    "nom": "EMBRACE THE CHALLENGE",
+    "numero": "SUI 8",
+    "skipper": "Oliver HEER",
+    "bapteme": "YOROSHIKU",
+    "architecte": "VPLP",
+    "construction": "2018, CDK Technologies - Port La Forêt",
+    "mise_a_l_eau": "20/08/2018",
+    "foils": "Oui",
+    "annee": 2018,
+    "chantier": "CDK Technologies - Port La Forêt",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "The Ocean Race Atlantic",
+      "rang": "5ème",
+      "skipper": "Oliver HEER",
+      "temps": "8j 11h 36min 17S"
+     },
+     {
+      "annee": "2025",
+      "course": "Transat Café L'OR",
+      "rang": "5ème",
+      "skipper": "Justine METTRAUX",
+      "temps": "12j 16h 42min 28s"
+     },
+     {
+      "annee": "2025",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "2ème",
+      "skipper": "Justine METTRAUX",
+      "temps": "1d 19h 44min 42s"
+     },
+     {
+      "annee": "2025",
+      "course": "Rolex Fastnet Race",
+      "rang": "5ème",
+      "skipper": "Justine METTRAUX",
+      "temps": "2d 20h 08min 59sec"
+     },
+     {
+      "annee": "2025",
+      "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+      "rang": "6ème",
+      "skipper": "Justine METTRAUX",
+      "temps": "6j 10h 07min 47s"
+     },
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "8ème",
+      "skipper": "Justine METTRAUX",
+      "temps": "76j 1h 36m 52s"
+     },
+     {
+      "annee": "2024",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "8ème",
+      "skipper": "Justine METTRAUX",
+      "temps": "1j 21h 28min 50s"
+     }
+    ],
+    "fiche_site": "imoca/charal/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/fdj-united",
+    "nom": "FDJ UNITED",
+    "numero": "FRA 56",
+    "skipper": "Fabrice AMEDEO",
+    "bapteme": "DIABOLEO",
+    "architecte": "Owen Clarke Design",
+    "construction": "2007, Hakes Marine, Nouvelle-Zélande",
+    "mise_a_l_eau": "31/07/2007",
+    "foils": "Non",
+    "annee": 2007,
+    "chantier": "Hakes Marine, Nouvelle-Zélande",
+    "palmares": [
+     {
+      "annee": "2025",
+      "course": "Transat Café L'OR",
+      "rang": "16ème",
+      "skipper": "Fabrice AMEDEO",
+      "temps": "18j 03h 11min 10s"
+     },
+     {
+      "annee": "2025",
+      "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+      "rang": "",
+      "skipper": "Fabrice AMEDEO",
+      "temps": "Abandon"
+     },
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "32ème",
+      "skipper": "Fabrice AMEDEO",
+      "temps": "114j 01h 58min 49s"
+     },
+     {
+      "annee": "2024",
+      "course": "The Transat CIC",
+      "rang": "23ème",
+      "skipper": "Fabrice AMEDEO",
+      "temps": "12j 02h 08min 52s"
+     },
+     {
+      "annee": "2023",
+      "course": "Retour à La Base",
+      "rang": "27ème",
+      "skipper": "Fabrice AMEDEO",
+      "temps": "12j 15h 04min 46s"
+     },
+     {
+      "annee": "2023",
+      "course": "Transat Café L'OR",
+      "rang": "28ème",
+      "skipper": "Fabrice AMEDEO",
+      "temps": "16j 21h 52mn 40s"
+     },
+     {
+      "annee": "2023",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "",
+      "skipper": "Fabrice AMEDEO",
+      "temps": "Abandon"
+     }
+    ],
+    "fiche_site": "imoca/ecover-iii/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/foussier",
+    "nom": "FOUSSIER",
+    "numero": "FRA 83",
+    "skipper": "Sébastien MARSSET",
+    "bapteme": "Faroha3",
+    "architecte": "Farr Yacht Design",
+    "construction": "2006, JMV Industries, Cherbourg",
+    "mise_a_l_eau": "26/07/2006",
+    "foils": "Non",
+    "annee": 2006,
+    "chantier": "JMV Industries, Cherbourg",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "",
+      "skipper": "Sébastien MARSSET",
+      "temps": "ABANDON"
+     },
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "27ème",
+      "skipper": "Sébastien MARSSET",
+      "temps": "91j 00h 35min 35s"
+     },
+     {
+      "annee": "2024",
+      "course": "The Transat CIC",
+      "rang": "",
+      "skipper": "Sébastien MARSSET",
+      "temps": "Abandon"
+     },
+     {
+      "annee": "2023",
+      "course": "Retour à La Base",
+      "rang": "21ème",
+      "skipper": "Sébastien MARSSET",
+      "temps": "12j 00h 37min 59s"
+     },
+     {
+      "annee": "2023",
+      "course": "Transat Café L'OR",
+      "rang": "27ème",
+      "skipper": "Sébastien MARSSET",
+      "temps": "16j 13h 43min 30s"
+     },
+     {
+      "annee": "2023",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "26ème",
+      "skipper": "Sébastien MARSSET",
+      "temps": "2j 13h 11min 00s"
+     },
+     {
+      "annee": "2023",
+      "course": "Rolex Fastnet Race",
+      "rang": "21ème",
+      "skipper": "Sébastien MARSSET",
+      "temps": "2d 17h 54m 7s"
+     }
+    ],
+    "fiche_site": "imoca/delta-dore/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/groupe-dubreuil-air-cara-bes",
+    "nom": "GROUPE DUBREUIL - AIR CARAÏBES",
+    "numero": null,
+    "skipper": "Sébastien SIMON",
+    "bapteme": "GROUPE DUBREUIL - AIR CARAÏBES",
+    "architecte": "Guillaume Verdier",
+    "construction": "2025, Carrington Boats",
+    "foils": "Oui",
+    "annee": 2025,
+    "chantier": "Carrington Boats",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "7ème",
+      "skipper": "Sébastien SIMON",
+      "temps": "2j 00h 7min 35s"
+     }
+    ],
+    "fiche_site": "imoca/groupe-dubreuil/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/initiatives-c-ur",
+    "nom": "INITIATIVES-CŒUR",
+    "numero": "FRA 109",
+    "skipper": "Violette DORANGE",
+    "bapteme": "Initiatives-Cœur",
+    "architecte": "Sam Manuard",
+    "construction": "2022, Black Pepper Yachts",
+    "mise_a_l_eau": "30/07/2022",
+    "foils": "Oui",
+    "annee": 2022,
+    "chantier": "Black Pepper Yachts",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "5ème",
+      "skipper": "Violette DORANGE",
+      "temps": "1j 20h 54min 05s"
+     },
+     {
+      "annee": "2026",
+      "course": "Vendée Arctique - Les Sables d'Olonne",
+      "rang": "3ème",
+      "skipper": "Violette DORANGE",
+      "temps": "8j 16h 21min 53s"
+     },
+     {
+      "annee": "2026",
+      "course": "1000 Race",
+      "rang": "3ème",
+      "skipper": "Violette DORANGE",
+      "temps": "5j 08h 26min 35s"
+     },
+     {
+      "annee": "2025",
+      "course": "Transat Café L'OR",
+      "rang": "6ème",
+      "skipper": "Sam DAVIES",
+      "temps": "12j 21h 11min 12s"
+     },
+     {
+      "annee": "2025",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "6ème",
+      "skipper": "Sam DAVIES",
+      "temps": "1d 20h 46min 15s"
+     },
+     {
+      "annee": "2025",
+      "course": "Rolex Fastnet Race",
+      "rang": "4ème",
+      "skipper": "Sam DAVIES",
+      "temps": "2d 14h 47min 57sec"
+     },
+     {
+      "annee": "2025",
+      "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+      "rang": "7ème",
+      "skipper": "Sam DAVIES",
+      "temps": "6j 11h 07min 36s"
+     }
+    ],
+    "fiche_site": "imoca/initiatives-coeur/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/les-p-tits-doudous",
+    "nom": "LES P’TITS DOUDOUS",
+    "numero": "FRA 16",
+    "skipper": "Armel TRIPON",
+    "bapteme": "LES P’TITS DOUDOUS",
+    "architecte": "VPLP",
+    "construction": "2023, DUQUEINE Atlantique",
+    "mise_a_l_eau": "02/06/2025",
+    "foils": "Oui",
+    "annee": 2023,
+    "chantier": "DUQUEINE Atlantique",
+    "palmares": [
+     {
+      "annee": "2026-",
+      "course": "Route du Rhum-Destination Guadeloupe",
+      "rang": "",
+      "skipper": "Armel TRIPON",
+      "temps": "ABANDON"
+     },
+     {
+      "annee": "2026",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "",
+      "skipper": "Armel TRIPON",
+      "temps": "ABANDON"
+     },
+     {
+      "annee": "2025",
+      "course": "Transat Café L'OR",
+      "rang": "12ème",
+      "skipper": "Armel TRIPON",
+      "temps": "15j 02h 29min 16s"
+     },
+     {
+      "annee": "2025",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "8ème",
+      "skipper": "Armel TRIPON",
+      "temps": "1d 21h 14min 23s"
+     }
+    ],
+    "fiche_site": "imoca/les-ptits-doudous/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/macif-sant-pr-voyance",
+    "nom": "MACIF SANTÉ PRÉVOYANCE",
+    "numero": "FRA 79",
+    "skipper": "Sam GOODCHILD",
+    "bapteme": "MACIF SANTÉ PRÉVOYANCE",
+    "architecte": "Guillaume Verdier",
+    "construction": "2022, CDK Technologies et MerConcept",
+    "mise_a_l_eau": "24/06/2023",
+    "foils": "Oui",
+    "annee": 2022,
+    "chantier": "CDK Technologies et MerConcept",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "Vainqueur",
+      "skipper": "Sam GOODCHILD",
+      "temps": "1j 14h 48min 21s"
+     },
+     {
+      "annee": "2026",
+      "course": "Vendée Arctique - Les Sables d'Olonne",
+      "rang": "2ème",
+      "skipper": "Sam GOODCHILD",
+      "temps": "8j 15h 20min 53s"
+     },
+     {
+      "annee": "2026",
+      "course": "1000 Race",
+      "rang": "Vainqueur",
+      "skipper": "Sam GOODCHILD",
+      "temps": "4j 22h 09min 56s"
+     },
+     {
+      "annee": "2025",
+      "course": "Transat Café L'OR",
+      "rang": "3ème",
+      "skipper": "Sam GOODCHILD",
+      "temps": "12j 03h 25min 47s"
+     },
+     {
+      "annee": "2025",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "Vainqueur",
+      "skipper": "Sam GOODCHILD",
+      "temps": "1d 19h 25min 28s"
+     },
+     {
+      "annee": "2025",
+      "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+      "rang": "Vainqueur",
+      "skipper": "Sam GOODCHILD",
+      "temps": "6j 01h 10min 45s"
+     },
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "Vainqueur",
+      "skipper": "Charlie DALIN",
+      "temps": "64j 19h 22min 49s"
+     }
+    ],
+    "fiche_site": "imoca/apivia-2/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/macsf-1",
+    "nom": "MACSF",
+    "numero": "FRA 24",
+    "skipper": "Corentin HOREAU",
+    "bapteme": "Paprec Arkéa 24",
+    "architecte": "Antoine Koch et Finot-Conq",
+    "construction": "2022, Multiplast",
+    "mise_a_l_eau": "22/02/2023",
+    "foils": "Oui",
+    "annee": 2022,
+    "chantier": "Multiplast",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "4ème",
+      "skipper": "Corentin HOREAU",
+      "temps": "1j 18h 37min 20s"
+     },
+     {
+      "annee": "2026",
+      "course": "Vendée Arctique - Les Sables d'Olonne",
+      "rang": "",
+      "skipper": "Corentin HOREAU",
+      "temps": "ABANDON"
+     },
+     {
+      "annee": "2026",
+      "course": "1000 Race",
+      "rang": "2ème",
+      "skipper": "Corentin HOREAU",
+      "temps": "5j 7h 5min 17s"
+     },
+     {
+      "annee": "2025",
+      "course": "Transat Café L'OR",
+      "rang": "10ème",
+      "skipper": "Yoann RICHOMME",
+      "temps": "14j 13h 30min 19s"
+     },
+     {
+      "annee": "2025",
+      "course": "The Ocean Race Europe",
+      "rang": "2ème",
+      "skipper": "Yoann RICHOMME",
+      "temps": "40 POINTS"
+     },
+     {
+      "annee": "2025",
+      "course": "Rolex Fastnet Race",
+      "rang": "3ème",
+      "skipper": "Yoann RICHOMME",
+      "temps": "2d 14h 17min 06s"
+     },
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "2ème",
+      "skipper": "Yoann RICHOMME",
+      "temps": "65j 18h 10min 02s"
+     }
+    ],
+    "fiche_site": "imoca/paprec-arkea-24/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/malizia-4",
+    "nom": "MALIZIA 4",
+    "numero": "1297",
+    "skipper": "Boris HERRMANN",
+    "architecte": "Antoine Koch",
+    "construction": "2026, CDK Technologies",
+    "mise_a_l_eau": "06/07/2026",
+    "foils": "Oui",
+    "annee": 2026,
+    "chantier": "CDK Technologies",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "The Ocean Race Atlantic",
+      "rang": "4ème",
+      "skipper": "Boris HERRMANN",
+      "temps": "8j 0h 6min 40s"
+     }
+    ],
+    "fiche_site": "imoca/malizia-4/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/milai-furuno",
+    "nom": "MILAI - FURUNO",
+    "numero": "JPN 22",
+    "skipper": "Masa SUZUKI",
+    "bapteme": "MILAI 22",
+    "architecte": "Farr Yacht Design",
+    "construction": "2006, CDK Technologies, Port La Forêt",
+    "mise_a_l_eau": "30/09/2006",
+    "foils": "Non",
+    "annee": 2006,
+    "chantier": "CDK Technologies, Port La Forêt",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "",
+      "skipper": "Masa SUZUKI",
+      "temps": "ABANDON"
+     },
+     {
+      "annee": "2025",
+      "course": "Transat Café L'OR",
+      "rang": "14ème",
+      "skipper": "Louis DUC",
+      "temps": "16j 18h 41m 59s"
+     },
+     {
+      "annee": "2025",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "10ème",
+      "skipper": "Louis DUC",
+      "temps": "1d 21h 59min 56s"
+     },
+     {
+      "annee": "2025",
+      "course": "Rolex Fastnet Race",
+      "rang": "6ème",
+      "skipper": "Louis DUC",
+      "temps": "3d 05h 34min 34s"
+     },
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "26ème",
+      "skipper": "Louis DUC",
+      "temps": "91j 00h 08min 48s"
+     },
+     {
+      "annee": "2024",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "14ème",
+      "skipper": "Louis DUC",
+      "temps": "1j 22h 37min 42s"
+     },
+     {
+      "annee": "2024",
+      "course": "The Transat CIC",
+      "rang": "",
+      "skipper": "Louis DUC",
+      "temps": "Abandon"
+     }
+    ],
+    "fiche_site": "imoca/prb-3/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/msig-europe",
+    "nom": "MSIG EUROPE",
+    "numero": "NZL 64",
+    "skipper": "Conrad COLMAN",
+    "bapteme": "Imagine",
+    "architecte": "VPLP - Verdier",
+    "construction": "2007, Indiana Yachting, Italie",
+    "mise_a_l_eau": "05/09/2007",
+    "foils": "Non",
+    "annee": 2007,
+    "chantier": "Indiana Yachting, Italie",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "The Ocean Race Atlantic",
+      "rang": "6ème",
+      "skipper": "Conrad COLMAN",
+      "temps": "9j 17h 40min 00s"
+     },
+     {
+      "annee": "2025",
+      "course": "Transat Café L'OR",
+      "rang": "17ème",
+      "skipper": "Conrad COLMAN",
+      "temps": "19j 14h 27min 47s"
+     },
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "21ème",
+      "skipper": "Conrad COLMAN",
+      "temps": "85j 16h 04min 33s"
+     },
+     {
+      "annee": "2024",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "15ème",
+      "skipper": "Conrad COLMAN",
+      "temps": "1j 23h 00min 08s"
+     },
+     {
+      "annee": "2024",
+      "course": "New York Vendée - Les Sables d'Olonne",
+      "rang": "21ème",
+      "skipper": "Conrad COLMAN",
+      "temps": "14j 22h 47min 03s"
+     },
+     {
+      "annee": "2023",
+      "course": "Retour à La Base",
+      "rang": "15ème",
+      "skipper": "Conrad COLMAN",
+      "temps": "11j 09h 30min 42s"
+     },
+     {
+      "annee": "2023",
+      "course": "Transat Café L'OR",
+      "rang": "24ème",
+      "skipper": "Conrad COLMAN",
+      "temps": "15j 06h 12min 05s"
+     }
+    ],
+    "fiche_site": "imoca/groupe-bel/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/paprec",
+    "nom": "PAPREC",
+    "numero": null,
+    "skipper": "Yoann RICHOMME",
+    "architecte": "Antoine Koch / GSEA / Finot-Conq",
+    "construction": "2027, Multiplast",
+    "foils": "Oui",
+    "annee": 2027,
+    "chantier": "Multiplast",
+    "palmares": [],
+    "fiche_site": "imoca/paprec/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/resilient",
+    "nom": "RESILIENT",
+    "numero": "FRA 1000",
+    "skipper": "Pierre-Louis ATTWELL",
+    "bapteme": "RUA HATU",
+    "architecte": "Finot - Conq",
+    "construction": "2007, Multiplast, Vannes",
+    "mise_a_l_eau": "29/05/2008",
+    "foils": "Non",
+    "annee": 2007,
+    "chantier": "Multiplast, Vannes",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "",
+      "skipper": "Pierre-Louis ATTWELL",
+      "temps": "ABANDON"
+     },
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "17ème",
+      "skipper": "Tanguy LE TURQUAIS",
+      "temps": "84j 23h 35min 29s"
+     },
+     {
+      "annee": "2024",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "16ème",
+      "skipper": "Tanguy LE TURQUAIS",
+      "temps": "1j 23h 00min 41s"
+     },
+     {
+      "annee": "2024",
+      "course": "The Transat CIC",
+      "rang": "11ème",
+      "skipper": "Tanguy LE TURQUAIS",
+      "temps": "9j 22h 35min 34s"
+     },
+     {
+      "annee": "2023",
+      "course": "Retour à La Base",
+      "rang": "20ème",
+      "skipper": "Tanguy LE TURQUAIS",
+      "temps": "12j 00h 07min 00s"
+     },
+     {
+      "annee": "2023",
+      "course": "Transat Café L'OR",
+      "rang": "34ème",
+      "skipper": "Tanguy LE TURQUAIS",
+      "temps": "24j 01h 21mn 03s"
+     },
+     {
+      "annee": "2023",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "22ème",
+      "skipper": "Tanguy LE TURQUAIS",
+      "temps": "2j 10h 25min 00s"
+     }
+    ],
+    "fiche_site": "imoca/dcns/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/respire",
+    "nom": "RESPIRE",
+    "numero": "FRA 71",
+    "skipper": "Robin MARAIS",
+    "bapteme": "Trimtastic",
+    "architecte": "Farr Yacht Design",
+    "construction": "2007, Southern Ocean Marine (Nouvelle-Zélande)",
+    "mise_a_l_eau": "03/02/2007",
+    "foils": "Non",
+    "annee": 2007,
+    "chantier": "Southern Ocean Marine (Nouvelle-Zélande)",
+    "palmares": [
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "31ème",
+      "skipper": "Manuel COUSIN",
+      "temps": "111j 00h 38min 38s"
+     },
+     {
+      "annee": "2024",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "17ème",
+      "skipper": "Manuel COUSIN",
+      "temps": "1J 23h 28m 23s"
+     },
+     {
+      "annee": "2024",
+      "course": "New York Vendée - Les Sables d'Olonne",
+      "rang": "23ème",
+      "skipper": "Manuel COUSIN",
+      "temps": "14j 23h 31min 55s"
+     },
+     {
+      "annee": "2023",
+      "course": "Retour à La Base",
+      "rang": "25ème",
+      "skipper": "Manuel COUSIN",
+      "temps": "12j 11h 53min 38s"
+     },
+     {
+      "annee": "2023",
+      "course": "Transat Café L'OR",
+      "rang": "25ème",
+      "skipper": "Manuel COUSIN",
+      "temps": "16j 03h 54min 36s"
+     },
+     {
+      "annee": "2023",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "24ème",
+      "skipper": "Manuel COUSIN",
+      "temps": "2j 12h 48min 07s"
+     },
+     {
+      "annee": "2023",
+      "course": "Rolex Fastnet Race",
+      "rang": "23ème",
+      "skipper": "Manuel COUSIN",
+      "temps": "2d 20h 17m 2s"
+     }
+    ],
+    "fiche_site": "imoca/paprec-virbac/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/teamwork-team-snef-ii",
+    "nom": "TEAMWORK TEAM SNEF II",
+    "numero": null,
+    "skipper": "Justine METTRAUX",
+    "bapteme": "TEAMWORK - TEAM SNEF",
+    "architecte": "Guillaume Verdier",
+    "construction": "2026, CDK Technologies",
+    "foils": "Oui",
+    "annee": 2026,
+    "chantier": "CDK Technologies",
+    "palmares": [],
+    "fiche_site": "imoca/teamwork-team-snef/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/united-by-the-ocean",
+    "nom": "UNITED BY THE OCEAN",
+    "numero": "FRA 2030",
+    "skipper": "Mariana LOBATO",
+    "bapteme": "Biotherm",
+    "architecte": "Guillaume Verdier",
+    "construction": "2022, Persico Marine",
+    "mise_a_l_eau": "31/08/2022",
+    "foils": "Oui",
+    "annee": 2022,
+    "chantier": "Persico Marine",
+    "palmares": [
+     {
+      "annee": "2026",
+      "course": "The Ocean Race Atlantic",
+      "rang": "Vainqueur",
+      "skipper": "Paul MEILHAT",
+      "temps": "7J 23H 39min 11s"
+     },
+     {
+      "annee": "2025",
+      "course": "The Ocean Race Europe",
+      "rang": "Vainqueur",
+      "skipper": "Paul MEILHAT",
+      "temps": "55 POINTS"
+     },
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "5ème",
+      "skipper": "Paul MEILHAT",
+      "temps": "74j 22h 38min 15s"
+     },
+     {
+      "annee": "2024",
+      "course": "The Transat CIC",
+      "rang": "15ème",
+      "skipper": "Paul MEILHAT",
+      "temps": "10h 15h 02min 19s"
+     },
+     {
+      "annee": "2023",
+      "course": "Transat Café L'OR",
+      "rang": "",
+      "skipper": "Paul MEILHAT",
+      "temps": "Abandon"
+     },
+     {
+      "annee": "2023",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "20ème",
+      "skipper": "Paul MEILHAT",
+      "temps": "2j 06h 36min 00s"
+     },
+     {
+      "annee": "2023",
+      "course": "The Ocean Race",
+      "rang": "4ème",
+      "skipper": "Paul MEILHAT",
+      "temps": "23 POINTS"
+     }
+    ],
+    "fiche_site": "imoca/biotherm/"
+   },
+   {
+    "fiche": "https://www.imoca.org/fr/bateaux/vaincre-la-mucovisidose",
+    "nom": "VAINCRE LA MUCOVISIDOSE",
+    "numero": "FRA 53",
+    "skipper": "Maxime SOREL",
+    "bapteme": "VAINCRE LA MUCOVISIDOSE",
+    "architecte": "Guillaume Verdier",
+    "construction": "2022, MerConcept",
+    "mise_a_l_eau": "27/06/2022",
+    "foils": "Oui",
+    "annee": 2022,
+    "chantier": "MerConcept",
+    "palmares": [
+     {
+      "annee": "2024-2025",
+      "course": "Vendée Globe",
+      "rang": "",
+      "skipper": "Maxime SOREL",
+      "temps": "Abandon le 15/11/2024"
+     },
+     {
+      "annee": "2024",
+      "course": "New York Vendée - Les Sables d'Olonne",
+      "rang": "12ème",
+      "skipper": "Maxime SOREL",
+      "temps": "13j 20h 05min 08s"
+     },
+     {
+      "annee": "2024",
+      "course": "The Transat CIC",
+      "rang": "5ème",
+      "skipper": "Maxime SOREL",
+      "temps": "8j 15h 34min 03s"
+     },
+     {
+      "annee": "2023",
+      "course": "Transat Café L'OR",
+      "rang": "8ème",
+      "skipper": "Maxime SOREL",
+      "temps": "12j 21h 23min 01s"
+     },
+     {
+      "annee": "2023",
+      "course": "Défi Azimut-Lorient Agglomération",
+      "rang": "8ème",
+      "skipper": "Maxime SOREL",
+      "temps": "2j 03h 40min 30s"
+     },
+     {
+      "annee": "2023",
+      "course": "Rolex Fastnet Race",
+      "rang": "4ème",
+      "skipper": "Maxime SOREL",
+      "temps": "2d 7h 58m 24s"
+     },
+     {
+      "annee": "2022",
+      "course": "Route du Rhum-Destination Guadeloupe",
+      "rang": "5ème",
+      "skipper": "Maxime SOREL",
+      "temps": "12j 08h 59min 42s"
+     }
+    ],
+    "fiche_site": "imoca/v-and-b-monbana-mayenne/"
+   }
+  ]
+ },
+ "class-40": {
+  "source": "https://www.class40.com/bateaux",
+  "date": "2026-11-10",
+  "bateaux": [
+   {
+    "fiche": "https://www.class40.com/bateaux/1-terre-exotique",
+    "numero": 1,
+    "architecte": "Pierre Rolland",
+    "plan": "Jumbo (pointu)",
+    "chantier": "Jumbo Composites",
+    "lancement": 2004,
+    "skipper": "Georges Guiguen",
+    "bapteme": "Shere kahn3",
+    "nom": "Terre Exotique",
+    "fiche_site": "class-40/shere-khan-3/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/2-elsa",
+    "numero": 2,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2005,
+    "bapteme": "Elsa",
+    "nom": "Elsa",
+    "fiche_site": "class-40/yellow-basket/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/3-nahila",
+    "numero": 3,
+    "architecte": "Pierre Rolland",
+    "plan": "Jumbo (pointu)",
+    "chantier": "Jumbo Composites",
+    "lancement": 2005,
+    "bapteme": "Nahila",
+    "nom": "Nahila",
+    "fiche_site": "class-40/nahila/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/4-jufosa",
+    "numero": 4,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2005,
+    "skipper": "Dirk Eggers",
+    "bapteme": "Jufosa",
+    "nom": "Jufosa",
+    "fiche_site": "class-40/dame-du-veillon/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/5-matrix-reloaded",
+    "numero": 5,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2005,
+    "skipper": "Bill Gray",
+    "bapteme": "Matrix Reloaded",
+    "nom": "Matrix Reloaded",
+    "fiche_site": "class-40/gwalarn-v/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/6-lou",
+    "numero": 6,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2005,
+    "bapteme": "Lou",
+    "nom": "Lou",
+    "fiche_site": "class-40/nous-entreprenons/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/7-tante-anni",
+    "numero": 7,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2005,
+    "skipper": "Konrad Schwingenstein",
+    "bapteme": "Tante Anni",
+    "nom": "Tante Anni",
+    "fiche_site": "class-40/oyster-funds/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/8-merena",
+    "numero": 8,
+    "architecte": "Pierre Rolland",
+    "plan": "Jumbo (pointu)",
+    "chantier": "Jumbo Composites",
+    "lancement": 2006,
+    "bapteme": "Mérena",
+    "nom": "Merena",
+    "fiche_site": "class-40/merena/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/9-courrier-de-nuit",
+    "numero": 9,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2005,
+    "skipper": "Michel Ferard",
+    "bapteme": "Courrier de nuit",
+    "nom": "Courrier de nuit",
+    "fiche_site": "class-40/guyader-l-esprit-de-la-mer/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/10-maverick",
+    "numero": 10,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2006,
+    "skipper": "Michael Roger Henriksen",
+    "bapteme": "40 mille sabords",
+    "nom": "Maverick",
+    "fiche_site": "class-40/fnaim-pays-de-loire/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/11-azawakh-iii",
+    "numero": 11,
+    "architecte": "Pierre Rolland",
+    "plan": "Jumbo (pointu)",
+    "chantier": "Jumbo Composites",
+    "lancement": 2005,
+    "bapteme": "Azawakh lll",
+    "nom": "Azawakh III",
+    "fiche_site": "class-40/azawakh-iii/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/12-noumea",
+    "numero": 12,
+    "architecte": "Joubert/Nivelt",
+    "plan": "Archambault 40 (pointu)",
+    "chantier": "Archambault",
+    "lancement": 2006,
+    "bapteme": "Nouméa",
+    "nom": "Nouméa",
+    "fiche_site": "class-40/nouvelle-caledonie/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/14-tchuda-popka-2",
+    "numero": 14,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2005,
+    "bapteme": "Tchuda Popka 2",
+    "nom": "Tchuda Popka 2",
+    "fiche_site": "class-40/cap-l-orient/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/15-koloa-maoli",
+    "numero": 15,
+    "architecte": "Owen Clarke Design",
+    "plan": "Jaz 40 (pointu)",
+    "chantier": "Jaz Marine",
+    "lancement": 2006,
+    "skipper": "Ronnie Simpson",
+    "bapteme": "Koloa Maoli",
+    "nom": "Koloa Maoli",
+    "fiche_site": "class-40/bolands-mills/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/16-vision-future",
+    "numero": 16,
+    "architecte": "Luc Bouvet",
+    "plan": "Axion 40 (pointu)",
+    "chantier": "Lion-Yacht Construction",
+    "lancement": 2006,
+    "bapteme": "Vision future",
+    "nom": "Vision future",
+    "fiche_site": "class-40/vision-future/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/17-nacira",
+    "numero": 17,
+    "architecte": "Axel de BEAUFORT",
+    "plan": "Nacira 40 (pointu)",
+    "chantier": "Ecole supérieure du bois",
+    "lancement": 2006,
+    "skipper": "Benoit Parnaudeau",
+    "bapteme": "Nacira",
+    "nom": "Nacira",
+    "fiche_site": "class-40/nacira/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/18-citron-presse",
+    "numero": 18,
+    "architecte": "O. Gouard / Y. Pascal",
+    "plan": "Sabrosa 40 (pointu)",
+    "chantier": "Sabrosa Compétition 72",
+    "lancement": 2006,
+    "bapteme": "Citron pressé",
+    "nom": "Citron pressé",
+    "fiche_site": "class-40/citron-presse/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/19-shamwari",
+    "numero": 19,
+    "architecte": "F. Lucas",
+    "plan": "LC 40 (pointu)",
+    "chantier": "Mick Dubb, Class40 Racing",
+    "lancement": 2006,
+    "skipper": "Fraser Flight",
+    "bapteme": "Shamwari",
+    "nom": "Shamwari",
+    "fiche_site": "class-40/kenmore-home/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/20-ocean-s-eleven",
+    "numero": 20,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2006,
+    "bapteme": "Ocean's eleven",
+    "nom": "Ocean's eleven",
+    "fiche_site": "class-40/cinemas-grand-forum/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/21-astragale",
+    "numero": 21,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2006,
+    "skipper": "Jan- Helge Furnesvik",
+    "bapteme": "Astragale",
+    "nom": "Astragale",
+    "fiche_site": "class-40/lexibook/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/22-voile-44-aaea-cava",
+    "numero": 22,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2006,
+    "bapteme": "GROUPE 5",
+    "nom": "Voile 44 AAEA CAVA",
+    "fiche_site": "class-40/cotes-d-armor-pierres-mer/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/23-arwen",
+    "numero": 23,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2006,
+    "skipper": "Daniel Loutrel",
+    "bapteme": "Arwen",
+    "nom": "Arwen",
+    "fiche_site": "class-40/atao-audio-system/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/24-ixsea",
+    "numero": 24,
+    "architecte": "Pierre Rolland",
+    "plan": "Jumbo (pointu)",
+    "chantier": "Jumbo Composites",
+    "lancement": 2006,
+    "skipper": "Nathanaël Chauvin",
+    "bapteme": "Jumbo",
+    "nom": "IXSEA",
+    "fiche_site": "class-40/ixsea/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/25-impulse",
+    "numero": 25,
+    "architecte": "Julien Marin",
+    "plan": "Tyker 40 (pointu)",
+    "chantier": "FR Nautisme",
+    "lancement": 2006,
+    "skipper": "Kyle Hubley",
+    "bapteme": "Impulse",
+    "nom": "Impulse",
+    "fiche_site": "class-40/appart-city/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/26-sensation-class40",
+    "numero": 26,
+    "architecte": "Pierre Rolland",
+    "plan": "Jumbo (pointu)",
+    "chantier": "Jumbo Composites",
+    "lancement": 2006,
+    "skipper": "Eric Bredeka",
+    "bapteme": "Maluel",
+    "nom": "Sensation Class40",
+    "fiche_site": "class-40/maluel-40/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/27-wakaora",
+    "numero": 27,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2006,
+    "skipper": "Roberto Coggi",
+    "bapteme": "Wakaora",
+    "nom": "Wakaora",
+    "fiche_site": "class-40/knauf-industries/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/28-tmi-technologie",
+    "numero": 28,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2006,
+    "skipper": "Joé Seeten",
+    "bapteme": "CHAMPIONNAT 5",
+    "nom": "TMI Technologie",
+    "fiche_site": "class-40/tmi-technologies/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/29-monbato",
+    "numero": 29,
+    "architecte": "Julien Marin",
+    "plan": "Tyker40 (pointu)",
+    "chantier": "FR Nautisme",
+    "lancement": 2006,
+    "bapteme": "MONBATO",
+    "nom": "MONBATO",
+    "fiche_site": "class-40/chocolats-monbana/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/30-medecins-du-monde",
+    "numero": 30,
+    "architecte": "Rogers Yacht Design",
+    "plan": "Rogers Class40 (pointu)",
+    "chantier": "CMI Bangkok",
+    "lancement": 2007,
+    "skipper": "Nicolas Manthos",
+    "bapteme": "Cheekytatoo",
+    "nom": "Médecins du Monde",
+    "fiche_site": "class-40/cheekytatoo/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/31-changabang",
+    "numero": 31,
+    "architecte": "F. Lucas",
+    "plan": "LC 40 (pointu)",
+    "chantier": "Pascal Douin",
+    "lancement": 2006,
+    "skipper": "Philippe Jamotte",
+    "bapteme": "Changabang",
+    "nom": "Changabang",
+    "fiche_site": "class-40/thirard/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/32-routes-du-large",
+    "numero": 32,
+    "architecte": "O. Philippot",
+    "plan": "LNM40 (pointu)",
+    "chantier": "sailing concept",
+    "lancement": 2006,
+    "skipper": "Joel Paris",
+    "bapteme": "ROUTES DU LARGE",
+    "nom": "ROUTES DU LARGE",
+    "fiche_site": "class-40/paca-entreprendre/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/33-boulba",
+    "numero": 33,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2007,
+    "bapteme": "Boulba",
+    "nom": "Boulba",
+    "fiche_site": "class-40/imx/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/34-kent-racing",
+    "numero": 34,
+    "architecte": "Owen Clarke Design",
+    "plan": "Express 40 (pointu)",
+    "chantier": "Sea Ventures",
+    "lancement": 2007,
+    "skipper": "Tim Kent",
+    "bapteme": "Ocean Warrior",
+    "nom": "Kent Racing",
+    "fiche_site": "class-40/kazimir-partners/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/35-bleu",
+    "numero": 35,
+    "architecte": "Sam Manuard",
+    "plan": "Bleu 40 (pointu)",
+    "chantier": "(Québec)",
+    "lancement": 2008,
+    "skipper": "Eric Tabardel",
+    "bapteme": "Bleu",
+    "nom": "Bleu",
+    "fiche_site": "class-40/bleu-voile-oceanique/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/37-first-light",
+    "numero": 37,
+    "architecte": "Owen Clarke Design",
+    "plan": "Jaz 40 (pointu)",
+    "chantier": "Jaz Marine",
+    "lancement": 2007,
+    "skipper": "Sam Fitzgerald",
+    "bapteme": "First Light",
+    "nom": "First Light",
+    "fiche_site": "class-40/11th-hour-racing/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/38-zero-challenge",
+    "numero": 38,
+    "architecte": "Owen Clarke Design",
+    "plan": "CC40 (pointu)",
+    "chantier": "Composite creations",
+    "lancement": 2007,
+    "skipper": "Ari Kansakoski",
+    "bapteme": "Fuji",
+    "nom": "Zéro Challenge",
+    "fiche_site": "class-40/fujifilm/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/39-graybeard",
+    "numero": 39,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2007,
+    "skipper": "Bill Walczak",
+    "bapteme": "Graybeard",
+    "nom": "Graybeard",
+    "fiche_site": "class-40/amhas/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/40-altair",
+    "numero": 40,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2007,
+    "skipper": "Benoit Garibal",
+    "bapteme": "Sail On",
+    "nom": "ALTAIR",
+    "fiche_site": "class-40/sail-on/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/41-mowgli",
+    "numero": 41,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2007,
+    "skipper": "Matthieu De Clercq",
+    "bapteme": "Mowgli",
+    "nom": "Mowgli",
+    "fiche_site": "class-40/gonser-group/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/42-aflo",
+    "numero": 42,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2006,
+    "skipper": ". Marsden Richard Toman Emma May",
+    "bapteme": "Aflo",
+    "nom": "Aflo",
+    "fiche_site": "class-40/deep-blue/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/43-palanad-ii",
+    "numero": 43,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2007,
+    "bapteme": "PALANAD II",
+    "nom": "Palanad II",
+    "fiche_site": "class-40/palanad-ii/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/44-sec-hayai",
+    "numero": 44,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2007,
+    "skipper": "Frans Budel",
+    "bapteme": "SEC HAYAI",
+    "nom": "SEC HAYAI",
+    "fiche_site": "class-40/en-avant-les-enfants/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/45-non-communique",
+    "numero": 45,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2007,
+    "skipper": "Laurens Sliepenbeek",
+    "bapteme": "RIFIFI",
+    "fiche_site": "class-40/edf-energies-nouvelles/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/46-blue-planet",
+    "numero": 46,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2007,
+    "skipper": "Christopher Heeschen",
+    "bapteme": "Blue Planet",
+    "nom": "Blue Planet",
+    "fiche_site": "class-40/kamoa-e/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/47-monkey-47",
+    "numero": 47,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2007,
+    "skipper": "Patrick Lindqvist",
+    "bapteme": "Khat 7",
+    "nom": "Monkey 47",
+    "fiche_site": "class-40/dimensions-one-spas/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/48-livewire",
+    "numero": 48,
+    "architecte": "Owen Clarke Design",
+    "plan": "Express 40 (pointu)",
+    "chantier": "Sea Ventures /V1D2",
+    "lancement": 2007,
+    "skipper": "Stuart Dodd",
+    "bapteme": "LIVEWIRE",
+    "nom": "Livewire",
+    "fiche_site": "class-40/livewire/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/49-vaquita",
+    "numero": 49,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria Racing (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2007,
+    "skipper": "Alessio Bernabo",
+    "bapteme": "Vaquita",
+    "nom": "Vaquita",
+    "fiche_site": "class-40/concise/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/50-simple-ve",
+    "numero": 50,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2007,
+    "skipper": "Toni Hirttio",
+    "bapteme": "Simple Ve",
+    "nom": "Simple VE",
+    "fiche_site": "class-40/techneau/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/51-tomahawk",
+    "numero": 51,
+    "architecte": "Jérome Renous",
+    "plan": "Tomahawk 40 (pointu)",
+    "chantier": "Geronimo Naval Design",
+    "lancement": 2007,
+    "bapteme": "TOMAHAWK",
+    "nom": "TOMAHAWK",
+    "fiche_site": "class-40/nautique-sevre/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/52-trekkee",
+    "numero": 52,
+    "architecte": "Rogers Yacht Design",
+    "plan": "Rogers Class40 (pointu)",
+    "chantier": "CMI Bangkok",
+    "lancement": 2007,
+    "skipper": "Kiyoharu Okada",
+    "bapteme": "GUSILIAM",
+    "nom": "Trekkee",
+    "fiche_site": "class-40/clarke-offshore-racing/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/53-non-communique",
+    "numero": 53,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria Racing (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2007,
+    "skipper": "Andrei Shervashidze",
+    "bapteme": "Tzu Hang",
+    "fiche_site": "class-40/mistral-loisirs-elior/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/54-first-light",
+    "numero": 54,
+    "architecte": "Owen Clarke Design",
+    "plan": "CC40 (pointu)",
+    "chantier": "Composite creations",
+    "lancement": 2008,
+    "skipper": "Cole Brauer",
+    "bapteme": "First Light",
+    "nom": "First Light",
+    "fiche_site": "class-40/enter-the-dragon/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/55-a-venir",
+    "numero": 55,
+    "architecte": "Guillaume Verdier",
+    "plan": "Tyker 40 evolution 2 (pointu)",
+    "chantier": "FR Nautisme",
+    "lancement": 2007,
+    "skipper": "James Ketchell",
+    "fiche_site": "class-40/telecom-italia/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/56-green",
+    "numero": 56,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2007,
+    "skipper": "Carl-Peter Forster",
+    "bapteme": "Green",
+    "nom": "Green",
+    "fiche_site": "class-40/les-lousticks/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/57-seizh-avel",
+    "numero": 57,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2008,
+    "skipper": "Till Kühner",
+    "bapteme": "Seizh Avel",
+    "nom": "Seizh Avel",
+    "fiche_site": "class-40/voiles-sans-frontieres/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/58-boxx",
+    "numero": 58,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2007,
+    "bapteme": "BOXX",
+    "nom": "BOXX",
+    "fiche_site": "class-40/boxx/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/59-red",
+    "numero": 59,
+    "architecte": "Rogers Yacht Design",
+    "plan": "Rogers Class40 (pointu)",
+    "chantier": "CMI Bangkok (Green Marine)",
+    "lancement": 2007,
+    "skipper": "Paul Posch",
+    "bapteme": "Red",
+    "nom": "Red",
+    "fiche_site": "class-40/vecteur-plus-groupe-moniteur/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/60-tjoba",
+    "numero": 60,
+    "architecte": "J. Valer",
+    "plan": "JPK (pointu)",
+    "chantier": "JPK",
+    "lancement": 2007,
+    "skipper": "Minus Tjeenk Willink",
+    "bapteme": "Tjoba",
+    "nom": "Tjoba",
+    "fiche_site": "class-40/groupe-partouche/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/61-the-globe-en-solidaire",
+    "numero": 61,
+    "architecte": "O. Philippot",
+    "plan": "LNM40 (pointu)",
+    "chantier": "CAP ARROS",
+    "lancement": 2007,
+    "skipper": "Eric Grosclaude",
+    "bapteme": "Zahia",
+    "nom": "The globe en solidaire",
+    "fiche_site": "class-40/ast-group/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/62-pogo-1",
+    "numero": 62,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2008,
+    "bapteme": "POGO 1",
+    "nom": "POGO 1",
+    "fiche_site": "class-40/pogo-one/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/63-spirit-of-cici",
+    "numero": 63,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2008,
+    "bapteme": "Spirit of Cici",
+    "nom": "Spirit of Cici",
+    "fiche_site": "class-40/pogo-2/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/64-croix-du-sud",
+    "numero": 64,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria Racing RC1 (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2008,
+    "skipper": "Henrik Masekowitz",
+    "bapteme": "Croix du Sud",
+    "nom": "Croix du Sud",
+    "fiche_site": "class-40/patient-hawk/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/65-yoda",
+    "numero": 65,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria MK2 (proto) (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2008,
+    "skipper": "Franz Bouvet",
+    "bapteme": "Yoda",
+    "nom": "Yoda",
+    "fiche_site": "class-40/tales/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/66-red66",
+    "numero": 66,
+    "architecte": "Owen Clarke Design",
+    "plan": "CC40 (pointu)",
+    "chantier": "Composite creations",
+    "lancement": 2009,
+    "skipper": "Hans Brouwer",
+    "bapteme": "Red66",
+    "nom": "Red66",
+    "fiche_site": "class-40/red/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/67-spliff",
+    "numero": 67,
+    "architecte": "Owen Clarke Design",
+    "plan": "Express 40 (pointu)",
+    "chantier": "Sea Ventures",
+    "lancement": 2008,
+    "skipper": "Andrew Dawson",
+    "bapteme": "Spliff",
+    "nom": "Spliff",
+    "fiche_site": "class-40/double-digits/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/68-peregrine",
+    "numero": 68,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 S (pointu)",
+    "chantier": "Structures",
+    "lancement": 2009,
+    "skipper": "Richard Allen",
+    "bapteme": "Peregrine",
+    "nom": "Peregrine",
+    "fiche_site": "class-40/jumpa-lagi/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/69-waypoint",
+    "numero": 69,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 S (pointu)",
+    "chantier": "Structures",
+    "lancement": 2008,
+    "skipper": "Damir Cargo",
+    "bapteme": "Waypoint",
+    "nom": "Waypoint",
+    "fiche_site": "class-40/custo-pol/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/70-f-et-mer",
+    "numero": 70,
+    "architecte": "J. Valer",
+    "plan": "JPK (pointu)",
+    "chantier": "JPK composites",
+    "lancement": 2008,
+    "bapteme": "F ET MER",
+    "nom": "F ET MER",
+    "fiche_site": "class-40/axa-atout-coeur-pour-aides/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/71-rev-86",
+    "numero": 71,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria Racing (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2008,
+    "skipper": "Sandi Misiraca",
+    "bapteme": "Rev'86",
+    "nom": "Rev'86",
+    "fiche_site": "class-40/rev-86/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/72-topsail",
+    "numero": 72,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2008,
+    "bapteme": "Topsail",
+    "nom": "Topsail",
+    "fiche_site": "class-40/aki-sports-three/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/73-team-spm",
+    "numero": 73,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2008,
+    "skipper": "Stéphane Bry",
+    "bapteme": "Sirius",
+    "nom": "Team SPM",
+    "fiche_site": "class-40/toothface/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/74-sacramouille",
+    "numero": 74,
+    "architecte": "Réjean Desgagné",
+    "plan": "DF40 (pointu)",
+    "chantier": "Forcier / D'Amiro",
+    "lancement": 2008,
+    "skipper": "Luc Forcier",
+    "bapteme": "YME",
+    "nom": "Sacramouille",
+    "fiche_site": "class-40/yme/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/75-kawan3",
+    "numero": 75,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 S (pointu)",
+    "chantier": "Structures",
+    "lancement": 2008,
+    "skipper": "François Gouin",
+    "bapteme": "Kawan3",
+    "nom": "Kawan3",
+    "fiche_site": "class-40/moonpalace/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/76-buckley-systems",
+    "numero": 76,
+    "architecte": "Guillaume Verdier",
+    "plan": "Tyker 40 evolution 2 (pointu)",
+    "chantier": "FR Nautisme",
+    "lancement": 2008,
+    "bapteme": "Desafio Cabo de Horno",
+    "nom": "Buckley Systems",
+    "fiche_site": "class-40/desafio-cabo-de-hornos/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/77-orca",
+    "numero": 77,
+    "architecte": "Humphreys Design",
+    "plan": "ORCA (pointu)",
+    "chantier": "Ocean Tec, Slovénie",
+    "lancement": 2008,
+    "bapteme": "ORCA",
+    "nom": "ORCA",
+    "fiche_site": "class-40/orca/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/78-roaring-forty",
+    "numero": 78,
+    "architecte": "Owen Clarke Design",
+    "plan": "Jaz 40 (pointu)",
+    "chantier": "Jaz Marine",
+    "lancement": 2006,
+    "skipper": "Peter Becher",
+    "bapteme": "Roaring forty",
+    "nom": "Roaring Forty",
+    "fiche_site": "class-40/friends-of-the-earth/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/79-cinnamon-girl",
+    "numero": 79,
+    "architecte": "Owen Clarke Design",
+    "plan": "FS 40 (pointu)",
+    "chantier": "FS Composites",
+    "lancement": 2009,
+    "bapteme": "Cinnamon girl",
+    "nom": "Cinnamon girl",
+    "fiche_site": "class-40/cinnamon-girl/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/80-argeste",
+    "numero": 80,
+    "architecte": "Sito Aviles",
+    "plan": "Este 40 (pointu)",
+    "chantier": "Cantieri Navali d'Este",
+    "lancement": 2008,
+    "bapteme": "ARGESTE",
+    "nom": "ARGESTE",
+    "fiche_site": "class-40/este-40/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/81-zed-4",
+    "numero": 81,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria RC 2 (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2009,
+    "skipper": "Eric Kranert",
+    "bapteme": "ZED 4",
+    "nom": "Zed 4",
+    "fiche_site": "class-40/beluga-racer/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/82-non-communique",
+    "numero": 82,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria Racing (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2009,
+    "skipper": "Dave Peckham",
+    "bapteme": "Forty Shades of Grey",
+    "fiche_site": "class-40/tieto-passion/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/83-ad-hoc-largo-2",
+    "numero": 83,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria RC 2 (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2009,
+    "skipper": "Pierre Le Maout",
+    "bapteme": "Ad Hoc Largo 2",
+    "nom": "Ad Hoc Largo 2",
+    "fiche_site": "class-40/mistral-loisirs-pole-sante-elior/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/84-cala-luna",
+    "numero": 84,
+    "architecte": "Sam Manuard",
+    "plan": "BM40 (pointu)",
+    "chantier": "Bert Mauri",
+    "lancement": 2009,
+    "skipper": "Sergio Frattaruolo",
+    "bapteme": "Cala Luna",
+    "nom": "Cala Luna",
+    "fiche_site": "class-40/cala-luna/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/85-nox",
+    "numero": 85,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 S² (pointu)",
+    "chantier": "Structures",
+    "lancement": 2010,
+    "skipper": "Chris Taylor",
+    "bapteme": "NOX",
+    "nom": "Nox",
+    "fiche_site": "class-40/groupe-picoty/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/86-patricia-ii",
+    "numero": 86,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo40 S (pointu)",
+    "chantier": "Structures",
+    "lancement": 2009,
+    "skipper": "Salvatore Giovanni Grasso",
+    "bapteme": "Patricia II",
+    "nom": "Patricia II",
+    "fiche_site": "class-40/patricia-ii/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/87-antrim-class40",
+    "numero": 87,
+    "architecte": "Jim Antrim",
+    "plan": "Antrim Class40 (pointu)",
+    "chantier": "Columbia Yachts",
+    "lancement": 2009,
+    "bapteme": "Antrim Class40",
+    "nom": "Antrim Class40",
+    "fiche_site": "class-40/yippee-kai-yay/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/88-earwen",
+    "numero": 88,
+    "architecte": "Guillaume Verdier",
+    "plan": "tyker 40 evolution 2 (pointu)",
+    "chantier": "FR Nautisme",
+    "lancement": 2009,
+    "skipper": "Ulysse Pozzoli",
+    "bapteme": "Eärwen",
+    "nom": "Eärwen",
+    "fiche_site": "class-40/satine/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/89-mer-connexion",
+    "numero": 89,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2009,
+    "skipper": "Ambre Hasson",
+    "bapteme": "AJT",
+    "nom": "Mer Connexion",
+    "fiche_site": "class-40/gonser-group-cambio/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/90-mussulo-40",
+    "numero": 90,
+    "architecte": "Owen Clarke Design",
+    "plan": "Jaz 40 MkII (pointu)",
+    "chantier": "Jaz Marine",
+    "lancement": 2009,
+    "bapteme": "Mussulo 40",
+    "nom": "Mussulo 40",
+    "fiche_site": "class-40/40-degrees/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/91-dysan",
+    "numero": 91,
+    "architecte": "J. Valer",
+    "plan": "JPK (pointu)",
+    "chantier": "JPK composites",
+    "lancement": 2009,
+    "skipper": "Arthur Gascoin",
+    "bapteme": "Dysan",
+    "nom": "Dysan",
+    "fiche_site": "class-40/kogane/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/92-white-swallow",
+    "numero": 92,
+    "architecte": "Humphreys Design",
+    "plan": "ORCA (pointu)",
+    "chantier": "Ocean Tec, Slovénie",
+    "lancement": 2010,
+    "bapteme": "White Swallow",
+    "nom": "White Swallow",
+    "fiche_site": "class-40/white-swallow/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/93-wilson",
+    "numero": 93,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria RC 2 (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2010,
+    "skipper": "Lisa Berger",
+    "bapteme": "Wilson",
+    "nom": "Wilson",
+    "fiche_site": "class-40/dms/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/94-california-condor",
+    "numero": 94,
+    "architecte": "Jim Antrim",
+    "plan": "Antrim Class40 (pointu)",
+    "chantier": "Berkeley Marine Center",
+    "lancement": 2010,
+    "bapteme": "California Condor",
+    "nom": "California Condor",
+    "fiche_site": "class-40/cq-california-condor/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/95-talanta",
+    "numero": 95,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 S² (pointu)",
+    "chantier": "Structures",
+    "lancement": 2010,
+    "skipper": "Michael Puehse",
+    "bapteme": "Talanta",
+    "nom": "Talanta",
+    "fiche_site": "class-40/talanta/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/96-regisguillemot-com",
+    "numero": 96,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 S² (pointu)",
+    "chantier": "Structures",
+    "lancement": 2010,
+    "skipper": "Régis Guillemot",
+    "bapteme": "Hallucine",
+    "nom": "regisguillemot.com",
+    "fiche_site": "class-40/hallucine/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/97-fortissimo",
+    "numero": 97,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2010,
+    "skipper": "Philippe Fraslin",
+    "bapteme": "Fortissimo",
+    "nom": "Fortissimo",
+    "fiche_site": "class-40/maxvmg/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/98-qwanza",
+    "numero": 98,
+    "architecte": "Guillaume Verdier",
+    "plan": "Tyker 40 evolution 2 (pointu)",
+    "chantier": "FR Nautisme",
+    "lancement": 2010,
+    "skipper": "Goulven Marie",
+    "nom": "Qwanza",
+    "fiche_site": "class-40/drekan-energie-groupe-terrallia/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/99-pep-gwadloup",
+    "numero": 99,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria RC 2 (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2010,
+    "skipper": "Carl Chipotel",
+    "bapteme": "Fitz",
+    "nom": "Pèp Gwadloup'",
+    "fiche_site": "class-40/territoires-attitude/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/100-ose-ta-victoire",
+    "numero": 100,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 S² (pointu)",
+    "chantier": "Structures",
+    "lancement": 2010,
+    "skipper": "Ludovic Cosme",
+    "bapteme": "Sang pour Sang",
+    "nom": "Ose ta victoire",
+    "fiche_site": "class-40/monbana/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/101-milai",
+    "numero": 101,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 S² (pointu)",
+    "chantier": "Structures",
+    "lancement": 2011,
+    "bapteme": "Milai",
+    "nom": "Milai",
+    "fiche_site": "class-40/campagne-de-france/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/102-privateer",
+    "numero": 102,
+    "architecte": "Farr Yacht Design",
+    "plan": "Kiwi40 Farr Cookson (pointu)",
+    "chantier": "Cookson boats",
+    "lancement": 2010,
+    "skipper": "Carl Kah",
+    "bapteme": "PERASPERA",
+    "nom": "Privateer",
+    "fiche_site": "class-40/peraspera/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/103-yala",
+    "numero": 103,
+    "architecte": "Elie Canivenc",
+    "plan": "Exocet (pointu)",
+    "chantier": "ECAN",
+    "lancement": 2010,
+    "skipper": "Olivier Gamot",
+    "bapteme": "Yala",
+    "nom": "Yala",
+    "fiche_site": "class-40/exocet/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/104-martinique",
+    "numero": 104,
+    "architecte": "S. Manuard",
+    "plan": "Mach40 (pointu)",
+    "chantier": "JPS",
+    "lancement": 2011,
+    "bapteme": "Horizon",
+    "nom": "Martinique",
+    "fiche_site": "class-40/daisy-temple/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/105-non-communique",
+    "numero": 105,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria RC 2 cat. 0 (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2011,
+    "skipper": "Ivan Stanisavljevic",
+    "bapteme": "400 mille sabords",
+    "fiche_site": "class-40/wanted-partner/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/106-gryphon-solo-2",
+    "numero": 106,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria RC 2 cat. 0 (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2011,
+    "skipper": "Richard Colman",
+    "bapteme": "Gryphon Solo 2",
+    "nom": "Gryphon Solo 2",
+    "fiche_site": "class-40/gryphon-solo-2/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/107-mussolo-40",
+    "numero": 107,
+    "architecte": "Farr Yacht Design",
+    "plan": "Kiwi40 Farr Cookson (pointu)",
+    "chantier": "Cookson boats",
+    "lancement": 2011,
+    "bapteme": "Mussolo 40",
+    "nom": "Mussolo 40",
+    "fiche_site": "class-40/roaring-forty-2/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/108-zedtech",
+    "numero": 108,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria RC 2 cat. 0 (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2011,
+    "bapteme": "Zedtech",
+    "nom": "Zedtech",
+    "fiche_site": "class-40/zedtech/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/109-innovad-group-xlg",
+    "numero": 109,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 S² (pointu)",
+    "chantier": "Structures",
+    "lancement": 2011,
+    "skipper": "Jérôme Delire",
+    "bapteme": "Masaï",
+    "nom": "Innovad.group - xlg",
+    "fiche_site": "class-40/masai/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/110-crazy",
+    "numero": 110,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria RC 2 cat. 0 (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2011,
+    "skipper": "Gottfried Poessl",
+    "bapteme": "Crazy",
+    "nom": "Crazy",
+    "fiche_site": "class-40/gust-buster/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/111-cantaloop40",
+    "numero": 111,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria RC2 (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2011,
+    "skipper": "Sebastian Ropohl",
+    "bapteme": "Cantaloop40",
+    "nom": "Cantaloop40",
+    "fiche_site": "class-40/fitz/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/112-jasmine-flyer",
+    "numero": 112,
+    "architecte": "Marc Lombard",
+    "plan": "Akilaria RC2 (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2011,
+    "skipper": "Rob Gough",
+    "bapteme": "Jasmine Flyer",
+    "nom": "Jasmine Flyer",
+    "fiche_site": "class-40/cessna-citation/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/113-alizes-iii",
+    "numero": 113,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 40 S² (pointu)",
+    "chantier": "Structures",
+    "lancement": 2011,
+    "skipper": "Luca Sabiu",
+    "bapteme": "Alizés III",
+    "nom": "Alizés III",
+    "fiche_site": "class-40/partouche/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/114-gitane",
+    "numero": 114,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 12,50 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2012,
+    "skipper": "Adam Goralszky",
+    "bapteme": "Gitane",
+    "nom": "Gitane",
+    "fiche_site": "class-40/lupi/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/115-martinique-horizon",
+    "numero": 115,
+    "architecte": "Sam Manuard",
+    "plan": "Mach40 (pointu)",
+    "chantier": "JPS Production",
+    "lancement": 2012,
+    "skipper": "Jean-Yves Aglae",
+    "bapteme": "Boogie Down",
+    "nom": "Martinique Horizon",
+    "fiche_site": "class-40/mare/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/116-spray",
+    "numero": 116,
+    "architecte": "Rodger Martin",
+    "plan": "Roger Martin Design (pointu)",
+    "chantier": "Al Fresco Composites",
+    "lancement": 2012,
+    "skipper": "Charles W. Calkins",
+    "bapteme": "Spray",
+    "nom": "Spray",
+    "fiche_site": "class-40/cq-gwaihir/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/117-bet-1128",
+    "numero": 117,
+    "architecte": "Sam Manuard",
+    "plan": "BM40 (pointu)",
+    "chantier": "Bert Mauri",
+    "lancement": 2012,
+    "skipper": "Gaetano Mura",
+    "bapteme": "Black Sam",
+    "nom": "BET 1128",
+    "fiche_site": "class-40/black-sam/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/118-oakcliff-ocean-racing",
+    "numero": 118,
+    "architecte": "Farr Yacht Design",
+    "plan": "Kiwi40 Farr Cookson (pointu)",
+    "chantier": "Hakes marine",
+    "lancement": 2012,
+    "skipper": "Hobie Ponting",
+    "bapteme": "Oakcliff sailing",
+    "nom": "Oakcliff Ocean Racing",
+    "fiche_site": "class-40/bodacious-dream/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/119-lord-jiminy",
+    "numero": 119,
+    "architecte": "G. Verdier",
+    "plan": "Tyker 40 Evolution 3 (pointu)",
+    "chantier": "FR Nautisme",
+    "lancement": 2012,
+    "skipper": "Chris Barlow",
+    "bapteme": "Lord Jiminy 119",
+    "nom": "Lord Jiminy",
+    "fiche_site": "class-40/port-de-plaisance-de-roscoff/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/120-miramar-iii",
+    "numero": 120,
+    "architecte": "Groupe Finot",
+    "plan": "Pogo 12,50 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2012,
+    "skipper": "Olivier Rondeau",
+    "bapteme": "Miramar III",
+    "nom": "Miramar III",
+    "fiche_site": "class-40/marimar-iii/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/121-karnak",
+    "numero": 121,
+    "architecte": "Verdier",
+    "plan": "Tyker evolution 3 (pointu)",
+    "chantier": "FR Nautisme",
+    "lancement": 2012,
+    "skipper": "Marco Bianchini",
+    "bapteme": "Karnak",
+    "nom": "Karnak",
+    "fiche_site": "class-40/lecoq-cuisines/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/122-ola",
+    "numero": 122,
+    "architecte": "Marc LOMBARD",
+    "plan": "Akilaria RC2 (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2012,
+    "skipper": "Sergio Sfondrini",
+    "bapteme": "OLA",
+    "nom": "OLA",
+    "fiche_site": "class-40/ola-sailing/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/123-good-morning-futur",
+    "numero": 123,
+    "architecte": "Botin Partners",
+    "plan": "Proto 40 (pointu)",
+    "chantier": "Longitud 0",
+    "lancement": 2013,
+    "skipper": "Anatole Facon",
+    "bapteme": "Tales II",
+    "nom": "Good Morning futur",
+    "fiche_site": "class-40/santander-2014/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/124-for-my-planet",
+    "numero": 124,
+    "architecte": "Marc LOMBARD",
+    "plan": "Akilaria RC3 (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2012,
+    "skipper": "Julia Virat",
+    "bapteme": "Chinook",
+    "nom": "For My Planet",
+    "fiche_site": "class-40/al-bucq/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/125-otakai",
+    "numero": 125,
+    "architecte": "Humphreys Yacht Design",
+    "plan": "HH40 (pointu)",
+    "chantier": "Ocean tec",
+    "lancement": 2013,
+    "skipper": "Grégory Boulot",
+    "bapteme": "OTAKAI",
+    "nom": "OTAKAI",
+    "fiche_site": "class-40/vaquita-2/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/126-fantastica",
+    "numero": 126,
+    "architecte": "Guillaume VERDIER",
+    "plan": "Tyker 40 (prototype) (pointu)",
+    "chantier": "ORIOLI",
+    "lancement": 2013,
+    "bapteme": "FANTASTICA",
+    "nom": "Fantastica",
+    "fiche_site": "class-40/fantastica/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/127-equinoxe",
+    "numero": 127,
+    "architecte": "Marc LOMBARD",
+    "plan": "Akilaria RC3 (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2013,
+    "skipper": "Julia Virat",
+    "bapteme": "Equinoxe",
+    "nom": "Equinoxe",
+    "fiche_site": "class-40/ahmas-ii/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/128-stormtech",
+    "numero": 128,
+    "architecte": "Marc LOMBARD",
+    "plan": "Akilaria RC3 (pointu)",
+    "chantier": "MC-TEC",
+    "lancement": 2013,
+    "skipper": "Melodie Schaffer",
+    "bapteme": "Whiskey Jack",
+    "nom": "STORMTECH",
+    "fiche_site": "class-40/toothface-ii/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/129-concise-8",
+    "numero": 129,
+    "architecte": "Jason KER",
+    "plan": "Forty 1 Design (pointu)",
+    "chantier": "McConaghy",
+    "lancement": 2013,
+    "skipper": "Charles De Coquet",
+    "bapteme": "CONCISE 8",
+    "nom": "Concise 8",
+    "fiche_site": "class-40/concise-8/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/130-optimus-prime",
+    "numero": 130,
+    "architecte": "Sam MANUARD",
+    "plan": "Mach 40 (pointu)",
+    "chantier": "JPS",
+    "lancement": 2013,
+    "skipper": "Ivica Kostelic",
+    "bapteme": "Optimus Prime",
+    "nom": "Optimus prime",
+    "fiche_site": "class-40/gdf-suez/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/131-guerrera",
+    "numero": 131,
+    "architecte": "Marc LOMBARD",
+    "plan": "Akilaria RC3 (pointu)",
+    "chantier": "Haco",
+    "lancement": 2013,
+    "bapteme": "Guerrera",
+    "nom": "Guerrera",
+    "fiche_site": "class-40/erdf-des-pieds-et-des-mains/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/132-oantica",
+    "numero": 132,
+    "architecte": "M. Lombard",
+    "plan": "Akilaria RC3 (pointu)",
+    "chantier": "HACO",
+    "lancement": 2013,
+    "skipper": "Thomas Wolff",
+    "bapteme": "Oantica",
+    "nom": "Oantica",
+    "fiche_site": "class-40/cat-phones/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/133-gustave-roussy",
+    "numero": 133,
+    "architecte": "Conq",
+    "plan": "Pogo S3 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2013,
+    "skipper": "Christophe Rateau",
+    "bapteme": "TERANGA",
+    "nom": "Gustave Roussy",
+    "fiche_site": "class-40/teranga/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/134-stella-nova",
+    "numero": 134,
+    "architecte": "Sam Manuard",
+    "plan": "Mach40 (pointu)",
+    "chantier": "JPS Production",
+    "lancement": 2014,
+    "skipper": "Omar Naas",
+    "bapteme": "Stella Nova",
+    "nom": "Stella Nova",
+    "fiche_site": "class-40/guadeloupe-grand-large/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/135-aquamarin",
+    "numero": 135,
+    "architecte": "Finot-Conq",
+    "plan": "Pogo40 S3 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2014,
+    "skipper": "Chris Kerl",
+    "bapteme": "Aquamarin",
+    "nom": "Aquamarin",
+    "fiche_site": "class-40/evidemment/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/136-kika",
+    "numero": 136,
+    "architecte": "S. Manuard",
+    "plan": "BM40 (pointu)",
+    "chantier": "Bert Mauri",
+    "lancement": 2014,
+    "skipper": "Luca Chiotti",
+    "bapteme": "Kika",
+    "nom": "Kika",
+    "fiche_site": "class-40/kika/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/137-respotentia",
+    "numero": 137,
+    "architecte": "S. Manuard",
+    "plan": "Mach40 (pointu)",
+    "chantier": "JPS Production",
+    "lancement": 2014,
+    "skipper": "Kurt Rauschenbach",
+    "bapteme": "Respotentia",
+    "nom": "Respotentia",
+    "fiche_site": "class-40/solidaires-en-peloton/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/138-iskareen",
+    "numero": 138,
+    "architecte": "Finot-Conq",
+    "plan": "Pogo S3 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2014,
+    "skipper": "Andrew Rist",
+    "bapteme": "Iskareen",
+    "nom": "Iskareen",
+    "fiche_site": "class-40/blue/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/139-free-dom",
+    "numero": 139,
+    "architecte": "Sabrosa Rain",
+    "plan": "Sabrosa 40 MK2 (pointu)",
+    "chantier": "Sabrosa Competition",
+    "lancement": 2014,
+    "skipper": "Thibaut Lefevere",
+    "bapteme": "Addictif",
+    "nom": "Free Dom",
+    "fiche_site": "class-40/team-sabrosa-sr40-mk2/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/140-canbt-oti-reve-de-large-5",
+    "numero": 140,
+    "architecte": "Sabrosa Rain",
+    "plan": "Sabrosa 40 MK2 (pointu)",
+    "chantier": "Sabrosa Competition",
+    "lancement": 2014,
+    "skipper": "Rodolphe Sepho",
+    "bapteme": "Rêve de Large 5",
+    "nom": "CANBT - OTI / Rêve de Large 5",
+    "fiche_site": "class-40/cap-west/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/141-esatco",
+    "numero": 141,
+    "architecte": "Finot- Conq",
+    "plan": "Pogo 40 S3 (pointu)",
+    "chantier": "Pogo Structures",
+    "lancement": 2014,
+    "skipper": "Nicolas Guibal",
+    "bapteme": "Moonpalace",
+    "nom": "esatco",
+    "fiche_site": "class-40/campagne2france/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/142-phare-40",
+    "numero": 142,
+    "architecte": "G. Verdier",
+    "plan": "TIZH40 (pointu)",
+    "chantier": "BG Race",
+    "lancement": 2014,
+    "skipper": "François Verdier",
+    "bapteme": "Phenix",
+    "nom": "Phare 40",
+    "fiche_site": "class-40/le-conservateur/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/143-longbow",
+    "numero": 143,
+    "architecte": "Owen Clark Design",
+    "plan": "OCD 179 (pointu)",
+    "chantier": "Carbon Ocean Yachts",
+    "lancement": 2015,
+    "skipper": "Frederick K.w Day",
+    "bapteme": "Longbow",
+    "nom": "Longbow",
+    "fiche_site": "class-40/longbow/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/144-kite",
+    "numero": 144,
+    "architecte": "Sam Manuard",
+    "plan": "Mach 40.3 (pointu)",
+    "chantier": "JPS Production",
+    "lancement": 2015,
+    "skipper": "Danny Halley",
+    "bapteme": "Kite",
+    "nom": "Kite",
+    "fiche_site": "class-40/v-and-b/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/145-velocity",
+    "numero": 145,
+    "architecte": "S. Manuard",
+    "plan": "Mach 40.3 (pointu)",
+    "chantier": "JPS Production",
+    "lancement": 2015,
+    "skipper": "Martin Roesch",
+    "bapteme": "Velocity",
+    "nom": "Velocity",
+    "fiche_site": "class-40/earendil/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/146-kiho",
+    "numero": 146,
+    "architecte": "Finot-Conq",
+    "plan": "Pogo S3 (pointu)",
+    "chantier": "Pogo Structures",
+    "lancement": 2015,
+    "skipper": "Hiroshi Kitada",
+    "bapteme": "Kiho",
+    "nom": "Kiho",
+    "fiche_site": "class-40/kiho/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/147-belco-cec",
+    "numero": 147,
+    "architecte": "Mabire-Nivelt",
+    "plan": "Drakkar40 (pointu)",
+    "chantier": "Mora-Shoreteam-V1D2",
+    "lancement": 2016,
+    "skipper": "Louis Mayaud",
+    "bapteme": "La Licorne",
+    "nom": "Belco CEC",
+    "fiche_site": "class-40/belco/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/148-fraise-org",
+    "numero": 148,
+    "architecte": "Verdier",
+    "plan": "TIZH 40 (pointu)",
+    "chantier": "BG Race",
+    "lancement": 2016,
+    "skipper": "Edgard Vincens",
+    "bapteme": "Teata",
+    "nom": "Fraise.org",
+    "fiche_site": "class-40/delicecook/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/149-les-ailes-de-charlotte",
+    "numero": 149,
+    "architecte": "Owen Clarke Design",
+    "plan": "Cape 40 5G (pointu)",
+    "chantier": "Cape Racing Yachts",
+    "lancement": 2017,
+    "skipper": "Nicolas Toury",
+    "bapteme": "Hydra",
+    "nom": "Les ailes de Charlotte",
+    "fiche_site": "class-40/hydra/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/150-pinocchio",
+    "numero": 150,
+    "architecte": "Lombard",
+    "plan": "Lift 40 (scow)",
+    "chantier": "Gepeto composite - V1D2",
+    "lancement": 2017,
+    "skipper": "Louis Duc",
+    "bapteme": "Pinocchio",
+    "nom": "Pinocchio",
+    "fiche_site": "class-40/carac/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/151-barco-brasil",
+    "numero": 151,
+    "architecte": "Sam MANUARD",
+    "plan": "Mach40.3 (pointu)",
+    "chantier": "JPS Production",
+    "lancement": 2017,
+    "skipper": "Jose Guilherme M P Caldas",
+    "bapteme": "Aina",
+    "nom": "Barco Brasil",
+    "fiche_site": "class-40/aina-enfance-et-avenir/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/152-jangada-40",
+    "numero": 152,
+    "architecte": "G. Verdier",
+    "plan": "TIZH 40 (pointu)",
+    "chantier": "BBGR/MMW",
+    "lancement": 2017,
+    "skipper": "Richard Palmer",
+    "bapteme": "Jangada 40",
+    "nom": "Jangada 40",
+    "fiche_site": "class-40/espoir-pour-un-cafe-mer-entreprendre/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/153-magenta",
+    "numero": 153,
+    "architecte": "S. Manuard",
+    "plan": "Mach40.3 (pointu)",
+    "chantier": "JPS Production",
+    "lancement": 2018,
+    "skipper": "Djemila Tassin",
+    "bapteme": "Magenta",
+    "nom": "Magenta",
+    "fiche_site": "class-40/lamotte-module-creation/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/154-weeecycling",
+    "numero": 154,
+    "architecte": "Lombard",
+    "plan": "Lift 40 (scow)",
+    "chantier": "Gepeto composite - V1D2",
+    "lancement": 2018,
+    "skipper": "Nicolas Lemarchand",
+    "bapteme": "Black Mamba",
+    "nom": "Weeecycling",
+    "fiche_site": "class-40/veedol/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/155-flamingo-rosso",
+    "numero": 155,
+    "architecte": "S. Manuard",
+    "plan": "Mach40.3 (pointu)",
+    "chantier": "JPS Production",
+    "lancement": 2018,
+    "skipper": "Gildwen Moriceau - Loquen",
+    "bapteme": "Flamingo Rosso",
+    "nom": "Flamingo Rosso",
+    "fiche_site": "class-40/corum/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/156-funae",
+    "numero": 156,
+    "architecte": "S. Manuard",
+    "plan": "Mach40.3 (pointu)",
+    "chantier": "JPS Production",
+    "lancement": 2018,
+    "skipper": "Loïc Fequet",
+    "bapteme": "Taras Bulba",
+    "nom": "Funae",
+    "fiche_site": "class-40/leyton/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/157-l-agence-telecom-sotraplant",
+    "numero": 157,
+    "architecte": "Owen Clarke Design",
+    "plan": "Cape 40 (pointu)",
+    "chantier": "Cape Racing Yachts",
+    "lancement": 2018,
+    "skipper": "Matthieu Foulquier Gazagnes",
+    "bapteme": "Imagine",
+    "nom": "L'agence Télécom-Sotraplant",
+    "fiche_site": "class-40/imagine/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/158-women-of-course",
+    "numero": 158,
+    "architecte": "David Raison",
+    "plan": "Max 40 (scow)",
+    "chantier": "JPS Production",
+    "lancement": 2019,
+    "skipper": "Thea Khelif",
+    "bapteme": "Ordago",
+    "nom": "Women of course",
+    "fiche_site": "class-40/credit-mutuel/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/159-tquila",
+    "numero": 159,
+    "architecte": "Sam Manuard",
+    "plan": "Mach 40.4 (scow)",
+    "chantier": "JPS Production",
+    "lancement": 2019,
+    "skipper": "Brian Thompson",
+    "bapteme": "Phorty",
+    "nom": "TQuila",
+    "fiche_site": "class-40/banque-du-leman/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/160-reaute-chocolat",
+    "numero": 160,
+    "architecte": "S. Manuard",
+    "plan": "Mach 40.4 (scow)",
+    "chantier": "JPS Production",
+    "lancement": 2020,
+    "skipper": "Lomano Takasi",
+    "bapteme": "Avento",
+    "nom": "Réauté Chocolat",
+    "fiche_site": "class-40/black-dog-vi/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/161-odd5",
+    "numero": 161,
+    "architecte": "Sam Manuard",
+    "plan": "Mach 40.4 (scow)",
+    "chantier": "JPS Production",
+    "lancement": 2020,
+    "skipper": "Sophie Delannoy",
+    "bapteme": "Maat",
+    "nom": "ODD5",
+    "fiche_site": "class-40/redman/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/162-sycomores-power",
+    "numero": 162,
+    "architecte": "David Raison",
+    "plan": "Max 40 (scow)",
+    "chantier": "JPS Production",
+    "lancement": 2020,
+    "skipper": "Gwenc'hlan Catherine",
+    "bapteme": "Mad Max",
+    "nom": "Sycomores Power",
+    "fiche_site": "class-40/mad-max/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/163-espoir-by-be-racing",
+    "numero": 163,
+    "architecte": "Guillaume Verdier",
+    "plan": "Pogo S4 (scow)",
+    "chantier": "Structures",
+    "lancement": 2021,
+    "skipper": "Baptiste Hulin",
+    "bapteme": "BHB 3",
+    "nom": "Espoir by Be Racing",
+    "fiche_site": "class-40/serenis-consulting/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/164-defi-transat",
+    "numero": 164,
+    "architecte": "David Raison",
+    "plan": "Max 40 (scow)",
+    "chantier": "JPS Production",
+    "lancement": 2021,
+    "skipper": "Yannig Livory",
+    "bapteme": "Grandir ensemble",
+    "nom": "Défi-Transat",
+    "fiche_site": "class-40/volvo/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/165-edenred",
+    "numero": 165,
+    "architecte": "Sam Manuard",
+    "plan": "Mach 40.4 (scow)",
+    "chantier": "JPS Production",
+    "lancement": 2021,
+    "skipper": "Emmanuel Le Roch",
+    "bapteme": "Enjoy Racing 2",
+    "nom": "Edenred",
+    "fiche_site": "class-40/edenred/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/166-sireco-ose",
+    "numero": 166,
+    "architecte": "M. Lombard Yacht Design",
+    "plan": "Lift v2 (scow)",
+    "chantier": "Grand Large Composite / V1D2",
+    "lancement": 2021,
+    "skipper": "Thomas Lurton",
+    "bapteme": "Marvic 40",
+    "nom": "Sireco - Ose",
+    "fiche_site": "class-40/croscall/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/167-happyvore-cafe-joyeux",
+    "numero": 167,
+    "architecte": "VPLP",
+    "plan": "Clak40 (scow)",
+    "chantier": "Multiplast",
+    "lancement": 2021,
+    "bapteme": "Sir Ernest",
+    "nom": "HappyVore - Café Joyeux",
+    "fiche_site": "class-40/emile-henry-happyvore/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/168-oceanconnect",
+    "numero": 168,
+    "architecte": "E. Bertrand",
+    "plan": "Cape Racing scow 40 (scow)",
+    "chantier": "Cape Racing Yachts",
+    "lancement": 2021,
+    "skipper": "Yves Courbon",
+    "bapteme": "The 3 bros",
+    "nom": "Oceanconnect",
+    "fiche_site": "class-40/clown-hop/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/169-eora",
+    "numero": 169,
+    "architecte": "Lombard Design Group",
+    "plan": "Lift v2 (scow)",
+    "chantier": "Innovation Composites",
+    "lancement": 2021,
+    "skipper": "Rupert Henry",
+    "bapteme": "Eora",
+    "nom": "Eora",
+    "fiche_site": "class-40/eora/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/170-la-boulangere-bio",
+    "numero": 170,
+    "architecte": "David Raison",
+    "plan": "Max 40 (scow)",
+    "chantier": "JPS Production",
+    "lancement": 2021,
+    "skipper": "Amélie Grassi",
+    "bapteme": "La Boulangère Bio",
+    "nom": "La Boulangère Bio",
+    "fiche_site": "class-40/la-boulangere-bio/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/171-influence",
+    "numero": 171,
+    "architecte": "VPLP",
+    "plan": "Clak40 (scow)",
+    "chantier": "Multiplast",
+    "lancement": 2021,
+    "skipper": "Marco Guerra",
+    "bapteme": "Influence",
+    "nom": "Influence",
+    "fiche_site": "class-40/influence/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/172-alize-racing",
+    "numero": 172,
+    "architecte": "Guillaume Verdier",
+    "plan": "Pogo S4 (scow)",
+    "chantier": "Structures",
+    "lancement": 2021,
+    "skipper": "Nicolas Gillet",
+    "bapteme": "Agence Directe",
+    "nom": "Alize Racing",
+    "fiche_site": "class-40/seafrigo-group/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/173-viranga",
+    "numero": 173,
+    "architecte": "Guillaume Verdier",
+    "plan": "Pogo S4 (scow)",
+    "chantier": "Structures",
+    "lancement": 2021,
+    "skipper": "Emmanuel Hamez",
+    "bapteme": "Viranga",
+    "nom": "Viranga",
+    "fiche_site": "class-40/viranga/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/174-captain-alternance",
+    "numero": 174,
+    "architecte": "M. Lombard Yacht Design",
+    "plan": "Lift V2 (scow)",
+    "chantier": "Lalou Multi Composite",
+    "lancement": 2021,
+    "skipper": "Keni Piperol Dampied",
+    "bapteme": "Yemenja",
+    "nom": "Captain Alternance",
+    "fiche_site": "class-40/captain-alternance/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/175-defi-solidaire-avec-ellye-et-l-arche",
+    "numero": 175,
+    "architecte": "David Raison",
+    "plan": "Max 40 (scow)",
+    "chantier": "JPS production",
+    "lancement": 2022,
+    "skipper": "Sophie Faguet",
+    "bapteme": "Grand Rhino",
+    "nom": "Défi Solidaire avec Ellye et L'Arche",
+    "fiche_site": "class-40/grand-rhino/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/176-institut-imagine",
+    "numero": 176,
+    "architecte": "M. Lombard Yacht Design",
+    "plan": "Lift V2 (scow)",
+    "chantier": "V1D2",
+    "lancement": 2021,
+    "skipper": "Pierre Leboucher",
+    "bapteme": "Yelcho",
+    "nom": "Institut Imagine",
+    "fiche_site": "class-40/queguiner-innoveo/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/176-penfret",
+    "numero": 176,
+    "architecte": "M. Lombard Yacht Design",
+    "plan": "Lift V2 (scow)",
+    "chantier": "V1D2",
+    "lancement": 2021,
+    "skipper": "Pierre Leboucher",
+    "nom": "Penfret",
+    "fiche_site": "class-40/queguiner-innoveo/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/177-mic-odyssey",
+    "numero": 177,
+    "architecte": "G. Verdier",
+    "plan": "Pogo S4 (scow)",
+    "chantier": "Structures",
+    "lancement": 2022,
+    "skipper": "Jean-Baptiste Ternon",
+    "bapteme": "Diatoma",
+    "nom": "MIC Odyssey",
+    "fiche_site": "class-40/everial/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/178-empowher",
+    "numero": 178,
+    "architecte": "G. Verdier",
+    "plan": "Pogo S4 (scow)",
+    "chantier": "Structures",
+    "lancement": 2022,
+    "skipper": "Pamela Lee",
+    "bapteme": "Ocean first",
+    "nom": "#EMPOWHER",
+    "fiche_site": "class-40/groupe-snef/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/179-glaces-romane",
+    "numero": 179,
+    "architecte": "E. Bertrand",
+    "plan": "Cape Racing scow 40 (scow)",
+    "chantier": "Cape Racing Yachts",
+    "lancement": 2022,
+    "skipper": "Laurent Camprubi",
+    "bapteme": "Jeanne",
+    "nom": "Glaces Romane",
+    "fiche_site": "class-40/jeanne/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/180-lucente",
+    "numero": 180,
+    "architecte": "VPLP",
+    "plan": "Clak 40 (scow)",
+    "chantier": "Multiplast",
+    "lancement": 2022,
+    "skipper": "Matteo Sericano",
+    "bapteme": "Lucente",
+    "nom": "Lucente",
+    "fiche_site": "class-40/fondation-stargardt/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/181-vsf-sports",
+    "numero": 181,
+    "architecte": "G. Guelfi",
+    "plan": "Musa 40 (scow)",
+    "chantier": "SGDP",
+    "lancement": 2022,
+    "skipper": "Pep Costa",
+    "bapteme": "Allagrande",
+    "nom": "VSF Sports",
+    "fiche_site": "class-40/alla-grande-pirelli/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/182-amarris",
+    "numero": 182,
+    "architecte": "M. Lombard Yacht Design",
+    "plan": "Lift V2 (scow)",
+    "chantier": "Lalou Multi Composite",
+    "lancement": 2022,
+    "skipper": "Achille Nebout",
+    "bapteme": "Rebelleon 2",
+    "nom": "Amarris",
+    "fiche_site": "class-40/paprec-arkea/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/183-hirsch-centrakor",
+    "numero": 183,
+    "architecte": "M. Lombard Yacht Design",
+    "plan": "Lift V2 (scow)",
+    "chantier": "Grand largue Composite",
+    "lancement": 2022,
+    "skipper": "Mikael Mergui",
+    "bapteme": "Marcel again",
+    "nom": "Hirsch Centrakor",
+    "fiche_site": "class-40/centrakor/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/184-dekuple",
+    "numero": 184,
+    "architecte": "VPLP",
+    "plan": "Clak 40 (scow)",
+    "chantier": "Multiplast",
+    "lancement": 2022,
+    "skipper": "William Mathelin Moreaux",
+    "bapteme": "Romanin",
+    "nom": "Dekuple",
+    "fiche_site": "class-40/napadelis/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/185-fpfp-tp",
+    "numero": 185,
+    "architecte": "S. Manuard",
+    "plan": "Mach40.5 (scow)",
+    "chantier": "JPS",
+    "lancement": 2022,
+    "skipper": "Mateo Le Calvic",
+    "bapteme": "Red Five",
+    "nom": "FPFP - TP",
+    "fiche_site": "class-40/red-five/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/186-alderan",
+    "numero": 186,
+    "architecte": "S. Manuard",
+    "plan": "Mach40.5 (scow)",
+    "chantier": "JPS production",
+    "lancement": 2022,
+    "skipper": "Sasha Laniece",
+    "bapteme": "Kiniska II",
+    "nom": "Alderan",
+    "fiche_site": "class-40/ibsa-group/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/187-belgium-ocean-racing-curium",
+    "numero": 187,
+    "architecte": "M. Lombard Yacht Design",
+    "plan": "Lift V2 (scow)",
+    "chantier": "V1D2",
+    "lancement": 2022,
+    "skipper": "Jonas Gerckens",
+    "bapteme": "Abeona",
+    "nom": "Belgium Ocean Racing - Curium",
+    "fiche_site": "class-40/sensation-class-40/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/188-tam-tam",
+    "numero": 188,
+    "architecte": "Finot Conq",
+    "plan": "Pogo 40 (pointu)",
+    "chantier": "Structures",
+    "lancement": 2007,
+    "skipper": "Simon Bailey",
+    "bapteme": "Tam Tam",
+    "nom": "Tam Tam",
+    "fiche_site": "class-40/tam-tam/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/189-next-generation-around-the-world",
+    "numero": 189,
+    "architecte": "G. Verdier",
+    "plan": "Pogo S4 (scow)",
+    "chantier": "Structures",
+    "lancement": 2022,
+    "skipper": "Melwin Fink",
+    "bapteme": "Meganisi",
+    "nom": "Next Generation Around the World",
+    "fiche_site": "class-40/meganisi/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/190-plastic-odyssey",
+    "numero": 190,
+    "architecte": "S. Manuard",
+    "plan": "Mach40.5 (scow)",
+    "chantier": "JPS Production",
+    "lancement": 2023,
+    "skipper": "Jules Bonnier",
+    "bapteme": "Divoc",
+    "nom": "Plastic Odyssey",
+    "fiche_site": "class-40/bt-blue/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/191-movember",
+    "numero": 191,
+    "architecte": "G. Verdier",
+    "plan": "Pogo S4 (scow)",
+    "chantier": "Structures",
+    "lancement": 2023,
+    "skipper": "Cédric De Kervenoael",
+    "bapteme": "Tohu-Bohu",
+    "nom": "Movember",
+    "fiche_site": "class-40/movember/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/192-gambit",
+    "numero": 192,
+    "architecte": "G. Verdier",
+    "plan": "Pogo S4 (scow)",
+    "chantier": "Structures",
+    "lancement": 2022,
+    "skipper": "Daniel Jones",
+    "bapteme": "Gambit",
+    "nom": "Gambit",
+    "fiche_site": "class-40/seahorse-magazine/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/193-influence-two",
+    "numero": 193,
+    "architecte": "G. Guelfi",
+    "plan": "Musa 40 (scow)",
+    "chantier": "Sangiorgio marine",
+    "lancement": 2023,
+    "skipper": "Andrea Fornaro",
+    "bapteme": "Influence two",
+    "nom": "Influence two",
+    "fiche_site": "class-40/influence-two/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/194-groupe-berkem",
+    "numero": 194,
+    "architecte": "M. Lombard Yacht Design",
+    "plan": "Lift V2 (scow)",
+    "chantier": "V1D2",
+    "lancement": 2023,
+    "skipper": "Edgard Vincens",
+    "bapteme": "Poyel 2",
+    "nom": "Groupe Berkem",
+    "fiche_site": "class-40/groupe-berkem/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/195-drepavoile",
+    "numero": 195,
+    "architecte": "S. Manuard",
+    "plan": "Mach40.5 (scow)",
+    "chantier": "JPS Production",
+    "lancement": 2023,
+    "skipper": "Keni Piperol Dampied",
+    "bapteme": "Maverick",
+    "nom": "DREPAVOILE",
+    "fiche_site": "class-40/vogue-avec-un-crohn-2/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/196-alternative-sailing-constructions-du-belon",
+    "numero": 196,
+    "architecte": "S. Manuard",
+    "plan": "Mach40.5 (scow)",
+    "chantier": "JPS Production",
+    "lancement": 2023,
+    "skipper": "Guillaume L'hostis",
+    "bapteme": "Machouquette",
+    "nom": "Alternative Sailing - Constructions du Belon",
+    "fiche_site": "class-40/machouquette/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/197-sogestran-seafrigo",
+    "numero": 197,
+    "architecte": "S. Manuard",
+    "plan": "Mach40.5 (scow)",
+    "chantier": "JPS Production",
+    "lancement": 2023,
+    "skipper": "Guillaume Pirouelle",
+    "bapteme": "LHOR One",
+    "nom": "Sogestran - Seafrigo",
+    "fiche_site": "class-40/sogestran-seafrigo/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/198-wasabiii",
+    "numero": 198,
+    "architecte": "G. Verdier",
+    "plan": "Pogo S4 (scow)",
+    "chantier": "Structures",
+    "lancement": 2023,
+    "skipper": "Stéphane Bodin",
+    "bapteme": "Wasabiii",
+    "nom": "Wasabiii",
+    "fiche_site": "class-40/wasabiii/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/199-legallais",
+    "numero": 199,
+    "architecte": "M. Lombard Yacht Design",
+    "plan": "Lift V2 (scow)",
+    "chantier": "V1D2",
+    "lancement": 2023,
+    "skipper": "Fabien Delahaye",
+    "bapteme": "Cogito II",
+    "nom": "Legallais",
+    "fiche_site": "class-40/legallais-3/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/200-scowling-dragon",
+    "numero": 200,
+    "architecte": "Owen Clarke Design",
+    "plan": "Evo 40 (scow)",
+    "lancement": 2024,
+    "skipper": "Michael Hennessy",
+    "bapteme": "Scowling Dragon",
+    "nom": "Scowling Dragon",
+    "fiche_site": "class-40/scowling-dragon/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/201-acrobatica",
+    "numero": 201,
+    "architecte": "G. Guelfi",
+    "plan": "Musa 40 (scow)",
+    "chantier": "Sangiorgio marine",
+    "lancement": 2023,
+    "skipper": "Alberto Riva",
+    "bapteme": "Acrobatica",
+    "nom": "Acrobatica",
+    "fiche_site": "class-40/acrobatica/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/202-credit-mutuel",
+    "numero": 202,
+    "architecte": "D. Raison",
+    "plan": "Max 2 (scow)",
+    "chantier": "Gepeto",
+    "lancement": 2024,
+    "skipper": "Ian Lipinski",
+    "bapteme": "Biak Hordago",
+    "nom": "Crédit Mutuel",
+    "fiche_site": "class-40/credit-mutuel-2/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/203-pierreval-fondation-goodplanet",
+    "numero": 203,
+    "architecte": "G. Verdier",
+    "plan": "Pogo S4 (scow)",
+    "chantier": "Structures",
+    "lancement": 2024,
+    "skipper": "Vincent Riou",
+    "bapteme": "Bigouden Express",
+    "nom": "Pierreval - Fondation GoodPlanet",
+    "fiche_site": "class-40/pierreval/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/204-patapain-les-invincibles",
+    "numero": 204,
+    "architecte": "G. Guelfi",
+    "plan": "Musa 40 (scow)",
+    "chantier": "Sangiorgio marine",
+    "lancement": 2024,
+    "skipper": "William Mathelin Moreaux",
+    "bapteme": "Sarabanda",
+    "nom": "Patapain - Les Invincibles",
+    "fiche_site": "class-40/dekuple-2/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/205-bleu-blanc-planete-location",
+    "numero": 205,
+    "architecte": "S. Manuard",
+    "plan": "Mach40.6 (scow)",
+    "chantier": "JPS Production",
+    "lancement": 2024,
+    "skipper": "Quentin Le Nabour",
+    "bapteme": "Bleu Blanc",
+    "nom": "Bleu Blanc Planète Location",
+    "fiche_site": "class-40/bleu-blanc-planete-location/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/206-swift",
+    "numero": 206,
+    "architecte": "S. Manuard",
+    "plan": "Mach40.6 (scow)",
+    "chantier": "JPS Production",
+    "lancement": 2024,
+    "skipper": "Greg Leonard",
+    "bapteme": "Swift",
+    "nom": "Swift",
+    "fiche_site": "class-40/swift/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/207-imagin-act-socomec",
+    "numero": 207,
+    "architecte": "M.Guerra/D'Ubaldo-Rosso",
+    "plan": "Imokino (scow)",
+    "chantier": "Global Service Yacht",
+    "lancement": 2025,
+    "skipper": "Marco Guerra",
+    "bapteme": "Imagin'Act-Socomec",
+    "nom": "Imagin'Act-Socomec",
+    "fiche_site": "class-40/imagin-act-socomec/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/208-zeiss",
+    "numero": 208,
+    "architecte": "S. Manuard",
+    "plan": "Mach40.6 (scow)",
+    "chantier": "JPS Production",
+    "lancement": 2024,
+    "skipper": "Thimoté Polet",
+    "bapteme": "Vision One",
+    "nom": "Zeiss",
+    "fiche_site": "class-40/zeiss/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/209-snsm-faites-un-don",
+    "numero": 209,
+    "architecte": "M. Lombard Yacht Design",
+    "plan": "Lift v3 (scow)",
+    "chantier": "Gepeto",
+    "lancement": 2025,
+    "skipper": "Corentin Douguet",
+    "bapteme": "Amazigh 40",
+    "nom": "SNSM, Faites un don",
+    "fiche_site": "class-40/e-leclerc/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/210-wings-of-the-ocean",
+    "numero": 210,
+    "architecte": "Mer Forte - O. Mousselon",
+    "plan": "Agité 40 (scow)",
+    "chantier": "Mer Agitée",
+    "lancement": 2025,
+    "skipper": "Alexis Thomas",
+    "bapteme": "Agité 40",
+    "nom": "Wings of the Ocean",
+    "fiche_site": "class-40/agite-40/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/211-ekinox",
+    "numero": 211,
+    "architecte": "G. Guelfi",
+    "plan": "Musa 40 (scow)",
+    "chantier": "Sangiorgio marine",
+    "lancement": 2025,
+    "skipper": "Benoit Sineau",
+    "bapteme": "Ekinox",
+    "nom": "Ekinox",
+    "fiche_site": "class-40/ekinox/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/212-maccaferri-futura",
+    "numero": 212,
+    "architecte": "G. Guelfi",
+    "plan": "Musa 40 (scow)",
+    "chantier": "Sangiorgio marine",
+    "lancement": 2025,
+    "skipper": "Luca Rosetti",
+    "bapteme": "Futura",
+    "nom": "Maccaferri Futura",
+    "fiche_site": "class-40/maccaferri-futura/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/213-solano",
+    "numero": 213,
+    "architecte": "G. Guelfi",
+    "plan": "Musa 40 (scow)",
+    "chantier": "Sangiorgio marine",
+    "lancement": 2025,
+    "skipper": "Robin Follin",
+    "nom": "Solano",
+    "fiche_site": "class-40/solano/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/214-exalt",
+    "numero": 214,
+    "architecte": "M. Lombard yacht Design",
+    "plan": "Lift v3 (scow)",
+    "chantier": "Gepeto",
+    "lancement": 2026,
+    "skipper": "Axel Trehin",
+    "bapteme": "Exalt",
+    "nom": "Exalt",
+    "fiche_site": "class-40/affaire-a-faire/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/215-groupe-reel",
+    "numero": 215,
+    "architecte": "M. Lombard Yacht Design",
+    "plan": "Lift v3 (scow)",
+    "chantier": "Neo Sailing technologies",
+    "lancement": 2026,
+    "skipper": "Alexis Loison",
+    "bapteme": "Arcadia",
+    "nom": "Groupe REEL",
+    "fiche_site": "class-40/arcadia/"
+   },
+   {
+    "fiche": "https://www.class40.com/bateaux/216-inland-roots-ocean-soul",
+    "numero": 216,
+    "architecte": "Sam Manuard",
+    "plan": "Mach40.6 (scow)",
+    "chantier": "JPS Production",
+    "lancement": 2026,
+    "skipper": "Milan Kolacek",
+    "bapteme": "Ocean Call",
+    "nom": "Inland Roots Ocean Soul",
+    "fiche_site": "class-40/inland-roots-ocean-soul/"
+   }
+  ]
+ }
+}

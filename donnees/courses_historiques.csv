@@ -1,0 +1,153 @@
+"id","ordre","nom","annee","type_bareme_historique","classe","nom_origine","niveau","course_canonique","remarque"
+"transat-1960","1","Transat 1960","1960","Transat","Non renseignée","Transat 1960","","",
+"transat-1964","2","Transat 1964","1964","Transat","Non renseignée","Transat 1964","","",
+"transat-1968","3","Transat 1968","1968","Transat","Non renseignée","Transat 1968","","",
+"golden-globe-1968","4","Golden Globe 1968","1968","Tour du monde","Non renseignée","Golden Globe","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer"
+"transpac-1969","5","Transpac 1969","1969","Transat","Non renseignée","Transpac 69","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer"
+"l-aurore-1970","6","L'Aurore 1970","1970","Figaro","Figaro","L'Aurore 70","","","Classe par défaut déduite du nom de la course"
+"l-aurore-1971","7","L'Aurore 1971","1971","Figaro","Figaro","L'Aurore 71","","","Classe par défaut déduite du nom de la course"
+"transat-1972","8","Transat 1972","1972","Transat","Non renseignée","Transat 1972","","",
+"l-aurore-1972","9","L'Aurore 1972","1972","Figaro","Figaro","L'Aurore 72","","","Classe par défaut déduite du nom de la course"
+"l-aurore-1973","10","L'Aurore 1973","1973","Figaro","Figaro","L Aurore 73","","","Classe par défaut déduite du nom de la course"
+"l-aurore-1974","11","L'Aurore 1974","1974","Figaro","Figaro","L'Aurore 74","","","Classe par défaut déduite du nom de la course"
+"l-aurore-1975","12","L'Aurore 1975","1975","Figaro","Figaro","L'Aurore 75","","","Classe par défaut déduite du nom de la course"
+"transat-1976","13","Transat 1976","1976","Transat","Non renseignée","Transat 1976","","",
+"l-aurore-1976","14","L'Aurore 1976","1976","Figaro","Figaro","L'Aurore 76","","","Classe par défaut déduite du nom de la course"
+"l-aurore-1977","15","L'Aurore 1977","1977","Figaro","Figaro","L'Aurore 77","","","Classe par défaut déduite du nom de la course"
+"mini-transat-1977","16","Mini Transat 1977","1977","Mini Transat","Mini 6.50","Mini Transat 77","","","Classe par défaut déduite du nom de la course"
+"l-aurore-1978","17","L'Aurore 1978","1978","Figaro","Figaro","L'Aurore 78","","","Classe par défaut déduite du nom de la course"
+"route-du-rhum-1978","18","Route du Rhum 1978","1978","Transat","Non renseignée","Route du Rhum 78","","",
+"l-aurore-1979","19","L'Aurore 1979","1979","Figaro","Figaro","L'Aurore 79","","","Classe par défaut déduite du nom de la course"
+"mini-transat-1979","20","Mini Transat 1979","1979","Mini Transat","Mini 6.50","Mini Transat 79","","","Classe par défaut déduite du nom de la course"
+"transat-1980","21","Transat 1980","1980","Transat","Non renseignée","Transat 80","","",
+"figaro-1980","22","Figaro 1980","1980","Figaro","Figaro","Figaro 80","","","Classe par défaut déduite du nom de la course"
+"figaro-1981","23","Figaro 1981","1981","Figaro","Figaro","Figaro 81","","","Classe par défaut déduite du nom de la course"
+"mini-transat-1981","24","Mini Transat 1981","1981","Mini Transat","Mini 6.50","Mini Transat 81","","","Classe par défaut déduite du nom de la course"
+"figaro-1982","25","Figaro 1982","1982","Figaro","Figaro","Figaro 82","","","Classe par défaut déduite du nom de la course"
+"route-du-rhum-1982","26","Route du Rhum 1982","1982","Transat","Non renseignée","Route du Rhum 82","","",
+"boc-challenge-1982","27","BOC Challenge 1982","1982","Tour du monde à étapes","Non renseignée","BOC Challenge 82 83","","",
+"figaro-1983","28","Figaro 1983","1983","Figaro","Figaro","Figaro 83","","","Classe par défaut déduite du nom de la course"
+"mini-transat-1983","29","Mini Transat 1983","1983","Mini Transat","Mini 6.50","Mini Transat 83","","","Classe par défaut déduite du nom de la course"
+"transat-1984","30","Transat 1984","1984","Transat","Non renseignée","Transat 84","","",
+"figaro-1984","31","Figaro 1984","1984","Figaro","Figaro","Figaro 84","","","Classe par défaut déduite du nom de la course"
+"figaro-1985","32","Figaro 1985","1985","Figaro","Figaro","Figaro 85","","","Classe par défaut déduite du nom de la course"
+"mini-transat-1985","33","Mini Transat 1985","1985","Mini Transat","Mini 6.50","Mini Transat  85","","","Classe par défaut déduite du nom de la course"
+"figaro-1986","34","Figaro 1986","1986","Figaro","Figaro","Figaro 86","","","Classe par défaut déduite du nom de la course"
+"route-du-rhum-1986","35","Route du Rhum 1986","1986","Transat","Non renseignée","Route du Rhum 86","","",
+"boc-challenge-1986","36","BOC Challenge 1986","1986","Tour du monde à étapes","Non renseignée","BOC Challenge 86","","",
+"figaro-1987","37","Figaro 1987","1987","Figaro","Figaro","Figaro 87","","","Classe par défaut déduite du nom de la course"
+"mini-transat-1987","38","Mini Transat 1987","1987","Mini Transat","Mini 6.50","Mini Transat 87","","","Classe par défaut déduite du nom de la course"
+"transat-1988","39","Transat 1988","1988","Transat","Non renseignée","Transat 88","","",
+"figaro-1988","40","Figaro 1988","1988","Figaro","Figaro","Figaro 88","","","Classe par défaut déduite du nom de la course"
+"vendee-globe-1989","41","Vendée Globe 1989","1989","Tour du monde","IMOCA","Vendée Globe 1989","","","Classe par défaut déduite du nom de la course"
+"mini-transat-1989","42","Mini Transat 1989","1989","Mini Transat","Mini 6.50","Mini Transat 89","","","Classe par défaut déduite du nom de la course"
+"figaro-1989","43","Figaro 1989","1989","Figaro","Figaro","Figaro 89","","","Classe par défaut déduite du nom de la course"
+"figaro-1990","44","Figaro 1990","1990","Figaro","Figaro","Figaro 90","","","Classe par défaut déduite du nom de la course"
+"route-du-rhum-1990","45","Route du Rhum 1990","1990","Transat","Non renseignée","Route du Rhum 90","","",
+"boc-1990","46","BOC 1990","1990","Tour du monde à étapes","Non renseignée","BOC 90","","",
+"figaro-1991","47","Figaro 1991","1991","Figaro","Figaro","Figaro 91","","","Classe par défaut déduite du nom de la course"
+"mini-transat-1991","48","Mini Transat 1991","1991","Mini Transat","Mini 6.50","Mini Transat 91","","","Classe par défaut déduite du nom de la course"
+"la-baule-dakar-1991","49","La Baule Dakar 1991","1991","Transat","Non renseignée","La Baule Dakar 91","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer"
+"transat-1992","50","Transat 1992","1992","Transat","Non renseignée","Transat 92","","",
+"figaro-1992","51","Figaro 1992","1992","Figaro","Figaro","Figaro 92","","","Classe par défaut déduite du nom de la course"
+"vendee-globe-1992","52","Vendée Globe 1992","1992","Tour du monde","IMOCA","Vendée Globe 1992","","","Classe par défaut déduite du nom de la course"
+"figaro-1993","53","Figaro 1993","1993","Figaro","Figaro","Figaro 93","","","Classe par défaut déduite du nom de la course"
+"mini-transat-1993","54","Mini Transat 1993","1993","Mini Transat","Mini 6.50","Mini Transat 93","","","Classe par défaut déduite du nom de la course"
+"transat-jacques-vabre-1993","55","Transat Jacques Vabre 1993","1993","Transat","Non renseignée","Transat Jacques Vabre","","","Course en double : à confirmer dans un classement solo"
+"figaro-1994","56","Figaro 1994","1994","Figaro","Figaro","Figaro 94","","","Classe par défaut déduite du nom de la course"
+"route-du-rhum-1994","57","Route du Rhum 1994","1994","Transat","Non renseignée","Route du Rhum 94","","",
+"boc-1994","58","BOC 1994","1994","Tour du monde à étapes","Non renseignée","BOC 94","","",
+"figaro-1995","59","Figaro 1995","1995","Figaro","Figaro","Figaro 95","","","Classe par défaut déduite du nom de la course"
+"mini-transat-1995","60","Mini Transat 1995","1995","Mini Transat","Mini 6.50","Mini Transat 95","","","Classe par défaut déduite du nom de la course"
+"transat-1996","61","Transat 1996","1996","Transat","Non renseignée","Transat 96","","",
+"figaro-1996","62","Figaro 1996","1996","Figaro","Figaro","Figaro 96","","","Classe par défaut déduite du nom de la course"
+"vendee-globe-1996","63","Vendée Globe 1996","1996","Tour du monde","IMOCA","Vendée Globe 1996","","","Classe par défaut déduite du nom de la course"
+"figaro-1997","64","Figaro 1997","1997","Figaro","Figaro","Figaro 97","","","Classe par défaut déduite du nom de la course"
+"mini-transat-1997","65","Mini Transat 1997","1997","Mini Transat","Mini 6.50","Mini Transat 97","","","Classe par défaut déduite du nom de la course"
+"figaro-1998","66","Figaro 1998","1998","Figaro","Figaro","Figaro 98","","","Classe par défaut déduite du nom de la course"
+"route-du-rhum-1998","67","Route du Rhum 1998","1998","Transat","Non renseignée","Route du Rhum 98","","",
+"around-alone-1998","68","Around Alone 1998","1998","Tour du monde à étapes","Non renseignée","Around Alone 98","","",
+"figaro-1999","69","Figaro 1999","1999","Figaro","Figaro","Figaro 99","","","Classe par défaut déduite du nom de la course"
+"mini-transat-1999","70","Mini Transat 1999","1999","Mini Transat","Mini 6.50","Mini Transat 99","","","Classe par défaut déduite du nom de la course"
+"the-transat-2000","71","The Transat 2000","2000","Transat","Non renseignée","The Transat 2000","","",
+"figaro-2000","72","Figaro 2000","2000","Figaro","Figaro","Figaro 2000","","","Classe par défaut déduite du nom de la course"
+"vendee-globe-2000","73","Vendée Globe 2000","2000","Tour du monde","IMOCA","Vendée Globe 2000","","","Classe par défaut déduite du nom de la course"
+"figaro-2001","74","Figaro 2001","2001","Figaro","Figaro","Figaro 2001","","","Classe par défaut déduite du nom de la course"
+"mini-transat-2001","75","Mini Transat 2001","2001","Mini Transat","Mini 6.50","Mini Transat 2001","","","Classe par défaut déduite du nom de la course"
+"around-alone-2002","76","Around Alone 2002","2002","Tour du monde à étapes","Non renseignée","Around Alone 2002","","",
+"figaro-2002","77","Figaro 2002","2002","Figaro","Figaro","Figaro 2002","","","Classe par défaut déduite du nom de la course"
+"route-du-rhum-2002","78","Route du Rhum 2002","2002","Transat","Non renseignée","Route du Rhum 2002","","",
+"figaro-2003","79","Figaro 2003","2003","Figaro","Figaro","Figaro 2003","","","Classe par défaut déduite du nom de la course"
+"mini-transat-2003","80","Mini Transat 2003","2003","Mini Transat","Mini 6.50","Mini Transat 2003","","","Classe par défaut déduite du nom de la course"
+"defi-atlantique-2003","81","Défi Atlantique 2003","2003","Transat","Non renseignée","Défi Atlantique 2003","","",
+"the-transat-2004","82","The Transat 2004","2004","Transat","Non renseignée","The Transat 2004","","",
+"figaro-2004","83","Figaro 2004","2004","Figaro","Figaro","Figaro 2004","","","Classe par défaut déduite du nom de la course"
+"vendee-globe-2004","84","Vendée Globe 2004","2004","Tour du monde","IMOCA","Vendée Globe 2004","","","Classe par défaut déduite du nom de la course"
+"trophee-bpe-2005","85","Trophée BPE 2005","2005","Figaro","Figaro","Trophée BPE 2005","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"ostar-2005","86","OSTAR 2005","2005","Transat","Non renseignée","OSTAR 2005","","",
+"figaro-2005","87","Figaro 2005","2005","Figaro","Figaro","Figaro 2005","","","Classe par défaut déduite du nom de la course"
+"mini-transat-2005","88","Mini Transat 2005","2005","Mini Transat","Mini 6.50","Mini Transat 2005","","","Classe par défaut déduite du nom de la course"
+"figaro-2006","89","Figaro 2006","2006","Figaro","Figaro","Figaro 2006","","","Classe par défaut déduite du nom de la course"
+"route-du-rhum-2006","90","Route du Rhum 2006","2006","Transat","Non renseignée","Route du Rhum 2006","","",
+"trophee-bpe-2007","91","Trophée BPE 2007","2007","Figaro","Figaro","Trophée BPE 2007","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"figaro-2007","92","Figaro 2007","2007","Figaro","Figaro","Figaro 2007","","","Classe par défaut déduite du nom de la course"
+"mini-transat-2007","93","Mini Transat 2007","2007","Mini Transat","Mini 6.50","Mini Transat 2007","","","Classe par défaut déduite du nom de la course"
+"b-to-b-2007","94","B to B 2007","2007","Transat","IMOCA","B to B 2007","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"around-alone-2007","95","Around Alone 2007","2007","Tour du monde à étapes","Non renseignée","Around Alone 2007","","",
+"the-transat-2008","96","The Transat 2008","2008","Transat","Non renseignée","The Transat 2008","","",
+"figaro-2008","97","Figaro 2008","2008","Figaro","Figaro","Figaro 2008","","","Classe par défaut déduite du nom de la course"
+"cap-istanbul-2008","98","Cap Istanbul 2008","2008","Figaro","Figaro","Cap Istambul","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"vendee-globe-2008","99","Vendée Globe 2008","2008","Tour du monde","IMOCA","Vendée Globe 2008","","","Classe par défaut déduite du nom de la course"
+"portimao-global-ocean-race-2008","100","Portimao Global Ocean Race 2008","2008","Tour du monde à étapes","Non renseignée","Portimao G. O. R. 2008","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer"
+"trophee-bpe-2009","101","Trophée BPE 2009","2009","Figaro","Figaro","Trophée BPE 2009","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"figaro-2009","102","Figaro 2009","2009","Figaro","Figaro","Figaro 2009","","","Classe par défaut déduite du nom de la course"
+"mini-transat-2009","103","Mini Transat 2009","2009","Mini Transat","Mini 6.50","Mini Transat 2009","","","Classe par défaut déduite du nom de la course"
+"figaro-2010","104","Figaro 2010","2010","Figaro","Figaro","Figaro 2010","","","Classe par défaut déduite du nom de la course"
+"cap-istanbul-2010","105","Cap Istanbul 2010","2010","Figaro","Figaro","Cap Istambul","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"route-du-rhum-2010","106","Route du Rhum 2010","2010","Transat","Non renseignée","Route du Rhum 2010","","",
+"around-alone-2011","107","Around Alone 2011","2011","Tour du monde à étapes","Non renseignée","Around Alone 2011","","",
+"trophee-bpe-2011","108","Trophée BPE 2011","2011","Figaro","Figaro","Trophée BPE 2011","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"figaro-2011","109","Figaro 2011","2011","Figaro","Figaro","Figaro 2011","","","Classe par défaut déduite du nom de la course"
+"mini-transat-2011","110","Mini Transat 2011","2011","Mini Transat","Mini 6.50","Mini Transat 2011","","","Classe par défaut déduite du nom de la course"
+"b-to-b-2011","111","B to B 2011","2011","Transat","IMOCA","B to B 2011","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"figaro-2012","112","Figaro 2012","2012","Figaro","Figaro","Figaro 2012","","","Classe par défaut déduite du nom de la course"
+"vendee-globe-2012","113","Vendée Globe 2012","2012","Tour du monde","IMOCA","Vendée Globe 2012","","","Classe par défaut déduite du nom de la course"
+"transat-bretagne-martinique-2013","114","Transat Bretagne-Martinique 2013","2013","Figaro","Figaro","T. Bretagne-Martinique 2013","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"figaro-2013","115","Figaro 2013","2013","Figaro","Figaro","Figaro 2013","","","Classe par défaut déduite du nom de la course"
+"mini-transat-2013","116","Mini Transat 2013","2013","Mini Transat","Mini 6.50","Mini Transat 2013","","","Classe par défaut déduite du nom de la course"
+"figaro-2014","117","Figaro 2014","2014","Figaro","Figaro","Figaro 2014","","","Classe par défaut déduite du nom de la course"
+"route-du-rhum-2014","118","Route du Rhum 2014","2014","Transat","Non renseignée","Route du Rhum 2014","","",
+"figaro-2015","119","Figaro 2015","2015","Figaro","Figaro","Figaro 2015","","","Classe par défaut déduite du nom de la course"
+"mini-transat-2015","120","Mini Transat 2015","2015","Mini Transat","Mini 6.50","Mini Transat 2015","","","Classe par défaut déduite du nom de la course"
+"b-to-b-2015","121","B to B 2015","2015","Transat","IMOCA","B to B 2015","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"the-transat-2016","122","The Transat 2016","2016","Transat","Non renseignée","The Transat 2016","","",
+"calero-solo-2016","123","Calero Solo 2016","2016","Transat","Non renseignée","Calero Solo","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer"
+"new-york-les-sables-2016","124","New York - Les Sables 2016","2016","Transat","IMOCA","New York - Les Sables","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"figaro-2016","125","Figaro 2016","2016","Figaro","Figaro","Figaro 2016","","","Classe par défaut déduite du nom de la course"
+"vendee-globe-2016","126","Vendée Globe 2016","2016","Tour du monde","IMOCA","Vendée Globe 2016","","","Classe par défaut déduite du nom de la course"
+"figaro-2017","127","Figaro 2017","2017","Figaro","Figaro","Figaro 2017","","","Classe par défaut déduite du nom de la course"
+"mini-transat-2017","128","Mini Transat 2017","2017","Mini Transat","Mini 6.50","Mini Transat 2017","","","Classe par défaut déduite du nom de la course"
+"figaro-2018","129","Figaro 2018","2018","Figaro","Figaro","Figaro 2018","","","Classe par défaut déduite du nom de la course"
+"golden-globe-2018","130","Golden Globe 2018","2018","Tour du monde","Golden Globe (rétro)","Golden Globe 2018","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"route-du-rhum-2018","131","Route du Rhum 2018","2018","Transat","Non renseignée","Route du Rhum 2018","","",
+"figaro-2019","132","Figaro 2019","2019","Figaro","Figaro","Figaro 2019","","","Classe par défaut déduite du nom de la course"
+"mini-transat-2019","133","Mini Transat 2019","2019","Mini Transat","Mini 6.50","Mini Transat 2019","","","Classe par défaut déduite du nom de la course"
+"vendee-arctic-2020","134","Vendée Arctic 2020","2020","Transat","IMOCA","Vendée Arctic","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"figaro-2020","135","Figaro 2020","2020","Figaro","Figaro","Figaro 2020","","","Classe par défaut déduite du nom de la course"
+"vendee-globe-2020","136","Vendée Globe 2020","2020","Tour du monde","IMOCA","Vendée Globe 2020","","","Classe par défaut déduite du nom de la course"
+"figaro-2021","137","Figaro 2021","2021","Figaro","Figaro","Figaro 2021","","","Classe par défaut déduite du nom de la course"
+"mini-transat-2021","138","Mini Transat 2021","2021","Mini Transat","Mini 6.50","Mini Transat 2021","","","Classe par défaut déduite du nom de la course"
+"bermudes-1000-race-2022","139","Bermudes 1000 Race 2022","2022","Transat","Non renseignée","Bermudes 1000 Race","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer"
+"vendee-arctic-2022","140","Vendée Arctic 2022","2022","Transat","IMOCA","Vendée Arctic","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"figaro-2022","141","Figaro 2022","2022","Figaro","Figaro","Figaro 2022","","","Classe par défaut déduite du nom de la course"
+"golden-globe-2022","142","Golden Globe 2022","2022","Tour du monde","Golden Globe (rétro)","Golden Globe 2022","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"route-du-rhum-2022","143","Route du Rhum 2022","2022","Transat","Non renseignée","Route du Rhum 2022","","",
+"figaro-2023","144","Figaro 2023","2023","Figaro","Figaro","Figaro 2023","","","Classe par défaut déduite du nom de la course"
+"mini-transat-2023","145","Mini Transat 2023","2023","Mini Transat","Mini 6.50","Mini Transat 2023","","","Classe par défaut déduite du nom de la course"
+"global-solo-challenge-2023","146","Global Solo Challenge 2023","2023","Tour du monde","Non renseignée","Global Solo Challenge 2023","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer"
+"retour-a-la-base-2023","147","Retour à la Base 2023","2023","Transat","IMOCA","Retour à la Base 2023","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"arkea-ultim-challenge-2024","148","Arkea Ultim Challenge 2024","2024","Tour du monde","Ultim","Arkea Ultim Challenge 2024","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"the-transat-2024","149","The Transat 2024","2024","Transat","Non renseignée","The Transat 2024","","",
+"new-york-vendee-2024","150","New York Vendée 2024","2024","Transat","IMOCA","New York Vendée","","","Type de barème déduit (absent de l'ancien onglet Dotation) : à confirmer ; Classe par défaut déduite du nom de la course"
+"figaro-2024","151","Figaro 2024","2024","Figaro","Figaro","Figaro 2024","","","Classe par défaut déduite du nom de la course"
+"vendee-globe-2024","152","Vendée Globe 2024","2024","Tour du monde","IMOCA","Vendée Globe 2024","","","Classe par défaut déduite du nom de la course"

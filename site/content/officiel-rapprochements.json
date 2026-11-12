@@ -1,0 +1,31 @@
+{
+ "_lisez-moi": "Rapprochements fixés à la main entre une fiche d'un site officiel de classe et une fiche du site (prioritaires sur le rapprochement automatique d'outils/officiel/rapprocher.py). Valeur null : aucun bateau correspondant. Chaque entrée dit sa preuve dans « _preuves ».",
+ "https://www.imoca.org/fr/bateaux/foussier": "imoca/delta-dore/",
+ "https://www.imoca.org/fr/bateaux/4cad-eole-performance": "imoca/4cad/",
+ "https://www.imoca.org/fr/bateaux/banque-populaire-14": "imoca/banque-populaire-xiv/",
+ "https://www.imoca.org/fr/bateaux/groupe-dubreuil-air-cara-bes": "imoca/groupe-dubreuil/",
+ "https://www.imoca.org/fr/bateaux/vaincre-la-mucovisidose": "imoca/v-and-b-monbana-mayenne/",
+ "https://www.imoca.org/fr/bateaux/11th-hour-racing": "imoca/malizia-sea-explorer/",
+ "https://www.imoca.org/fr/bateaux/demain-c-est-loin-1": "imoca/bt/",
+ "https://www.imoca.org/fr/bateaux/association-petits-princes-qu-guiner": "imoca/horizon29/",
+ "https://www.class40.com/bateaux/8-merena": "class-40/merena/",
+ "https://www.class40.com/bateaux/97-fortissimo": "class-40/maxvmg/",
+ "https://www.class40.com/bateaux/115-martinique-horizon": "class-40/mare/",
+ "https://www.class40.com/bateaux/116-spray": "class-40/cq-gwaihir/",
+ "https://www.class40.com/bateaux/207-imagin-act-socomec": "class-40/imagin-act-socomec/",
+ "_preuves": {
+  "97-fortissimo": "n° 97, Akilaria de Marc Lombard ; notre fiche Maxvmg (GBR 97, Akilaria) a porté le nom Fortissimo ; année corrigée en 2010 (content/fiches-corrections.json)",
+  "115-martinique-horizon": "n° 115, Mach 40 de Sam Manuard, 2012 ; notre fiche Mare (GER 115) a le nom Martinique Horizon. Notre site a une seconde fiche du même bateau, Michel Antoine (FRA 115, nom Boogie Down = baptême officiel) : doublon à fusionner",
+  "116-spray": "n° 116, plan Rodger Martin ; notre fiche CQ Gwaihir a les noms Spray et 116 ; année 2007 chez nous, 2012 selon la classe (désaccord listé)",
+  "207-imagin-act-socomec": "scow Imokino de 2025 : bateau neuf, distinct du n° 171 Influence (Pogo S4 de 2021) qui a porté le nom Imagin'Act-Socomec ; fiche ajoutée par la rédaction",
+  "foussier": "baptême officiel « Faroha3 », Farr 2006, JMV ; « Faroha 3 » est un nom de notre fiche Delta Dore (Farr 2006, JMV)",
+  "4cad-eole-performance": "Koch / GSEA / Finot-Conq ; notre fiche « 4cad » (Koch / Finot-Conq, en construction)",
+  "banque-populaire-14": "Koch 2027, CDK ; notre fiche « Banque Populaire XIV » (Koch, CDK)",
+  "groupe-dubreuil-air-caraibes": "Verdier 2025, Carrington Boats ; notre fiche « Groupe Dubreuil 2 » (Verdier, Carrington Boats)",
+  "vaincre-la-mucovisidose": "la page officielle parle de « V and B - Monbana - Mayenne » et de Maxime Sorel ; Verdier 2022 ; notre fiche V and B – Monbana – Mayenne (Verdier 2022)",
+  "11th-hour-racing": "VPLP 2022 Multiplast ; notre fiche Malizia Sea Explorer (VPLP 2022, Multiplast) a pour nom actuel « 11th Hour Racing »",
+  "demain-c-est-loin": "baptême OC7, Farr 2007, Offshore Challenges ; notre fiche BT (Farr 2007, Offshore Challenges) a les noms OC7 et « Demain C'est Loin! »",
+  "association-petits-princes-qu-guiner": "baptême Horizon 29, Verdier, CDK ; notre fiche Horizon29 (Verdier, CDK) a ce nom ; son année 1986 est une erreur de notre site",
+  "8-merena": "n° 8 Merena selon la classe ; c'est notre fiche Merena (le rapprochement automatique choisissait à tort Geranium Killer, dont la fiche porte aussi le nom Merena)"
+ }
+}

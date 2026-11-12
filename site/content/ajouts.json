@@ -1,0 +1,56 @@
+{
+  "_lisez-moi": "Ajouts de la rédaction, par série. Deux formes : « complete » ajoute des faits récents à la suite d'une fiche de l'auteur (chemin de la page d'origine) ; « name » crée la fiche d'un bateau absent du site d'origine. Le texte suit les conventions de l'auteur : une ligne par fait, une nouvelle année en tête de ligne, le nom de famille des skippers en capitales. Chaque ajout est signalé sur le site avec ses sources.",
+  "class-40": [
+    {
+      "name": "Imagin'Act-Socomec",
+      "sail": "207",
+      "designer": "Marco Guerra",
+      "chronologie": [
+        "2025 Mise à l'eau du Class40 n° 207, plan Imokino (scow) de Marco GUERRA et D'Ubaldo-Rosso, construit par Global Service Yacht",
+        "2026 Skipper : Marco GUERRA"
+      ],
+      "sources": [
+        { "titre": "Class40 — fiche du bateau n° 207, Imagin'Act-Socomec (consultée le 10/11/2026)", "url": "https://www.class40.com/bateaux/207-imagin-act-socomec" }
+      ]
+    }
+  ],
+  "ultim": [
+    {
+      "complete": "Histoire des 60 ORMA/Max 19.htm",
+      "chronologie": [
+        "Navigation de qualification en solitaire de plus de 1 300 milles au départ de Lorient : Gitana 18 est qualifié pour la Route du Rhum, skipper : Charles CAUDRELIER",
+        "Novembre, Route du Rhum : en course, skipper : Charles CAUDRELIER"
+      ],
+      "sources": [
+        { "titre": "Ultim Boat — Gitana 18 rentre en chantier après sa qualification pour la Route du Rhum", "url": "https://www.ultimboat.com/news-1/gitana-18-rentre-en-chantier-apr%C3%A8s-sa-qualification-pour-la-route-du-rhum" },
+        { "titre": "franceinfo — Charles Caudrelier mise sur Gitana 18", "url": "https://www.franceinfo.fr/sports/voile/route-du-rhum/la-meilleure-voiture-au-depart-avant-la-route-du-rhum-charles-caudrelier-mise-sur-gitana-18-un-maxi-trimaran-dernier-cri_8252068.html" },
+        { "titre": "CDK Technologies — Gitana 18", "url": "https://www.cdk-technologies.com/yacht-course-croisiere/GITANA18_FR.html" }
+      ]
+    },
+    {
+      "complete": "Histoire des 60 ORMA/Max Groupama.htm",
+      "chronologie": [
+        "IDEC SPORT - CIC,",
+        "2025 29 novembre, départ du Trophée Jules Verne avec The Famous Project CIC, premier équipage 100 % féminin, skipper : Alexia BARRIER",
+        "2026 Fin janvier, Trophée Jules Verne bouclé en 57j21h20', Alexia BARRIER",
+        "1er novembre, Route du Rhum : en course en Ultim, première femme engagée dans cette catégorie, Alexia BARRIER"
+      ],
+      "sources": [
+        { "titre": "Bateaux.com — The Famous Project CIC, un équipage 100 % féminin prêt à défier le Trophée Jules Verne", "url": "https://www.bateaux.com/article/50072/the-famous-project-cic-un-equipage-100-feminin-pret-a-defier-le-trophee-jules-verne" },
+        { "titre": "Figaro Nautisme — Alexia Barrier qualifiée pour la Route du Rhum en Ultim", "url": "https://figaronautisme.meteoconsult.fr/actus-nautisme-flash/2026-09-08/92108-alexia-barrier-qualifiee-pour-la-route-du-rhum-en-ultim" },
+        { "titre": "CIC — Alexia Barrier au départ de la Route du Rhum 2026", "url": "https://www.cic.fr/fr/groupe-cic/presse/communiques-de-presse/alexia-barrier-au-depart-de-la-route-du-rhum-2026.html" }
+      ]
+    }
+  ],
+  "figaro": [
+    {
+      "complete": "Histoire des 40' monos/3F 27.htm",
+      "chronologie": [
+        "2024 Solitaire du Figaro Paprec: 3e au classement général à 35' 15'' du vainqueur, sous le nom Région Bretagne – CMB Performance, Gaston MORVAN"
+      ],
+      "sources": [
+        { "titre": "Solitaire du Figaro, édition 2024 (Wikipédia)", "url": "https://fr.wikipedia.org/wiki/Solitaire_du_Figaro#Parcours_et_palmarès_de_l'édition_2024" }
+      ]
+    }
+  ]
+}

@@ -1,15 +1,28 @@
-# Comptes et caches locaux (Cloudflare Wrangler : identifiant de compte)
+# Comptes, secrets et caches locaux (Cloudflare Wrangler : identifiant de compte) : ne JAMAIS les versionner
 .wrangler/
-node_modules/
 .env
 .env.*
+.dev.vars
+*.key
+*.pem
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+dist/
+
+# Fichiers générés : le site (sauf assets/, écrit à la main), les classements, les contrôles
+site/public/*
+!site/public/assets/
+site/_audit/
+sorties/
+donnees/site/images-needed.json
 
 # Copies privées (originaux avec adresses mail non masquées)
 _private/
 
-# Photos : droits non vérifiés, à rapatrier localement avec tools/photos.mjs et tools/commons.mjs
-site/photos/
-_source/commons/files/
+# Photos et images : droits des auteurs, à rapatrier localement (outils/scraping/commons.mjs)
+donnees/site/commons/files/
 *.jpg
 *.JPG
 *.jpeg
@@ -23,12 +36,15 @@ _source/commons/files/
 *.tiff
 *.bmp
 
-# Jeu : construction locale, et documents de référence soumis à droits (livret de règles MB 1987, photos)
-jeu/packages/client/dist/
+# Documents soumis à droits (livret de règles du jeu MB 1987, photos de référence), tableurs
 jeu/conception/references/
 *.pdf
+*.xls
+*.xlsx
 
 # Divers
 .DS_Store
 Thumbs.db
 desktop.ini
+~$*
+*.tmp

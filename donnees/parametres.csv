@@ -1,0 +1,7 @@
+parametre,valeur,explication
+annee_demarrage,1960,Première année prise en compte (all time)
+annee_reference,annee_en_cours,Année de référence des classements glissants ; n'importe quelle année possible
+fenetre_longue,20,Classement glissant long (années)
+fenetre_courte,10,Classement glissant court (années)
+reduction_ancien_record,0.3,Part du bonus perdue quand un record est battu (l'ancien détenteur garde 70 %)
+bonus_victoire_etape,10,Bonus par victoire d'étape (validé le 11/11/2026) : 10 points au skipper, 67 % au co-skipper ; prologues et manches exclus

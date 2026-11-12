@@ -22,9 +22,9 @@ SOFTWARE.
 
 ---
 
-Portée de la licence : la licence MIT ci-dessus couvre le code (tools/, site/assets/, jeu/)
-et les fichiers rédigés pour ce projet, dont les modèles 3D du jeu (jeu/packages/client/public/modeles/),
-générés par les scripts de jeu/outils/blender/. Les textes repris de histoiredeshalfs.com
-(_source/html/ et les pages générées dans site/) restent la propriété de leur auteur.
-Les extraits de Wikipédia (content/) sont sous licence CC BY-SA 4.0, avec leurs
-sources citées dans chaque fichier.
+Portée de la licence : la licence MIT ci-dessus couvre le code (site/tools/, site/public/assets/,
+outils/, jeu/) et les fichiers rédigés pour ce projet, dont les modèles 3D du jeu
+(jeu/packages/client/public/modeles/), générés par les scripts de jeu/outils/blender/.
+Les textes repris de histoiredeshalfs.com (donnees/site/html/ et les pages générées dans
+site/public/) restent la propriété de leur auteur. Les extraits de Wikipédia (site/content/)
+sont sous licence CC BY-SA 4.0, avec leurs sources citées dans chaque fichier.

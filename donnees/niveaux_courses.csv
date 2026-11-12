@@ -1,0 +1,46 @@
+classes,motif,course,niveau,annee_min,annee_max,statut,remarque
+*,\b(etape|leg|manche|prologue|classement class ?40|classement general provisoire)\b,(étape ou classement intermédiaire),0,,,proposé,Une étape ou un prologue ne compte pas comme une course : seul le classement général compte ; une victoire d'étape rapporte le bonus d'étape (parametres.csv)
+*,championnat de course au large|classement (general|final) du championnat,"(classement de saison, pas une course)",0,,,proposé,Le classement du championnat lui-même ne rapporte pas de points en plus des courses
+*,vendee globe|vendee-globe,Vendée Globe,1,,,validé 09/11/2026,
+*,"rhum (mono|multi)|categorie amateur|rhum.{0,3}(categorie|amateur)","Route du Rhum (catégories Rhum Mono, Rhum Multi, amateurs)",4,,,validé 11/11/2026,Catégorie d'une course multi-classes : niveau 4 (décision du propriétaire)
+*,route du rhum|rhum destination,Route du Rhum,1,,,validé 09/11/2026,
+Class40,^ocean race$|global ocean race,Global Ocean Race (Class40),1,2008,2011,validé 11/11/2026,"Tour du monde des Class40 à étapes (Portimão Global Ocean Race 2008-2009, Global Ocean Race 2011-2012), appelé « Ocean Race » dans les fiches : niveau 1 comme la Globe 40 (décision du propriétaire)"
+Class40|Figaro|Ocean Fifty|Mini 6.50,^ocean race$|global ocean race,"« Ocean Race » des Class40 (autre course à identifier)",0,,,à vérifier,"Pas The Ocean Race (tour du monde en équipage) : hors des éditions 2008 et 2011 de la Global Ocean Race, course à identifier sur les fiches ; 0 point en attendant"
+*,whitbread|volvo ocean race|^the ocean race$|^ocean race$,The Ocean Race (Whitbread),1,,,validé 09/11/2026,Tour du monde en équipage
+*,ocean race (europe|atlantic),Ocean Race Europe,3,,,validé 11/11/2026,"Course européenne par étapes, pas le tour du monde ; niveau 3 sur décision du propriétaire (11/11/2026)"
+*,barcelona world race,Barcelona World Race,2,,,validé 09/11/2026,Tour du monde en double tous les 4 ans ; Niveau 2 sur décision du propriétaire
+*,\bboc\b|around alone|velux 5 oceans|5 oceans,BOC Challenge / Around Alone,1,,,validé 09/11/2026,Tour du monde en solitaire à étapes
+*,arkea ultim challenge,Arkea Ultim Challenge,1,,,validé 09/11/2026,Tour du monde des Ultim en solitaire
+Class40,globe ?40,Globe 40,1,,,validé 09/11/2026,Tour du monde des Class40 à étapes : monument de la classe (décision du propriétaire)
+*,golden globe,Golden Globe,2,,,validé 09/11/2026,Niveau 2 sur décision du propriétaire
+*,jacques vabre|transat cafe l.or|route du cafe,Transat Jacques Vabre,2,,,validé 09/11/2026,Noms successifs : Route du Café puis Transat Jacques Vabre puis Transat Café L'Or
+*,transat anglaise|\bostar\b|europe 1 star|europe 1 new man star|transat cic|the transat|plymouth.newport,Transat anglaise (The Transat CIC),2,,,validé 09/11/2026,
+Mini 6.50,^mini transat|^transat\b|charente maritime.bahia|transat 6.50|^mini-transat,Mini Transat,2,,,validé 09/11/2026,Dans la classe Mini
+Figaro|Half Tonner,^transat\b|transat ag2r|transat paprec|transat concarneau|transat en double|transat bretagne.martinique|transat lorient,Transat Figaro,2,,,validé 09/11/2026,Noms successifs : Transat Lorient-Saint-Barth
+Figaro|Half Tonner|Quarter Tonner,solitaire du figaro|solitaire urgo|solitaire de l.aurore|course de l.aurore|^figaro$|course du figaro|^solitaire\b,Solitaire du Figaro,2,,,validé 09/11/2026,Course de l'Aurore (1970) puis Solitaire du Figaro ; classement général seulement
+IMOCA|Ultim|ORMA 60|Ocean Fifty|MOD70|Class40|Maxis,^transat\b,Transat (anglaise ou Jacques Vabre),2,,,validé 09/11/2026,Libellé « Transat » seul : les deux transats possibles sont de niveau 2
+*,quebec.saint.malo|quebec.st.malo|transat quebec,Transat Québec-Saint-Malo,2,,,validé 09/11/2026,Tous les 4 ans
+*,brest atlantiques,Brest Atlantiques,2,,,validé 09/11/2026,
+*,new york.vendee|new york vendee,New York-Vendée,2,,,validé 09/11/2026,
+*,retour a la base,Retour à la Base,2,,,validé 09/11/2026,
+*,twostar|transat en double|lorient.st.barth|lorient.saint.barth,Transat en double,2,,,validé 09/11/2026,
+*,half ton cup|quarter ton cup|three.quarter ton cup|3/4 ton cup|one ton cup|two ton cup,Coupe du monde de jauge (Ton Cup),2,,1995,validé 09/11/2026,Championnat du monde de la classe quand elle était au sommet (jusqu'en 1995)
+*,half ton cup|quarter ton cup|three.quarter ton cup|3/4 ton cup|one ton cup|two ton cup,Ton Cup (époque rétro),4,1996,,validé 11/11/2026,Coupes rétro des classes anciennes : niveau championnat
+*,^(the )?admiral.s cup,Admiral's Cup,2,,,validé 09/11/2026,
+*,fastnet,Rolex Fastnet Race,3,,,validé 09/11/2026,Liste fermée des régates historiques
+*,spi ouest,Spi Ouest-France,3,,,validé 09/11/2026,Liste fermée des régates historiques
+*,sydney.hobart,Sydney-Hobart,3,,,validé 09/11/2026,Liste fermée des régates historiques
+*,middle sea race,Rolex Middle Sea Race,3,,,validé 09/11/2026,Ajout à la liste fermée validé par le propriétaire
+*,caribbean 600,RORC Caribbean 600,3,,,validé 09/11/2026,Ajout à la liste fermée validé par le propriétaire
+*,tour de france a la voile,Tour de France à la voile,3,,,validé 09/11/2026,Ajout à la liste fermée validé par le propriétaire
+*,"transpac(?!.?52)|transpacific|la.{0,3}honolulu",Transpac (Los Angeles-Honolulu),3,,,validé 11/11/2026,Ajout à la liste fermée validé par le propriétaire
+*,"newport.{0,6}bermud|^bermuda race",Newport-Bermuda,3,,,validé 11/11/2026,Ajout à la liste fermée validé par le propriétaire
+IMOCA,"defi azimut|48 ?h.{0,3}azimut|runs azimut|tour de groix|bermudes 1000|guyader bermudes|vendee.arctique|transat b to b|calais round britain|rolex.{0,10}transat|transat.{0,5}new york.vendee|europe race|imoca globe series",Championnat IMOCA,4,,,validé 11/11/2026,
+Class40,"normand(y|ie) channel|sables.{0,4}horta|armen race|40 malouine|trophee lodigroup|solidaire du chocolat|transat.{0,3}jacques cartier|grand prix guyader|gp guyader|drheam|ais ?cup|class40 world|transat 40|caribbean|rorc",Championnat Class40,4,,,validé 11/11/2026,
+Figaro,solo (guy cotten|concarneau|maitre coq|med|arrimer)|guy cotten|maitre coq|tour de bretagne|sardinha cup|trophee laura vergne|allmer cup|route du ponant|quiberon solo|course des falaises|trophee bpgo|generali solo|solo med|national equipage|championnat de france|transmanche|la double|porquerolles,Championnat Figaro,4,,,validé 11/11/2026,
+Mini 6.50,"sables.{0,8}(acores|azores)",Les Sables-Les Açores-Les Sables,3,,,validé 11/11/2026,Un cran en dessous de la Mini Transat (décision du propriétaire)
+Mini 6.50,pornichet|mini en mai|mini.fastnet|transgascogne|gascogna|plastimo|marie.agnes peron|demi.cl[eé]|calvados cup|select 6.50|lorient bretagne mini|mini solo|duo concarneau|mini.?mag|trophee mini|open demi|triangle du soleil|lorient bretagne sud mini|mini barcelona|mini med|mini pavois|arcipelago|gran premio d.italia|trophee map|minimax|course des lions|chrono 6.50|odyssee d.ulysse,Championnat Mini,4,,,validé 11/11/2026,
+Ultim|Ocean Fifty|MOD70|ORMA 60,"pro sailing tour|grand prix|\bgp\b|nice ultimed|24 ?h ultim|armen race|tour de belle i|drheam|finistere atlantique|the bridge|krys ocean race|multi ?one|transat.{0,3}jacques cartier|championnat orma|trophee des multicoques",Championnat multicoques,4,,,validé 11/11/2026,
+TP52,circuito? breitling|tras \d+ regatas|\d+ regates|audi med ?cup circuit$,"(classement de saison du circuit, pas une course)",0,,,validé 11/11/2026,Le Mondial est la course phare ; le classement de saison ne s'ajoute pas aux épreuves
+TP52,(tp ?52|gaastra 52|\b52) (world|global) champ|mondial tp ?52,Mondial TP52,2,,,validé 11/11/2026,Course phare annuelle de la classe (décision du propriétaire) ; les ORC Worlds n'en sont pas
+TP52,"medcup|52 super series|super series|audi.{0,10}tp52|tp52 (europe|gold cup|med)|royal cup|copa del rey|rolex cup",Circuit TP52 (MedCup puis 52 Super Series),4,,,validé 11/11/2026,Épreuves du circuit : championnat de saison

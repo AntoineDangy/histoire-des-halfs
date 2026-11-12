@@ -1,0 +1,1625 @@
+{
+ "source": "https://www.imoca.org/fr/bateaux",
+ "date": "2026-11-10",
+ "bateaux": [
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/11th-hour-racing",
+   "nom": "11TH HOUR RACING",
+   "numero": "USA 171",
+   "skipper": "Francesca CLAPCICH",
+   "bapteme": "11th Hour Racing",
+   "architecte": "VPLP",
+   "construction": "2022, Multiplast",
+   "mise_a_l_eau": "19/07/2022",
+   "foils": "Oui",
+   "annee": 2022,
+   "chantier": "Multiplast",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "The Ocean Race Atlantic",
+     "rang": "2ème",
+     "skipper": "Francesca CLAPCICH",
+     "temps": "7j 23h 48min 7s"
+    },
+    {
+     "annee": "2026",
+     "course": "Vendée Arctique - Les Sables d'Olonne",
+     "rang": "5ème",
+     "skipper": "Francesca CLAPCICH",
+     "temps": "8j 20h 01min 11s"
+    },
+    {
+     "annee": "2026",
+     "course": "1000 Race",
+     "rang": "5ème",
+     "skipper": "Francesca CLAPCICH",
+     "temps": "5j 10h 45min 45s"
+    },
+    {
+     "annee": "2025",
+     "course": "Transat Café L'OR",
+     "rang": "2ème",
+     "skipper": "Francesca CLAPCICH",
+     "temps": "12j 01h 32min 46s"
+    },
+    {
+     "annee": "2025",
+     "course": "The Ocean Race Europe",
+     "rang": "4ème",
+     "skipper": "Boris HERRMANN",
+     "temps": "27 POINTS"
+    },
+    {
+     "annee": "2025",
+     "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+     "rang": "4ème",
+     "skipper": "Will HARRIS",
+     "temps": "6j 06h 04min 26s"
+    },
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "12ème",
+     "skipper": "Boris HERRMANN",
+     "temps": "80j 10h 16min 41s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/4cad-eole-performance",
+   "nom": "4CAD - EOLE PERFORMANCE",
+   "numero": null,
+   "skipper": "Benjamin DUTREUX",
+   "architecte": "Antoine Koch / GSEA / Finot-Conq",
+   "foils": "Non",
+   "palmares": []
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/allagrande-mapei",
+   "nom": "ALLAGRANDE MAPEI",
+   "numero": "ITA 37",
+   "skipper": "Ambrogio BECCARIA",
+   "bapteme": "ALLAGRANDE",
+   "architecte": "Antoine Koch et Finot-Conq",
+   "construction": "2022, CDK Technologies",
+   "mise_a_l_eau": "16/03/2023",
+   "foils": "Oui",
+   "annee": 2022,
+   "chantier": "CDK Technologies",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "2ème",
+     "skipper": "Ambrogio BECCARIA",
+     "temps": "1j 17h 05min 37s"
+    },
+    {
+     "annee": "2026",
+     "course": "Vendée Arctique - Les Sables d'Olonne",
+     "rang": "Vainqueur",
+     "skipper": "Ambrogio BECCARIA",
+     "temps": "8j 14h 05min 50s"
+    },
+    {
+     "annee": "2025",
+     "course": "Transat Café L'OR",
+     "rang": "4ème",
+     "skipper": "Ambrogio BECCARIA",
+     "temps": "12j 07h 24min 19s"
+    },
+    {
+     "annee": "2025",
+     "course": "The Ocean Race Europe",
+     "rang": "5ème",
+     "skipper": "Ambrogio BECCARIA",
+     "temps": "55 POINTS"
+    },
+    {
+     "annee": "2025",
+     "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+     "rang": "",
+     "skipper": "Thomas RUYANT",
+     "temps": "Abandon"
+    },
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "7ème",
+     "skipper": "Thomas RUYANT",
+     "temps": "75j 16h 47min 27s"
+    },
+    {
+     "annee": "2024",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "7ème",
+     "skipper": "Thomas RUYANT",
+     "temps": "1j 20h 51min 09s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/anett-kalhyge",
+   "nom": "ANETT - KALHYGE",
+   "numero": null,
+   "skipper": "Jean-Baptiste DARAMY",
+   "bapteme": "Caroline",
+   "architecte": "Farr Yacht Design",
+   "construction": "2007, Nouvelle-Zélande",
+   "mise_a_l_eau": "19/08/2008",
+   "foils": "Non",
+   "annee": 2007,
+   "chantier": "Nouvelle-Zélande",
+   "palmares": [
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "29ème",
+     "skipper": "Oliver HEER",
+     "temps": "99j 05h 27min 34s"
+    },
+    {
+     "annee": "2024",
+     "course": "New York Vendée - Les Sables d'Olonne",
+     "rang": "24ème",
+     "skipper": "Oliver HEER",
+     "temps": "15h 00h 01min 02s"
+    },
+    {
+     "annee": "2024",
+     "course": "The Transat CIC",
+     "rang": "25ème",
+     "skipper": "Oliver HEER",
+     "temps": "18j 10h 49min 32s"
+    },
+    {
+     "annee": "2023",
+     "course": "Transat Café L'OR",
+     "rang": "",
+     "skipper": "Oliver HEER",
+     "temps": "Abandon"
+    },
+    {
+     "annee": "2023",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "21ème",
+     "skipper": "Oliver HEER",
+     "temps": "2j 09h 51min 20s"
+    },
+    {
+     "annee": "2023",
+     "course": "Rolex Fastnet Race",
+     "rang": "19ème",
+     "skipper": "Oliver HEER",
+     "temps": "2d 16h 42m 15s"
+    },
+    {
+     "annee": "2022",
+     "course": "Route du Rhum-Destination Guadeloupe",
+     "rang": "32ème",
+     "skipper": "Oliver HEER",
+     "temps": "17j 00h 22min 55s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/april-marine-recherche-co-partenaire",
+   "nom": "APRIL MARINE - RECHERCHE CO-PARTENAIRE",
+   "numero": "FRA 9",
+   "skipper": "Arnaud BOISSIÈRES",
+   "bapteme": "GOMILÉO",
+   "architecte": "VPLP Verdier",
+   "construction": "2015, Green Marine, Southampton",
+   "mise_a_l_eau": "01/09/2015",
+   "foils": "Oui",
+   "annee": 2015,
+   "chantier": "Green Marine, Southampton",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "Vendée Arctique - Les Sables d'Olonne",
+     "rang": "7ème",
+     "skipper": "Arnaud BOISSIÈRES",
+     "temps": "10j 13h 12min 36s"
+    },
+    {
+     "annee": "2026",
+     "course": "1000 Race",
+     "rang": "7ème",
+     "skipper": "Arnaud BOISSIÈRES",
+     "temps": "6j 2h 39min 8s"
+    },
+    {
+     "annee": "2025",
+     "course": "Transat Café L'OR",
+     "rang": "9ème",
+     "skipper": "Arnaud BOISSIÈRES",
+     "temps": "13j 16h 48min 32s"
+    },
+    {
+     "annee": "2025",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "5ème",
+     "skipper": "Benjamin DUTREUX",
+     "temps": "1d 20h 40min 00s"
+    },
+    {
+     "annee": "2025",
+     "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+     "rang": "8ème",
+     "skipper": "Benjamin DUTREUX",
+     "temps": "6j 19h 51min 17s"
+    },
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "10ème",
+     "skipper": "Benjamin DUTREUX",
+     "temps": "77j 03h 39min 24s"
+    },
+    {
+     "annee": "2024",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "9ème",
+     "skipper": "Benjamin DUTREUX",
+     "temps": "1j 21h 35min 49s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/association-petits-princes-qu-guiner",
+   "nom": "ASSOCIATION PETITS PRINCES - QUÉGUINER",
+   "numero": "FRA 62",
+   "skipper": "Elodie BONAFOUS",
+   "bapteme": "HORIZON 29",
+   "architecte": "Guillaume Verdier",
+   "construction": "2024, CDK & MerConcept",
+   "mise_a_l_eau": "18/02/2025",
+   "foils": "Oui",
+   "annee": 2024,
+   "chantier": "CDK & MerConcept",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "6ème",
+     "skipper": "Elodie BONAFOUS",
+     "temps": "1j 22h 26min 55s"
+    },
+    {
+     "annee": "2026",
+     "course": "Vendée Arctique - Les Sables d'Olonne",
+     "rang": "4ème",
+     "skipper": "Elodie BONAFOUS",
+     "temps": "8j 19h 07min 59s"
+    },
+    {
+     "annee": "2026",
+     "course": "1000 Race",
+     "rang": "4ème",
+     "skipper": "Elodie BONAFOUS",
+     "temps": "5j 09h 54min 11s"
+    },
+    {
+     "annee": "2025",
+     "course": "Transat Café L'OR",
+     "rang": "8ème",
+     "skipper": "Elodie BONAFOUS",
+     "temps": "13j 07h 07min 02s"
+    },
+    {
+     "annee": "2025",
+     "course": "Rolex Fastnet Race",
+     "rang": "Vainqueur",
+     "skipper": "Elodie BONAFOUS",
+     "temps": "2d 14h 7min 05s"
+    },
+    {
+     "annee": "2025",
+     "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+     "rang": "2ème",
+     "skipper": "Elodie BONAFOUS",
+     "temps": "6j 03h 40min 27s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/banque-populaire-14",
+   "nom": "BANQUE POPULAIRE 14",
+   "numero": "FRA 14",
+   "skipper": "Loïs BERREHAR",
+   "bapteme": "Banque Populaire 14",
+   "architecte": "Antoine Koch",
+   "construction": "2027, CDK Technologies",
+   "foils": "Oui",
+   "annee": 2027,
+   "chantier": "CDK Technologies",
+   "palmares": []
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/bureau-vall-e",
+   "nom": "BUREAU VALLÉE",
+   "numero": "FRA 2",
+   "skipper": "Davy BEAUDART",
+   "bapteme": "Jack In The Box",
+   "architecte": "Sam Manuard",
+   "construction": "2019, Black Pepper Yachts",
+   "mise_a_l_eau": "31/01/2020",
+   "foils": "Oui",
+   "annee": 2019,
+   "chantier": "Black Pepper Yachts",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "8ème",
+     "skipper": "Davy BEAUDART",
+     "temps": "2j 9h 33min 22s"
+    },
+    {
+     "annee": "2025",
+     "course": "Transat Café L'OR",
+     "rang": "7ème",
+     "skipper": "Louis BURTON",
+     "temps": "12j 22h 51min 36s"
+    },
+    {
+     "annee": "2025",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "7ème",
+     "skipper": "Louis BURTON",
+     "temps": "1d 20h 59min 52s"
+    },
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "",
+     "skipper": "Louis BURTON",
+     "temps": "Abandon le 04/12/2024"
+    },
+    {
+     "annee": "2024",
+     "course": "New York Vendée - Les Sables d'Olonne",
+     "rang": "10ème",
+     "skipper": "Louis BURTON",
+     "temps": "13j 04h 46min 31s"
+    },
+    {
+     "annee": "2024",
+     "course": "The Transat CIC",
+     "rang": "9ème",
+     "skipper": "Louis BURTON",
+     "temps": "9j 04h 37min 38s"
+    },
+    {
+     "annee": "2023",
+     "course": "Retour à La Base",
+     "rang": "7ème",
+     "skipper": "Louis BURTON",
+     "temps": "10j 04h 33min 11s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/caf-joyeux",
+   "nom": "CAFÉ JOYEUX",
+   "numero": "FRA 30",
+   "skipper": "Nico D'ESTAIS",
+   "bapteme": "Théophile Solo Sailor",
+   "architecte": "VPLP - Verdier",
+   "construction": "2010, CDK Technologies",
+   "mise_a_l_eau": "16/08/2011",
+   "foils": "Non",
+   "annee": 2010,
+   "chantier": "CDK Technologies",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "9ème",
+     "skipper": "Nico D'ESTAIS",
+     "temps": "2j 14h 14min 17s"
+    },
+    {
+     "annee": "2026",
+     "course": "Vendée Arctique - Les Sables d'Olonne",
+     "rang": "6ème",
+     "skipper": "Nico D'ESTAIS",
+     "temps": "10j 07h 15min 22s"
+    },
+    {
+     "annee": "2026",
+     "course": "1000 Race",
+     "rang": "6ème",
+     "skipper": "Nico D'ESTAIS",
+     "temps": "5j 17h 30min 27s"
+    },
+    {
+     "annee": "2025",
+     "course": "Transat Café L'OR",
+     "rang": "13ème",
+     "skipper": "Nico D'ESTAIS",
+     "temps": "15j 09h 31min 16s"
+    },
+    {
+     "annee": "2025",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "4ème",
+     "skipper": "Nico D'ESTAIS",
+     "temps": "1d 20h 27min 47s"
+    },
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "16ème",
+     "skipper": "Benjamin FERRÉ",
+     "temps": "84j 23h 19min 39s"
+    },
+    {
+     "annee": "2024",
+     "course": "The Transat CIC",
+     "rang": "",
+     "skipper": "Benjamin FERRÉ",
+     "temps": "Abandon"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/canada-ocean-racing-be-water-positive",
+   "nom": "CANADA OCEAN RACING - BE WATER POSITIVE",
+   "numero": "CAN 80",
+   "skipper": "Scott SHAWYER",
+   "bapteme": "EMIRA IV",
+   "architecte": "Guillaume Verdier",
+   "construction": "2021, CDK Technologies",
+   "mise_a_l_eau": "24/08/2021",
+   "foils": "Oui",
+   "annee": 2021,
+   "chantier": "CDK Technologies",
+   "palmares": [
+    {
+     "annee": "2025",
+     "course": "The Ocean Race Europe",
+     "rang": "6ème",
+     "skipper": "Scott SHAWYER",
+     "temps": "18 POINTS"
+    },
+    {
+     "annee": "2025",
+     "course": "Rolex Fastnet Race",
+     "rang": "",
+     "skipper": "Scott SHAWYER",
+     "temps": "ABANDON"
+    },
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "3ème",
+     "skipper": "Sébastien SIMON",
+     "temps": "67j 12h 25min 37s"
+    },
+    {
+     "annee": "2024",
+     "course": "New York Vendée - Les Sables d'Olonne",
+     "rang": "4ème",
+     "skipper": "Sébastien SIMON",
+     "temps": "12h 03h 02min 01s"
+    },
+    {
+     "annee": "2024",
+     "course": "The Transat CIC",
+     "rang": "10ème",
+     "skipper": "Sébastien SIMON",
+     "temps": "9j 20h 02min 35s"
+    },
+    {
+     "annee": "2023",
+     "course": "Retour à La Base",
+     "rang": "19ème",
+     "skipper": "Sébastien SIMON",
+     "temps": "11j 18h 36min 00s"
+    },
+    {
+     "annee": "2023",
+     "course": "Transat Café L'OR",
+     "rang": "18ème",
+     "skipper": "Sébastien SIMON",
+     "temps": "14j 08h 53min 04s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/charal",
+   "nom": "CHARAL",
+   "numero": "FRA 3",
+   "skipper": "Jérémie BEYOU",
+   "bapteme": "Charal",
+   "architecte": "Sam Manuard",
+   "construction": "2022, CDK Technologies, Lorient",
+   "mise_a_l_eau": "11/07/2022",
+   "foils": "Oui",
+   "annee": 2022,
+   "chantier": "CDK Technologies, Lorient",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "3ème",
+     "skipper": "Jérémie BEYOU",
+     "temps": "1j 18h 19min 25s"
+    },
+    {
+     "annee": "2025",
+     "course": "Transat Café L'OR",
+     "rang": "Vainqueur",
+     "skipper": "Jérémie BEYOU",
+     "temps": "11j 19h 45min 18s"
+    },
+    {
+     "annee": "2025",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "3ème",
+     "skipper": "Jérémie BEYOU",
+     "temps": "1d 19h 45min 48s"
+    },
+    {
+     "annee": "2025",
+     "course": "Rolex Fastnet Race",
+     "rang": "2ème",
+     "skipper": "Jérémie BEYOU",
+     "temps": "2d 14h 15min 20s"
+    },
+    {
+     "annee": "2025",
+     "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+     "rang": "5ème",
+     "skipper": "Jérémie BEYOU",
+     "temps": "6j 06h 43min 06s"
+    },
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "4ème",
+     "skipper": "Jérémie BEYOU",
+     "temps": "74j 12h 56min 54s"
+    },
+    {
+     "annee": "2024",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "3ème",
+     "skipper": "Jérémie BEYOU",
+     "temps": "1j 20h 10min 25s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/coup-de-pouce",
+   "nom": "COUP DE POUCE",
+   "numero": "FRA 123",
+   "skipper": "Manuel COUSIN",
+   "bapteme": "Diaboleo Vanille",
+   "architecte": "VPLP - Verdier",
+   "construction": "2010, CDK Technologies, Port La Forêt",
+   "mise_a_l_eau": "18/09/2010",
+   "foils": "Oui",
+   "annee": 2010,
+   "chantier": "CDK Technologies, Port La Forêt",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "",
+     "skipper": "Manuel COUSIN",
+     "temps": "ABANDON"
+    },
+    {
+     "annee": "2026",
+     "course": "Vendée Arctique - Les Sables d'Olonne",
+     "rang": "8ème",
+     "skipper": "Manuel COUSIN",
+     "temps": "13j 21h 08min 40s"
+    },
+    {
+     "annee": "2025",
+     "course": "Transat Café L'OR",
+     "rang": "15ème",
+     "skipper": "Manuel COUSIN",
+     "temps": "18j 00h 58min 14s"
+    },
+    {
+     "annee": "2025",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "11ème",
+     "skipper": "Manuel COUSIN",
+     "temps": "1d 22h 37min 28s"
+    },
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "",
+     "skipper": "Arnaud BOISSIÈRES",
+     "temps": "Abandon le 30/01/2025"
+    },
+    {
+     "annee": "2024",
+     "course": "The Transat CIC",
+     "rang": "",
+     "skipper": "Arnaud BOISSIÈRES",
+     "temps": "Abandon"
+    },
+    {
+     "annee": "2023",
+     "course": "Retour à La Base",
+     "rang": "16ème",
+     "skipper": "Arnaud BOISSIÈRES",
+     "temps": "11j 14h 59min 02s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/demain-c-est-loin-1",
+   "nom": "DEMAIN C'EST LOIN",
+   "numero": "FRA 22",
+   "skipper": "Nicolas ROUGER",
+   "bapteme": "OC7",
+   "architecte": "Bruce Farr Yacht Design",
+   "construction": "2007, Offshore Challenges Sailing Team, Cowes, Royaume-Uni",
+   "mise_a_l_eau": "25/06/2007",
+   "foils": "Non",
+   "annee": 2007,
+   "chantier": "Offshore Challenges Sailing Team, Cowes, Royaume-Uni",
+   "palmares": [
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "23ème",
+     "skipper": "Guirec SOUDÉE",
+     "temps": "89j 20h 16min 20s"
+    },
+    {
+     "annee": "2024",
+     "course": "The Transat CIC",
+     "rang": "17ème",
+     "skipper": "Guirec SOUDÉE",
+     "temps": "10j 19h 08min 02s"
+    },
+    {
+     "annee": "2023",
+     "course": "Retour à La Base",
+     "rang": "24ème",
+     "skipper": "Guirec SOUDÉE",
+     "temps": "12j 09h 17min 45s"
+    },
+    {
+     "annee": "2023",
+     "course": "Transat Café L'OR",
+     "rang": "20ème",
+     "skipper": "Guirec SOUDÉE",
+     "temps": "14j 11h 32min 55s"
+    },
+    {
+     "annee": "2023",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "",
+     "skipper": "Guirec SOUDÉE",
+     "temps": "DNS"
+    },
+    {
+     "annee": "2023",
+     "course": "Rolex Fastnet Race",
+     "rang": "20ème",
+     "skipper": "Guirec SOUDÉE",
+     "temps": "2d 17h 4m 55s"
+    },
+    {
+     "annee": "2023",
+     "course": "1000 Race",
+     "rang": "",
+     "skipper": "Guirec SOUDÉE",
+     "temps": "Abandon"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/dmg-mori-global-one",
+   "nom": "DMG MORI GLOBAL ONE",
+   "numero": "JPN 11",
+   "skipper": "Kojiro SHIRAISHI",
+   "bapteme": "DMG MORI GLOBAL ONE",
+   "architecte": "Guillaume Verdier",
+   "construction": "2026, Multiplast, Vannes (France)",
+   "mise_a_l_eau": "06/07/2026",
+   "foils": "Oui",
+   "annee": 2026,
+   "chantier": "Multiplast, Vannes (France)",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "The Ocean Race Atlantic",
+     "rang": "3ème",
+     "skipper": "Kojiro SHIRAISHI",
+     "temps": "8j 0h 1min 40s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/embrace-the-challenge",
+   "nom": "EMBRACE THE CHALLENGE",
+   "numero": "SUI 8",
+   "skipper": "Oliver HEER",
+   "bapteme": "YOROSHIKU",
+   "architecte": "VPLP",
+   "construction": "2018, CDK Technologies - Port La Forêt",
+   "mise_a_l_eau": "20/08/2018",
+   "foils": "Oui",
+   "annee": 2018,
+   "chantier": "CDK Technologies - Port La Forêt",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "The Ocean Race Atlantic",
+     "rang": "5ème",
+     "skipper": "Oliver HEER",
+     "temps": "8j 11h 36min 17S"
+    },
+    {
+     "annee": "2025",
+     "course": "Transat Café L'OR",
+     "rang": "5ème",
+     "skipper": "Justine METTRAUX",
+     "temps": "12j 16h 42min 28s"
+    },
+    {
+     "annee": "2025",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "2ème",
+     "skipper": "Justine METTRAUX",
+     "temps": "1d 19h 44min 42s"
+    },
+    {
+     "annee": "2025",
+     "course": "Rolex Fastnet Race",
+     "rang": "5ème",
+     "skipper": "Justine METTRAUX",
+     "temps": "2d 20h 08min 59sec"
+    },
+    {
+     "annee": "2025",
+     "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+     "rang": "6ème",
+     "skipper": "Justine METTRAUX",
+     "temps": "6j 10h 07min 47s"
+    },
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "8ème",
+     "skipper": "Justine METTRAUX",
+     "temps": "76j 1h 36m 52s"
+    },
+    {
+     "annee": "2024",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "8ème",
+     "skipper": "Justine METTRAUX",
+     "temps": "1j 21h 28min 50s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/fdj-united",
+   "nom": "FDJ UNITED",
+   "numero": "FRA 56",
+   "skipper": "Fabrice AMEDEO",
+   "bapteme": "DIABOLEO",
+   "architecte": "Owen Clarke Design",
+   "construction": "2007, Hakes Marine, Nouvelle-Zélande",
+   "mise_a_l_eau": "31/07/2007",
+   "foils": "Non",
+   "annee": 2007,
+   "chantier": "Hakes Marine, Nouvelle-Zélande",
+   "palmares": [
+    {
+     "annee": "2025",
+     "course": "Transat Café L'OR",
+     "rang": "16ème",
+     "skipper": "Fabrice AMEDEO",
+     "temps": "18j 03h 11min 10s"
+    },
+    {
+     "annee": "2025",
+     "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+     "rang": "",
+     "skipper": "Fabrice AMEDEO",
+     "temps": "Abandon"
+    },
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "32ème",
+     "skipper": "Fabrice AMEDEO",
+     "temps": "114j 01h 58min 49s"
+    },
+    {
+     "annee": "2024",
+     "course": "The Transat CIC",
+     "rang": "23ème",
+     "skipper": "Fabrice AMEDEO",
+     "temps": "12j 02h 08min 52s"
+    },
+    {
+     "annee": "2023",
+     "course": "Retour à La Base",
+     "rang": "27ème",
+     "skipper": "Fabrice AMEDEO",
+     "temps": "12j 15h 04min 46s"
+    },
+    {
+     "annee": "2023",
+     "course": "Transat Café L'OR",
+     "rang": "28ème",
+     "skipper": "Fabrice AMEDEO",
+     "temps": "16j 21h 52mn 40s"
+    },
+    {
+     "annee": "2023",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "",
+     "skipper": "Fabrice AMEDEO",
+     "temps": "Abandon"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/foussier",
+   "nom": "FOUSSIER",
+   "numero": "FRA 83",
+   "skipper": "Sébastien MARSSET",
+   "bapteme": "Faroha3",
+   "architecte": "Farr Yacht Design",
+   "construction": "2006, JMV Industries, Cherbourg",
+   "mise_a_l_eau": "26/07/2006",
+   "foils": "Non",
+   "annee": 2006,
+   "chantier": "JMV Industries, Cherbourg",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "",
+     "skipper": "Sébastien MARSSET",
+     "temps": "ABANDON"
+    },
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "27ème",
+     "skipper": "Sébastien MARSSET",
+     "temps": "91j 00h 35min 35s"
+    },
+    {
+     "annee": "2024",
+     "course": "The Transat CIC",
+     "rang": "",
+     "skipper": "Sébastien MARSSET",
+     "temps": "Abandon"
+    },
+    {
+     "annee": "2023",
+     "course": "Retour à La Base",
+     "rang": "21ème",
+     "skipper": "Sébastien MARSSET",
+     "temps": "12j 00h 37min 59s"
+    },
+    {
+     "annee": "2023",
+     "course": "Transat Café L'OR",
+     "rang": "27ème",
+     "skipper": "Sébastien MARSSET",
+     "temps": "16j 13h 43min 30s"
+    },
+    {
+     "annee": "2023",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "26ème",
+     "skipper": "Sébastien MARSSET",
+     "temps": "2j 13h 11min 00s"
+    },
+    {
+     "annee": "2023",
+     "course": "Rolex Fastnet Race",
+     "rang": "21ème",
+     "skipper": "Sébastien MARSSET",
+     "temps": "2d 17h 54m 7s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/groupe-dubreuil-air-cara-bes",
+   "nom": "GROUPE DUBREUIL - AIR CARAÏBES",
+   "numero": null,
+   "skipper": "Sébastien SIMON",
+   "bapteme": "GROUPE DUBREUIL - AIR CARAÏBES",
+   "architecte": "Guillaume Verdier",
+   "construction": "2025, Carrington Boats",
+   "foils": "Oui",
+   "annee": 2025,
+   "chantier": "Carrington Boats",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "7ème",
+     "skipper": "Sébastien SIMON",
+     "temps": "2j 00h 7min 35s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/initiatives-c-ur",
+   "nom": "INITIATIVES-CŒUR",
+   "numero": "FRA 109",
+   "skipper": "Violette DORANGE",
+   "bapteme": "Initiatives-Cœur",
+   "architecte": "Sam Manuard",
+   "construction": "2022, Black Pepper Yachts",
+   "mise_a_l_eau": "30/07/2022",
+   "foils": "Oui",
+   "annee": 2022,
+   "chantier": "Black Pepper Yachts",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "5ème",
+     "skipper": "Violette DORANGE",
+     "temps": "1j 20h 54min 05s"
+    },
+    {
+     "annee": "2026",
+     "course": "Vendée Arctique - Les Sables d'Olonne",
+     "rang": "3ème",
+     "skipper": "Violette DORANGE",
+     "temps": "8j 16h 21min 53s"
+    },
+    {
+     "annee": "2026",
+     "course": "1000 Race",
+     "rang": "3ème",
+     "skipper": "Violette DORANGE",
+     "temps": "5j 08h 26min 35s"
+    },
+    {
+     "annee": "2025",
+     "course": "Transat Café L'OR",
+     "rang": "6ème",
+     "skipper": "Sam DAVIES",
+     "temps": "12j 21h 11min 12s"
+    },
+    {
+     "annee": "2025",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "6ème",
+     "skipper": "Sam DAVIES",
+     "temps": "1d 20h 46min 15s"
+    },
+    {
+     "annee": "2025",
+     "course": "Rolex Fastnet Race",
+     "rang": "4ème",
+     "skipper": "Sam DAVIES",
+     "temps": "2d 14h 47min 57sec"
+    },
+    {
+     "annee": "2025",
+     "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+     "rang": "7ème",
+     "skipper": "Sam DAVIES",
+     "temps": "6j 11h 07min 36s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/les-p-tits-doudous",
+   "nom": "LES P’TITS DOUDOUS",
+   "numero": "FRA 16",
+   "skipper": "Armel TRIPON",
+   "bapteme": "LES P’TITS DOUDOUS",
+   "architecte": "VPLP",
+   "construction": "2023, DUQUEINE Atlantique",
+   "mise_a_l_eau": "02/06/2025",
+   "foils": "Oui",
+   "annee": 2023,
+   "chantier": "DUQUEINE Atlantique",
+   "palmares": [
+    {
+     "annee": "2026-",
+     "course": "Route du Rhum-Destination Guadeloupe",
+     "rang": "",
+     "skipper": "Armel TRIPON",
+     "temps": "ABANDON"
+    },
+    {
+     "annee": "2026",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "",
+     "skipper": "Armel TRIPON",
+     "temps": "ABANDON"
+    },
+    {
+     "annee": "2025",
+     "course": "Transat Café L'OR",
+     "rang": "12ème",
+     "skipper": "Armel TRIPON",
+     "temps": "15j 02h 29min 16s"
+    },
+    {
+     "annee": "2025",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "8ème",
+     "skipper": "Armel TRIPON",
+     "temps": "1d 21h 14min 23s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/macif-sant-pr-voyance",
+   "nom": "MACIF SANTÉ PRÉVOYANCE",
+   "numero": "FRA 79",
+   "skipper": "Sam GOODCHILD",
+   "bapteme": "MACIF SANTÉ PRÉVOYANCE",
+   "architecte": "Guillaume Verdier",
+   "construction": "2022, CDK Technologies et MerConcept",
+   "mise_a_l_eau": "24/06/2023",
+   "foils": "Oui",
+   "annee": 2022,
+   "chantier": "CDK Technologies et MerConcept",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "Vainqueur",
+     "skipper": "Sam GOODCHILD",
+     "temps": "1j 14h 48min 21s"
+    },
+    {
+     "annee": "2026",
+     "course": "Vendée Arctique - Les Sables d'Olonne",
+     "rang": "2ème",
+     "skipper": "Sam GOODCHILD",
+     "temps": "8j 15h 20min 53s"
+    },
+    {
+     "annee": "2026",
+     "course": "1000 Race",
+     "rang": "Vainqueur",
+     "skipper": "Sam GOODCHILD",
+     "temps": "4j 22h 09min 56s"
+    },
+    {
+     "annee": "2025",
+     "course": "Transat Café L'OR",
+     "rang": "3ème",
+     "skipper": "Sam GOODCHILD",
+     "temps": "12j 03h 25min 47s"
+    },
+    {
+     "annee": "2025",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "Vainqueur",
+     "skipper": "Sam GOODCHILD",
+     "temps": "1d 19h 25min 28s"
+    },
+    {
+     "annee": "2025",
+     "course": "Course des Caps - Boulogne sur Mer - Banque Populaire du Nord",
+     "rang": "Vainqueur",
+     "skipper": "Sam GOODCHILD",
+     "temps": "6j 01h 10min 45s"
+    },
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "Vainqueur",
+     "skipper": "Charlie DALIN",
+     "temps": "64j 19h 22min 49s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/macsf-1",
+   "nom": "MACSF",
+   "numero": "FRA 24",
+   "skipper": "Corentin HOREAU",
+   "bapteme": "Paprec Arkéa 24",
+   "architecte": "Antoine Koch et Finot-Conq",
+   "construction": "2022, Multiplast",
+   "mise_a_l_eau": "22/02/2023",
+   "foils": "Oui",
+   "annee": 2022,
+   "chantier": "Multiplast",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "4ème",
+     "skipper": "Corentin HOREAU",
+     "temps": "1j 18h 37min 20s"
+    },
+    {
+     "annee": "2026",
+     "course": "Vendée Arctique - Les Sables d'Olonne",
+     "rang": "",
+     "skipper": "Corentin HOREAU",
+     "temps": "ABANDON"
+    },
+    {
+     "annee": "2026",
+     "course": "1000 Race",
+     "rang": "2ème",
+     "skipper": "Corentin HOREAU",
+     "temps": "5j 7h 5min 17s"
+    },
+    {
+     "annee": "2025",
+     "course": "Transat Café L'OR",
+     "rang": "10ème",
+     "skipper": "Yoann RICHOMME",
+     "temps": "14j 13h 30min 19s"
+    },
+    {
+     "annee": "2025",
+     "course": "The Ocean Race Europe",
+     "rang": "2ème",
+     "skipper": "Yoann RICHOMME",
+     "temps": "40 POINTS"
+    },
+    {
+     "annee": "2025",
+     "course": "Rolex Fastnet Race",
+     "rang": "3ème",
+     "skipper": "Yoann RICHOMME",
+     "temps": "2d 14h 17min 06s"
+    },
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "2ème",
+     "skipper": "Yoann RICHOMME",
+     "temps": "65j 18h 10min 02s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/malizia-4",
+   "nom": "MALIZIA 4",
+   "numero": "1297",
+   "skipper": "Boris HERRMANN",
+   "architecte": "Antoine Koch",
+   "construction": "2026, CDK Technologies",
+   "mise_a_l_eau": "06/07/2026",
+   "foils": "Oui",
+   "annee": 2026,
+   "chantier": "CDK Technologies",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "The Ocean Race Atlantic",
+     "rang": "4ème",
+     "skipper": "Boris HERRMANN",
+     "temps": "8j 0h 6min 40s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/milai-furuno",
+   "nom": "MILAI - FURUNO",
+   "numero": "JPN 22",
+   "skipper": "Masa SUZUKI",
+   "bapteme": "MILAI 22",
+   "architecte": "Farr Yacht Design",
+   "construction": "2006, CDK Technologies, Port La Forêt",
+   "mise_a_l_eau": "30/09/2006",
+   "foils": "Non",
+   "annee": 2006,
+   "chantier": "CDK Technologies, Port La Forêt",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "",
+     "skipper": "Masa SUZUKI",
+     "temps": "ABANDON"
+    },
+    {
+     "annee": "2025",
+     "course": "Transat Café L'OR",
+     "rang": "14ème",
+     "skipper": "Louis DUC",
+     "temps": "16j 18h 41m 59s"
+    },
+    {
+     "annee": "2025",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "10ème",
+     "skipper": "Louis DUC",
+     "temps": "1d 21h 59min 56s"
+    },
+    {
+     "annee": "2025",
+     "course": "Rolex Fastnet Race",
+     "rang": "6ème",
+     "skipper": "Louis DUC",
+     "temps": "3d 05h 34min 34s"
+    },
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "26ème",
+     "skipper": "Louis DUC",
+     "temps": "91j 00h 08min 48s"
+    },
+    {
+     "annee": "2024",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "14ème",
+     "skipper": "Louis DUC",
+     "temps": "1j 22h 37min 42s"
+    },
+    {
+     "annee": "2024",
+     "course": "The Transat CIC",
+     "rang": "",
+     "skipper": "Louis DUC",
+     "temps": "Abandon"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/msig-europe",
+   "nom": "MSIG EUROPE",
+   "numero": "NZL 64",
+   "skipper": "Conrad COLMAN",
+   "bapteme": "Imagine",
+   "architecte": "VPLP - Verdier",
+   "construction": "2007, Indiana Yachting, Italie",
+   "mise_a_l_eau": "05/09/2007",
+   "foils": "Non",
+   "annee": 2007,
+   "chantier": "Indiana Yachting, Italie",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "The Ocean Race Atlantic",
+     "rang": "6ème",
+     "skipper": "Conrad COLMAN",
+     "temps": "9j 17h 40min 00s"
+    },
+    {
+     "annee": "2025",
+     "course": "Transat Café L'OR",
+     "rang": "17ème",
+     "skipper": "Conrad COLMAN",
+     "temps": "19j 14h 27min 47s"
+    },
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "21ème",
+     "skipper": "Conrad COLMAN",
+     "temps": "85j 16h 04min 33s"
+    },
+    {
+     "annee": "2024",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "15ème",
+     "skipper": "Conrad COLMAN",
+     "temps": "1j 23h 00min 08s"
+    },
+    {
+     "annee": "2024",
+     "course": "New York Vendée - Les Sables d'Olonne",
+     "rang": "21ème",
+     "skipper": "Conrad COLMAN",
+     "temps": "14j 22h 47min 03s"
+    },
+    {
+     "annee": "2023",
+     "course": "Retour à La Base",
+     "rang": "15ème",
+     "skipper": "Conrad COLMAN",
+     "temps": "11j 09h 30min 42s"
+    },
+    {
+     "annee": "2023",
+     "course": "Transat Café L'OR",
+     "rang": "24ème",
+     "skipper": "Conrad COLMAN",
+     "temps": "15j 06h 12min 05s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/paprec",
+   "nom": "PAPREC",
+   "numero": null,
+   "skipper": "Yoann RICHOMME",
+   "architecte": "Antoine Koch / GSEA / Finot-Conq",
+   "construction": "2027, Multiplast",
+   "foils": "Oui",
+   "annee": 2027,
+   "chantier": "Multiplast",
+   "palmares": []
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/resilient",
+   "nom": "RESILIENT",
+   "numero": "FRA 1000",
+   "skipper": "Pierre-Louis ATTWELL",
+   "bapteme": "RUA HATU",
+   "architecte": "Finot - Conq",
+   "construction": "2007, Multiplast, Vannes",
+   "mise_a_l_eau": "29/05/2008",
+   "foils": "Non",
+   "annee": 2007,
+   "chantier": "Multiplast, Vannes",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "",
+     "skipper": "Pierre-Louis ATTWELL",
+     "temps": "ABANDON"
+    },
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "17ème",
+     "skipper": "Tanguy LE TURQUAIS",
+     "temps": "84j 23h 35min 29s"
+    },
+    {
+     "annee": "2024",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "16ème",
+     "skipper": "Tanguy LE TURQUAIS",
+     "temps": "1j 23h 00min 41s"
+    },
+    {
+     "annee": "2024",
+     "course": "The Transat CIC",
+     "rang": "11ème",
+     "skipper": "Tanguy LE TURQUAIS",
+     "temps": "9j 22h 35min 34s"
+    },
+    {
+     "annee": "2023",
+     "course": "Retour à La Base",
+     "rang": "20ème",
+     "skipper": "Tanguy LE TURQUAIS",
+     "temps": "12j 00h 07min 00s"
+    },
+    {
+     "annee": "2023",
+     "course": "Transat Café L'OR",
+     "rang": "34ème",
+     "skipper": "Tanguy LE TURQUAIS",
+     "temps": "24j 01h 21mn 03s"
+    },
+    {
+     "annee": "2023",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "22ème",
+     "skipper": "Tanguy LE TURQUAIS",
+     "temps": "2j 10h 25min 00s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/respire",
+   "nom": "RESPIRE",
+   "numero": "FRA 71",
+   "skipper": "Robin MARAIS",
+   "bapteme": "Trimtastic",
+   "architecte": "Farr Yacht Design",
+   "construction": "2007, Southern Ocean Marine (Nouvelle-Zélande)",
+   "mise_a_l_eau": "03/02/2007",
+   "foils": "Non",
+   "annee": 2007,
+   "chantier": "Southern Ocean Marine (Nouvelle-Zélande)",
+   "palmares": [
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "31ème",
+     "skipper": "Manuel COUSIN",
+     "temps": "111j 00h 38min 38s"
+    },
+    {
+     "annee": "2024",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "17ème",
+     "skipper": "Manuel COUSIN",
+     "temps": "1J 23h 28m 23s"
+    },
+    {
+     "annee": "2024",
+     "course": "New York Vendée - Les Sables d'Olonne",
+     "rang": "23ème",
+     "skipper": "Manuel COUSIN",
+     "temps": "14j 23h 31min 55s"
+    },
+    {
+     "annee": "2023",
+     "course": "Retour à La Base",
+     "rang": "25ème",
+     "skipper": "Manuel COUSIN",
+     "temps": "12j 11h 53min 38s"
+    },
+    {
+     "annee": "2023",
+     "course": "Transat Café L'OR",
+     "rang": "25ème",
+     "skipper": "Manuel COUSIN",
+     "temps": "16j 03h 54min 36s"
+    },
+    {
+     "annee": "2023",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "24ème",
+     "skipper": "Manuel COUSIN",
+     "temps": "2j 12h 48min 07s"
+    },
+    {
+     "annee": "2023",
+     "course": "Rolex Fastnet Race",
+     "rang": "23ème",
+     "skipper": "Manuel COUSIN",
+     "temps": "2d 20h 17m 2s"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/teamwork-team-snef-ii",
+   "nom": "TEAMWORK TEAM SNEF II",
+   "numero": null,
+   "skipper": "Justine METTRAUX",
+   "bapteme": "TEAMWORK - TEAM SNEF",
+   "architecte": "Guillaume Verdier",
+   "construction": "2026, CDK Technologies",
+   "foils": "Oui",
+   "annee": 2026,
+   "chantier": "CDK Technologies",
+   "palmares": []
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/united-by-the-ocean",
+   "nom": "UNITED BY THE OCEAN",
+   "numero": "FRA 2030",
+   "skipper": "Mariana LOBATO",
+   "bapteme": "Biotherm",
+   "architecte": "Guillaume Verdier",
+   "construction": "2022, Persico Marine",
+   "mise_a_l_eau": "31/08/2022",
+   "foils": "Oui",
+   "annee": 2022,
+   "chantier": "Persico Marine",
+   "palmares": [
+    {
+     "annee": "2026",
+     "course": "The Ocean Race Atlantic",
+     "rang": "Vainqueur",
+     "skipper": "Paul MEILHAT",
+     "temps": "7J 23H 39min 11s"
+    },
+    {
+     "annee": "2025",
+     "course": "The Ocean Race Europe",
+     "rang": "Vainqueur",
+     "skipper": "Paul MEILHAT",
+     "temps": "55 POINTS"
+    },
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "5ème",
+     "skipper": "Paul MEILHAT",
+     "temps": "74j 22h 38min 15s"
+    },
+    {
+     "annee": "2024",
+     "course": "The Transat CIC",
+     "rang": "15ème",
+     "skipper": "Paul MEILHAT",
+     "temps": "10h 15h 02min 19s"
+    },
+    {
+     "annee": "2023",
+     "course": "Transat Café L'OR",
+     "rang": "",
+     "skipper": "Paul MEILHAT",
+     "temps": "Abandon"
+    },
+    {
+     "annee": "2023",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "20ème",
+     "skipper": "Paul MEILHAT",
+     "temps": "2j 06h 36min 00s"
+    },
+    {
+     "annee": "2023",
+     "course": "The Ocean Race",
+     "rang": "4ème",
+     "skipper": "Paul MEILHAT",
+     "temps": "23 POINTS"
+    }
+   ]
+  },
+  {
+   "fiche": "https://www.imoca.org/fr/bateaux/vaincre-la-mucovisidose",
+   "nom": "VAINCRE LA MUCOVISIDOSE",
+   "numero": "FRA 53",
+   "skipper": "Maxime SOREL",
+   "bapteme": "VAINCRE LA MUCOVISIDOSE",
+   "architecte": "Guillaume Verdier",
+   "construction": "2022, MerConcept",
+   "mise_a_l_eau": "27/06/2022",
+   "foils": "Oui",
+   "annee": 2022,
+   "chantier": "MerConcept",
+   "palmares": [
+    {
+     "annee": "2024-2025",
+     "course": "Vendée Globe",
+     "rang": "",
+     "skipper": "Maxime SOREL",
+     "temps": "Abandon le 15/11/2024"
+    },
+    {
+     "annee": "2024",
+     "course": "New York Vendée - Les Sables d'Olonne",
+     "rang": "12ème",
+     "skipper": "Maxime SOREL",
+     "temps": "13j 20h 05min 08s"
+    },
+    {
+     "annee": "2024",
+     "course": "The Transat CIC",
+     "rang": "5ème",
+     "skipper": "Maxime SOREL",
+     "temps": "8j 15h 34min 03s"
+    },
+    {
+     "annee": "2023",
+     "course": "Transat Café L'OR",
+     "rang": "8ème",
+     "skipper": "Maxime SOREL",
+     "temps": "12j 21h 23min 01s"
+    },
+    {
+     "annee": "2023",
+     "course": "Défi Azimut-Lorient Agglomération",
+     "rang": "8ème",
+     "skipper": "Maxime SOREL",
+     "temps": "2j 03h 40min 30s"
+    },
+    {
+     "annee": "2023",
+     "course": "Rolex Fastnet Race",
+     "rang": "4ème",
+     "skipper": "Maxime SOREL",
+     "temps": "2d 7h 58m 24s"
+    },
+    {
+     "annee": "2022",
+     "course": "Route du Rhum-Destination Guadeloupe",
+     "rang": "5ème",
+     "skipper": "Maxime SOREL",
+     "temps": "12j 08h 59min 42s"
+    }
+   ]
+  }
+ ]
+}

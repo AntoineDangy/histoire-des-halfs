@@ -1,0 +1,5 @@
+partants_min,partants_max,coefficient
+20,,1
+10,19,0.8
+5,9,0.6
+1,4,0.4

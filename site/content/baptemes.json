@@ -1,0 +1,16 @@
+{
+  "note": "Noms de baptême établis par la fiche d'origine quand la lecture automatique se trompe (décision du propriétaire du 09/11/2026 : le nom de baptême est le premier nom daté, et le titre de la fiche le reprend). Clé : dossier d'origine. Chaque entrée cite la ligne de la fiche qui le prouve ; relevé par la relecture (controles/relecture-bateaux/) et vérifié à la main.",
+  "Histoire des 60'/F5.htm": { "bapteme": "Groupe LG 2", "source": "« GROUPE LG 2, 7 » puis « 1995 Septembre, mise à l'eau du bateau »" },
+  "Histoire des 60'/A55.htm": { "bapteme": "Stand As One", "source": "« 19 juin, le nouveau bateau est né sous le nom de, Stand As One, FRA 29 »" },
+  "Histoire des 60'/A59.htm": { "bapteme": "Groupe Dubreuil 2", "source": "« 3 septembre, Groupe Dubreuil 2 de Sébastien Simon baptisé aux Sables d'Olonne »" },
+  "Histoire des 60'/E9.htm": { "bapteme": "Cherry Valley Super Duck", "source": "« Cherry Valley Super Duck », juste après la ligne de construction de 1985" },
+  "Histoire des 60'/A23.htm": { "bapteme": "Sill 2", "source": "« 26 avril [2004], Sill 2 a été mis à l'eau »" },
+  "Histoire des 60'/A28.htm": { "bapteme": "Virbac-Paprec 3", "source": "« VIRBAC- PAPREC 3 », avant « 2010 18 mai, new Paprec Virbac IMOCA 60 launched »" },
+  "Histoire des 60'/A52.htm": { "bapteme": "Macif Santé Prévoyance", "source": "« Macif Santé Prévoyance » (mars 2023), avant « 24 juin, Mise à l'eau »" },
+  "50' monos/G Credit Agricole.htm": { "bapteme": "Crédit Agricole", "source": "en-tête « Crédit Agricole, 85 », puis « 1982, plan Guy Ribadeau-Dumas »" },
+  "Histoire des 60'/E54.htm": { "bapteme": "Corum L'Epargne", "source": "« Corum L'Epargne, FRA 6 », puis « 5 mai [2020], mise à l'eau du bateau à Port La Forêt »" },
+  "Histoire des 60'/E6.htm": { "bapteme": "ACI Crusader", "source": "« ACI CRUSADER, 12 », premier nom daté (BOC Challenge 1986)" },
+  "Histoire des 60'/A18.htm": { "bapteme": "Whirpool - Europe 2", "source": "« Whirpool - Europe 2, », avant « 1998 Février »" },
+  "Histoire des 60'/E35.htm": { "bapteme": "Ecover 2", "source": "« 2003 plan Owen-Clark, built by Southern Ocean Marine, Ecover 2, »" },
+  "Histoire des 60'/E28.htm": { "bapteme": "Ocean Planet", "source": "« Ocean Planet, » puis « 7 avril, le 1er 60' américain a été mis à l'eau à Portland »" }
+}

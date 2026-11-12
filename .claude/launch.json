@@ -4,8 +4,14 @@
     {
       "name": "site",
       "runtimeExecutable": "node",
-      "runtimeArgs": ["tools/serve.mjs", "4321"],
+      "runtimeArgs": ["site/tools/serve.mjs", "4321"],
       "port": 4321
+    },
+    {
+      "name": "jeu",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "jeu", "run", "dev"],
+      "port": 5173
     }
   ]
 }
