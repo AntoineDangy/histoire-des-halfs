@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { NIVEAU_QUIZ_DEFAUT, niveauQuizValide } from '@cal/engine';
+import { coursesReseau, maxBateauxSalon, NIVEAU_QUIZ_DEFAUT, niveauQuizValide, reglagesSalonValides } from '@cal/engine';
 import type { EtatPartie, NiveauIA, NiveauQuiz, ReglagesSalon } from '@cal/engine';
-import { bateauDef, competenceDef, D, DE_LARGE, faces, familleDef, NIVEAUX_IA, NIVEAUX_QUIZ, nomClasse, REGLAGES_DEFAUT, skippersDe } from '../commun';
+import { bateauDef, classesDe, competenceDef, courseDef, D, DE_LARGE, faces, familleDef, NIVEAUX_IA, NIVEAUX_QUIZ, nomClasse, REGLAGES_DEFAUT, skippersDe } from '../commun';
 import { Connexion, creerSalon, dejaRejoint, EtatConnexion } from '../reseau';
 import Jeu from './Jeu';
 
@@ -30,7 +30,10 @@ export default function Reseau({ codeInitial, onRetour, onFin }: Props) {
   });
   const [mode, setMode] = useState<'choix' | 'creer' | 'rejoindre'>(codeInitial ? 'rejoindre' : 'choix');
   const [code, setCode] = useState(codeInitial ?? '');
-  const [reglages, setReglages] = useState<ReglagesSalon>({ nbBateaux: 6, classe: 'IMOCA', niveauIA: 'moyen', options: { ...REGLAGES_DEFAUT.options }, delaiQuiz: 30 });
+  const [reglages, setReglages] = useState<ReglagesSalon>({ nbBateaux: 6, courseId: 'route-du-rhum', classe: 'IMOCA', niveauIA: 'moyen', options: { ...REGLAGES_DEFAUT.options }, delaiQuiz: 30 });
+  // Course, classe et nombre de bateaux toujours compatibles, avec la même règle que le serveur (13/11/2026).
+  const regler = (p: Partial<ReglagesSalon>) => setReglages(reglagesSalonValides(D, { ...reglages, ...p }));
+  const course = courseDef(reglages.courseId);
   const [cx, setCx] = useState<EtatConnexion | null>(null);
   const [erreur, setErreur] = useState<string | null>(null);
   const [copie, setCopie] = useState(false);
@@ -121,7 +124,7 @@ export default function Reseau({ codeInitial, onRetour, onFin }: Props) {
             <div>
               <h1>Code : <span className="code-salon">{s.code}</span></h1>
               <p className="muted">
-                {nomClasse(s.reglages.classe)} · {s.reglages.nbBateaux} bateaux en course · {s.joueurs.length}/{s.maxHumains} joueurs humains · IA {NIVEAUX_IA[s.reglages.niveauIA].toLowerCase()}
+                {courseDef(s.reglages.courseId).nom}{courseDef(s.reglages.courseId).double ? ' (en double)' : ''} · {nomClasse(s.reglages.classe)} · {s.reglages.nbBateaux} bateaux en course · {s.joueurs.length}/{s.maxHumains} joueurs humains · IA {NIVEAUX_IA[s.reglages.niveauIA].toLowerCase()}
                 {!cx.connecte && ' · reconnexion…'}
               </p>
             </div>
@@ -227,18 +230,31 @@ export default function Reseau({ codeInitial, onRetour, onFin }: Props) {
         {mode === 'creer' && (
           <div className="panneau" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div className="champ">
-              <span className="lbl">Classe de bateaux</span>
-              <div className="segment">
-                {D.classes.map((c) => (
-                  <button key={c.id} aria-pressed={(reglages.classe ?? 'IMOCA') === c.id} onClick={() => setReglages({ ...reglages, classe: c.id, nbBateaux: Math.min(reglages.nbBateaux, skippersDe(c.id).length) })}>{c.nom}</button>
+              <span className="lbl">Course</span>
+              <div className="segment" style={{ flexWrap: 'wrap' }}>
+                {coursesReseau(D).map((c) => (
+                  <button key={c.id} aria-pressed={course.id === c.id} onClick={() => regler({ courseId: c.id })}>{c.nom}</button>
                 ))}
               </div>
+              <span className="muted" style={{ fontSize: 13 }}>
+                {course.sous_titre}
+                {course.double && ' · Course en double : chaque équipage reçoit un co-skipper tiré au hasard, d\'une autre compétence que son skipper.'}
+              </span>
+            </div>
+            <div className="champ">
+              <span className="lbl">Classe de bateaux</span>
+              <div className="segment" style={{ flexWrap: 'wrap' }}>
+                {classesDe(course.id).map((c) => (
+                  <button key={c.id} aria-pressed={reglages.classe === c.id} onClick={() => regler({ classe: c.id })}>{c.nom}</button>
+                ))}
+              </div>
+              {reglages.classe === 'VINTAGE' && <span className="muted" style={{ fontSize: 13 }}>Deux classements : monocoques et multicoques courent ensemble, chacun a son vainqueur.</span>}
             </div>
             <div className="champ">
               <span className="lbl">Nombre de bateaux en course (humains + IA)</span>
-              <div className="segment">
-                {[2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
-                  <button key={n} aria-pressed={reglages.nbBateaux === n} onClick={() => setReglages({ ...reglages, nbBateaux: n })}>{n}</button>
+              <div className="segment" style={{ flexWrap: 'wrap' }}>
+                {Array.from({ length: maxBateauxSalon(D, course.id, reglages.classe) - 1 }, (_, i) => i + 2).map((n) => (
+                  <button key={n} aria-pressed={reglages.nbBateaux === n} onClick={() => regler({ nbBateaux: n })}>{n}</button>
                 ))}
               </div>
             </div>

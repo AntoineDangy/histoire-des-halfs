@@ -1,7 +1,7 @@
 // Protocole du jeu en réseau (partagé par le serveur de salons et le client).
 // Le serveur est l'arbitre : il applique les actions avec le moteur et renvoie à chaque joueur
 // un état « masqué » (les choix secrets des autres ne sont pas révélés avant le jet des dés).
-import type { Action, EtatPartie, NiveauIA, OptionsPartie } from './types';
+import type { Action, Donnees, EtatPartie, NiveauIA, OptionsPartie } from './types';
 
 export interface ReglagesSalon {
   nbBateaux: number;
@@ -12,6 +12,42 @@ export interface ReglagesSalon {
   niveauIA: NiveauIA;
   options: OptionsPartie;
   delaiQuiz: number;
+}
+
+/** Classes qui peuvent courir une course : la Route du Rhum est ouverte à toutes les classes du jeu, les autres à leur liste. */
+export function classesDeCourse(d: Donnees, courseId: string | undefined): string[] {
+  const c = d.courses.find((x) => x.id === (courseId ?? 'route-du-rhum'));
+  if (!c) return [];
+  return d.classes.map((k) => k.id).filter((id) => c.id === 'route-du-rhum' || c.classes_autorisees.includes(id));
+}
+
+/**
+ * Courses jouables en réseau : Route du Rhum, Transat Café L'Or et Rolex Fastnet Race (13/11/2026, demande du porteur de
+ * projet). Les tours du monde, encore en essai, n'y sont pas (ils sont aussi retirés du jeu en ligne en solo).
+ */
+export function coursesReseau(d: Donnees) {
+  return d.courses.filter((c) => !c.distance_reelle);
+}
+
+/** Bateaux en course au plus : 10, et assez de skippers dans la classe (deux par bateau pour une course en double). */
+export function maxBateauxSalon(d: Donnees, courseId: string | undefined, classe: string | undefined): number {
+  const double = !!d.courses.find((c) => c.id === (courseId ?? 'route-du-rhum'))?.double;
+  const skippers = d.skippers.filter((k) => k.classe === (classe ?? 'IMOCA')).length;
+  return Math.max(2, Math.min(10, Math.floor(skippers / (double ? 2 : 1))));
+}
+
+/**
+ * Réglages d'un salon ramenés à une partie possible (le serveur les applique à la création du salon et à chaque
+ * changement) : course jouable en réseau (Route du Rhum sinon), classe admise sur cette course (la première sinon),
+ * nombre de bateaux entre 2 et le maximum de la classe.
+ */
+export function reglagesSalonValides(d: Donnees, r: ReglagesSalon): ReglagesSalon {
+  const courses = coursesReseau(d);
+  const course = courses.find((c) => c.id === r.courseId) ?? courses.find((c) => c.id === 'route-du-rhum') ?? courses[0];
+  const classes = classesDeCourse(d, course.id);
+  const classe = r.classe && classes.includes(r.classe) ? r.classe : classes.includes('IMOCA') ? 'IMOCA' : classes[0];
+  const nbBateaux = Math.max(2, Math.min(maxBateauxSalon(d, course.id, classe), Math.round(Number(r.nbBateaux)) || 4));
+  return { ...r, courseId: course.id, classe, nbBateaux };
 }
 
 /** Niveau des questions de culture marine : 1 Moussaillon, 2 Skipper, 3 Vieux loup de mer. */

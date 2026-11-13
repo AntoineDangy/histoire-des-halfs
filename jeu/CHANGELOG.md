@@ -1,5 +1,18 @@
 # Journal des versions
 
+## Mise en ligne 33278827 (13/11/2026, soir), serveur réseau 7b09904b
+Avec l'accord du porteur de projet (« Corrige puis publie ») : version 0.4.227, branche `mises-a-jour-jeu` passée dans `main`.
+- **Transat Café L'Or et Rolex Fastnet Race jouables en réseau** (entrée ci-dessous, branche `reseau-transat-fastnet` fusionnée).
+- **Correction, réseau** : la réponse à une question part toute seule 20 s après avoir répondu, sans attendre « Continuer ». Avant, sans ce clic, le serveur jouait au bout d'1 min 30 la réponse par défaut, comptée fausse, même après une bonne réponse (remarqué pendant l'essai de la fusion). Une seule réponse envoyée, même si le joueur clique au même moment.
+- Vérifié : 59 tests, types du moteur, du client et du serveur. En ligne : version 0.4.227 affichée ; salon Transat Café L'Or (IMOCA, 6 équipages en double) créé sur le serveur publié, course lancée ; question répondue sans cliquer sur « Continuer » : réponse partie seule, comptée juste dans le journal, décision suivante affichée ; aucune erreur.
+
+## 13/11/2026 · Transat Café L'Or et Rolex Fastnet Race en réseau (branche `reseau-transat-fastnet`, fusionnée dans `mises-a-jour-jeu` et publiée le 13/11/2026)
+- Demande du porteur de projet. L'écran « Créer une partie » du jeu en réseau propose la **course** : Route du Rhum, Transat Café L'Or, Rolex Fastnet Race (avant, le serveur lançait toujours la Route du Rhum). La liste des classes suit la course (pas de Vintage à la Transat Café L'Or) et le nombre de bateaux s'arrête au maximum possible : à la Transat, course en double, chaque équipage reçoit un co-skipper tiré au hasard, donc 7 bateaux au plus (5 en Ultim). Le salon d'attente affiche la course.
+- Le serveur ramène tout réglage impossible à une partie possible (course inconnue ou tour du monde → Route du Rhum, classe non admise → IMOCA, nombre de bateaux borné) ; un changement de classe par l'hôte remet à zéro les choix de skippers.
+- Vérifié : 4 tests ajoutés (55 tests) et essai du serveur de salons en local : Transat demandée en Vintage avec 10 bateaux → IMOCA, 7 bateaux, 7 co-skippers ; Fastnet en Vintage lancé ; Vendée Globe demandé → Route du Rhum. Écran non vu dans un navigateur.
+- Fusion dans `mises-a-jour-jeu` (13/11/2026, soir) : 59 tests ; partie réseau essayée en local sur la Transat (IMOCA, 4 équipages en double) et le Fastnet (Vintage, 6 bateaux, deux classements), premier tour résolu, aucune erreur.
+- Serveur réseau publié avec le jeu (7b09904b).
+
 ## Mise en ligne 9d97c2ed (13/11/2026, après-midi), serveur réseau add1c9e3
 Avec l'accord du porteur de projet (« Oui, mets en ligne ») : version 0.4.221, branche `mises-a-jour-jeu` passée dans `main`. Contient les trois entrées du 13/11 ci-dessous : Ultim calés sur leurs records de distance en 24 h, molle des Antilles dessinée et brume du sud-ouest de l'Irlande, tours plus rapides et réseau plus sûr. Vérifié en ligne : version affichée sur l'accueil, salon réseau créé sur le serveur publié, course lancée, premier tour résolu par le serveur (décision du Stratège affichée aussitôt), sans erreur.
 

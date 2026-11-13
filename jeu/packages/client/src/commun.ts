@@ -1,5 +1,5 @@
 import { donneesBrutes } from '@cal/data';
-import { competence } from '@cal/engine';
+import { classesDeCourse, competence } from '@cal/engine';
 import type { Donnees, NiveauIA, OptionsPartie, ParticipantParams } from '@cal/engine';
 
 export const D = donneesBrutes as unknown as Donnees;
@@ -79,10 +79,10 @@ export function courseDef(id: string | undefined) {
   return D.courses.find((c) => c.id === (id ?? 'route-du-rhum')) ?? D.courses[0];
 }
 
-/** Classes jouables sur une course (la Route du Rhum est ouverte à toutes les classes du jeu). */
+/** Classes jouables sur une course (la Route du Rhum est ouverte à toutes les classes du jeu) ; même règle que le serveur. */
 export function classesDe(courseId: string | undefined) {
-  const c = courseDef(courseId);
-  return c.id === 'route-du-rhum' ? D.classes : D.classes.filter((k) => c.classes_autorisees.includes(k.id));
+  const ids = classesDeCourse(D, courseDef(courseId).id);
+  return D.classes.filter((k) => ids.includes(k.id));
 }
 
 /**

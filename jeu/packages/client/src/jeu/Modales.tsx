@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { angleAllure, auAllure, estMulticoque, NOMS_DIR_LONGS } from '@cal/engine';
 import type { Attente, EtatBateau, EtatPartie } from '@cal/engine';
 import { competenceDef, D, NIVEAUX_QUIZ } from '../commun';
@@ -26,11 +26,19 @@ export function ModaleQuiz({ attente, delai, nom, onRepondre, envoiAuto }: { att
     const t = setTimeout(() => setReste((r) => r - 1), 1000);
     return () => clearTimeout(t);
   }, [reste, delai, choisi]);
-  // En réseau, le temps écoulé envoie la réponse tout seul 3 s plus tard : les autres joueurs n'attendent plus un clic
-  // (13/11/2026, audit C2).
+  // Une seule réponse envoyée, qu'elle parte au clic sur « Continuer » ou toute seule (réseau).
+  const envoye = useRef(false);
+  const continuer = (r: number) => {
+    if (envoye.current) return;
+    envoye.current = true;
+    onRepondre(r);
+  };
+  // En réseau, la réponse part toute seule sans attendre « Continuer » : 3 s après le temps écoulé (13/11/2026, audit C2),
+  // et 20 s après une réponse donnée, le temps de lire l'explication ; sinon le serveur jouait la réponse par défaut
+  // (comptée fausse) à la fin de son délai (13/11/2026).
   useEffect(() => {
-    if (!envoiAuto || choisi !== -1) return;
-    const t = setTimeout(() => onRepondre(-1), 3000);
+    if (!envoiAuto || choisi === null) return;
+    const t = setTimeout(() => continuer(choisi), choisi === -1 ? 3000 : 20000);
     return () => clearTimeout(t);
   }, [envoiAuto, choisi]);
   const juste = choisi === q.reponse;
@@ -66,7 +74,7 @@ export function ModaleQuiz({ attente, delai, nom, onRepondre, envoiAuto }: { att
               <div className="muted" style={{ marginTop: 6 }}>{q.explication}</div>
               <div className="muted" style={{ marginTop: 6, fontSize: 12 }}>Source : {q.source}</div>
             </div>
-            <button className="btn btn-principal" onClick={() => onRepondre(choisi)} autoFocus>Continuer</button>
+            <button className="btn btn-principal" onClick={() => continuer(choisi)} autoFocus>Continuer</button>
           </>
         )}
       </div>

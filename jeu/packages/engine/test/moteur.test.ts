@@ -2,9 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { donneesBrutes } from '../../data/index';
 import {
   angleAllure, appliquer, bateauxAttendus, calculerDistance, calculerRisque, choisirIA, classement, compilerCarte,
-  controlerJournal, creerPartie, dansAlize, distanceAttendue, distanceRestanteCase, facesForce, frontSur, humainsAttendus, navigable, NIVEAU_QUIZ_DEFAUT, niveauQuizValide, perteCarte, plafondCases, rejouer, terreFine, tracerChemin, ventCourant,
+  classesDeCourse, controlerJournal, coursesReseau, creerPartie, dansAlize, distanceAttendue, distanceRestanteCase, facesForce, frontSur, humainsAttendus, maxBateauxSalon, navigable, NIVEAU_QUIZ_DEFAUT, niveauQuizValide, perteCarte, plafondCases, reglagesSalonValides, rejouer, terreFine, tracerChemin, ventCourant,
 } from '../src/index';
-import type { Action, CourseDef, Donnees, EtatPartie, ParamsPartie } from '../src/index';
+import type { Action, CourseDef, Donnees, EtatPartie, ParamsPartie, ReglagesSalon } from '../src/index';
 
 const d = donneesBrutes as unknown as Donnees;
 const rhum = d.courses[0];
@@ -553,6 +553,41 @@ describe('jeu en réseau : niveau des questions de chaque joueur (12/11/2026)', 
   it('un niveau reçu par le réseau est ramené à un niveau connu, 2 par défaut', () => {
     expect([1, 2, 3, 0, 4, '2', null, undefined].map(niveauQuizValide)).toEqual([1, 2, 3, null, null, null, null, null]);
     expect(NIVEAU_QUIZ_DEFAUT).toBe(2);
+  });
+});
+
+describe('jeu en réseau : Route du Rhum, Transat Café L\'Or et Rolex Fastnet Race (13/11/2026)', () => {
+  const base: ReglagesSalon = { nbBateaux: 6, niveauIA: 'moyen', options: { quiz: true, bulletinMeteo: true, nomsReels: true, courseComplete: false }, delaiQuiz: 30 };
+  it('les trois courses sont jouables en réseau, pas les tours du monde', () => {
+    expect(coursesReseau(d).map((c) => c.id).sort()).toEqual(['rolex-fastnet', 'route-du-rhum', 'transat-cafe-lor']);
+    expect(reglagesSalonValides(d, { ...base, courseId: 'vendee-globe' }).courseId).toBe('route-du-rhum');
+    expect(reglagesSalonValides(d, { ...base, courseId: 'course-inconnue' }).courseId).toBe('route-du-rhum');
+  });
+  it('la classe doit être admise sur la course (pas de Vintage à la Transat Café L\'Or)', () => {
+    expect(classesDeCourse(d, 'route-du-rhum')).toContain('VINTAGE');
+    expect(classesDeCourse(d, 'rolex-fastnet')).toContain('VINTAGE');
+    expect(classesDeCourse(d, 'transat-cafe-lor')).not.toContain('VINTAGE');
+    expect(reglagesSalonValides(d, { ...base, courseId: 'transat-cafe-lor', classe: 'VINTAGE' }).classe).toBe('IMOCA');
+    expect(reglagesSalonValides(d, { ...base, courseId: 'rolex-fastnet', classe: 'VINTAGE' }).classe).toBe('VINTAGE');
+  });
+  it('course en double : deux skippers par bateau, donc moins de bateaux au plus', () => {
+    const n = d.skippers.filter((k) => k.classe === 'IMOCA').length;
+    expect(maxBateauxSalon(d, 'transat-cafe-lor', 'IMOCA')).toBe(Math.min(10, Math.floor(n / 2)));
+    expect(reglagesSalonValides(d, { ...base, courseId: 'transat-cafe-lor', classe: 'IMOCA', nbBateaux: 10 }).nbBateaux).toBe(Math.min(10, Math.floor(n / 2)));
+    expect(reglagesSalonValides(d, { ...base, courseId: 'rolex-fastnet', classe: 'IMOCA', nbBateaux: 1 }).nbBateaux).toBe(2);
+  });
+  it('une partie de chaque course se crée avec les réglages du salon', () => {
+    for (const courseId of ['transat-cafe-lor', 'rolex-fastnet']) {
+      const r = reglagesSalonValides(d, { ...base, courseId, classe: 'CLASS40', nbBateaux: 4 });
+      const ids = d.skippers.filter((k) => k.classe === r.classe).map((k) => k.id);
+      const double = courseId === 'transat-cafe-lor';
+      const e = creerPartie(d, {
+        courseId: r.courseId!, classe: r.classe!, graine: 3, options: r.options,
+        participants: ids.slice(0, r.nbBateaux).map((id, i) => ({ nom: `J${i}`, type: i < 2 ? 'humain' : 'ia', niveauIA: 'moyen', niveauQuiz: 2, skipperId: id, ...(double ? { coSkipperId: ids[ids.length - 1 - i] } : {}) })),
+      });
+      expect(e.params.courseId).toBe(courseId);
+      expect(e.bateaux).toHaveLength(4);
+    }
   });
 });
 

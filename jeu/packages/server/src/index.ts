@@ -4,7 +4,7 @@ import { DurableObject } from 'cloudflare:workers';
 import { donneesBrutes } from '../../data/index';
 import {
   angleAllure, appliquer, bateau, choisirIA, competence, creerPartie, decisionReparationIA, DELAI_CHOIX_S, DELAI_DECISION_S, humainsAttendus, masquerEtat, MAX_HUMAINS,
-  NIVEAU_QUIZ_DEFAUT, niveauQuizValide, nomSkipper,
+  NIVEAU_QUIZ_DEFAUT, niveauQuizValide, nomSkipper, reglagesSalonValides,
 } from '../../engine/src/index';
 import type { Action, Donnees, EtatPartie, JoueurSalon, MessageClient, MessageServeur, ParticipantParams, ReglagesSalon, VueSalon } from '../../engine/src/index';
 
@@ -92,7 +92,9 @@ export class Salon extends DurableObject<Env> {
   }
 
   async initialiser(code: string, reglages: Partial<ReglagesSalon>) {
-    this.s = { code, reglages: { ...REGLAGES_DEFAUT, ...reglages, options: { ...REGLAGES_DEFAUT.options, ...(reglages.options ?? {}) } }, joueurs: [], etat: null };
+    // Course, classe et nombre de bateaux ramenés à une partie possible (Rhum, Transat Café L'Or, Fastnet ; 13/11/2026).
+    const r = { ...REGLAGES_DEFAUT, ...reglages, options: { ...REGLAGES_DEFAUT.options, ...(reglages.options ?? {}) } };
+    this.s = { code, reglages: reglagesSalonValides(D, r), joueurs: [], etat: null };
     await this.sauver();
   }
 
@@ -139,7 +141,10 @@ export class Salon extends DurableObject<Env> {
         case 'reglages': {
           if (!joueur.hote) throw new Error('Seul l\'hôte règle la partie');
           if (s.etat) throw new Error('La course est déjà lancée');
-          s.reglages = { ...s.reglages, ...msg.reglages, nbBateaux: Math.max(2, Math.min(10, msg.reglages.nbBateaux)) };
+          const avant = s.reglages.classe;
+          s.reglages = reglagesSalonValides(D, { ...s.reglages, ...msg.reglages });
+          // Nouvelle classe : les skippers déjà choisis n'en font plus partie, chacun rechoisit.
+          if (s.reglages.classe !== avant) for (const j of s.joueurs) j.skipperId = null;
           break;
         }
         case 'lancer': {
@@ -308,6 +313,9 @@ export class Salon extends DurableObject<Env> {
     const s = this.s!;
     if (s.etat) throw new Error('Déjà lancée');
     if (s.joueurs.some((j) => !j.skipperId)) throw new Error('Tous les joueurs doivent choisir un skipper');
+    // Salons créés avant le 13/11/2026 : réglages anciens ramenés à une partie possible.
+    s.reglages = reglagesSalonValides(D, s.reglages);
+    if (s.joueurs.some((j) => D.skippers.find((k) => k.id === j.skipperId)?.classe !== s.reglages.classe)) throw new Error('Un skipper choisi n\'est pas de la classe de la course');
     const pris = new Set(s.joueurs.map((j) => j.skipperId!));
     const libres = D.skippers.filter((k) => k.classe === (s.reglages.classe ?? 'IMOCA')).map((k) => k.id).filter((id) => !pris.has(id)).sort(() => Math.random() - 0.5);
     const nb = Math.max(s.joueurs.length, Math.min(10, s.reglages.nbBateaux));
