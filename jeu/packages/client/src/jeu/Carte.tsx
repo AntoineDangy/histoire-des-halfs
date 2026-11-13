@@ -46,6 +46,8 @@ export interface RoseCarte {
    */
   destination?: [number, number] | null;
   viser?: (pt: [number, number]) => void;
+  /** Cap choisi en ce moment (la poignée de distance tourne autour du bateau à partir de lui, 13/11/2026). */
+  cap?: number | null;
 }
 
 // Esprit « cartographie des grandes courses » : océan bleu profond, terres claires, traces colorées par la vitesse.
@@ -784,6 +786,26 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
       pg.choisir(k + 1);
       return true;
     };
+    // Poignée de distance glissée AUTOUR du bateau (13/11/2026, demande du porteur de projet, surtout au doigt) : le cap suit
+    // la direction du doigt (cap proposé le plus proche, comme sur la rose), la distance suit le doigt le long du trajet.
+    // Un écart de quelques degrés évite de sautiller d'un cap à l'autre à la limite de deux secteurs.
+    let capVise: number | null = null;
+    const tourner = (e: PointerEvent): boolean => {
+      const rc = propsRef.current.roseCaps, r = roseEcran.current;
+      if (!rc || !r || capVise === null || globeVisible.current) return false;
+      const rect = cv.getBoundingClientRect();
+      const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+      // Trop près du bateau, la direction du doigt ne veut rien dire.
+      if (Math.hypot(mx - r.x, my - r.y) < (e.pointerType === 'touch' ? 40 : 28)) return false;
+      const ang = ((Math.atan2(mx - r.x, r.y - my) * 180) / Math.PI + 360) % 360;
+      const ecart = (c: number) => Math.abs(((c * 22.5 - ang + 540) % 360) - 180);
+      let meilleur = capVise, em = ecart(capVise);
+      for (const c of rc.caps) if (ecart(c) < em) { em = ecart(c); meilleur = c; }
+      if (meilleur === capVise || ecart(capVise) - em < 4) return false;
+      capVise = meilleur;
+      rc.choisir(meilleur);
+      return true;
+    };
     const down = (e: PointerEvent) => {
       // Premier doigt (ou souris) : aucun autre pointeur n'est posé, on oublie ceux dont le lâcher s'est perdu (13/11/2026 :
       // sinon une touche brève passait pour le second doigt d'un pincement et ne faisait rien).
@@ -792,6 +814,7 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
       pointeurs.set(e.pointerId, { x: e.clientX, y: e.clientY });
       if (pointeurs.size === 1 && regler(e, true)) {
         reglage = true;
+        capVise = propsRef.current.roseCaps?.cap ?? null;
         glisse = null;
         return;
       }
@@ -819,7 +842,7 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
         return;
       }
       if (reglage && pointeurs.size === 1) {
-        regler(e, false);
+        if (!tourner(e)) regler(e, false);
         return;
       }
       pointeurs.set(e.pointerId, { x: e.clientX, y: e.clientY });

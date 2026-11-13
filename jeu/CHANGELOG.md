@@ -1,5 +1,13 @@
 # Journal des versions
 
+## Mise en ligne 80e8d7ed (13/11/2026, soir), serveur réseau inchangé (26ccb641)
+Avec l'accord du porteur de projet (« Oui, mets en ligne »), pour l'essayer au doigt sur son téléphone : version 0.4.239, le point bleu qui tourne (ci-dessous). Moteur et données inchangés, serveur non republié. Vérifié en ligne : version 0.4.239 affichée, nouveauté présente dans le jeu publié.
+
+## 13/11/2026 · Point bleu qui tourne autour du bateau (branche `mises-a-jour-jeu`, publié le 13/11/2026)
+- Demande du porteur de projet (essai sur téléphone) : appuyer sur le point bleu de la distance (rond bleu au point noir) et le faire glisser **en tournant autour du bateau** pour chercher le cap qui mène le plus loin.
+- En glissant le point, le **cap suit la direction du doigt** (le cap proposé le plus proche, comme sur la rose ; un écart de 4° évite de sautiller entre deux caps), la voile conseillée par le routeur pour ce cap est choisie (sauf voile choisie à la main et encore utilisable), et la **distance suit le doigt** le long du nouveau trajet (doigt au-delà du bout : distance maximale). Trop près du bateau (moins de 40 px au doigt, 28 px à la souris), le point ne règle que la distance. Tourner le point efface la destination visée.
+- Vérifié en local (Route du Rhum, départ de Saint-Malo, vent de NW F3) : point glissé en rond de l'ouest au sud-sud-est, le cap passe par O, OSO, SSO, S et SSE et la distance change avec ; aucune erreur.
+
 ## Mise en ligne 3e80bece (13/11/2026, soir), serveur réseau 26ccb641
 Après essai sur le PC et avec l'accord du porteur de projet (« Oui, mets en ligne ») : version 0.4.237, la destination visée sur la carte et la voile conseillée d'office (ci-dessous). Serveur publié aussi, le moteur ayant changé (option `cap` du routeur). Vérifié en ligne : version 0.4.237 affichée, nouveautés présentes dans le jeu publié.
 

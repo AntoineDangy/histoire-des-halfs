@@ -354,7 +354,8 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider, entet
     },
     destination,
     viser: (pt) => viserRef.current(pt),
-  }), [caps, destination]);
+    cap,
+  }), [caps, destination, cap]);
 
   useEffect(() => {
     onApercu({ cap, distance: distEffective, max: reglable ? distance : 0, choisir: reglable ? choisirDistance : null, voile: voileId, rose: roseCarte });
