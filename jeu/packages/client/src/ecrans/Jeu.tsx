@@ -595,7 +595,7 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
     : [];
 
   useEffect(() => {
-    if (joueurChoix && !besoinPassation) setBandeau(`Tour ${etat.tour} : ${plusieursHumains ? joueurChoix.nom + ', ' : ''}choisissez un cap puis une voile.${resumeIA}`);
+    if (joueurChoix && !besoinPassation) setBandeau(`Tour ${etat.tour} : ${plusieursHumains ? joueurChoix.nom + ', ' : ''}choisissez un cap (sur la rose, ou en touchant la mer) puis une voile.${resumeIA}`);
   }, [joueurChoix?.id, besoinPassation, etat.tour, plusieursHumains, resumeIA]);
 
   const trajectoire = useMemo(() => {

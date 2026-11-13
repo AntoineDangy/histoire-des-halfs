@@ -100,25 +100,31 @@ function coutPenalite(gain: number, b: EtatBateau): number {
  * Choix de l'IA, avec les mêmes contraintes qu'un humain : uniquement des caps et des voiles utilisables
  * avec le vent ACTUEL (l'IA ne peut pas « parier » sur un cap face au vent en attendant la rotation).
  * L'option `utilisableMaintenant` est conservée pour compatibilité ; la contrainte s'applique toujours.
+ * Option `cap` : le cap est imposé, l'IA ne choisit que la voile (voile conseillée pour le cap choisi par le joueur,
+ * 13/11/2026, demande du porteur de projet).
  */
-export function choisirIA(d: Donnees, etat: EtatPartie, bateauId: string, opts: { utilisableMaintenant?: boolean } = {}): Choix {
+export function choisirIA(d: Donnees, etat: EtatPartie, bateauId: string, opts: { utilisableMaintenant?: boolean; cap?: number } = {}): Choix {
   const b = etat.bateaux.find((x) => x.id === bateauId)!;
   const occ = occupeesSauf(d, etat, b.id);
   let options: Option[] = [];
   // Demi-caps à l'approche de l'arrivée (11/11/2026) : l'IA les essaie comme un joueur.
   const pas = demiCapsPermis(d, etat, b) ? 0.5 : 1;
-  for (let cap = 0; cap < NB_DIR; cap += pas) {
+  const caps: number[] = [];
+  if (opts.cap !== undefined) caps.push(opts.cap);
+  else for (let cap = 0; cap < NB_DIR; cap += pas) caps.push(cap);
+  for (const cap of caps) {
     for (const v of b.voiles) options.push({ cap, voile: v });
     if (b.voiles.length === 0) options.push({ cap, voile: null });
   }
-  void opts;
   {
     const carte = carteDe(d, etat);
     options = options.filter((o) => calculerDistance(d, carte, b, o.voile, o.cap, ventCourant(etat, b.x, b.y)).distance !== null);
     if (options.length === 0)
-      for (let cap = 0; cap < NB_DIR; cap += pas)
+      for (const cap of caps)
         if (calculerDistance(d, carte, b, null, cap, ventCourant(etat, b.x, b.y)).distance !== null) options.push({ cap, voile: null });
   }
+  // Cap imposé où rien n'avance : pas de voile à conseiller.
+  if (options.length === 0 && opts.cap !== undefined) return { cap: opts.cap, voile: null, distanceMax: null };
   const niveau = b.niveauIA;
   const pQuiz = etat.params.options.quiz ? (d.regles.ia_quiz_reussite[niveau]?.[String(b.niveauQuiz)] ?? 0.6) : 0;
   let meilleur: Option = options[0];

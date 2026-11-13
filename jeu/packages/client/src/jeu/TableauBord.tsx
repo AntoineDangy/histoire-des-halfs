@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { alizeApres, alizeEn, dansAlize, frontSur, nomBeaufort, ventCourant } from '@cal/engine';
-import { ANGLE_MIN, angleAllure, apercuCap, bateau, usureParTour, choisirIA, demiCapsPermis, NB_DIR, nomAllure, nomCap, NOMS_ALLURES, NOMS_DIR, NOMS_DIR_LONGS, norm, peutRecoudre, surCaseAbri } from '@cal/engine';
+import { ANGLE_MIN, angleAllure, apercuCap, bateau, usureParTour, choisirIA, demiCapsPermis, NB_DIR, nomAllure, nomCap, NOMS_ALLURES, NOMS_DIR, NOMS_DIR_LONGS, norm, peutRecoudre, surCaseAbri, trajectoirePrevue } from '@cal/engine';
 import type { Choix, EtatPartie } from '@cal/engine';
 import { bateauDef, competenceDef, D, DE_LARGE, faces, RISQUES, skipper } from '../commun';
 import { modeleDuBateau } from './scene3d';
@@ -239,7 +239,11 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider, entet
   const dansLesAlizes = !front && dansAlize(etat, b.x, b.y);
   const [cap, setCap] = useState<number | null>(null);
   const [voileId, setVoileId] = useState<string | null | undefined>(undefined);
+  // Voile choisie à la main par le joueur (sinon : voile conseillée par le routeur pour le cap, 13/11/2026).
+  const [voileManuelle, setVoileManuelle] = useState(false);
   const [distanceMax, setDistanceMax] = useState<number | null>(null);
+  // Destination visée d'une touche sur la carte (13/11/2026), en coordonnées de carte (centre d'une case à +0,5).
+  const [destination, setDestination] = useState<[number, number] | null>(null);
   const [recoudre, setRecoudre] = useState<string | null>(null);
   const [infos, setInfos] = useState(false);
   const comp = competenceDef(b.competence);
@@ -250,7 +254,9 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider, entet
   useEffect(() => {
     setCap(null);
     setVoileId(undefined);
+    setVoileManuelle(false);
     setDistanceMax(null);
+    setDestination(null);
     setRecoudre(null);
   }, [bateauId, etat.tour]);
 
@@ -285,15 +291,59 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider, entet
   const choisirCap = (c: number) => {
     setCap(c);
     setDistanceMax(null);
-    // Conserver la voile si elle reste utilisable, sinon la désélectionner.
     const a = apercuCap(D, etat, bateauId, c);
-    if (voileId !== undefined && !a.voiles.find((v) => v.voile === voileId && v.distance !== null)) setVoileId(undefined);
+    const utilisable = (v: string | null | undefined) =>
+      v !== undefined && a.voiles.some((x) => x.voile === v && x.distance !== null && !etatVoile(b, x, vent.force).desactive);
+    // Voile choisie à la main et encore utilisable : on la garde. Sinon, la voile que le routeur conseille pour ce cap
+    // (13/11/2026, demande du porteur de projet) : la trajectoire et la distance apparaissent tout de suite, et le joueur
+    // peut toujours changer de voile.
+    if (voileManuelle && utilisable(voileId)) return;
+    const conseil = choisirIA(D, structuredClone(etat), bateauId, { cap: c }).voile;
+    setVoileManuelle(false);
+    setVoileId(utilisable(conseil) ? conseil : undefined);
   };
+
+  // Cap choisi sur la rose : la destination visée sur la carte est oubliée.
+  const choisirCapRose = (c: number) => {
+    setDestination(null);
+    choisirCap(c);
+  };
+
+  // Destination visée d'une touche sur la carte (13/11/2026, demande du porteur de projet) : le cap proposé le plus proche
+  // de la direction de la destination, puis (effet ci-dessous) la distance qui amène le plus près de la destination.
+  const viser = (pt: [number, number]) => {
+    const dx = pt[0] - (b.x + 0.5), dy = pt[1] - (b.y + 0.5);
+    if (Math.hypot(dx, dy) < 0.5 || !caps.length) return;
+    const ang = ((Math.atan2(dx, -dy) * 180) / Math.PI + 360) % 360;
+    let meilleur = caps[0].cap, ecart = Infinity;
+    for (const { cap: c } of caps) {
+      const e = Math.abs(((c * (360 / NB_DIR) - ang + 540) % 360) - 180);
+      if (e < ecart) { ecart = e; meilleur = c; }
+    }
+    setDestination(pt);
+    choisirCap(meilleur);
+  };
+  useEffect(() => {
+    if (!destination || !reglable || cap === null) return;
+    let k = distance, dk = Infinity;
+    for (let i = 1; i <= distance; i++) {
+      const t = trajectoirePrevue(D, etat, bateauId, cap, i);
+      const der = t.chemin[t.chemin.length - 1];
+      const fin = t.sommets && t.sommets.length > 1 ? t.sommets[t.sommets.length - 1] : der ? [der[0] + 0.5, der[1] + 0.5] : null;
+      if (!fin) continue;
+      const dd = Math.hypot(fin[0] - destination[0], fin[1] - destination[1]);
+      if (dd < dk - 0.01) { dk = dd; k = i; }
+    }
+    setDistanceMax(k >= distance ? null : k);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [destination, cap, voileId, distance, reglable]);
 
   // Boussole : la carte choisit le cap d'une touche sur la couronne (le plus proche) et montre le cap survolé.
   const [survolCap, setSurvolCap] = useState<number | null>(null);
-  const choisirCapRef = useRef(choisirCap);
-  choisirCapRef.current = choisirCap;
+  const choisirCapRef = useRef(choisirCapRose);
+  choisirCapRef.current = choisirCapRose;
+  const viserRef = useRef(viser);
+  viserRef.current = viser;
   const roseCarte = useMemo<RoseCarte>(() => ({
     caps: caps.map((c) => c.cap),
     choisir: (c) => choisirCapRef.current(c),
@@ -302,7 +352,9 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider, entet
       const x = caps.find((k) => k.cap === c);
       return `${Number.isInteger(c) ? NOMS_DIR_LONGS[c] : nomCap(c, true)}${x ? ` · ${x.louvoyage ? 'louvoyage face au vent' : x.allure}` : ''}`;
     },
-  }), [caps]);
+    destination,
+    viser: (pt) => viserRef.current(pt),
+  }), [caps, destination]);
 
   useEffect(() => {
     onApercu({ cap, distance: distEffective, max: reglable ? distance : 0, choisir: reglable ? choisirDistance : null, voile: voileId, rose: roseCarte });
@@ -390,7 +442,7 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider, entet
   );
 
   const capTexte = cap === null
-    ? 'Choisissez un cap sur la rose, autour de votre bateau'
+    ? 'Choisissez un cap sur la rose, ou touchez la mer pour viser une destination'
     : angleAllure(cap, vent.direction) < ANGLE_MIN
     ? `Cap ${Number.isInteger(cap) ? capFr(cap) : nomCap(cap).replace(/W/g, 'O')} · louvoyage face au vent (${Math.round((D.regles.louvoyage?.coefficient ?? 0.6) * 100)} % de la distance au près)`
     : `Cap ${Number.isInteger(cap) ? capFr(cap) : nomCap(cap).replace(/W/g, 'O')} · ${nomAllure(angleAllure(cap, vent.direction))} ${String(angleAllure(cap, vent.direction)).replace('.', ',')}°`;
@@ -400,7 +452,9 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider, entet
     if (c.cap !== null) {
       setCap(c.cap);
       setVoileId(c.voile);
+      setVoileManuelle(false);
       setDistanceMax(null);
+      setDestination(null);
     }
   };
 
@@ -470,7 +524,7 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider, entet
             if (v.voile === null && !sansVoile) return null;
             const { def, raison, desactive } = etatVoile(b, v, vent.force);
             return (
-              <button key={v.voile ?? 'sec'} className="bouton-voile" aria-pressed={voileId === v.voile} disabled={desactive} onClick={() => setVoileId(v.voile)}
+              <button key={v.voile ?? 'sec'} className="bouton-voile" aria-pressed={voileId === v.voile} disabled={desactive} onClick={() => { setVoileId(v.voile); setVoileManuelle(true); }}
                 title={`${def ? def.nom : 'À sec de toile'} : ${raison}${!desactive && v.risque > 0 && v.risque < 5 ? ` · risque d'incident ${pctRisque(v.risque)} %` : ''}`}>
                 <IconeVoile forme={def ? def.forme_3d ?? 'j2' : null} modele={modele} ris={v.voile === 'reduite'} spi={couleurSpi} />
                 {v.voile && jauge(v.voile)}
@@ -509,7 +563,7 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider, entet
     </div>
   );
 
-  const rose = <RoseCaps caps={caps} cap={cap} survol={survolCap} vent={vent} pret={pret} onChoisir={choisirCap} />;
+  const rose = <RoseCaps caps={caps} cap={cap} survol={survolCap} vent={vent} pret={pret} onChoisir={choisirCapRose} />;
 
   return (
     <>

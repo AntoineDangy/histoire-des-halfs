@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
-import { centreTraine, compilerCarte, course as courseJouee, NOMS_DIR, norm, vecteur } from '@cal/engine';
+import { centreTraine, compilerCarte, course as courseJouee, navigable, NOMS_DIR, norm, terreFine, vecteur } from '@cal/engine';
 import type { Case, EtatPartie } from '@cal/engine';
 import traceRhum from '@cal/data/courses/route-du-rhum-trace.json';
 import traceCafeLor from '@cal/data/courses/transat-cafe-lor-trace.json';
@@ -40,6 +40,12 @@ export interface RoseCarte {
   choisir: (c: number) => void;
   survoler: (c: number | null) => void;
   nom: (c: number) => string;
+  /**
+   * Destination visée d'une touche sur la mer (13/11/2026, demande du porteur de projet) : coordonnées de carte en cases
+   * (le centre d'une case est à +0,5). La carte trace la ligne de visée et montre si la route est libre ou bloquée.
+   */
+  destination?: [number, number] | null;
+  viser?: (pt: [number, number]) => void;
 }
 
 // Esprit « cartographie des grandes courses » : océan bleu profond, terres claires, traces colorées par la vitesse.
@@ -586,6 +592,69 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
       poigneeRef.current = { pts: pts.map(([x, y]) => [x + v.ox, y + v.oy] as [number, number]), reperes: rep.map(([x, y]) => [x + v.ox, y + v.oy] as [number, number]), choisir: R.choisir };
     }
 
+    // Destination visée d'une touche sur la mer (13/11/2026, demande du porteur de projet) : ligne droite du bateau à la
+    // destination, bleue tant que la mer est libre, rouge à partir du premier obstacle (terre, zone interdite), marqué d'une croix.
+    const dest = P.roseCaps?.destination;
+    if (dest && moi) {
+      const p0 = P.positions[moi.id] ?? [moi.x, moi.y];
+      const ax = p0[0] + 0.5, ay = p0[1] + 0.5;
+      const lg = Math.hypot(dest[0] - ax, dest[1] - ay);
+      const n = Math.max(1, Math.ceil(lg * 8));
+      let obstacle: { t: number; nom: string } | null = null;
+      for (let k = 1; k <= n && !obstacle; k++) {
+        const t = k / n;
+        if (t * lg < 0.6) continue; // case du bateau (le port de départ peut toucher la côte)
+        const px = ax + (dest[0] - ax) * t, py = ay + (dest[1] - ay) * t;
+        const cx = Math.floor(px), cy = Math.floor(py);
+        const dedans = cx >= 0 && cy >= 0 && cx < carte.L && cy < carte.H;
+        const typeCase = dedans ? carte.type[cy * carte.L + cx] : '#';
+        if (!dedans) obstacle = { t, nom: 'Bord de la carte' };
+        else if (terreFine(carte, px, py) || typeCase === '#' || typeCase === '~') obstacle = { t, nom: 'Terre' };
+        else if (!navigable(carte, cx, cy)) obstacle = { t, nom: 'Zone interdite' };
+      }
+      const sx = X(ax), sy = Y(ay), ex = X(dest[0]), ey = Y(dest[1]);
+      const tO = obstacle?.t ?? 1;
+      const bx = X(ax + (dest[0] - ax) * tO), by = Y(ay + (dest[1] - ay) * tO);
+      g.save();
+      g.lineCap = 'round';
+      g.lineWidth = 2.5;
+      g.setLineDash([8, 6]);
+      g.strokeStyle = C.accent;
+      g.beginPath();
+      g.moveTo(sx, sy);
+      g.lineTo(bx, by);
+      g.stroke();
+      if (obstacle) {
+        g.strokeStyle = C.danger;
+        g.beginPath();
+        g.moveTo(bx, by);
+        g.lineTo(ex, ey);
+        g.stroke();
+        g.setLineDash([]);
+        const r = 7;
+        g.lineWidth = 3;
+        g.beginPath();
+        g.moveTo(bx - r, by - r); g.lineTo(bx + r, by + r);
+        g.moveTo(bx + r, by - r); g.lineTo(bx - r, by + r);
+        g.stroke();
+      }
+      g.setLineDash([]);
+      // Cible : deux cercles et un point, de la couleur de la route.
+      const coul = obstacle ? C.danger : C.accent;
+      g.strokeStyle = coul;
+      g.lineWidth = 2.5;
+      g.beginPath();
+      g.arc(ex, ey, 11, 0, Math.PI * 2);
+      g.stroke();
+      g.fillStyle = coul;
+      g.beginPath();
+      g.arc(ex, ey, 4, 0, Math.PI * 2);
+      g.fill();
+      const mn = Math.round(lg * (course.milles_par_case ?? 1));
+      texte(g, `${mn} mn · ${obstacle ? `${obstacle.nom.toLowerCase()} sur la route` : 'route libre'}`, ex + 15, ey - 13, obstacle ? '#ffd0d0' : '#e6f9fe', 12, 700, true);
+      g.restore();
+    }
+
     // Bateaux : coque orientée selon le cap. Plusieurs bateaux sur la même case : étiquettes décalées.
     const memeCase = new Map<string, number>();
     for (const b of P.etat.bateaux) {
@@ -685,6 +754,16 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
       return ecart <= 12 ? best : null;
     };
     let tape: { x: number; y: number; cap: number } | null = null;
+    // Touche brève ailleurs sur la mer pendant le choix du cap : destination visée (13/11/2026).
+    let touche: { x: number; y: number } | null = null;
+    const viserSous = (mx: number, my: number): [number, number] | null => {
+      const rc = propsRef.current.roseCaps, r = roseEcran.current;
+      if (!rc?.viser || globeVisible.current) return null;
+      // Sur la boussole (couronne et centre), la touche est pour la boussole.
+      if (r && Math.hypot(mx - r.x, my - r.y) <= (cv.clientWidth <= 860 ? 60 : 78) + 26) return null;
+      const v = vue.current;
+      return [(mx - v.ox) / v.s, (my - v.oy) / v.s];
+    };
     let capSurvole: number | null = null;
     const survoler = (c: number | null) => {
       if (c === capSurvole) return;
@@ -706,6 +785,9 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
       return true;
     };
     const down = (e: PointerEvent) => {
+      // Premier doigt (ou souris) : aucun autre pointeur n'est posé, on oublie ceux dont le lâcher s'est perdu (13/11/2026 :
+      // sinon une touche brève passait pour le second doigt d'un pincement et ne faisait rien).
+      if (e.isPrimary) pointeurs.clear();
       cv.setPointerCapture(e.pointerId);
       pointeurs.set(e.pointerId, { x: e.clientX, y: e.clientY });
       if (pointeurs.size === 1 && regler(e, true)) {
@@ -718,6 +800,7 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
       const rect = cv.getBoundingClientRect();
       const c = pointeurs.size === 1 ? capSous(e.clientX - rect.left, e.clientY - rect.top) : null;
       tape = c === null ? null : { x: e.clientX, y: e.clientY, cap: c };
+      touche = pointeurs.size === 1 && c === null && (e.pointerType !== 'mouse' || e.button === 0) ? { x: e.clientX, y: e.clientY } : null;
     };
     const move = (e: PointerEvent) => {
       if (!pointeurs.has(e.pointerId)) {
@@ -728,7 +811,7 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
           const mx = e.clientX - rect.left, my = e.clientY - rect.top;
           const c = capSous(mx, my);
           survoler(c);
-          cv.style.cursor = pg && projeter(pg.pts, mx, my).d <= 16 ? 'grab' : c !== null ? 'pointer' : '';
+          cv.style.cursor = pg && projeter(pg.pts, mx, my).d <= 16 ? 'grab' : c !== null ? 'pointer' : viserSous(mx, my) ? 'crosshair' : '';
           // Boussole : elle ressort quand la souris passe dessus (rayon de la couronne + la flèche du vent).
           const r = roseEcran.current, rayon = cv.clientWidth <= 860 ? 60 : 78;
           calqueRef.current?.classList.toggle('survol', !!r && Math.hypot(mx - r.x, my - r.y) <= rayon + 40);
@@ -760,7 +843,14 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
     const up = (e: PointerEvent) => {
       // Touche brève sur la couronne de la boussole (sans glisser la carte) : choix du cap.
       if (tape && pointeurs.size === 1 && Math.hypot(e.clientX - tape.x, e.clientY - tape.y) < 8) propsRef.current.roseCaps?.choisir(tape.cap);
+      // Touche brève sur la mer (sans glisser la carte, un seul doigt) : destination visée.
+      else if (touche && pointeurs.size === 1 && !reglage && Math.hypot(e.clientX - touche.x, e.clientY - touche.y) < (e.pointerType === 'touch' ? 10 : 6)) {
+        const rect = cv.getBoundingClientRect();
+        const pt = viserSous(e.clientX - rect.left, e.clientY - rect.top);
+        if (pt) propsRef.current.roseCaps?.viser?.(pt);
+      }
       tape = null;
+      touche = null;
       pointeurs.delete(e.pointerId);
       reglage = false;
       distPince = 0;

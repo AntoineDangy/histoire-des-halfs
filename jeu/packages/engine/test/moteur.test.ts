@@ -626,6 +626,21 @@ describe('jeu en réseau : Route du Rhum, Transat Café L\'Or et Rolex Fastnet R
   });
 });
 
+describe('routeur : voile conseillée pour le cap choisi par le joueur (13/11/2026)', () => {
+  it('garde le cap imposé et conseille une voile du bateau, utilisable à ce cap', () => {
+    const e = creerPartie(d, params(5));
+    const b = e.bateaux[0];
+    for (let cap = 0; cap < 16; cap++) {
+      const c = choisirIA(d, structuredClone(e), b.id, { cap });
+      expect(c.cap).toBe(cap);
+      if (c.voile !== null) {
+        expect(b.voiles).toContain(c.voile);
+        expect(calculerDistance(d, compilerCarte(rhum), b, c.voile, cap, ventCourant(e, b.x, b.y)).distance).not.toBeNull();
+      }
+    }
+  });
+});
+
 describe('départ', () => {
   it('tous les bateaux partent de la même case', () => {
     const e = creerPartie(d, params(9));

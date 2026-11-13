@@ -1,5 +1,19 @@
 # Journal des versions
 
+## Mise en ligne 3e80bece (13/11/2026, soir), serveur réseau 26ccb641
+Après essai sur le PC et avec l'accord du porteur de projet (« Oui, mets en ligne ») : version 0.4.237, la destination visée sur la carte et la voile conseillée d'office (ci-dessous). Serveur publié aussi, le moteur ayant changé (option `cap` du routeur). Vérifié en ligne : version 0.4.237 affichée, nouveautés présentes dans le jeu publié.
+
+## 13/11/2026 · Destination visée sur la carte (branche `mises-a-jour-jeu`, essayée par le porteur de projet, publiée le 13/11/2026)
+- Demande du porteur de projet : choisir la destination directement sur la carte, en plus de la rose des caps, pour voir plus facilement si la route est libre ou bloquée, et plus facilement au doigt.
+- Pendant le choix du cap, **une touche brève sur la mer** (ou un clic), hors de la rose et sans faire glisser la carte, pose une **destination** :
+  - le jeu choisit le cap proposé le plus proche de sa direction (la voile reste si elle est encore utilisable) ;
+  - une **ligne de visée** va du bateau à la destination : **bleue** si la mer est libre, **rouge à partir du premier obstacle** (terre, zone interdite, bord de la carte), marqué d'une croix ; l'étiquette donne la distance en milles et « route libre » ou « terre sur la route » ;
+  - une fois la voile choisie, la distance se règle seule pour s'arrêter au plus près de la destination (la poignée et les boutons − / + restent utilisables).
+- **Voile conseillée d'office** (demande du porteur de projet, après son premier essai) : quand le joueur choisit un cap, sur la rose ou en touchant la mer, la voile que le routeur conseille **pour ce cap** est choisie tout de suite, pour que la trajectoire, la distance et le point blanc apparaissent sans attendre. Le joueur garde la main : une voile qu'il a choisie lui-même reste choisie au cap suivant tant qu'elle est utilisable. Moteur : option `cap` de `choisirIA` (le cap est imposé, l'IA ne choisit que la voile ; le serveur et les IA ne s'en servent pas). 1 test ajouté (62 tests).
+- Choisir un cap sur la rose, ou demander au routeur, efface la destination. La consigne dit : « Choisissez un cap sur la rose, ou touchez la mer pour viser une destination ». Au survol de la mer, la souris devient une croix de visée.
+- Carte : un premier doigt posé fait oublier les doigts dont le lâcher s'est perdu (sinon une touche brève pouvait passer pour un pincement et ne rien faire).
+- Vérifié en local (Fastnet, au départ de Cowes) : destination derrière l'île de Wight → ligne rouge, « terre sur la route », le moteur arrête lui aussi le bateau au bout d'une case ; destination dans le Solent → ligne bleue, « route libre », cap OSO, distance réglée seule ; glisser la carte ne pose pas de destination ; un cap choisi sur la rose l'efface ; format téléphone essayé. Aucune erreur.
+
 ## Mise en ligne 9a34f19b (13/11/2026, soir), serveur réseau cc448eb2
 Avec l'accord du porteur de projet (« Oui, mets en ligne ») : version 0.4.234, la route du Fastnet ci-dessous (serveur publié par précaution, les données du Fastnet ayant changé). Vérifié en ligne : version 0.4.234 affichée, nouvelle route présente dans le jeu publié.
 
