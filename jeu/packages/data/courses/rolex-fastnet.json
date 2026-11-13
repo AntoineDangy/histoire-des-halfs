@@ -36,7 +36,8 @@
  "echelle": 6.8,
  "distance_max_24h_classe": { "ULTIM": 908 },
  "milles_par_case": 2.55,
- "orthodromie_milles": 68,
+ "orthodromie_milles": 713,
+ "route_directe": true,
  "distances_officielles": {
   "IMOCA": 695,
   "ULTIM": 695,

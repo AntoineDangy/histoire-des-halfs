@@ -45,6 +45,8 @@ export interface ConfigCourse {
   rayon_arrivee?: number;
   /** Point de passage de la route directe affichée (lon, lat) : orthodromie en deux morceaux (12/11/2026). */
   via?: [number, number];
+  /** Points de passage successifs de la route directe affichée (lon, lat), à la place de `via` (Fastnet, 13/11/2026). */
+  vias?: [number, number][];
   /** Centre de la zone d'arrivée (lon, lat), s'il diffère du port d'arrivée (12/11/2026). */
   centre_arrivee?: [number, number];
   /** Aire minimale (en cases²) d'une île gardée sur la carte. */
@@ -195,6 +197,10 @@ export const COURSES: ConfigCourse[] = [
     rayon_arrivee: 2.6,
     depart: { nom: 'Cowes', lon: -1.3, lat: 50.77, zone: [-1.45, 50.7] },
     arrivee: { nom: 'Cherbourg', lon: -1.62, lat: 49.65 },
+    // Route directe affichée (ligne blanche) : le parcours, et non plus une ligne droite de Cowes à Cherbourg (signalé par
+    // le porteur de projet, 13/11/2026). Sortie du Solent par les Needles, sud du Lizard, NORD de Bishop Rock (entre Land's End et les
+    // Scilly), tour du Fastnet Rock laissé à bâbord (nord, ouest, sud), SUD de Bishop Rock, nord du cap de la Hague, Cherbourg.
+    vias: [[-1.37, 50.775], [-1.5, 50.735], [-1.56, 50.7], [-1.65, 50.645], [-5.2, 49.85], [-6.4, 50.1], [-9.62, 51.455], [-9.76, 51.389], [-9.62, 51.33], [-6.446, 49.75], [-1.95, 49.78], [-1.65, 49.72]],
     ports: { 'Plymouth': [-4.14, 50.35], 'Falmouth': [-5.05, 50.14], 'Crosshaven (Cork)': [-8.29, 51.79], 'Saint-Peter-Port (Guernesey)': [-2.53, 49.46] },
     marques: {
       '*': [

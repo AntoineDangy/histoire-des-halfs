@@ -1,5 +1,13 @@
 # Journal des versions
 
+## Mise en ligne 9a34f19b (13/11/2026, soir), serveur réseau cc448eb2
+Avec l'accord du porteur de projet (« Oui, mets en ligne ») : version 0.4.234, la route du Fastnet ci-dessous (serveur publié par précaution, les données du Fastnet ayant changé). Vérifié en ligne : version 0.4.234 affichée, nouvelle route présente dans le jeu publié.
+
+## 13/11/2026 · Route du Fastnet sur la carte (branche `mises-a-jour-jeu`, publié le 13/11/2026)
+- Signalé par le porteur de projet : sur la Rolex Fastnet Race, la ligne blanche (route directe) allait tout droit de Cowes à Cherbourg. Elle suit désormais le parcours : sortie du Solent par les Needles, sud du Lizard, **nord de Bishop Rock** (entre Land's End et les Scilly), **tour du Fastnet Rock** laissé à bâbord, **sud de Bishop Rock**, nord du cap de la Hague, Cherbourg (713 milles, pour 695 milles officiels).
+- Points de passage (`vias`) ajoutés à la course dans `outils/courses-atlantique.ts` ; seul le tracé (`rolex-fastnet-trace.json`) et sa longueur (`orthodromie_milles`) changent dans les données. Les réglages des Ultim faits à la main le 13/11 dans `rolex-fastnet.json` sont gardés : **attention, régénérer la carte du Fastnet les efface** (à reporter dans l'outil).
+- Nouvel outil de contrôle `outils/verifier-route-directe.ts` : la route ne touche la terre qu'au port de départ et au port d'arrivée. Vérifié à l'écran en local (partie Fastnet).
+
 ## Mise en ligne b137f9ce (13/11/2026, soir), serveur réseau beb05c26
 Avec l'accord du porteur de projet (« Oui, mets en ligne ») : version 0.4.232, depuis la branche `corrections-affichage` après fusion de `main` (0.4.229), puis passée dans `main`. Contient la correction ci-dessous. 61 tests, mêmes modèles 3D que la version précédente. Vérifié en ligne : « Version 0.4.232 » sur l'accueil, noms de F9 à F12 présents dans le fichier du jeu, salon réseau créé, course lancée, premier tour résolu par le serveur.
 
