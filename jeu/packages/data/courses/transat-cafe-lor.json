@@ -26,6 +26,8 @@
   "force": 4
  },
  "echelle": 2.5,
+ "vitesse_classe": { "ULTIM": 1.068 },
+ "distance_max_24h_classe": { "ULTIM": 908 },
  "milles_par_case": 30,
  "orthodromie_milles": 3621,
  "distances_officielles": {
@@ -813,6 +815,17 @@
     45
    ],
    "texte": "Brume des Açores"
+  },
+  {
+   "type": "brume",
+   "nom": "Brume du sud-ouest de l'Irlande",
+   "rect": [
+    89,
+    10,
+    96,
+    15
+   ],
+   "texte": "Brume du sud-ouest de l'Irlande"
   },
   {
    "type": "courant",

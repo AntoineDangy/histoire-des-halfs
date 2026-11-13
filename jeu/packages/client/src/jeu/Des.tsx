@@ -12,16 +12,20 @@ export const NOMS_ZONES: Record<string, string> = {
 };
 
 /** Bilan des dés pour un bateau : le vent de SA zone avant et après (le vent d'une zone où il n'est pas ne s'affiche pas). */
-export function bilanVent(avant: Vent, apres: Vent, zone?: string) {
+export function bilanVent(avant: Vent, apres: Vent, zone?: string, de?: { force: number; direction: number }) {
   const d = ((apres.direction - avant.direction + 24) % 16) - 8;
   const dF = apres.force - avant.force;
   const tourne = d === 0 ? 'garde sa direction' : `tourne de ${String(Math.abs(d) * 22.5).replace('.', ',')}° ${d > 0 ? "dans le sens des aiguilles d'une montre" : "dans le sens inverse des aiguilles d'une montre"}`;
   const forceTxt = dF === 0 ? ' et garde sa force' : dF > 0 ? ` et forcit de ${dF}` : ` et mollit de ${-dF}`;
-  return { zone: NOMS_ZONES[zone ?? 'general'] ?? NOMS_ZONES.general, texte: `le vent ${tourne}${forceTxt}` };
+  // Vent régulier (alizés) : force et direction restent dans leurs limites, même si le dé dit plus (12/11/2026).
+  const borne = de && zone === 'alizes' && de.force !== dF
+    ? ` : le vent régulier des alizés ne sort pas de ses limites, il reste à F${apres.force}`
+    : '';
+  return { zone: NOMS_ZONES[zone ?? 'general'] ?? NOMS_ZONES.general, texte: `le vent ${tourne}${forceTxt}${borne}` };
 }
 
 export function DesVent({ direction, force, phase, avant, apres, zone, autres }: { direction: number; force: number; phase: Phase; avant: Vent; apres: Vent; zone?: string; autres?: { nom: string; avant: Vent; apres: Vent; zone: string }[] }) {
-  const bilan = bilanVent(avant, apres, zone);
+  const bilan = bilanVent(avant, apres, zone, { force, direction });
   const roule = phase !== 'resultat';
   // Pas de caractères ↻ ↺ : certaines polices ne les dessinent pas. Les flèches sont tracées en SVG.
   const sens = direction === 0 ? 'Ne tourne pas' : direction > 0 ? 'Tourne de 45°, sens horaire' : 'Tourne de 45°, sens antihoraire';

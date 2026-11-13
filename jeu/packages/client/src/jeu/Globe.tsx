@@ -172,7 +172,9 @@ export default function Globe(p: PropsGlobe) {
             g.fillStyle = '#d6e4ff'; g.font = '800 96px system-ui, sans-serif'; g.fillText('A', tx(ln) + dx - 31, ty(lt) + 34);
             g.font = '700 41px system-ui, sans-serif'; g.fillText(f.nom ?? 'Anticyclone', tx(ln) + dx - 170, ty(lt) + 96);
           } else if (f.type === 'molle') {
-            g.beginPath(); chemin(g, ellipse(f.x, f.y, f.rx, f.ry), dx, true); g.fillStyle = 'rgba(255,226,166,0.2)'; g.fill();
+            // Molle dessinée d'une course (13/11/2026) : son contour.
+            const forme: [number, number][] = f.contour ? [...f.contour, f.contour[0]] : ellipse(f.x, f.y, f.rx, f.ry);
+            g.beginPath(); chemin(g, forme, dx, true); g.fillStyle = 'rgba(255,226,166,0.2)'; g.fill();
           } else {
             g.setLineDash(annonce ? [10, 8] : []);
             g.beginPath(); chemin(g, ellipse(f.x, f.y, f.rx, f.ry), dx, true);

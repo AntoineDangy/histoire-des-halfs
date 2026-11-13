@@ -22,6 +22,7 @@
   "force": 4
  },
  "echelle": 2.5,
+ "distance_max_24h_classe": { "ULTIM": 851 },
  "milles_par_case": 30,
  "orthodromie_milles": 3492,
  "route_directe": true,
@@ -254,6 +255,14 @@
    ]
   }
  ],
+ "molle": {
+  "_note": "Zone dessinée par le porteur de projet le 13/11/2026 (« applique plutôt cette zone »), relevée point par point (x, y en cases de 30 milles) : allongée et arrondie, elle épouse à l'est l'arc antillais (Barbuda, Antigua, est de Grande-Terre et de la Désirade sans les dépasser, est de la Dominique et de la Martinique) et s'étale à l'ouest jusqu'au bord de la carte (environ 65,5° W), du nord d'Anguilla à la hauteur de Saint-Vincent. Toujours tirée au hasard au départ (regles.json : 6 courses sur 10), vent F1-2 et direction qui change à chaque tour, quelle que soit la classe.",
+  "contour": [
+   [4.0, 80.7], [4.8, 80.75], [5.5, 81.0], [6.25, 81.4], [6.85, 81.9], [7.25, 82.45], [7.6, 83.1], [7.85, 83.7], [8.1, 84.2], [8.45, 84.75], [8.75, 85.2], [8.95, 85.75],
+   [9.0, 86.4], [9.05, 87.4], [9.0, 88.4], [8.9, 89.5], [8.75, 90.5], [8.55, 91.35], [8.15, 91.95], [7.65, 92.3], [7.15, 91.95], [5.85, 91.45], [4.15, 91.05], [2.85, 90.6],
+   [1.9, 89.9], [1.4, 88.9], [1.15, 87.55], [1.0, 86.05], [0.85, 84.55], [0.75, 83.2], [0.7, 82.2], [0.85, 81.55], [1.5, 80.95], [2.2, 80.7]
+  ]
+ },
  "zones_meteo": [
   {
    "type": "alize",
@@ -311,6 +320,17 @@
     45
    ],
    "texte": "Brume des Açores"
+  },
+  {
+   "type": "brume",
+   "nom": "Brume du sud-ouest de l'Irlande",
+   "rect": [
+    89,
+    10,
+    96,
+    15
+   ],
+   "texte": "Brume du sud-ouest de l'Irlande"
   },
   {
    "type": "courant",

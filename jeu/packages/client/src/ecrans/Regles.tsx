@@ -107,10 +107,10 @@ export default function Regles({ onRetour }: { onRetour: () => void }) {
 
           <Bloc titre="Les voiles" accroche="La bonne voile, au bon moment. Toute la course est là.">
             <ul className="regles-voiles">
-              <li><b>Spi</b> : le roi du vent arrière, à partir du largue ({String(V('spi').angle_min ?? 112.5).replace('.', ',')}° du vent).</li>
-              <li><b>Spi gros temps</b> (monocoques) : le spi des fortes brises, de F6 à F8, à partir du largue.</li>
-              <li><b>Gennaker</b> : rapide et nerveux, à partir du travers ({V('gennaker').angle_min ?? 90}° du vent), jamais au près.</li>
-              <li><b>Code 0</b> : du bon plein au largue, sur le bout-dehors.</li>
+              <li><b>Spi</b> : le roi du vent arrière, à partir du grand largue ({String(V('spi').angle_min ?? 135).replace('.', ',')}° du vent).</li>
+              <li><b>Spi gros temps</b> (monocoques) : le spi des fortes brises, de F6 à F8, à partir du grand largue (135° du vent).</li>
+              <li><b>Gennaker</b> : rapide et nerveux, au largue, à partir de {String(V('gennaker').angle_min ?? 112.5).replace('.', ',')}° du vent, jamais au près ni au travers.</li>
+              <li><b>Code 0</b> : du travers au largue ({V('code0').angle_min ?? 90}° du vent et plus), sur le bout-dehors.</li>
               <li><b>Solent</b> : la voile à tout faire, au près comme au travers.</li>
               <li><b>J3 / foc</b> : la voile de brise, solide.</li>
               <li><b>Voilure réduite</b> : grand-voile arisée et tourmentin, pour survivre.</li>

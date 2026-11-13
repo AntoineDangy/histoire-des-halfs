@@ -237,7 +237,7 @@ export function creerPartie(d: Donnees, params: ParamsPartie): EtatPartie {
   etat.desProchains = tirerDesVent(d, etat);
   etat.previsions = prevoirDes(d, etat);
   if (c.meteo_mondiale) creerAnticyclonesPermanents(etat, c.meteo_mondiale);
-  const molle = creerMolle(d, etat, c.lieux?.find((l) => l.type === 'arrivee'));
+  const molle = creerMolle(d, etat, c.lieux?.find((l) => l.type === 'arrivee'), c.molle);
   evt(etat, 'info', `Départ de la ${c.nom} : vent ${NOMS_DIR_LONGS[etat.vent.direction]}, force ${etat.vent.force}.`);
   if (molle) evt(etat, 'meteo', molle);
   return etat;
@@ -572,7 +572,7 @@ function calculerTour(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: Contexte
     ctx.bloqueSurPlace = true;
     ctx.issue = 'voile inutilisable avec le vent tourné';
     const raison = ctx.angle < 45 ? `le vent refuse et le ${nomVoile} est une voile de portant : impossible de louvoyer` : `${nomVoile} inutilisable ${auAllure(ctx.angle)}`;
-    evt(etat, 'bloque', `${nom} ne peut pas avancer : ${raison}.`, b.id, { vent, angle: ctx.angle });
+    evt(etat, 'bloque', `${nom} ne peut pas avancer : ${raison}.`, b.id, { vent, angle: ctx.angle, voile: choix.voile, cap: choix.cap });
     b.distanceDernierTour = 0;
     ctx.etape = 'fin';
     return;
@@ -1127,7 +1127,8 @@ function deplacer(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: ContexteReso
     distance = Math.max(1, distance + Math.round(mr * echelleBateau(d, carte, b)));
     evt(etat, 'info', `${nom} a passé du temps à bricoler : il avance un peu moins vite ce tour.`, b.id);
   }
-  // Jauge (11/11/2026) : les bonus (cartes, compétences) ne font jamais dépasser 640 milles en 24 h.
+  // Jauge (11/11/2026, Ultim le 13/11/2026) : les bonus (cartes, compétences) ne font jamais dépasser le record de la
+  // classe en 24 h (640 milles en IMOCA et Ocean Fifty ; Ultim 851 en solitaire, 908 en équipage).
   const plafond = plafondCases(d, carte, b);
   if (plafond !== null && distance > plafond) distance = plafond;
   const obligatoire = choix.voile === null;

@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
-import { centreTraine, compilerCarte, routeObligatoire, course as courseJouee, NOMS_DIR, norm, vecteur } from '@cal/engine';
+import { centreTraine, compilerCarte, course as courseJouee, NOMS_DIR, norm, vecteur } from '@cal/engine';
 import type { Case, EtatPartie } from '@cal/engine';
 import traceRhum from '@cal/data/courses/route-du-rhum-trace.json';
 import traceCafeLor from '@cal/data/courses/transat-cafe-lor-trace.json';
@@ -23,6 +23,23 @@ export interface PropsCarte {
   noms: Record<string, string>;
   /** Lecture d'un tour en cours (les bateaux se déplacent) : sur les tours du monde, le globe s'affiche seul. */
   lecture?: boolean;
+  /** Décision en cours (rose des caps autour du bateau) : la carte ramène le bateau à l'écran s'il en est sorti. */
+  enChoix?: boolean;
+  /**
+   * Réglage de la distance sur la carte (essai d'interface du 12/11/2026) : trajet complet de la voile choisie (coordonnées
+   * de carte, centres des cases), repères à chaque case, poignée à faire glisser.
+   */
+  reglageDistance?: { trajet: [number, number][]; reperes: [number, number][]; max: number; valeur: number; choisir: (d: number) => void } | null;
+  /** Boussole : caps possibles ; une touche sur la couronne choisit le cap le plus proche. */
+  roseCaps?: RoseCarte | null;
+}
+
+/** Caps de la boussole, choisis d'une touche sur la couronne (chaque cap a toute sa part du cercle, même avec 32 caps). */
+export interface RoseCarte {
+  caps: number[];
+  choisir: (c: number) => void;
+  survoler: (c: number | null) => void;
+  nom: (c: number) => string;
 }
 
 // Esprit « cartographie des grandes courses » : océan bleu profond, terres claires, traces colorées par la vitesse.
@@ -49,19 +66,27 @@ function couleurVitesse(v: number) {
 type Trace = { cotes: number[][]; orthodromie: number[] };
 const TRACES: Record<string, Trace> = { 'route-du-rhum': traceRhum as Trace, 'transat-cafe-lor': traceCafeLor as Trace, 'rolex-fastnet': traceFastnet as Trace, 'vendee-globe': traceVendee as Trace, 'arkea-ultim-challenge': traceArkea as Trace };
 
-export default function Carte({ etat, positions, trajectoire, moiId, centrer, noms, coupes, lecture }: PropsCarte) {
+export default function Carte({ etat, positions, trajectoire, moiId, centrer, noms, coupes, lecture, enChoix, reglageDistance, roseCaps }: PropsCarte) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  // Calque posé sur le bateau du joueur : la rose des caps y est affichée (TableauBord.tsx, par createPortal).
+  const calqueRef = useRef<HTMLDivElement>(null);
+  /** Poignée de distance, en pixels d'écran : trajet complet et nombre de cases (pour la saisie au doigt ou à la souris). */
+  /** Centre de la boussole à l'écran (pixels du canevas), pour la faire ressortir au survol de la souris. */
+  const roseEcran = useRef<{ x: number; y: number } | null>(null);
+  const poigneeRef = useRef<{ pts: [number, number][]; reperes: [number, number][]; choisir: (d: number) => void } | null>(null);
   const [globe, setGlobe] = useState(false);
   // Zoom du globe (12/11/2026) : les boutons + et − agissent sur le globe quand il est ouvert.
   const zoomGlobe = useRef<((f: number) => void) | null>(null);
   const vue = useRef({ s: 8, ox: 0, oy: 0, init: false, min: 3 });
   const propsRef = useRef<PropsCarte>({ etat, positions, trajectoire, moiId, centrer, noms });
-  propsRef.current = { etat, positions, trajectoire, moiId, centrer, noms, coupes };
+  propsRef.current = { etat, positions, trajectoire, moiId, centrer, noms, coupes, reglageDistance, roseCaps };
+  const globeVisible = useRef(false);
   // Parcours de la classe jouée (marques obligatoires propres à chaque classe).
   const course = courseJouee(D, etat);
   const carte = compilerCarte(course);
   const { cotes, orthodromie: ortho } = TRACES[course.id] ?? TRACES['route-du-rhum'];
   const pr = course.projection!;
+  globeVisible.current = globe || (!!lecture && !!course.distance_reelle);
   const RAD = Math.PI / 180;
   const cellRad = ((pr.lon_max - pr.lon_min) * RAD) / carte.L;
   const merc = (lat: number) => Math.log(Math.tan(Math.PI / 4 + (lat * RAD) / 2));
@@ -200,7 +225,13 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
     for (const f of P.etat.fronts ?? []) {
       const ellipse = (cx: number, cy: number) => {
         g.beginPath();
-        g.ellipse(X(cx), Y(cy), f.rx * s, f.ry * s, 0, 0, Math.PI * 2);
+        // Molle dessinée d'une course (13/11/2026) : contour lissé (courbes passant par le milieu de chaque côté).
+        if (f.contour) {
+          const p = f.contour, n = p.length, mil = (i: number) => [(p[i % n][0] + p[(i + 1) % n][0]) / 2, (p[i % n][1] + p[(i + 1) % n][1]) / 2];
+          g.moveTo(X(mil(0)[0]), Y(mil(0)[1]));
+          for (let i = 1; i <= n; i++) g.quadraticCurveTo(X(p[i % n][0]), Y(p[i % n][1]), X(mil(i)[0]), Y(mil(i)[1]));
+          g.closePath();
+        } else g.ellipse(X(cx), Y(cy), f.rx * s, f.ry * s, 0, 0, Math.PI * 2);
       };
       if (f.type === 'anticyclone') {
         ellipse(f.x, f.y);
@@ -262,23 +293,8 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
       texte(g, `⛈ Front : ${NOMS_DIR[f.direction]} F${f.force}`, X(f.x - f.rx * 0.5), Y(f.y - f.ry * 0.55), '#ffd0d0', 13, 700, true);
     }
 
-    // Rhum (12/11/2026, porteur de projet) : la route directe blanche passe par la bouée, plus lisible que le parcours en pointillés.
-    if (!course.route_directe && course.portes.some((p) => p.type === 'marque')) {
-      // Parcours obligatoire : du port de départ à l'arrivée par les marques, en pointillés (route la plus courte en mer, lissée).
-      const r = routeObligatoire(carte);
-      const pts = r.filter((_, i) => i % 3 === 0 || i === r.length - 1).map(([x, y]) => [X(x + 0.5), Y(y + 0.5)]);
-      const port = course.lieux?.find((l) => l.type === 'depart'), but = course.lieux?.find((l) => l.type === 'arrivee');
-      if (port) pts.unshift([X(port.x), Y(port.y)]);
-      if (but) pts.push([X(but.x), Y(but.y)]);
-      g.save();
-      g.strokeStyle = 'rgba(255,211,77,0.75)';
-      g.lineWidth = 1.6;
-      g.setLineDash([7, 6]);
-      g.beginPath();
-      pts.forEach(([x, y], i) => (i ? g.lineTo(x, y) : g.moveTo(x, y)));
-      g.stroke();
-      g.restore();
-    } else {
+    // Plus de parcours obligatoire en pointillés jaunes (12/11/2026, demande du porteur de projet) : route directe blanche partout.
+    {
       // Orthodromie (route directe)
       g.strokeStyle = 'rgba(255,255,255,0.55)';
       g.lineWidth = 1.2;
@@ -298,9 +314,9 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
     g.strokeStyle = C.terreBord;
     g.lineWidth = 1;
     g.beginPath();
-    for (const r of cotes) {
-      g.moveTo(X(r[0]), Y(r[1]));
-      for (let i = 2; i < r.length; i += 2) g.lineTo(X(r[i]), Y(r[i + 1]));
+    for (const morceau of cotesDecoupees(cotes)) {
+      g.moveTo(X(morceau[0]), Y(morceau[1]));
+      for (let i = 2; i < morceau.length; i += 2) g.lineTo(X(morceau[i]), Y(morceau[i + 1]));
       g.closePath();
     }
     g.fill('evenodd');
@@ -399,13 +415,7 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
         g.restore();
         return;
       }
-      g.strokeStyle = '#ffd34d';
-      g.lineWidth = Math.max(2, s * 0.25);
-      g.setLineDash([s * 0.6, s * 0.4]);
-      g.beginPath();
-      pts.forEach(([x, y], i) => (i ? g.lineTo(x, y) : g.moveTo(x, y)));
-      g.stroke();
-      g.setLineDash([]);
+      // Ligne de passage : plus de pointillés jaunes (12/11/2026, demande du porteur de projet), seulement le nom de la marque.
       g.fillStyle = '#ffd34d';
       g.font = `600 ${Math.max(11, Math.min(15, s * 1.3))}px system-ui, sans-serif`;
       g.fillText(`${passee ? '✓ ' : '⚑ '}${p.nom}`, pts[0][0] + 8, pts[0][1] + 4);
@@ -477,7 +487,10 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
 
     // Trajectoire prévisionnelle
     const moi = P.moiId ? P.etat.bateaux.find((b) => b.id === P.moiId) : null;
-    if (P.trajectoire && moi) {
+    // Distance réglable sur la carte : seule la jauge (poignée) est montrée, pas la case d'arrivée calculée, pour ne pas
+    // donner deux informations qui se contredisent (demande du porteur de projet, 12/11/2026).
+    const jauge = !!(P.reglageDistance && P.reglageDistance.trajet.length > 1 && P.reglageDistance.max > 1);
+    if (P.trajectoire && moi && !jauge) {
       const p0 = P.positions[moi.id] ?? [moi.x, moi.y];
       g.strokeStyle = '#ffffff';
       g.setLineDash([4, 5]);
@@ -512,6 +525,67 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
       g.lineWidth = 1;
     }
 
+    // Réglage de la distance : trajet complet de la voile en pointillés pâles, un repère par case, poignée au bout du trajet retenu.
+    poigneeRef.current = null;
+    const R = P.reglageDistance;
+    if (R && moi && jauge) {
+      const pts = R.trajet.map(([x, y]) => [X(x), Y(y)] as [number, number]);
+      g.save();
+      g.strokeStyle = 'rgba(255,255,255,0.35)';
+      g.lineWidth = 1.5;
+      g.setLineDash([2, 5]);
+      g.beginPath();
+      pts.forEach(([x, y], i) => (i ? g.lineTo(x, y) : g.moveTo(x, y)));
+      g.stroke();
+      g.setLineDash([]);
+      // Repères : le point d'arrivée de chaque distance possible (une case de plus à chaque repère).
+      const rep = R.reperes.map(([x, y]) => [X(x), Y(y)] as [number, number]);
+      g.fillStyle = 'rgba(255,255,255,0.85)';
+      rep.forEach(([x, y], k) => {
+        if (k > 0 && Math.hypot(x - rep[k - 1][0], y - rep[k - 1][1]) < 6) return;
+        g.beginPath();
+        g.arc(x, y, 2.6, 0, Math.PI * 2);
+        g.fill();
+      });
+      const [hx, hy] = rep[Math.max(0, Math.min(R.max, R.valeur) - 1)] ?? pts[pts.length - 1];
+      // Trajet retenu : pointillés blancs du bateau jusqu'à la poignée, le long du trajet de la voile.
+      let iProche = 0;
+      pts.forEach(([x, y], i) => { if (Math.hypot(x - hx, y - hy) < Math.hypot(pts[iProche][0] - hx, pts[iProche][1] - hy)) iProche = i; });
+      g.strokeStyle = '#ffffff';
+      g.lineWidth = 2;
+      g.setLineDash([4, 5]);
+      g.beginPath();
+      pts.slice(0, iProche + 1).forEach(([x, y], i) => (i ? g.lineTo(x, y) : g.moveTo(x, y)));
+      g.lineTo(hx, hy);
+      g.stroke();
+      g.setLineDash([]);
+      if (P.trajectoire?.caseBloquante) {
+        const [x, y] = P.trajectoire.caseBloquante;
+        const cx = X(x + 0.5), cy = Y(y + 0.5), r = Math.max(5, s * 0.5);
+        g.strokeStyle = C.danger;
+        g.lineWidth = 2.5;
+        g.beginPath();
+        g.moveTo(cx - r, cy - r); g.lineTo(cx + r, cy + r);
+        g.moveTo(cx + r, cy - r); g.lineTo(cx - r, cy + r);
+        g.stroke();
+      }
+      g.fillStyle = C.accent;
+      g.strokeStyle = '#ffffff';
+      g.lineWidth = 2.5;
+      g.beginPath();
+      g.arc(hx, hy, 9, 0, Math.PI * 2);
+      g.fill();
+      g.stroke();
+      g.fillStyle = '#04121f';
+      g.beginPath();
+      g.arc(hx, hy, 3, 0, Math.PI * 2);
+      g.fill();
+      const mpcP = course.milles_par_case ?? 1;
+      texte(g, R.valeur >= R.max ? `max ${Math.round(R.max * mpcP)} mn` : `${Math.round(R.valeur * mpcP)} mn`, hx + 13, hy - 10, '#ffffff', 12, 700, true);
+      g.restore();
+      poigneeRef.current = { pts: pts.map(([x, y]) => [x + v.ox, y + v.oy] as [number, number]), reperes: rep.map(([x, y]) => [x + v.ox, y + v.oy] as [number, number]), choisir: R.choisir };
+    }
+
     // Bateaux : coque orientée selon le cap. Plusieurs bateaux sur la même case : étiquettes décalées.
     const memeCase = new Map<string, number>();
     for (const b of P.etat.bateaux) {
@@ -522,7 +596,7 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
       const coul = skipper(b.skipperId).couleurs.pion;
       const cap = b.dernierCap ?? b.choix?.cap ?? 12;
       const [vx, vy] = vecteur(cap);
-      const Lb = Math.max(9, Math.min(22, s * 1.6));
+      const Lb = Math.max(12, Math.min(29, s * 2.1)); // ×1,3 (12/11/2026, porteur de projet)
       const lb = Lb * 0.38;
       g.save();
       g.translate(cx, cy);
@@ -544,6 +618,18 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
     }
     g.restore();
 
+    // Le calque de la rose suit le bateau du joueur (déplacement et zoom de la carte).
+    const calque = calqueRef.current;
+    if (calque) {
+      const bm = P.moiId ? P.etat.bateaux.find((b) => b.id === P.moiId) : null;
+      const pm = bm ? P.positions[bm.id] ?? posExacte(bm) : null;
+      if (pm && !globeVisible.current) {
+        calque.style.display = '';
+        calque.style.transform = `translate(${v.ox + X(pm[0] + 0.5)}px, ${v.oy + Y(pm[1] + 0.5)}px)`;
+        roseEcran.current = { x: v.ox + X(pm[0] + 0.5), y: v.oy + Y(pm[1] + 0.5) };
+      } else calque.style.display = 'none';
+    }
+
     // Échelle des distances (1 case = milles_par_case milles) : 30, 100 ou 500 milles selon le zoom.
     const mpc = course.milles_par_case ?? 1;
     const pxParMille = s / mpc;
@@ -553,7 +639,9 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
     const lpx = milles * pxParMille;
     const ex = 12;
     // Sur téléphone, au-dessus du bouton « Commandes » et de l'échelle des vitesses (12/11/2026).
-    const ey = w <= 860 ? h - 100 : h - 50;
+    // Au-dessus de la barre des voiles pendant la décision (essai d'interface du 12/11/2026).
+    const commandes = !!cv.parentElement?.classList.contains('avec-commandes');
+    const ey = commandes ? h - (w <= 860 ? 236 : 196) : w <= 860 ? h - 100 : h - 50;
     g.fillStyle = 'rgba(6,24,40,0.7)';
     arrondi(g, ex, ey - 22, lpx + 24, 34, 8);
     g.fill();
@@ -579,13 +667,78 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
     let glisse: { x: number; y: number } | null = null;
     const pointeurs = new Map<number, { x: number; y: number }>();
     let distPince = 0;
+    // Poignée de distance : saisie près de la poignée ou du trajet, puis glissée le long du trajet.
+    let reglage = false;
+    // Boussole : cap visé sous le doigt ou la souris (couronne seulement), sinon null.
+    const capSous = (mx: number, my: number): number | null => {
+      const rc = propsRef.current.roseCaps, r = roseEcran.current;
+      if (!rc || !r || globeVisible.current || calqueRef.current?.style.display === 'none') return null;
+      const R = cv.clientWidth <= 860 ? 60 : 78;
+      const d = Math.hypot(mx - r.x, my - r.y);
+      if (d < R - 26 || d > R + 26) return null;
+      const ang = ((Math.atan2(mx - r.x, r.y - my) * 180) / Math.PI + 360) % 360;
+      let best: number | null = null, ecart = Infinity;
+      for (const c of rc.caps) {
+        const e = Math.abs(((c * 22.5 - ang + 540) % 360) - 180);
+        if (e < ecart) { ecart = e; best = c; }
+      }
+      return ecart <= 12 ? best : null;
+    };
+    let tape: { x: number; y: number; cap: number } | null = null;
+    let capSurvole: number | null = null;
+    const survoler = (c: number | null) => {
+      if (c === capSurvole) return;
+      capSurvole = c;
+      propsRef.current.roseCaps?.survoler(c);
+      cv.title = c === null ? '' : propsRef.current.roseCaps?.nom(c) ?? '';
+    };
+    const regler = (e: PointerEvent, saisie: boolean): boolean => {
+      const pg = poigneeRef.current;
+      if (!pg) return false;
+      const rect = cv.getBoundingClientRect();
+      const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+      // Le repère le plus proche du doigt ou de la souris donne la distance (le plus court en cas d'égalité).
+      let k = 0, dk = Infinity;
+      pg.reperes.forEach(([x, y], i) => { const d = Math.hypot(x - mx, y - my); if (d < dk - 0.5) { dk = d; k = i; } });
+      const tol = e.pointerType === 'touch' ? 26 : 16;
+      if (saisie && dk > tol && projeter(pg.pts, mx, my).d > tol) return false;
+      pg.choisir(k + 1);
+      return true;
+    };
     const down = (e: PointerEvent) => {
       cv.setPointerCapture(e.pointerId);
       pointeurs.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pointeurs.size === 1 && regler(e, true)) {
+        reglage = true;
+        glisse = null;
+        return;
+      }
+      reglage = false;
       glisse = { x: e.clientX, y: e.clientY };
+      const rect = cv.getBoundingClientRect();
+      const c = pointeurs.size === 1 ? capSous(e.clientX - rect.left, e.clientY - rect.top) : null;
+      tape = c === null ? null : { x: e.clientX, y: e.clientY, cap: c };
     };
     const move = (e: PointerEvent) => {
-      if (!pointeurs.has(e.pointerId)) return;
+      if (!pointeurs.has(e.pointerId)) {
+        // Survol : main sur la poignée de distance.
+        const pg = poigneeRef.current;
+        if (e.pointerType === 'mouse') {
+          const rect = cv.getBoundingClientRect();
+          const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+          const c = capSous(mx, my);
+          survoler(c);
+          cv.style.cursor = pg && projeter(pg.pts, mx, my).d <= 16 ? 'grab' : c !== null ? 'pointer' : '';
+          // Boussole : elle ressort quand la souris passe dessus (rayon de la couronne + la flèche du vent).
+          const r = roseEcran.current, rayon = cv.clientWidth <= 860 ? 60 : 78;
+          calqueRef.current?.classList.toggle('survol', !!r && Math.hypot(mx - r.x, my - r.y) <= rayon + 40);
+        }
+        return;
+      }
+      if (reglage && pointeurs.size === 1) {
+        regler(e, false);
+        return;
+      }
       pointeurs.set(e.pointerId, { x: e.clientX, y: e.clientY });
       if (pointeurs.size === 2) {
         const [a, b] = [...pointeurs.values()];
@@ -600,8 +753,16 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
       glisse = { x: e.clientX, y: e.clientY };
       dessiner();
     };
+    const sortie = () => {
+      calqueRef.current?.classList.remove('survol');
+      survoler(null);
+    };
     const up = (e: PointerEvent) => {
+      // Touche brève sur la couronne de la boussole (sans glisser la carte) : choix du cap.
+      if (tape && pointeurs.size === 1 && Math.hypot(e.clientX - tape.x, e.clientY - tape.y) < 8) propsRef.current.roseCaps?.choisir(tape.cap);
+      tape = null;
       pointeurs.delete(e.pointerId);
+      reglage = false;
       distPince = 0;
       glisse = null;
     };
@@ -610,7 +771,7 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
       const mx = clientX - rect.left;
       const my = clientY - rect.top;
       const v = vue.current;
-      const ns = Math.max(v.min, Math.min(40, v.s * f));
+      const ns = Math.max(v.min, Math.min(160, v.s * f));
       v.ox = mx - ((mx - v.ox) * ns) / v.s;
       v.oy = my - ((my - v.oy) * ns) / v.s;
       v.s = ns;
@@ -624,6 +785,7 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
     cv.addEventListener('pointermove', move);
     cv.addEventListener('pointerup', up);
     cv.addEventListener('pointercancel', up);
+    cv.addEventListener('pointerleave', sortie);
     cv.addEventListener('wheel', wheel, { passive: false });
     (cv as unknown as { zoomer: typeof zoomer }).zoomer = zoomer;
     return () => {
@@ -632,6 +794,7 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
       cv.removeEventListener('pointermove', move);
       cv.removeEventListener('pointerup', up);
       cv.removeEventListener('pointercancel', up);
+      cv.removeEventListener('pointerleave', sortie);
       cv.removeEventListener('wheel', wheel);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -650,6 +813,26 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [centrer]);
 
+  // Début d'une décision : si le bateau du joueur est hors de l'écran (ou sous la barre des voiles), la carte le recentre,
+  // sans changer le zoom.
+  useEffect(() => {
+    if (!enChoix) return;
+    const cv = canvasRef.current!;
+    const P = propsRef.current;
+    const b = P.etat.bateaux.find((x) => x.id === P.moiId);
+    if (!b) return;
+    const v = vue.current;
+    const p = P.positions[b.id] ?? posExacte(b);
+    const sx = v.ox + (p[0] + 0.5) * v.s, sy = v.oy + (p[1] + 0.5) * v.s;
+    const w = cv.clientWidth, h = cv.clientHeight;
+    if (sx < 140 || sx > w - 140 || sy < 150 || sy > h - 260) {
+      v.ox = w / 2 - (p[0] + 0.5) * v.s;
+      v.oy = (h - 120) / 2 - (p[1] + 0.5) * v.s;
+      dessiner();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [enChoix, etat.tour]);
+
   const zoomBouton = (f: number) => {
     const cv = canvasRef.current as unknown as { zoomer?: (f: number, x: number, y: number) => void; getBoundingClientRect: () => DOMRect };
     const r = cv.getBoundingClientRect();
@@ -663,6 +846,7 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
   return (
     <>
       <canvas ref={canvasRef} aria-label="Carte de la course" role="img" />
+      <div className="calque-bateau" ref={calqueRef}><div id="rose-carte" /></div>
       <div className="outils-carte">
         <button className="btn btn-petit" onClick={() => ((globe || (lecture && course.distance_reelle)) && zoomGlobe.current ? zoomGlobe.current(1.3) : zoomBouton(1.3))} aria-label="Zoomer">+</button>
         <button className="btn btn-petit" onClick={() => ((globe || (lecture && course.distance_reelle)) && zoomGlobe.current ? zoomGlobe.current(1 / 1.3) : zoomBouton(1 / 1.3))} aria-label="Dézoomer">−</button>
@@ -693,6 +877,37 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
  * Class40 (étrave ronde de scow), trimarans Ultim (grand) et Ocean Fifty (plus petit) ; Vintage : monocoque à étrave fine
  * ou trimaran de la taille de l'Ocean Fifty.
  */
+/**
+ * Contours coupés par la ligne de changement de date (Eurasie au détroit de Béring) : le tracé saute d'un bord à l'autre
+ * du planisphère, et ces deux sauts dessinaient une bande de couleur inversée tout le long de la carte au nord
+ * (12/11/2026). On sépare alors le contour en deux morceaux fermés, un de chaque côté.
+ */
+const decoupes = new WeakMap<number[][], number[][]>();
+function cotesDecoupees(cotes: number[][]): number[][] {
+  const deja = decoupes.get(cotes);
+  if (deja) return deja;
+  const out: number[][] = [];
+  for (const r of cotes) {
+    const n = r.length / 2;
+    const sauts: number[] = [];
+    for (let i = 0; i < n; i++) if (Math.abs(r[2 * ((i + 1) % n)] - r[2 * i]) > 100) sauts.push(i);
+    if (sauts.length !== 2) {
+      out.push(r);
+      continue;
+    }
+    const [i, j] = sauts;
+    const morceau = (de: number, a: number) => {
+      const m: number[] = [];
+      for (let k = de; k !== a; k = (k + 1) % n) m.push(r[2 * k], r[2 * k + 1]);
+      m.push(r[2 * a], r[2 * a + 1]);
+      return m;
+    };
+    out.push(morceau((i + 1) % n, j), morceau((j + 1) % n, i));
+  }
+  decoupes.set(cotes, out);
+  return out;
+}
+
 export function dessinerCoque(g: CanvasRenderingContext2D, famille: string, Lb: number, lb: number, coul: string, pont = '#f0a030') {
   g.fillStyle = coul;
   g.strokeStyle = '#ffffff';
@@ -805,4 +1020,20 @@ function fleche(g: CanvasRenderingContext2D, cx: number, cy: number, dir: number
   g.moveTo(x1, y1);
   g.lineTo(x1 - dx * 5 + dy * 3.5, y1 - dy * 5 - dx * 3.5);
   g.stroke();
+}
+
+/** Projection d'un point sur le trajet : longueur parcourue jusqu'au point le plus proche, et distance à ce point (pixels). */
+function projeter(pts: [number, number][], px: number, py: number): { s: number; d: number } {
+  let meilleur = { s: 0, d: Infinity };
+  let cumul = 0;
+  for (let i = 1; i < pts.length; i++) {
+    const [ax, ay] = pts[i - 1], [bx, by] = pts[i];
+    const dx = bx - ax, dy = by - ay;
+    const seg2 = dx * dx + dy * dy;
+    const t = seg2 ? Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / seg2)) : 0;
+    const d = Math.hypot(px - (ax + dx * t), py - (ay + dy * t));
+    if (d < meilleur.d) meilleur = { s: cumul + t * Math.sqrt(seg2), d };
+    cumul += Math.sqrt(seg2);
+  }
+  return meilleur;
 }

@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { Component, ReactNode, useState } from 'react';
 import type { EtatPartie } from '@cal/engine';
 import { ecrireStockage, Lancement, lireStockage, REGLAGES_DEFAUT, Reglages } from './commun';
 import Accueil from './ecrans/Accueil';
 import Configuration from './ecrans/Configuration';
 import ChoixSkippers from './ecrans/ChoixSkippers';
-import Jeu from './ecrans/Jeu';
+import Jeu, { derniereSauvegarde } from './ecrans/Jeu';
 import Fin from './ecrans/Fin';
 import Regles from './ecrans/Regles';
 import Reseau from './ecrans/Reseau';
@@ -84,8 +84,11 @@ export default function App() {
       );
     case 'jeu':
       return (
+        <Protection key={partieId} onAccueil={() => setEcran('accueil')}>
+          {(reprise) => (
         <Jeu
-          key={partieId}
+          key={reprise ? `r${reprise}` : 'debut'}
+          reprise={reprise ? derniereSauvegarde.etat : undefined}
           lancement={lancement!}
           onQuitter={() => setEcran('accueil')}
           onFin={(e) => {
@@ -93,6 +96,8 @@ export default function App() {
             setEcran('fin');
           }}
         />
+          )}
+        </Protection>
       );
     case 'fin':
       return (
@@ -111,5 +116,34 @@ export default function App() {
           onAccueil={() => setEcran('accueil')}
         />
       );
+  }
+}
+
+/**
+ * Protection contre un plantage de l'affichage (12/11/2026, écran noir signalé par le porteur de projet) : au lieu d'un
+ * écran noir, on explique, on montre l'erreur et on propose de reprendre la partie là où elle en était.
+ */
+class Protection extends Component<{ children: (reprise: number) => ReactNode; onAccueil: () => void }, { erreur: Error | null; reprise: number }> {
+  state = { erreur: null as Error | null, reprise: 0 };
+  static getDerivedStateFromError(erreur: Error) {
+    return { erreur };
+  }
+  componentDidCatch(erreur: Error) {
+    console.error('Plantage de l’affichage du jeu', erreur);
+  }
+  render() {
+    const { erreur, reprise } = this.state;
+    if (!erreur) return this.props.children(reprise);
+    return (
+      <div className="ecran centre" style={{ padding: 24, maxWidth: 640, margin: '40px auto' }}>
+        <h2>Oups, l'affichage du jeu a planté</h2>
+        <p className="muted">La partie est gardée : vous pouvez la reprendre là où elle en était. Si cela recommence, envoyez le message ci-dessous.</p>
+        <pre style={{ whiteSpace: 'pre-wrap', fontSize: 12, background: '#0a2033', padding: 10, borderRadius: 8, userSelect: 'all' }}>{String(erreur.stack ?? erreur.message).slice(0, 1200)}</pre>
+        <div style={{ display: 'flex', gap: 10, marginTop: 12 }}>
+          {derniereSauvegarde.etat && <button className="btn btn-principal" onClick={() => this.setState({ erreur: null, reprise: reprise + 1 })}>Reprendre la partie</button>}
+          <button className="btn" onClick={this.props.onAccueil}>Accueil</button>
+        </div>
+      </div>
+    );
   }
 }

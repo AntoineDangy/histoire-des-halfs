@@ -1,9 +1,12 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { alizeApres, alizeEn, dansAlize, frontSur, ventCourant } from '@cal/engine';
 import { ANGLE_MIN, angleAllure, apercuCap, bateau, usureParTour, choisirIA, demiCapsPermis, NB_DIR, nomAllure, nomCap, NOMS_ALLURES, NOMS_DIR, NOMS_DIR_LONGS, norm, peutRecoudre, surCaseAbri } from '@cal/engine';
 import type { Choix, EtatPartie } from '@cal/engine';
-import { competenceDef, D, DE_LARGE, faces, RISQUES } from '../commun';
+import { bateauDef, competenceDef, D, DE_LARGE, faces, RISQUES, skipper } from '../commun';
+import { modeleDuBateau } from './scene3d';
+import IconeVoile from './IconeVoile';
+import type { RoseCarte } from './Carte';
 import { voitTendance } from '@cal/engine';
 
 export function Girouette({ direction, taille = 40, force }: { direction: number; taille?: number; force?: number }) {
@@ -45,15 +48,18 @@ export function PastilleRisque({ niveau, court = false, pct = false }: { niveau:
   );
 }
 
-/** Barre d'usure d'une voile : actuelle, plus ce que le tour va coûter avec le vent actuel. */
-function BarreUsure({ usure, ajout }: { usure: number; ajout: number }) {
+/** Jauge d'état d'une voile, sous son dessin (essai d'interface du 12/11/2026) : usure actuelle, puis ce que le tour va coûter. */
+function JaugeVoile({ usure, ajout, perdue = false }: { usure: number; ajout: number; perdue?: boolean }) {
   const seuil = D.regles.usure?.seuil ?? 100;
-  const u = Math.min(100, (usure / seuil) * 100), a = Math.min(100 - u, (ajout / seuil) * 100);
-  const couleur = u + a >= 100 ? '#ff5d5d' : u >= 60 ? '#ffb347' : '#4cc38a';
+  const u = perdue ? 100 : Math.min(100, (usure / seuil) * 100), a = perdue ? 0 : Math.min(100 - u, (ajout / seuil) * 100);
+  const couleur = perdue || u + a >= 100 ? '#ff5d5d' : u + a >= 60 ? '#ffb347' : '#4cc38a';
   return (
-    <span className="barre-usure" title={`Usure ${Math.round(u)} % · ce tour : +${Math.round(a)} %`}>
-      <span style={{ width: `${u}%`, background: couleur }} />
-      <span style={{ width: `${a}%`, background: couleur, opacity: 0.45 }} />
+    <span className="jauge-voile" title={perdue ? 'Voile perdue (réparable au port, ou à recoudre)' : `Usure ${Math.round(u)} % · après ce tour : ${Math.round(u + a)} % (à 100 %, la voile explose)`}>
+      <span className="jauge-fond">
+        <span style={{ width: `${u}%`, background: couleur }} />
+        <span className="jauge-ajout" style={{ width: `${a}%`, background: couleur }} />
+      </span>
+      <span className="jauge-txt" style={{ color: couleur }}>{perdue ? 'perdue' : a >= 1 ? `${Math.round(u)} → ${Math.round(u + a)} %` : `${Math.round(u)} %`}</span>
     </span>
   );
 }
@@ -95,14 +101,136 @@ function ExplicationVoile({ nomVoile, usure, ajout, noir, quiz, reparations, for
   );
 }
 
+/** Ce que le tableau de bord transmet à la carte : cap visé, distance retenue et poignée de réglage de la distance. */
+export interface ApercuChoix {
+  cap: number | null;
+  distance: number;
+  /** Distance maximale de la voile choisie (en cases), quand la distance se règle sur la carte. */
+  max: number;
+  /** Réglage de la distance depuis la carte (poignée sur la trajectoire) ; null si rien à régler. */
+  choisir: ((d: number) => void) | null;
+  /** Voile choisie (undefined : pas encore choisie) : montrée sur l'aperçu 3D du volet de droite. */
+  voile?: string | null;
+  /** Boussole : caps choisis d'une touche sur la couronne de la carte. */
+  rose?: RoseCarte;
+}
+
 interface Props {
   etat: EtatPartie;
   bateauId: string;
-  onApercu: (cap: number | null, distance: number) => void;
+  onApercu: (a: ApercuChoix) => void;
   onValider: (c: Choix) => void;
+  /** Jeu à plusieurs sur le même écran : « À vous, … ». */
+  entete?: string;
 }
 
-export default function TableauBord({ etat, bateauId, onApercu, onValider }: Props) {
+type LigneVoile = ReturnType<typeof apercuCap>['voiles'][number];
+
+/** État d'une voile pour ce cap : utilisable ou non, et pourquoi. */
+function etatVoile(b: ReturnType<typeof bateau>, v: LigneVoile, force: number) {
+  const def = v.voile ? D.voiles.find((x) => x.id === v.voile)! : null;
+  const perdue = v.voile !== null && b.voilesPerdues.includes(v.voile);
+  const absente = v.voile !== null && !b.voiles.includes(v.voile) && !perdue;
+  const tropFort = !absente && !perdue && v.distance !== null && v.risque >= 5;
+  const raison = absente ? 'Laissée à quai' : perdue ? 'Voile perdue' : tropFort ? `Vent trop fort (force ${force}) : elle ne tiendrait pas` : v.distance === null ? v.details[0]?.libelle ?? 'Inutilisable à cette allure' : def?.detail ?? 'Obligé d\'aller au bout';
+  const desactive = absente || perdue || v.distance === null || tropFort; // plus de « case noire » : voile interdite (11/11/2026)
+  return { def, raison, desactive };
+}
+
+/** Abréviation française d'un des 16 caps (O pour Ouest) : N, NNE… OSO, O, ONO, NO, NNO. */
+const capFr = (c: number) => NOMS_DIR[c].replace(/W/g, 'O');
+
+/** Étoile de la boussole : 4 grandes branches (N, E, S, O) et 4 petites (NE, SE, SO, NO), une moitié claire, une sombre. */
+function EtoileBoussole() {
+  const branches: JSX.Element[] = [];
+  const pt = (deg: number, r: number) => `${(Math.sin((deg * Math.PI) / 180) * r).toFixed(2)},${(-Math.cos((deg * Math.PI) / 180) * r).toFixed(2)}`;
+  for (const [deg, long, large] of [[45, 60, 9], [135, 60, 9], [225, 60, 9], [315, 60, 9], [0, 96, 13], [90, 96, 13], [180, 96, 13], [270, 96, 13]] as const) {
+    branches.push(
+      <g key={deg}>
+        <polygon points={`0,0 ${pt(deg, long)} ${pt(deg - 45, large)}`} fill="rgba(240,245,250,0.92)" stroke="rgba(10,25,40,0.9)" strokeWidth="0.8" />
+        <polygon points={`0,0 ${pt(deg, long)} ${pt(deg + 45, large)}`} fill="rgba(10,25,40,0.92)" stroke="rgba(240,245,250,0.9)" strokeWidth="0.8" />
+      </g>,
+    );
+  }
+  return <>{branches}</>;
+}
+
+/**
+ * Rose des caps posée sur la carte, centrée sur le bateau, dessinée comme une boussole (essai d'interface du 12/11/2026,
+ * demande du porteur de projet) : seuls les caps possibles (au moins une voile utilisable) sont proposés à la touche.
+ * Flèche orange : d'où vient le vent. Taille fixe ; presque invisible, elle ressort quand la souris passe dessus.
+ */
+function RoseCaps({ caps, cap, survol, vent, pret, onChoisir }: {
+  caps: { cap: number; louvoyage: boolean; allure: string }[];
+  cap: number | null;
+  /** Cap sous la souris (aiguille pâle). */
+  survol: number | null;
+  vent: { direction: number };
+  pret: boolean;
+  onChoisir: (c: number) => void;
+}) {
+  const graduations = Array.from({ length: 64 }, (_, i) => i);
+  return (
+    <div className={`rose-carte ${cap !== null ? 'choisi' : ''} ${pret ? 'pret' : ''}`} role="group" aria-label="Rose des caps possibles">
+      <svg className="boussole" viewBox="-100 -100 200 200" aria-hidden>
+        <defs>
+          <mask id="boussole-trou">
+            <rect x="-100" y="-100" width="200" height="200" fill="#fff" />
+            <circle r="13" fill="#000" />
+          </mask>
+        </defs>
+        <g mask="url(#boussole-trou)">
+          <circle r="98" fill="rgba(8,24,39,0.35)" stroke="rgba(240,245,250,0.85)" strokeWidth="1.2" />
+          <circle r="88" fill="none" stroke="rgba(240,245,250,0.85)" strokeWidth="1.2" />
+          <circle r="79" fill="none" stroke="rgba(240,245,250,0.6)" strokeWidth="0.8" strokeDasharray="1 2" />
+          {graduations.map((i) => {
+            const grand = i % 4 === 0;
+            return <line key={i} x1="0" y1={-88} x2="0" y2={grand ? -82 : -85} stroke="rgba(240,245,250,0.85)" strokeWidth={grand ? 1.6 : 0.8} transform={`rotate(${i * 5.625})`} />;
+          })}
+          {Array.from({ length: 16 }, (_, i) => (
+            <polygon key={i} points="0,-97 -3,-91 3,-91" fill="rgba(240,245,250,0.9)" transform={`rotate(${i * 22.5 + 11.25})`} />
+          ))}
+          <circle r="30" fill="none" stroke="rgba(240,245,250,0.6)" strokeWidth="0.8" strokeDasharray="2 3" />
+          <g opacity="0.88"><EtoileBoussole /></g>
+          {/* Caps possibles : un simple trait sur la couronne (boussole épurée, demande du 12/11/2026). */}
+          {caps.map(({ cap: c }) => (
+            <line key={`t${c}`} x1="0" y1={-89} x2="0" y2={Number.isInteger(c) ? -98 : -95} stroke="#f0f5fa"
+              strokeWidth={Number.isInteger(c) ? 2.4 : 1.6} strokeLinecap="round" transform={`rotate(${c * 22.5})`} />
+          ))}
+          {survol !== null && survol !== cap && <line x1="0" y1="-14" x2="0" y2="-96" stroke="#3dd6f5" strokeOpacity="0.5" strokeWidth="3" strokeLinecap="round" transform={`rotate(${survol * 22.5})`} />}
+          {cap !== null && <line x1="0" y1="-14" x2="0" y2="-96" stroke="#3dd6f5" strokeWidth="4" strokeLinecap="round" transform={`rotate(${cap * 22.5})`} />}
+        </g>
+      </svg>
+      <div className="rose-vent" style={{ transform: `rotate(${vent.direction * 22.5}deg)` }}>
+        <svg width="20" height="28" viewBox="-10 0 20 28" aria-hidden>
+          <path d="M0 2 L0 24" stroke="#ff9f43" strokeWidth="4" strokeLinecap="round" />
+          <path d="M-7 15 L0 25 L7 15" fill="none" stroke="#ff9f43" strokeWidth="4" strokeLinejoin="round" strokeLinecap="round" />
+        </svg>
+      </div>
+      {caps.map(({ cap: c, louvoyage, allure }) => {
+        const rad = (c * 22.5 * Math.PI) / 180;
+        const demi = !Number.isInteger(c);
+        const sin = Math.sin(rad).toFixed(4), cos = (-Math.cos(rad)).toFixed(4);
+        // Ni libellé ni pastille (demande du porteur de projet, 12/11/2026) : le cap se choisit d'une touche sur la couronne
+        // (Carte.tsx, cap le plus proche). Ces boutons invisibles servent au clavier et aux lecteurs d'écran.
+        return (
+          <button
+            key={c}
+            className={`cap-carte ${demi ? 'demi' : c % 4 === 0 ? 'cardinal' : c % 2 ? 'secondaire' : ''} ${louvoyage ? 'louvoyage' : ''}`}
+            style={{ left: `calc(${sin} * var(--r-rose))`, top: `calc(${cos} * var(--r-rose))` }}
+            aria-pressed={cap === c}
+            aria-label={demi ? `${nomCap(c, true)} (demi-cap)` : NOMS_DIR_LONGS[c]}
+            title={`${demi ? nomCap(c, true) : NOMS_DIR_LONGS[c]} · ${louvoyage ? 'louvoyage face au vent' : allure}`}
+            onClick={() => onChoisir(c)}
+          >
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+export default function TableauBord({ etat, bateauId, onApercu, onValider, entete }: Props) {
   const b = bateau(etat, bateauId);
   // Vent qui souffle là où est le bateau (vent général, ou vent du front).
   const vent = ventCourant(etat, b.x, b.y);
@@ -113,9 +241,11 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider }: Pro
   const [voileId, setVoileId] = useState<string | null | undefined>(undefined);
   const [distanceMax, setDistanceMax] = useState<number | null>(null);
   const [recoudre, setRecoudre] = useState<string | null>(null);
+  const [infos, setInfos] = useState(false);
   const comp = competenceDef(b.competence);
   const classe = D.classes.find((c) => c.id === etat.params.classe);
   const bulletin = etat.params.options.bulletinMeteo && classe?.bulletin_meteo;
+  const sansVoile = b.voiles.length === 0;
 
   useEffect(() => {
     setCap(null);
@@ -124,16 +254,33 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider }: Pro
     setRecoudre(null);
   }, [bateauId, etat.tour]);
 
+  const demiCaps = demiCapsPermis(D, etat, b);
+  // Caps proposés sur la rose : ceux où au moins une voile est utilisable.
+  const caps = useMemo(() => {
+    const liste: number[] = Array.from({ length: NB_DIR }, (_, c) => c);
+    if (demiCaps) for (let c = 0; c < NB_DIR; c++) liste.push(c + 0.5);
+    return liste
+      .filter((c) => apercuCap(D, etat, bateauId, c).voiles.some((v) => (v.voile !== null || sansVoile) && !etatVoile(b, v, vent.force).desactive))
+      .map((c) => {
+        const a = angleAllure(c, vent.direction);
+        return { cap: c, louvoyage: a < ANGLE_MIN, allure: Number.isInteger(c) ? NOMS_ALLURES[a] : nomAllure(a) };
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [etat, bateauId, demiCaps]);
+
   const apercu = useMemo(() => (cap === null ? null : apercuCap(D, etat, bateauId, cap)), [etat, bateauId, cap]);
   const ligne = apercu && voileId !== undefined ? apercu.voiles.find((v) => v.voile === voileId) ?? null : null;
   let distance = ligne?.distance ?? 0;
   if (recoudre && distance) distance = Math.max(1, Math.floor(distance / 2));
   const distEffective = ligne && ligne.voile !== null && distanceMax ? Math.min(distanceMax, distance) : distance;
+  const pret = cap !== null && voileId !== undefined && ligne !== null && ligne.distance !== null;
+  const reglable = pret && ligne!.voile !== null && distance > 1;
 
-  useEffect(() => {
-    onApercu(cap, distEffective);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cap, distEffective]);
+  // Poignée de distance sur la carte : la valeur maximale de la voile revient à « Max ».
+  const distanceRef = useRef(distance);
+  distanceRef.current = distance;
+  const choisirDistance = useCallback((d: number) => setDistanceMax(d >= distanceRef.current ? null : Math.max(1, Math.round(d))), []);
+
 
   const choisirCap = (c: number) => {
     setCap(c);
@@ -143,27 +290,39 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider }: Pro
     if (voileId !== undefined && !a.voiles.find((v) => v.voile === voileId && v.distance !== null)) setVoileId(undefined);
   };
 
-  const sansVoile = b.voiles.length === 0;
-  // Bouton Valider posé sur la carte, toujours visible (11/11/2026, porteur de projet) : grisé tant que les choix manquent.
-  const [cibleValider, setCibleValider] = useState<HTMLElement | null>(null);
-  useEffect(() => setCibleValider(document.getElementById('valider-carte')), []);
+  // Boussole : la carte choisit le cap d'une touche sur la couronne (le plus proche) et montre le cap survolé.
+  const [survolCap, setSurvolCap] = useState<number | null>(null);
+  const choisirCapRef = useRef(choisirCap);
+  choisirCapRef.current = choisirCap;
+  const roseCarte = useMemo<RoseCarte>(() => ({
+    caps: caps.map((c) => c.cap),
+    choisir: (c) => choisirCapRef.current(c),
+    survoler: setSurvolCap,
+    nom: (c) => {
+      const x = caps.find((k) => k.cap === c);
+      return `${Number.isInteger(c) ? NOMS_DIR_LONGS[c] : nomCap(c, true)}${x ? ` · ${x.louvoyage ? 'louvoyage face au vent' : x.allure}` : ''}`;
+    },
+  }), [caps]);
+
+  useEffect(() => {
+    onApercu({ cap, distance: distEffective, max: reglable ? distance : 0, choisir: reglable ? choisirDistance : null, voile: voileId, rose: roseCarte });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cap, distEffective, distance, reglable, voileId, roseCarte]);
+
+  // La rose est posée sur la carte, autour du bateau (cible créée par Carte.tsx).
+  const [cibleRose, setCibleRose] = useState<HTMLElement | null>(null);
+  useEffect(() => setCibleRose(document.getElementById('rose-carte')), []);
   const [cibleMeteo, setCibleMeteo] = useState<HTMLElement | null>(null);
   useEffect(() => setCibleMeteo(document.getElementById('meteo-carte')), []);
-  const pret = cap !== null && voileId !== undefined && ligne !== null && ligne.distance !== null;
-  const bouton = (
-    <button
-      className="btn btn-principal btn-valider-flottant"
-      disabled={!pret}
-      onClick={() => onValider({ cap, voile: voileId ?? null, distanceMax: ligne?.voile !== null ? distanceMax : null, ...(recoudre ? { recoudre } : {}) })}
-    >
-      Valider
-    </button>
-  );
-  const demiCaps = demiCapsPermis(D, etat, b);
   // La tendance n'est connue que d'un skipper météo, et elle reste une probabilité, pas une certitude.
   const tendanceTexte = !bulletin || !voitTendance(D, b) ? null : etat.tendance === 0 ? 'vent attendu stable' : `rotation attendue vers ${NOMS_DIR[norm(vent.direction + 2 * etat.tendance)]} (non certaine)`;
   const mpc = D.courses.find((c) => c.id === etat.params.courseId)?.milles_par_case ?? 1;
   const mn = (cases: number) => `${Math.round(cases * mpc)} mn`;
+  const couleurSpi = skipper(b.skipperId).couleurs.spi;
+  const modele = modeleDuBateau(b.famille, bateauDef(b.bateauId)?.modele_3d);
+  const jauge = (v: string) => (b.voiles.includes(v) || b.voilesPerdues.includes(v)
+    ? <JaugeVoile usure={b.usure?.[v] ?? 0} ajout={usureParTour(D, etat, v, vent.force, b.famille)} perdue={b.voilesPerdues.includes(v)} />
+    : <span className="jauge-txt muted">à quai</span>);
 
   const meteo = (
         <div className="meteo-sur-carte" title={D.regles.beaufort[vent.force]}>
@@ -194,169 +353,65 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider }: Pro
         </div>
   );
 
-  return (
+  // Alertes météo (front, alizés, bulletin) : une ligne courte sous la météo, le texte complet en la touchant.
+  const alertes = (
     <>
       {front && (
-        <div className={`alerte-front ${front.zone}`}>
+        <details className={`alerte-carte ${front.zone}`}>
+          <summary>{front.front.type === 'anticyclone' ? '🔵 Dans l\'anticyclone' : front.front.type === 'molle' ? '🌫 Dans la molle' : front.zone === 'front' ? '⛈ Dans le front' : '🌤 Dans la traîne'}</summary>
           {front.front.type === 'anticyclone'
-            ? `🔵 Vous êtes dans ${front.front.nom ? `l'${front.front.nom.charAt(0).toLowerCase()}${front.front.nom.slice(1)}` : "l'anticyclone"} : vent faible au centre, qui tourne autour dans le sens ${front.front.hemisphere === 'S' ? "inverse des aiguilles d'une montre (hémisphère sud)" : "des aiguilles d'une montre"} (ici ${NOMS_DIR_LONGS[vent.direction]} F${vent.force}). Contournez-le !`
+            ? `Vous êtes dans ${front.front.nom ? `l'${front.front.nom.charAt(0).toLowerCase()}${front.front.nom.slice(1)}` : "l'anticyclone"} : vent faible au centre, qui tourne autour dans le sens ${front.front.hemisphere === 'S' ? "inverse des aiguilles d'une montre (hémisphère sud)" : "des aiguilles d'une montre"} (ici ${NOMS_DIR_LONGS[vent.direction]} F${vent.force}). Contournez-le !`
             : front.front.type === 'molle'
-            ? `🌫 Vous êtes dans la molle : vent faible (F${vent.force}) et instable. Patience… ou cherchez à en sortir !`
+            ? `Vous êtes dans la molle : vent faible (F${vent.force}) et instable. Patience… ou cherchez à en sortir !`
             : front.zone === 'front'
-            ? `⛈ Vous êtes dans le front : vent de secteur ${NOMS_DIR_LONGS[front.front.direction]} force ${front.front.force}. Réduisez la toile… ou attaquez !`
-            : `🌤 Vous êtes dans la traîne du front : le vent a basculé au ${NOMS_DIR_LONGS[vent.direction]}, force ${vent.force}.`}
-        </div>
+            ? `Vous êtes dans le front : vent de secteur ${NOMS_DIR_LONGS[front.front.direction]} force ${front.front.force}. Réduisez la toile… ou attaquez !`
+            : `Vous êtes dans la traîne du front : le vent a basculé au ${NOMS_DIR_LONGS[vent.direction]}, force ${vent.force}.`}
+        </details>
       )}
-      {dansLesAlizes && (
-        <div className="alerte-front alize">
-          {/* Zones de vent régulier (12/11/2026) : alizés, et sur les tours du monde vents d'ouest, anticyclone… */}
-          🌬 {(() => { const az = alizeEn(etat, b.x, b.y); return !az?.nom || /^Alizés/.test(az.nom) ? 'Vous êtes dans les alizés' : `Vous êtes dans la zone « ${az.nom} »`; })()} : ici {NOMS_DIR_LONGS[vent.direction]} F{vent.force}. Les dés le font tourner, sans sortir de sa plage ({(() => { const az = alizeEn(etat, b.x, b.y); return az ? `${NOMS_DIR_LONGS[az.directions[0]]} à ${NOMS_DIR_LONGS[az.directions[1]]}, force ${az.forces[0]} à ${az.forces[1]}` : ''; })()}). {(() => { const az = alizeEn(etat, b.x, b.y); if (az?.nom && !/^Alizés/.test(az.nom)) return ''; return (az?.directions[1] ?? 0) >= 8 ? 'Caps Ouest, Nord-Ouest et Nord favorisés' : 'Caps Sud, Sud-Ouest et Ouest favorisés'; })()}
-          (+1 point, environ +75 milles par tour).
-        </div>
-      )}
+      {dansLesAlizes && (() => {
+        // Zones de vent régulier (12/11/2026) : alizés, et sur les tours du monde vents d'ouest, anticyclone…
+        const az = alizeEn(etat, b.x, b.y);
+        const alizes = !az?.nom || /^Alizés/.test(az.nom);
+        return (
+          <details className="alerte-carte alize">
+            <summary>🌬 {alizes ? 'Dans les alizés' : az!.nom}</summary>
+            {alizes ? 'Vous êtes dans les alizés' : `Vous êtes dans la zone « ${az!.nom} »`} : ici {NOMS_DIR_LONGS[vent.direction]} F{vent.force}. Les dés le font tourner, sans sortir de sa plage ({az ? `${NOMS_DIR_LONGS[az.directions[0]]} à ${NOMS_DIR_LONGS[az.directions[1]]}, force ${az.forces[0]} à ${az.forces[1]}` : ''}). {!alizes ? '' : (az?.directions[1] ?? 0) >= 8 ? 'Caps Ouest, Nord-Ouest et Nord favorisés' : 'Caps Sud, Sud-Ouest et Ouest favorisés'}
+            {' '}(+1 point, environ +75 milles par tour).
+          </details>
+        );
+      })()}
       {!front && annonce && (
-        <div className="alerte-front annonce">
-          📡 Bulletin : un front arrive dans {annonce.annonce} tour{annonce.annonce > 1 ? 's' : ''} (vent de secteur {NOMS_DIR_LONGS[annonce.direction]} F{annonce.force}, puis bascule au {NOMS_DIR_LONGS[norm(annonce.direction + annonce.bascule)]}). Sa trajectoire est en pointillés sur la carte : l'éviter, l'attaquer, vous abriter ou jouer la bascule ?
-        </div>
+        <details className="alerte-carte annonce">
+          <summary>📡 Front dans {annonce.annonce} tour{annonce.annonce > 1 ? 's' : ''}</summary>
+          Bulletin : un front arrive dans {annonce.annonce} tour{annonce.annonce > 1 ? 's' : ''} (vent de secteur {NOMS_DIR_LONGS[annonce.direction]} F{annonce.force}, puis bascule au {NOMS_DIR_LONGS[norm(annonce.direction + annonce.bascule)]}). Sa trajectoire est en pointillés sur la carte : l'éviter, l'attaquer, vous abriter ou jouer la bascule ?
+        </details>
       )}
-      {/* Météo actuelle posée sur la carte (12/11/2026, demande du porteur de projet : plus facile à voir et à comprendre). */}
-      {cibleMeteo ? createPortal(meteo, cibleMeteo) : meteo}
+    </>
+  );
 
-      <div className="panneau" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        <div className="resume-choix">
-          <div>
-            <div className="lbl">Votre cap</div>
-            <div style={{ fontWeight: 700 }}>
-              {cap === null ? 'Touchez une direction' : angleAllure(cap, vent.direction) < ANGLE_MIN ? `Cap ${nomCap(cap)} · Louvoyage face au vent (${Math.round((D.regles.louvoyage?.coefficient ?? 0.6) * 100)} % de la distance au près)` : `Cap ${nomCap(cap)} · ${nomAllure(angleAllure(cap, vent.direction))} ${String(angleAllure(cap, vent.direction)).replace('.', ',')}°`}
-            </div>
-          </div>
-          {pret && <div className="gros">{mn(distEffective)}</div>}
-        </div>
-        <div className="rose16" role="group" aria-label="Rose des 16 caps">
-          <svg className="rose-fond" viewBox="-100 -100 200 200" aria-hidden>
-            <circle r="62" fill="none" stroke="#1f3d5a" />
-            <circle r="34" fill="#0a2033" stroke="#1f3d5a" />
-            <g style={{ transform: `rotate(${vent.direction * 22.5}deg)` }}>
-              <path d="M0 -60 L0 -40" stroke="#ff9f43" strokeWidth="4" strokeLinecap="round" />
-              <path d="M-7 -48 L0 -38 L7 -48" fill="none" stroke="#ff9f43" strokeWidth="4" strokeLinejoin="round" strokeLinecap="round" />
-            </g>
-            {demiCaps && (
-              // Rosace des demi-caps (essai du 11/11/2026) : à moins de 500 milles de l'arrivée, 16 pointes entre les 16 caps.
-              <g className="rosace-demi">
-                {Array.from({ length: NB_DIR }, (_, c) => (
-                  <g key={c} style={{ transform: `rotate(${(c + 0.5) * 22.5}deg)` }}>
-                    <path d="M0 -36 L4.5 -58 L0 -80 Z" fill="#7d93a8" />
-                    <path d="M0 -36 L-4.5 -58 L0 -80 Z" fill="#4d6378" />
-                  </g>
-                ))}
-              </g>
-            )}
-            <g style={{ transform: `rotate(${(cap ?? 0) * 22.5}deg)` }} opacity={cap === null ? 0.35 : 1}>
-              <path d="M0 -24 Q9 -6 7 18 L-7 18 Q-9 -6 0 -24 Z" fill="#3dd6f5" stroke="#fff" strokeWidth="1.5" />
-            </g>
-          </svg>
-          {demiCaps && Array.from({ length: NB_DIR }, (_, k) => {
-            const c = k + 0.5;
-            const a = angleAllure(c, vent.direction);
-            const rad = (c * 22.5 * Math.PI) / 180;
-            const r = 27;
-            return (
-              <button
-                key={`demi-${k}`}
-                className={`demi-cap ${a < ANGLE_MIN ? 'louvoyage' : ''}`}
-                style={{ left: `${50 + Math.sin(rad) * r}%`, top: `${50 - Math.cos(rad) * r}%` }}
-                aria-pressed={cap === c}
-                aria-label={`${nomCap(c, true)} (demi-cap)`}
-                onClick={() => choisirCap(c)}
-                title={`${nomCap(c, true)} · ${a < ANGLE_MIN ? 'louvoyage face au vent' : nomAllure(a)}`}
-              />
-            );
-          })}
-          {Array.from({ length: NB_DIR }, (_, c) => {
-            const a = angleAllure(c, vent.direction);
-            const rad = (c * 22.5 * Math.PI) / 180;
-            const r = 41;
-            return (
-              <button
-                key={c}
-                className={`cap16 ${c % 2 ? 'secondaire' : ''} ${a < ANGLE_MIN ? 'louvoyage' : ''}`}
-                style={{ left: `${50 + Math.sin(rad) * r}%`, top: `${50 - Math.cos(rad) * r}%` }}
-                aria-pressed={cap === c}
-                onClick={() => choisirCap(c)}
-                title={`${NOMS_DIR_LONGS[c]} · ${a < ANGLE_MIN ? 'louvoyage face au vent' : NOMS_ALLURES[a]}`}
-              >
-                {NOMS_DIR[c]}
-              </button>
-            );
-          })}
-        </div>
-        <button
-          className="btn btn-petit"
-          title="Propose le cap et la voile que choisirait un routeur (l'IA de niveau moyen)"
-          onClick={() => {
-            const c = choisirIA(D, structuredClone(etat), bateauId, { utilisableMaintenant: true });
-            if (c.cap !== null) {
-              setCap(c.cap);
-              setVoileId(c.voile);
-              setDistanceMax(null);
-            }
-          }}
-        >
-          💡 Conseil du routeur
-        </button>
-        <div className="muted" style={{ fontSize: 12, textAlign: 'center' }}>Flèche orange : d'où vient le vent</div>
-        {surCaseAbri(D, etat, b) && vent.force >= 6 && (
-          <button className="btn btn-petit" onClick={() => onValider({ cap: null, voile: null, distanceMax: null })}>
-            ⛱ Rester à l'abri de la côte ce tour
-          </button>
-        )}
-      </div>
+  const capTexte = cap === null
+    ? 'Choisissez un cap sur la rose, autour de votre bateau'
+    : angleAllure(cap, vent.direction) < ANGLE_MIN
+    ? `Cap ${Number.isInteger(cap) ? capFr(cap) : nomCap(cap).replace(/W/g, 'O')} · louvoyage face au vent (${Math.round((D.regles.louvoyage?.coefficient ?? 0.6) * 100)} % de la distance au près)`
+    : `Cap ${Number.isInteger(cap) ? capFr(cap) : nomCap(cap).replace(/W/g, 'O')} · ${nomAllure(angleAllure(cap, vent.direction))} ${String(angleAllure(cap, vent.direction)).replace('.', ',')}°`;
 
-      {apercu && (
-        <div className="panneau" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-            <span className="lbl">Voiles</span>
-            <span className="lbl">Risque d'incident · distance</span>
-          </div>
-          <div className="voiles">
-            {apercu.voiles.map((v) => {
-              const def = v.voile ? D.voiles.find((x) => x.id === v.voile)! : null;
-              const perdue = v.voile !== null && b.voilesPerdues.includes(v.voile);
-              const absente = v.voile !== null && !b.voiles.includes(v.voile) && !perdue;
-              if (v.voile === null && !sansVoile) return null;
-              const tropFort = !absente && !perdue && v.distance !== null && v.risque >= 5;
-              const raison = absente ? 'Laissée à quai' : perdue ? 'Voile perdue' : tropFort ? `Vent trop fort (force ${vent.force}) : elle ne tiendrait pas` : v.distance === null ? v.details[0]?.libelle ?? 'Inutilisable à cette allure' : def?.detail ?? 'Obligé d\'aller au bout';
-              const desactive = absente || perdue || v.distance === null || tropFort; // plus de « case noire » : voile interdite (11/11/2026)
-              return (
-                <button key={v.voile ?? 'sec'} className="ligne-voile" aria-pressed={voileId === v.voile} disabled={desactive} onClick={() => setVoileId(v.voile)}>
-                  <div>
-                    <div className="n">{def ? def.nom : 'À sec de toile'}</div>
-                    <div className="s">{raison}</div>
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4 }}>
-                    {!desactive && v.risque >= 5 && <span className="effet dommage">Case noire</span>}
-                    {!desactive && v.voile && v.risque < 5 && <BarreUsure usure={b.usure?.[v.voile] ?? 0} ajout={usureParTour(D, etat, v.voile, vent.force, b.famille)} />}
-                  </div>
-                  <div className="dist">{desactive ? '—' : <>{Math.round(v.distance! * mpc)}<small> mn</small></>}</div>
-                </button>
-              );
-            })}
-          </div>
-          {/* distance max juste sous le choix des voiles, avant l'explication des risques (11/11/2026, porteur de projet) */}
-          {pret && ligne!.voile !== null && (
-            <div className="reglage">
-              <span>Distance max</span>
-              <div className="stepper">
-                <button className="btn" aria-label="Moins" onClick={() => setDistanceMax(Math.max(1, (distanceMax ?? distance) - 1))}>−</button>
-                <b style={{ minWidth: 92, textAlign: 'center' }}>{distanceMax && distanceMax < distance ? mn(distanceMax) : `Max (${mn(distance)})`}</b>
-                <button className="btn" aria-label="Plus" onClick={() => setDistanceMax(distanceMax && distanceMax + 1 < distance ? distanceMax + 1 : null)}>+</button>
-              </div>
-            </div>
-          )}
+  const routeur = () => {
+    const c = choisirIA(D, structuredClone(etat), bateauId, { utilisableMaintenant: true });
+    if (c.cap !== null) {
+      setCap(c.cap);
+      setVoileId(c.voile);
+      setDistanceMax(null);
+    }
+  };
+
+  const barre = (
+    <div className="barre-commandes" role="group" aria-label="Commandes du bateau">
+      {infos && apercu && (
+        <div className="panneau details-voile">
           <div className="muted legende-risque">
-            La barre donne l'usure de chaque voile d'avant : en clair, ce que le tour va lui coûter avec le vent actuel. À 100 %, la voile explose.
+            La barre sous chaque voile donne son usure : en clair, ce que le tour va lui coûter avec le vent actuel. À 100 %, la voile explose.
           </div>
-          {ligne && ligne.distance !== null && (
+          {ligne && ligne.distance !== null ? (
             <ExplicationVoile
               nomVoile={ligne.voile ? D.voiles.find((x) => x.id === ligne.voile)?.nom_court ?? '' : 'À sec de toile'}
               usure={ligne.voile ? b.usure?.[ligne.voile] ?? 0 : 0}
@@ -366,7 +421,7 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider }: Pro
               reparations={b.reparations}
               force={vent.force}
             />
-          )}
+          ) : <div className="muted">Choisissez une voile pour voir son explication.</div>}
           {ligne && (
             <details className="details">
               <summary>Détails du calcul</summary>
@@ -385,16 +440,83 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider }: Pro
           )}
         </div>
       )}
-
-      <div className="panneau" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {peutRecoudre(D, etat, b) && (
-          <label className="case-cocher">
-            <input type="checkbox" checked={!!recoudre} onChange={(e) => setRecoudre(e.target.checked ? b.voilesPerdues[0] : null)} />
-            ✂ Recoudre {D.voiles.find((v) => v.id === b.voilesPerdues[0])?.nom_court} (mi-distance)
-          </label>
+      <div className="barre-tete">
+        {entete && <span className="lbl">{entete}</span>}
+        <span className="cap-texte">{capTexte}</span>
+        {pret && <b className="gros">{mn(distEffective)}</b>}
+        <button className="lien-discret" title="Propose le cap et la voile que choisirait un routeur (l'IA de niveau moyen)" onClick={routeur}>
+          💡 routeur
+        </button>
+        {apercu && (
+          <button className="btn btn-petit" aria-expanded={infos} onClick={() => setInfos((x) => !x)} title="Usure, dé du large, détails du calcul">
+            ⓘ {infos ? 'Masquer' : 'Détails'}
+          </button>
         )}
-        {cibleValider ? createPortal(bouton, cibleValider) : bouton}
       </div>
+      <div className="barre-ligne">
+        <div className="boutons-voiles">
+          {!apercu && D.regles.voiles_depart.filter((v) => b.voiles.includes(v)).map((v) => {
+            const def = D.voiles.find((x) => x.id === v)!;
+            return (
+              <button key={v} className="bouton-voile" disabled title="Choisissez d'abord un cap">
+                <IconeVoile forme={def.forme_3d ?? null} modele={modele} ris={v === 'reduite'} spi={couleurSpi} />
+                {jauge(v)}
+                <span className="n">{def.nom_court}</span>
+                <span className="d">—</span>
+              </button>
+            );
+          })}
+          {apercu && apercu.voiles.map((v) => {
+            if (v.voile === null && !sansVoile) return null;
+            const { def, raison, desactive } = etatVoile(b, v, vent.force);
+            return (
+              <button key={v.voile ?? 'sec'} className="bouton-voile" aria-pressed={voileId === v.voile} disabled={desactive} onClick={() => setVoileId(v.voile)}
+                title={`${def ? def.nom : 'À sec de toile'} : ${raison}${!desactive && v.risque > 0 && v.risque < 5 ? ` · risque d'incident ${pctRisque(v.risque)} %` : ''}`}>
+                <IconeVoile forme={def ? def.forme_3d ?? 'j2' : null} modele={modele} ris={v.voile === 'reduite'} spi={couleurSpi} />
+                {v.voile && jauge(v.voile)}
+                <span className="n">{def ? def.nom_court : 'À sec'}</span>
+                <span className="d">{desactive ? '—' : mn(v.distance!)}{!desactive && v.risque > 0 && v.risque < 5 && <> <PastilleRisque niveau={v.risque} court /></>}</span>
+                {desactive && <span className="s">{raison.length > 22 ? `${raison.slice(0, 20)}…` : raison}</span>}
+              </button>
+            );
+          })}
+        </div>
+        {reglable && (
+          <div className="stepper reglage-distance" title="Distance maximale : réglable aussi en faisant glisser la poignée au bout de la trajectoire, sur la carte">
+            <button className="btn" aria-label="Moins" onClick={() => setDistanceMax(Math.max(1, (distanceMax ?? distance) - 1))}>−</button>
+            <b>{distanceMax && distanceMax < distance ? mn(distanceMax) : `Max ${mn(distance)}`}</b>
+            <button className="btn" aria-label="Plus" onClick={() => setDistanceMax(distanceMax && distanceMax + 1 < distance ? distanceMax + 1 : null)}>+</button>
+          </div>
+        )}
+        {peutRecoudre(D, etat, b) && (
+          <button className="btn btn-petit" aria-pressed={!!recoudre} onClick={() => setRecoudre(recoudre ? null : b.voilesPerdues[0])} title="Recoudre la voile perdue : le bateau n'avance que de la moitié de la distance">
+            ✂ {recoudre ? '✓ ' : ''}Recoudre {D.voiles.find((v) => v.id === b.voilesPerdues[0])?.nom_court} (mi-distance)
+          </button>
+        )}
+        {surCaseAbri(D, etat, b) && vent.force >= 6 && (
+          <button className="btn btn-petit" onClick={() => onValider({ cap: null, voile: null, distanceMax: null })}>
+            ⛱ Rester à l'abri
+          </button>
+        )}
+        <button
+          className="btn btn-principal bouton-valider"
+          disabled={!pret}
+          onClick={() => onValider({ cap, voile: voileId ?? null, distanceMax: ligne?.voile !== null ? distanceMax : null, ...(recoudre ? { recoudre } : {}) })}
+        >
+          Valider
+        </button>
+      </div>
+    </div>
+  );
+
+  const rose = <RoseCaps caps={caps} cap={cap} survol={survolCap} vent={vent} pret={pret} onChoisir={choisirCap} />;
+
+  return (
+    <>
+      {/* Météo actuelle posée sur la carte (12/11/2026, demande du porteur de projet : plus facile à voir et à comprendre). */}
+      {cibleMeteo ? createPortal(<>{meteo}{alertes}</>, cibleMeteo) : <>{meteo}{alertes}</>}
+      {cibleRose && createPortal(rose, cibleRose)}
+      {barre}
     </>
   );
 }

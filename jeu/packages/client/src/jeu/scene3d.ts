@@ -79,6 +79,11 @@ export interface BateauScene {
   sansVoileAvant?: boolean;
   /** La voile d'avant lâche pendant la scène et tombe à l'eau. */
   perteVoile?: boolean;
+  /**
+   * Voile inutilisable (le vent a tourné) : elle faseye, l'équipage l'affale sur le pont, la range, puis
+   * hisse à la place cette voile d'avant plus petite. Animation distincte de la perte de voile (rien ne casse, rien à l'eau).
+   */
+  affalage?: Forme;
   /** Vitesse du bateau en nœuds (sillage et vague d'étrave). */
   vitesse?: number;
   /** Modèle 3D selon le type de bateau (famille d'architecture). IMOCA à foils par défaut. */
@@ -358,6 +363,10 @@ interface Ud {
   label?: HTMLDivElement;
   voileAvant?: { tack: T.Vector3; head: T.Vector3; clew: T.Vector3; camber: number; lee: number; mesh: T.Mesh; couleur: T.Color };
   chute?: { t0: number; heel0: number; speed0: number; gerbe: number };
+  affale?: {
+    t0: number; heel0: number; speed0: number;
+    nouvelle: { tack: T.Vector3; head: T.Vector3; clew: T.Vector3; camber: number; lee: number; mesh: T.Mesh } | null;
+  };
   /** Goélette : bôme de misaine (mât avant), qui pivote avec la misaine. */
   boomPivot2?: T.Group;
   /** Multicoque chaviré (échelle de Beaufort, F11 et F12) : il flotte à l'envers. */
@@ -1587,6 +1596,7 @@ export class Scene3D {
       this.labels.appendChild(lab);
       ud.label = lab;
       if (def.perteVoile && ud.voileAvant && !this.reduceMotion) ud.chute = { t0: NaN, heel0: ud.heel, speed0: ud.speed, gerbe: 0 };
+      if (def.affalage && ud.voileAvant && !def.perteVoile) ud.affale = this.preparerAffalage(def, ud);
       return b;
     });
     const moi = bateaux.find((b) => b.moi);
@@ -1735,6 +1745,97 @@ export class Scene3D {
     void b;
   }
 
+  /**
+   * Prépare l'affalage : la voile plus petite (construite sur un second bateau identique, dont on reprend la voile d'avant,
+   * même repère), cachée au départ. Sans animation (mouvement réduit) : le bateau est montré directement
+   * sous la petite voile, la grande rangée.
+   */
+  private preparerAffalage(def: BateauScene, ud: Ud): NonNullable<Ud['affale']> {
+    const va = ud.voileAvant!;
+    const parent = va.mesh.parent!;
+    let nouvelle: NonNullable<Ud['affale']>['nouvelle'] = null;
+    try {
+      const autre = buildBoat({ ...def, forme: def.affalage!, affalage: undefined, perteVoile: false });
+      const v2 = (autre.userData as unknown as Ud).voileAvant;
+      if (v2) {
+        v2.mesh.removeFromParent();
+        v2.mesh.visible = false;
+        parent.add(v2.mesh);
+        nouvelle = { tack: v2.tack, head: v2.head, clew: v2.clew, camber: v2.camber, lee: v2.lee, mesh: v2.mesh };
+      }
+      autre.traverse((o) => {
+        const m = o as T.Mesh;
+        if (m !== v2?.mesh && m.geometry) m.geometry.dispose();
+      });
+    } catch {
+      nouvelle = null;
+    }
+    // Plus de chaussette sur le pont (porteur de projet, 12/11/2026 : « moche et pas réaliste ») : la toile affalée est
+    // ramenée vers l'amure et disparaît.
+    const a = { t0: NaN, heel0: ud.heel, speed0: ud.speed, nouvelle };
+    ud.affale = a;
+    if (this.reduceMotion) this.animerAffalage(ud, 0, 99);
+    return a;
+  }
+
+  /**
+   * Voile inutilisable (demande du porteur de projet, 12/11/2026) : 1) la voile faseye, le bateau ralentit ; 2) la têtière
+   * descend le long de l'étai, la toile s'entasse sur l'avant ; 3) elle est rangée (ramenée vers l'amure) ;
+   * 4) la voile d'avant plus petite monte le long de l'étai et se gonfle. Le bateau reste presque arrêté (il n'avance pas
+   * ce tour-ci).
+   */
+  private animerAffalage(ud: Ud, t: number, force?: number) {
+    const a = ud.affale!, va = ud.voileAvant!;
+    if (Number.isNaN(a.t0)) a.t0 = t + 1.2; // le bateau navigue d'abord sous la voile choisie
+    const s = force ?? t - a.t0;
+    if (s < 0 || (s > 9 && force === undefined)) return;
+    const clamp = (x: number) => Math.max(0, Math.min(1, x));
+    const ease = (x: number) => x * x * (3 - 2 * x);
+    const faseye = s < 1.2 ? clamp(s / 0.3) : clamp(1 - (s - 1.2) / 1.6);
+    const descente = ease(clamp((s - 1.0) / 2.2));
+    const range = ease(clamp((s - 3.4) / 1.0));
+    const hisse = ease(clamp((s - 4.8) / 2.4));
+    // 1-2) La grande voile faseye puis descend ; elle s'entasse sur l'avant (ni à l'eau ni mouillée).
+    if (range < 0.6) {
+      const tas = va.tack.clone().add(new T.Vector3(0.3 * va.lee, 0.6, 1.2));
+      // La toile affalée est rangée : le tas se resserre vers l'amure.
+      const head = va.head.clone().lerp(tas, descente).lerp(va.tack, range);
+      const clew = va.clew.clone().lerp(tas.clone().add(new T.Vector3(0.4 * va.lee, 0.2, 2.2)), descente).lerp(tas, range);
+      const g = sailGeometry(va.tack, head, clew, va.camber * (1 - descente) + 0.03, va.lee, 16, 20);
+      const pos = g.attributes.position.array as Float32Array;
+      for (let i = 0; i < pos.length / 3; i++) {
+        const u = (i % 17) / 16, v = Math.floor(i / 17) / 20;
+        const amp = faseye * 0.55 * u * (0.4 + v) + descente * 0.25 * Math.sin(u * 9 + v * 7); // plis de la toile affalée
+        pos[i * 3] += amp * Math.sin(t * 24 + u * 7 + v * 5);
+        pos[i * 3 + 1] += amp * 0.3 * Math.sin(t * 17 + u * 5);
+      }
+      g.computeVertexNormals();
+      va.mesh.geometry.dispose();
+      va.mesh.geometry = g;
+      va.mesh.visible = true;
+    } else va.mesh.visible = false;
+    // 4) La voile plus petite monte le long de l'étai.
+    const n = a.nouvelle;
+    if (n) {
+      n.mesh.visible = hisse > 0.01;
+      if (n.mesh.visible) {
+        const head = n.tack.clone().lerp(n.head, hisse);
+        const clew = n.tack.clone().lerp(n.clew, Math.min(1, hisse * 1.15));
+        const g = sailGeometry(n.tack, head, clew, n.camber * (0.3 + 0.7 * hisse), n.lee, 14, 18);
+        const pos = g.attributes.position.array as Float32Array;
+        const f = (1 - hisse) * 0.4;
+        for (let i = 0; i < pos.length / 3; i++) pos[i * 3] += f * Math.sin(t * 22 + i * 0.7);
+        g.computeVertexNormals();
+        n.mesh.geometry.dispose();
+        n.mesh.geometry = g;
+      }
+    }
+    // Le bateau se redresse et ralentit presque à l'arrêt ; il reprend un peu d'erre sous la petite voile.
+    const arret = clamp(s / 1.5);
+    ud.heel = a.heel0 * (1 - 0.7 * arret + 0.35 * hisse);
+    ud.speed = Math.max(1.5, a.speed0 * (1 - 0.85 * arret + 0.25 * hisse));
+  }
+
   /** Émet une particule d'écume. vx : vitesse latérale (m/s), vz : vitesse longitudinale. */
   private emettre(x: number, z: number, vx: number, vz: number, vie: number) {
     const i = (this.ecumeI = (this.ecumeI + 1) % NB_ECUME);
@@ -1779,6 +1880,7 @@ export class Scene3D {
       // Tangage et roulis suivent la pente des vagues : plus la mer est forte, plus le bateau bouge.
       ud.body.rotation.set(ud.trim + Math.atan2(hf - ha, 14) * 0.9 + (ud.coule ? -0.38 : 0), 0, ud.heel + Math.atan2(hr - hl, 5) * 0.25 + 0.02 * Math.sin(t * 1.3 + ud.phase) + (ud.coule ? 1.05 : 0) + (ud.chavire ? Math.PI : 0), 'YXZ');
       if (ud.chute) this.animerChute(b, ud, this.clock.elapsedTime);
+      if (ud.affale && !this.reduceMotion) this.animerAffalage(ud, this.clock.elapsedTime);
       if (!this.reduceMotion) {
         const v = ms(ud.speed);
         // Sillage : écume qui reste en place derrière le tableau arrière.

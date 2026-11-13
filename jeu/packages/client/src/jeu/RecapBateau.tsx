@@ -3,7 +3,8 @@ import type { EtatPartie } from '@cal/engine';
 import { bateauDef, competenceDef, courseDef, D, familleDef, skipper } from '../commun';
 
 /** Récapitulatif visuel de l'état du bateau : voiles, réparations, avaries en cours, position. */
-export default function RecapBateau({ etat, bateauId, nom }: { etat: EtatPartie; bateauId: string; nom: string }) {
+/** sansVoiles : la liste des voiles est masquée (écran de jeu : les voiles sont déjà dessinées dans la barre du bas). */
+export default function RecapBateau({ etat, bateauId, nom, sansVoiles = false }: { etat: EtatPartie; bateauId: string; nom: string; sansVoiles?: boolean }) {
   const b = bateau(etat, bateauId);
   const s = skipper(b.skipperId);
   const bt = bateauDef(b.bateauId);
@@ -33,7 +34,7 @@ export default function RecapBateau({ etat, bateauId, nom }: { etat: EtatPartie;
         <span><b>{c.nom}</b>{b.relancesRestantes > 0 ? ` · ${b.relancesRestantes} relance${b.relancesRestantes > 1 ? 's' : ''}` : ''}{peutRecoudre(D, etat, b) ? ' · peut recoudre' : ''}</span>
       </div>
 
-      <div className="recap-ligne">
+      {!sansVoiles && <div className="recap-ligne">
         <span className="lbl" style={{ minWidth: 76 }}>Voiles</span>
         <div className="puces-voiles">
           {D.regles.voiles_depart.map((v) => {
@@ -46,7 +47,7 @@ export default function RecapBateau({ etat, bateauId, nom }: { etat: EtatPartie;
             );
           })}
         </div>
-      </div>
+      </div>}
 
       <div className="recap-ligne">
         <span className="lbl" style={{ minWidth: 76 }}>Réparations</span>

@@ -15,7 +15,7 @@
       "nom": "Stratège",
       "icone": "♟",
       "bonus": "Lit le plan d'eau : 1 relance du dé de direction du vent par course",
-      "malus": "−1 case au tour de la relance",
+      "malus": "−20 % de distance au tour de la relance",
       "effets": [],
       "speciaux": {
         "relances_direction": 1,
@@ -27,7 +27,7 @@
       "nom": "Navigateur",
       "icone": "🧭",
       "bonus": "Annonce la force attendue du prochain vent (prévision juste 9 fois sur 10)",
-      "malus": "−1 case au passage d'une voile de près à une voile de portant, ou l'inverse (table à cartes)",
+      "malus": "−20 % de distance au passage d'une voile de près à une voile de portant, ou l'inverse (table à cartes)",
       "effets": [],
       "speciaux": {
         "prevoit_force": 0.9,
@@ -39,7 +39,7 @@
       "nom": "Météorologue",
       "icone": "☁",
       "bonus": "Connaît la tendance du bulletin et annonce l'orientation attendue du prochain vent (prévision juste 3 fois sur 4)",
-      "malus": "−2 cases pour un virage de 90° ou plus (table à cartes)",
+      "malus": "−36 % de distance pour un virage de 90° ou plus (table à cartes)",
       "effets": [],
       "speciaux": {
         "prevoit_direction": 0.75,
@@ -50,8 +50,8 @@
       "id": "finesse",
       "nom": "Finesse",
       "icone": "🪶",
-      "bonus": "+1 case par petit temps (F3 et moins)",
-      "malus": "−1 case dès la bonne brise (F5 et plus)",
+      "bonus": "+20 % de distance par petit temps (F3 et moins)",
+      "malus": "−20 % de distance dès la bonne brise (F5 et plus)",
       "effets": [
         {
           "type": "distance",
@@ -74,8 +74,8 @@
       "id": "regatier",
       "nom": "Régatier",
       "icone": "⚑",
-      "bonus": "+1 case en zone côtière ; n'entre jamais en collision dans la brume",
-      "malus": "−1 case par gros temps (F7 et plus)",
+      "bonus": "+20 % de distance en zone côtière ; n'entre jamais en collision dans la brume",
+      "malus": "−20 % de distance par gros temps (F7 et plus)",
       "effets": [
         {
           "type": "distance",
@@ -100,7 +100,7 @@
       "id": "dur_au_mal",
       "nom": "Coriace",
       "icone": "⛈",
-      "bonus": "+1 case par gros temps (F7 et plus)",
+      "bonus": "+20 % de distance par gros temps (F7 et plus)",
       "malus": "Risque +1 cran dès la bonne brise (F5 et plus)",
       "effets": [
         {
@@ -125,7 +125,7 @@
       "nom": "Bricoleur",
       "icone": "🔧",
       "bonus": "+2 cartes réparation au départ",
-      "malus": "−1 case au tour où une carte réparation est jouée (bricole au lieu de barrer)",
+      "malus": "−20 % de distance au tour où une carte réparation est jouée (bricole au lieu de barrer)",
       "effets": [],
       "speciaux": {
         "reparations_depart": 2,
@@ -149,8 +149,8 @@
       "id": "kiffeur",
       "nom": "Glisseur",
       "icone": "➹",
-      "bonus": "+1 case au largue et au vent arrière",
-      "malus": "−1 case au près",
+      "bonus": "+20 % de distance au largue et au vent arrière",
+      "malus": "−20 % de distance au près",
       "effets": [
         {
           "type": "distance",
@@ -178,8 +178,8 @@
       "id": "grimpeur",
       "nom": "Grimpeur",
       "icone": "⛰",
-      "bonus": "+1 case au près",
-      "malus": "−1 case au largue et au vent arrière",
+      "bonus": "+20 % de distance au près",
+      "malus": "−20 % de distance au largue et au vent arrière",
       "effets": [
         {
           "type": "distance",
@@ -232,8 +232,8 @@
       "id": "polyvalent",
       "nom": "Polyvalent",
       "icone": "✦",
-      "bonus": "+1 case au vent de travers",
-      "malus": "−1 case au près",
+      "bonus": "+20 % de distance au vent de travers",
+      "malus": "−20 % de distance au près",
       "effets": [
         {
           "type": "distance",
@@ -261,7 +261,7 @@
       "nom": "Économe",
       "icone": "🪡",
       "bonus": "Ménage les voiles : elles s'usent deux fois moins vite",
-      "malus": "−1 case au portant par vent fort (F6 et plus) : pas question de forcer",
+      "malus": "−20 % de distance au portant par vent fort (F6 et plus) : pas question de forcer",
       "effets": [
         {
           "type": "distance",
@@ -283,7 +283,7 @@
       "id": "attaquant",
       "nom": "Attaquant",
       "icone": "⚡",
-      "bonus": "+1 case dès la jolie brise (F4 et plus)",
+      "bonus": "+20 % de distance dès la jolie brise (F4 et plus)",
       "malus": "Tire sur le matériel : les voiles s'usent 60 % plus vite",
       "effets": [
         {
@@ -303,7 +303,7 @@
       "nom": "Prudent",
       "icone": "🛡",
       "bonus": "Risque −1 cran par vent fort (F6 et plus) : réduit la toile à temps",
-      "malus": "−1 case par vent fort (F6 et plus)",
+      "malus": "−20 % de distance par vent fort (F6 et plus)",
       "effets": [
         {
           "type": "risque",

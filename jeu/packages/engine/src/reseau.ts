@@ -42,11 +42,24 @@ export interface VueSalon {
   reglages: ReglagesSalon;
   joueurs: JoueurSalon[];
   maxHumains: number;
+  /**
+   * Temps restant (ms) avant que le serveur ne joue pour les joueurs attendus : le routeur choisit leur cap et leur voile,
+   * ou la réponse par défaut est jouée (13/11/2026, audit C2). Absent : personne n'est attendu.
+   */
+  echeanceDans?: number | null;
 }
+
+/**
+ * Délais du serveur (13/11/2026, audit C2, PROVISOIRES, à valider par le porteur de projet) : au-delà, le routeur choisit
+ * le cap et la voile du joueur pour ce tour ; pour une décision, la réponse par défaut est jouée (question : temps écoulé ;
+ * relance : on garde le vent ; carte réparation : choix de l'IA). Le délai du choix compte aussi l'animation du tour.
+ */
+export const DELAI_CHOIX_S = 150;
+export const DELAI_DECISION_S = 90;
 
 export type MessageClient =
   /** niveauQuiz : niveau mémorisé par l'appareil, pris seulement à la première arrivée dans le salon. */
-  | { t: 'rejoindre'; jeton: string; nom: string; niveauQuiz?: NiveauQuiz }
+  | { t: 'rejoindre'; jeton: string; nom: string; niveauQuiz?: NiveauQuiz; ping?: boolean }
   | { t: 'skipper'; skipperId: string }
   | { t: 'niveauQuiz'; niveau: NiveauQuiz }
   | { t: 'reglages'; reglages: ReglagesSalon }

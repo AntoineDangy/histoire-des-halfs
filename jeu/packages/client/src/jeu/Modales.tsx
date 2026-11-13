@@ -3,7 +3,7 @@ import { angleAllure, auAllure, estMulticoque, NOMS_DIR_LONGS } from '@cal/engin
 import type { Attente, EtatBateau, EtatPartie } from '@cal/engine';
 import { competenceDef, D, NIVEAUX_QUIZ } from '../commun';
 
-export function ModaleQuiz({ attente, delai, nom, onRepondre }: { attente: Extract<Attente, { type: 'quiz' }>; delai: number; nom: string; onRepondre: (r: number) => void }) {
+export function ModaleQuiz({ attente, delai, nom, onRepondre, envoiAuto }: { attente: Extract<Attente, { type: 'quiz' }>; delai: number; nom: string; onRepondre: (r: number) => void; envoiAuto?: boolean }) {
   const q = D.questions.find((x) => x.id === attente.questionId)!;
   const [choisi, setChoisi] = useState<number | null>(null);
   // Ordre des réponses tiré au hasard à chaque question : la bonne réponse n'est pas toujours au même rang.
@@ -26,6 +26,13 @@ export function ModaleQuiz({ attente, delai, nom, onRepondre }: { attente: Extra
     const t = setTimeout(() => setReste((r) => r - 1), 1000);
     return () => clearTimeout(t);
   }, [reste, delai, choisi]);
+  // En réseau, le temps écoulé envoie la réponse tout seul 3 s plus tard : les autres joueurs n'attendent plus un clic
+  // (13/11/2026, audit C2).
+  useEffect(() => {
+    if (!envoiAuto || choisi !== -1) return;
+    const t = setTimeout(() => onRepondre(-1), 3000);
+    return () => clearTimeout(t);
+  }, [envoiAuto, choisi]);
   const juste = choisi === q.reponse;
   return (
     <div className="voile-fond" role="dialog" aria-modal="true" aria-labelledby="titre-quiz">

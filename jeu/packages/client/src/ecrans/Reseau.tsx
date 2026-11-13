@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { NIVEAU_QUIZ_DEFAUT, niveauQuizValide } from '@cal/engine';
 import type { EtatPartie, NiveauIA, NiveauQuiz, ReglagesSalon } from '@cal/engine';
 import { bateauDef, competenceDef, D, DE_LARGE, faces, familleDef, NIVEAUX_IA, NIVEAUX_QUIZ, nomClasse, REGLAGES_DEFAUT, skippersDe } from '../commun';
-import { Connexion, creerSalon, EtatConnexion } from '../reseau';
+import { Connexion, creerSalon, dejaRejoint, EtatConnexion } from '../reseau';
 import Jeu from './Jeu';
 
 interface Props {
@@ -37,6 +37,11 @@ export default function Reseau({ codeInitial, onRetour, onFin }: Props) {
   const conn = useRef<Connexion | null>(null);
 
   useEffect(() => () => conn.current?.fermer(), []);
+  // Page rechargée dans un salon déjà rejoint : reconnexion automatique, sans repasser par le formulaire (13/11/2026, audit C6).
+  useEffect(() => {
+    if (codeInitial && dejaRejoint(codeInitial)) seConnecter(codeInitial);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const seConnecter = (c: string) => {
     try {
@@ -88,6 +93,9 @@ export default function Reseau({ codeInitial, onRetour, onFin }: Props) {
           connecte: cx.connecte,
           envoyer: (a) => conn.current?.action(a),
           confierIA: (id) => conn.current?.envoyer({ t: 'confierIA', bateauId: id }),
+          erreur: cx.erreur,
+          effacerErreur: () => conn.current?.effacerErreur(),
+          echeance: cx.echeance,
         }}
         onQuitter={() => {
           conn.current?.fermer();

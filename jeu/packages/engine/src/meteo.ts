@@ -4,7 +4,7 @@
 // qui souffle là où il est.
 import { norm } from './geo';
 import { alea, entier, face } from './rng';
-import type { Donnees, EtatPartie, Front, MeteoMondiale, Vent } from './types';
+import type { CourseDef, Donnees, EtatPartie, Front, MeteoMondiale, Vent } from './types';
 
 export interface ReglesFronts {
   probabilite: number;
@@ -49,6 +49,16 @@ export function reglesFronts(d: Donnees, etat?: Pick<EtatPartie, 'params'>): Reg
   };
 }
 
+/** Point dans un polygone (règle pair-impair). */
+export function dansContour(x: number, y: number, contour: [number, number][]): boolean {
+  let dedans = false;
+  for (let i = 0, j = contour.length - 1; i < contour.length; j = i++) {
+    const [xi, yi] = contour[i], [xj, yj] = contour[j];
+    if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) dedans = !dedans;
+  }
+  return dedans;
+}
+
 function dansEllipse(x: number, y: number, cx: number, cy: number, rx: number, ry: number): boolean {
   const dx = (x - cx) / rx, dy = (y - cy) / ry;
   return dx * dx + dy * dy <= 1;
@@ -64,6 +74,8 @@ export function centreTraine(f: Front): [number, number] {
 /** Zone du front qui concerne une case : 'front', 'traine' ou null. */
 export function zoneFront(f: Front, x: number, y: number): 'front' | 'traine' | null {
   if (f.annonce > 0) return null;
+  // Molle dessinée d'une course (13/11/2026) : le centre de la case est-il dans le contour ?
+  if (f.contour) return dansContour(x + 0.5, y + 0.5, f.contour) ? 'front' : null;
   if (dansEllipse(x + 0.5, y + 0.5, f.x, f.y, f.rx, f.ry)) return 'front';
   if (f.type === 'molle' || f.type === 'anticyclone') return null;
   const [tx, ty] = centreTraine(f);
@@ -216,9 +228,21 @@ export function reglesMolle(d: Donnees): ReglesMolle | null {
 }
 
 /** Au départ : peut-être une molle à l'approche de l'arrivée (vent faible et instable). */
-export function creerMolle(d: Donnees, etat: EtatPartie, arrivee: { x: number; y: number } | undefined): string | null {
+export function creerMolle(d: Donnees, etat: EtatPartie, arrivee: { x: number; y: number } | undefined, zone?: CourseDef['molle']): string | null {
   const r = reglesMolle(d);
   if (!r || !arrivee || alea(etat) >= r.probabilite) return null;
+  if (zone) {
+    // Zone propre à la course (13/11/2026) : contour fixe dessiné par le porteur de projet, quelle que soit la classe.
+    // x, y, rx, ry : rectangle englobant, pour placer l'étiquette sur la carte.
+    const xs = zone.contour.map((p) => p[0]), ys = zone.contour.map((p) => p[1]);
+    const [x0, x1, y0, y1] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
+    etat.fronts.push({
+      id: 'molle', type: 'molle', x: (x0 + x1) / 2, y: (y0 + y1) / 2, vx: 0, vy: 0, rx: (x1 - x0) / 2, ry: (y1 - y0) / 2,
+      contour: zone.contour.map((p) => [p[0], p[1]]),
+      direction: entier(etat, 8) * 2, force: face(etat, r.forces), bascule: 0, baisse: 0, annonce: 0, age: 0,
+    });
+    return 'Bulletin : une zone de molle s\'installe à l\'approche de l\'arrivée. Vent faible et instable : la course peut se jouer à la fin !';
+  }
   // Plus grande pour les classes rapides, pour qu'un bateau ne la traverse pas en un seul tour (bornée près des Antilles).
   const v = Math.min(1.6, d.classes.find((c) => c.id === etat.params.classe)?.vitesse ?? 1);
   etat.fronts.push({

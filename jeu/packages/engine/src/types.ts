@@ -222,11 +222,24 @@ export interface CourseDef {
   vitesse_unique?: boolean;
   /** Avec vitesse_unique : réglage par classe, calé par simulation pour une même durée de course. */
   echelle_classe?: Record<string, number>;
+  /**
+   * Record de distance en 24 h d'une classe sur cette course, selon le mode de navigation (13/11/2026, porteur de projet) :
+   * Ultim en solitaire 851 milles (Route du Rhum), en équipage 908 milles (Transat Café L'Or en double, Fastnet).
+   * C'est la distance la plus longue possible, bonus compris ; elle remplace la jauge de la classe (distance_max_24h).
+   */
+  distance_max_24h_classe?: Record<string, number>;
+  /** Multiplicateur de vitesse d'une classe sur cette course (Ultim à la Transat Café L'Or : record en équipage / record en solitaire). */
+  vitesse_classe?: Record<string, number>;
   /** Distances officielles du parcours, en milles, par classe. */
   distances_officielles?: Record<string, number>;
   /** Nombre de tours du vainqueur mesuré en simulation, par classe. */
   tours_estimes?: Record<string, number>;
   zones_meteo: ZoneMeteo[];
+  /**
+   * Zone de molle propre à la course (13/11/2026, dessinée par le porteur de projet) : contour en cases (x, y), à la
+   * place du cercle autour de l'arrivée de regles.json ; même probabilité et même vent faible, quelle que soit la classe.
+   */
+  molle?: { contour: [number, number][]; _note?: string };
   zones_cotieres?: { rayon: number; autour: string[] };
   lieux?: { nom: string; x: number; y: number; type: string }[];
 }
@@ -258,6 +271,8 @@ export interface ReglesDef {
   de_direction: number[];
   de_direction_tendance: Record<string, number[]>;
   seuil_risque: number[];
+  /** Effet d'un cran de bonus ou de malus sur la distance (0,2 = 20 %). */
+  pourcentage_bonus?: number;
   /** Coefficient de vitesse selon la force du vent (indice = force), validé le 09/11/2026. */
   coefficient_force?: number[];
   pot_au_noir?: { grain: number; forces_grain: number[]; forces_calme: number[] };
@@ -521,6 +536,8 @@ export interface Front {
   origine?: { direction: number; force: number };
   /** 'molle' : zone de petit temps instable près de l'arrivée (immobile, sans traîne). */
   type?: 'front' | 'molle' | 'anticyclone';
+  /** Contour (en cases) d'une molle propre à une course (13/11/2026) : la zone est ce polygone, pas l'ellipse. */
+  contour?: [number, number][];
   /** Tours restants avant l'arrivée du front (0 = actif). */
   annonce: number;
   age: number;

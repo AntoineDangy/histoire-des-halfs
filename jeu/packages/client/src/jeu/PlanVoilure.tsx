@@ -10,7 +10,7 @@ import type { Forme } from './voilure';
  * frappée en tête du mât de misaine.
  */
 type Greement = { L: number; mat: number; pied: number; bome: number; bd: number; fb: number; nom: string; misaine?: { pied: number; bome: number } };
-const GREEMENT: Record<string, Greement> = {
+export const GREEMENT: Record<string, Greement> = {
   imoca: { L: 18.28, mat: 27, pied: 0.45, bome: 7.4, bd: 2.3, fb: 1.8, nom: 'IMOCA à foils' },
   imoca_derives: { L: 18.28, mat: 27, pied: 0.45, bome: 7.4, bd: 2.5, fb: 1.6, nom: 'IMOCA à dérives' },
   class40: { L: 12.19, mat: 18, pied: 0.45, bome: 4.9, bd: 1.5, fb: 1.6, nom: 'Class40' },

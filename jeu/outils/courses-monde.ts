@@ -196,7 +196,7 @@ export const COURSES_MONDE: ConfigMonde[] = [
     // Ports de repli (12/11/2026) : un bateau gravement endommagé qui s'y arrête abandonne (escale interdite).
     ports: PORTS_REPLI,
     regle_escale: { type: 'interdite', tours: 0, statut_validation: 'règlement du Vendée Globe' },
-    echelle: 5.5,
+    echelle: 7.1, // 5,5 × 1,75 / 1,35 : vitesse IMOCA réduite le 12/11/2026 (jauge 640 mn en 24 h)
     // Mesuré le 12/11/2026 (outils/sim-classes.ts, 16 parties, médiane du vainqueur) : 23 tours de 3 jours, environ 69 jours
     // (objectif du porteur de projet : 60 à 70 jours, 20 à 25 tours). Échelle basse : avec 16, chaque tour atteignait le
     // plafond (record de 640 milles en 24 h tenu 3 jours de suite), peu crédible.

@@ -110,6 +110,7 @@ Documents utiles :
 | `npx tsx outils/sim-classes.ts 20 IMOCA` | Durée d'une Route du Rhum et suspense, IA contre IA, par classe |
 | `npm run sim -- 400 moyen` | Simulation d'équilibrage générale → `reports/` |
 | `npx tsx outils/sim-vintage.ts 20` | Équilibre de la classe Vintage (`COURSE=rolex-fastnet` pour le Fastnet) |
+| `npx tsx outils/mesure-max-24h.ts ULTIM IMOCA` | Distance la plus longue possible d'un tour, ramenée à 24 h, par classe et par course (calage sur les records) |
 | `npx tsx outils/generer-carte-rhum.ts` | Régénère la carte de la Route du Rhum (côtes Natural Earth) |
 
 Les modèles 3D se régénèrent avec [Blender](https://www.blender.org/) (scripts écrits avec Blender 5), depuis la racine

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { donneesBrutes } from '../../data/index';
 import {
   angleAllure, appliquer, bateauxAttendus, calculerDistance, calculerRisque, choisirIA, classement, compilerCarte,
-  controlerJournal, creerPartie, dansAlize, distanceAttendue, distanceRestanteCase, facesForce, humainsAttendus, NIVEAU_QUIZ_DEFAUT, niveauQuizValide, perteCarte, rejouer, terreFine, tracerChemin, ventCourant,
+  controlerJournal, creerPartie, dansAlize, distanceAttendue, distanceRestanteCase, facesForce, frontSur, humainsAttendus, navigable, NIVEAU_QUIZ_DEFAUT, niveauQuizValide, perteCarte, plafondCases, rejouer, terreFine, tracerChemin, ventCourant,
 } from '../src/index';
 import type { Action, CourseDef, Donnees, EtatPartie, ParamsPartie } from '../src/index';
 
@@ -75,11 +75,12 @@ describe('distance et risque (§3.4)', () => {
   it('interpole les allures intermédiaires', () => {
     // Vent du nord (0). Cap 3 (ENE) = 67,5° ; cap 5 (ESE) = 112,5° ; cap 7 (SSE) = 157,5°.
     expect(calculerDistance(d, carte, profil(), 'solent', 3, { direction: 0, force: 4 }).distance).toBe(3); // (3 + 3) / 2
-    expect(calculerDistance(d, carte, profil(), 'code0', 3, { direction: 0, force: 4 }).distance).toBe(3); // 4 - 1 (près inutilisable)
-    expect(calculerDistance(d, carte, profil(), 'spi', 5, { direction: 0, force: 3 }).distance).toBe(4); // 5 - 1
+    expect(calculerDistance(d, carte, profil(), 'code0', 3, { direction: 0, force: 4 }).distance).toBeNull(); // code 0 à partir du travers (12/11/2026)
+    expect(calculerDistance(d, carte, profil(), 'spi', 5, { direction: 0, force: 3 }).distance).toBeNull(); // spi à partir de 135° (12/11/2026)
+    expect(calculerDistance(d, carte, profil(), 'gennaker', 5, { direction: 0, force: 3 }).distance).toBe(4); // (3 + 5) / 2, gennaker dès 112,5°
     expect(calculerDistance(d, carte, profil(), 'gennaker', 7, { direction: 0, force: 3 }).distance).toBe(4); // (5 + 4) / 2
     // L'allure intermédiaire répond aux effets des allures voisines : dérives droites −1 au largue (F4+).
-    expect(calculerDistance(d, carte, profil(), 'spi', 5, { direction: 0, force: 4 }).distance).toBe(3);
+    expect(calculerDistance(d, carte, profil(), 'gennaker', 5, { direction: 0, force: 4 }).distance).toBe(3);
   });
   it('convertit en cases selon l\'échelle de la carte', () => {
     const fine = compilerCarte({ ...courseTest(['............', '............', '...........A']), id: 'fine', echelle: 2.5 });
@@ -102,16 +103,17 @@ describe('distance et risque (§3.4)', () => {
     expect(calculerRisque(d, fine, avec({ ...quille, nouveau: true }), 'spi', vent).risque).toBe(r0);
   });
   it('applique les modificateurs de force', () => {
-    expect(calculerDistance(d, carte, profil(), 'solent', 2, { direction: 0, force: 2 }).distance).toBe(2); // près 3 - 1
+    expect(calculerDistance(d, carte, profil(), 'solent', 2, { direction: 0, force: 2 }).distance).toBe(2); // près 3 × 0,8 = 2,4 → 2 (bonus et malus en %, 12/11/2026)
     expect(calculerDistance(d, carte, profil(), 'gennaker', 8, { direction: 0, force: 1 }).distance).toBe(4); // pas de malus
-    expect(calculerDistance(d, carte, profil(), 'j3', 8, { direction: 0, force: 8 }).distance).toBe(3); // arrière 2 + 1
+    expect(calculerDistance(d, carte, profil(), 'j3', 8, { direction: 0, force: 8 }).distance).toBe(2); // arrière 2 × 1,2 = 2,4 → 2
     expect(calculerDistance(d, carte, profil(), 'reduite', 2, { direction: 0, force: 1 }).distance).toBe(1); // minimum 1
   });
   it('applique famille, profil d\'allure et compétence', () => {
-    // Foiler au largue F4 : 5 + 1 ; au vent arrière : 6 - 1 (profil d'allure).
+    // Foiler au largue F4 : 5 × 1,2 = 6 ; au vent arrière : 6 × 0,8 = 4,8 → 5 (profil d'allure, bonus et malus en %).
     expect(calculerDistance(d, carte, profil('aucune', 'imoca_foiler'), 'gennaker', 6, { direction: 0, force: 4 }).distance).toBe(6);
     expect(calculerDistance(d, carte, profil('aucune', 'imoca_foiler'), 'spi', 8, { direction: 0, force: 4 }).distance).toBe(5);
-    expect(calculerDistance(d, carte, profil('dur_au_mal'), 'j3', 4, { direction: 0, force: 7 }).distance).toBe(calculerDistance(d, carte, profil(), 'j3', 4, { direction: 0, force: 7 }).distance! + 1); // Coriace : +1 case à F7 et plus (12/11/2026)
+    const mult = (c: string) => calculerDistance(d, carte, profil(c), 'j3', 4, { direction: 0, force: 7 }).details.find((x) => x.libelle.startsWith('Bonus et malus'))?.valeur ?? 1;
+    expect(mult('dur_au_mal')).toBeCloseTo(mult('aucune') * 1.2, 2); // Coriace : un cran de bonus à F7 et plus = +20 %
   });
   it('calcule le niveau de risque borné de 0 à 5', () => {
     expect(calculerRisque(d, carte, profil(), 'spi', { direction: 0, force: 4 }).risque).toBe(2);
@@ -186,6 +188,33 @@ function jouerPartieIA(graine: number, dd: Donnees = d): EtatPartie {
   }
   return e;
 }
+
+describe('records de distance en 24 h (Ultim, 13/11/2026)', () => {
+  const carteDeCourse = (id: string) => compilerCarte(d.courses.find((c) => c.id === id)!);
+  const ultim = { famille: 'ultim' };
+  it('jauge de l\'Ultim : 851 milles en solitaire, 908 en équipage, au prorata du tour au Fastnet', () => {
+    expect(plafondCases(d, carteDeCourse('route-du-rhum'), ultim)).toBe(Math.floor((851 * 23) / 24 / 30)); // 27 cases
+    expect(plafondCases(d, carteDeCourse('transat-cafe-lor'), ultim)).toBe(Math.floor((908 * 23) / 24 / 30)); // 29 cases
+    expect(plafondCases(d, carteDeCourse('rolex-fastnet'), ultim)).toBe(Math.floor((908 * 4.8) / 24 / 2.55)); // 71 cases
+    // Les autres classes gardent leur jauge (640 milles en IMOCA), et rien au Fastnet.
+    expect(plafondCases(d, carteDeCourse('route-du-rhum'), { famille: 'imoca_foiler' })).toBe(21);
+    expect(plafondCases(d, carteDeCourse('rolex-fastnet'), { famille: 'imoca_foiler' })).toBe(null);
+  });
+  it('dans les meilleures conditions, l\'Ultim atteint son record sans le dépasser', () => {
+    for (const id of ['route-du-rhum', 'transat-cafe-lor', 'rolex-fastnet']) {
+      const carte = carteDeCourse(id);
+      const p = { ...ultim, competence: 'kiffeur', x: 0, y: 0 };
+      // Une case de pleine mer, hors de toute zone.
+      outer: for (let y = 0; y < carte.H; y++) for (let x = 0; x < carte.L; x++) if (navigable(carte, x, y) && !carte.zones[y * carte.L + x].length && carte.alize[y * carte.L + x] < 0) { p.x = x; p.y = y; break outer; }
+      let meilleur = 0;
+      for (const v of ['gennaker', 'spi', 'code0', 'solent'])
+        for (let force = 3; force <= 9; force++)
+          for (let cap = 0; cap < 16; cap++)
+            meilleur = Math.max(meilleur, calculerDistance(d, carte, p, v, cap as never, { direction: 0, force }).distance ?? 0);
+      expect(meilleur).toBe(plafondCases(d, carte, ultim));
+    }
+  });
+});
 
 describe('force du vent (09/11/2026)', () => {
   it('la même voile avance nettement moins par petit temps que par bonne brise', () => {
@@ -430,8 +459,10 @@ describe('dé événement et cartes du large', () => {
   it("une avarie réparée ne coûte jamais plus de la moitié de l'avance, même par petit temps (water-ballast à F2)", () => {
     const dd = avecCarte('ballast');
     let teste = 0;
-    for (let graine = 1; graine <= 40 && teste < 3; graine++) {
-      let e = creerPartie(dd, params(graine, 1, { quiz: false }));
+    for (let graine = 1; graine <= 80 && teste < 3; graine++) {
+      const seul = params(graine, 1, { quiz: false });
+      // Un seul bateau : par F2 l'avance n'est que d'une case, un voisin de la ligne de départ l'arrêterait (priorité).
+      let e = creerPartie(dd, { ...seul, participants: seul.participants.slice(0, 1) });
       e = { ...e, vent: { direction: 4, force: 2 }, desProchains: { force: 0, direction: 0 } };
       e = appliquer(dd, e, { type: 'ChoisirCapEtVoile', bateauId: 'b1', choix: { cap: 12, voile: 'solent', distanceMax: null } });
       while (e.attente?.type === 'relance') e = appliquer(dd, e, { type: 'RepondreRelance', bateauId: e.attente.bateauId, relancer: false });
@@ -666,6 +697,34 @@ describe('brume, fronts et Bricoleur', () => {
       }
       expect(e.evenements.filter((x) => x.type === 'meteo' && x.texte.startsWith('Bulletin : une dépression')).length).toBeLessThanOrEqual(2);
     }
+  });
+});
+
+describe('molle des Antilles et brume irlandaise (13/11/2026)', () => {
+  it('Route du Rhum : la molle dessinée épouse l\'arc antillais à l\'est et s\'étale à l\'ouest', () => {
+    let e: EtatPartie | null = null;
+    for (let g = 1; g < 50 && !e; g++) {
+      const p = creerPartie(d, params(g));
+      if (p.fronts.some((f) => f.type === 'molle')) e = p;
+    }
+    expect(e).not.toBeNull();
+    const molle = e!.fronts.find((f) => f.type === 'molle')!;
+    expect(molle.contour?.length).toBeGreaterThan(10);
+    const dans = (x: number, y: number) => frontSur({ fronts: [molle] }, x, y) !== null;
+    // Guadeloupe et ses cases d'arrivée, l'arc au nord-ouest, l'ouest de la carte, la Martinique.
+    for (const [x, y] of [[7, 84], [7, 85], [8, 85], [8, 86], [6, 84], [5, 83], [4, 82], [1, 85], [2, 89], [8, 88]]) expect(dans(x, y), `${x},${y}`).toBe(true);
+    // Rien à l'est de l'arc (Atlantique), ni au nord d'Anguilla, ni au sud de Saint-Vincent.
+    for (const [x, y] of [[9, 84], [9, 85], [9, 88], [10, 83], [8, 83], [3, 79], [7, 93]]) expect(dans(x, y), `${x},${y}`).toBe(false);
+  });
+  it('brume au sud-ouest de l\'Irlande sur les cartes du Fastnet, du Rhum et de la Transat', () => {
+    for (const id of ['rolex-fastnet', 'route-du-rhum', 'transat-cafe-lor']) {
+      const c = d.courses.find((x) => x.id === id)!;
+      expect(c.zones_meteo.some((z) => z.type === 'brume' && z.nom.includes('Irlande')), id).toBe(true);
+    }
+    // Fastnet : la ligne de passage à l'ouest du rocher (rangée 19) reste hors de la brume.
+    const fastnet = compilerCarte(d.courses.find((x) => x.id === 'rolex-fastnet')!);
+    expect(fastnet.zones[19 * fastnet.L + 40].includes('brume')).toBe(false);
+    expect(fastnet.zones[30 * fastnet.L + 40].includes('brume')).toBe(true);
   });
 });
 

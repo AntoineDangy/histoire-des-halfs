@@ -1,6 +1,7 @@
 import type { NiveauIA } from '@cal/engine';
 import { D, NIVEAUX_IA, NIVEAUX_QUIZ, Reglages } from '../commun';
-import { classesDe, courseDef, nomClasse, skippersDe } from '../commun';
+import { classesDe, COURSES_PROPOSEES, courseDef, nomClasse, skippersDe } from '../commun';
+import { useEffect } from 'react';
 
 interface Props {
   reglages: Reglages;
@@ -10,7 +11,11 @@ interface Props {
 }
 
 export default function Configuration({ reglages: r, onChange, onRetour, onSuite }: Props) {
-  const course = courseDef(r.courseId);
+  // Une course retirée de la version en ligne (tour du monde en essai) ne peut pas rester choisie.
+  const course = COURSES_PROPOSEES.find((c) => c.id === r.courseId) ?? courseDef('route-du-rhum');
+  useEffect(() => {
+    if (r.courseId && course.id !== r.courseId) onChange({ ...r, courseId: course.id, classe: classesDe(course.id)[0]?.id });
+  }, [r, course.id, onChange]);
   const maxBateaux = (classe: string | undefined) => Math.floor(skippersDe(classe).length / (course.double ? 2 : 1));
   const nbHumains = r.humains.length;
   const setNbHumains = (n: number) => {
@@ -93,7 +98,7 @@ export default function Configuration({ reglages: r, onChange, onRetour, onSuite
           <div className="panneau" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <span className="lbl">Course</span>
             <div className="segment" style={{ flexWrap: 'wrap' }}>
-              {D.courses.map((c) => (
+              {COURSES_PROPOSEES.map((c) => (
                 <button key={c.id} aria-pressed={course.id === c.id} onClick={() => {
                   const classes = classesDe(c.id).map((k) => k.id);
                   const classe = classes.includes(r.classe ?? 'IMOCA') ? r.classe : classes[0];

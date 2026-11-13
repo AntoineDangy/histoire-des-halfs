@@ -1,5 +1,56 @@
 # Journal des versions
 
+## Mise en ligne 9d97c2ed (13/11/2026, après-midi), serveur réseau add1c9e3
+Avec l'accord du porteur de projet (« Oui, mets en ligne ») : version 0.4.221, branche `mises-a-jour-jeu` passée dans `main`. Contient les trois entrées du 13/11 ci-dessous : Ultim calés sur leurs records de distance en 24 h, molle des Antilles dessinée et brume du sud-ouest de l'Irlande, tours plus rapides et réseau plus sûr. Vérifié en ligne : version affichée sur l'accueil, salon réseau créé sur le serveur publié, course lancée, premier tour résolu par le serveur (décision du Stratège affichée aussitôt), sans erreur.
+
+## 13/11/2026 · Tours plus rapides et réseau plus sûr (suite de l'audit de fluidité, branche `mises-a-jour-jeu`, non publié)
+Choix du porteur de projet dans `jeu/conception/audit-fluidite.md` : E1, E2, A1 (8 s), A2 à A5, C1, C2, C4, C5, C6.
+- **Scènes 3D de 8 s** au lieu de 10 (la ligne d'arrivée est franchie un peu plus vite pour tenir dans la scène).
+- **Dés du vent** : résultat à 1,2 s, suite à 3,5 s au lieu de 6,5 ; « Continuer », un clic sur les dés ou la barre d'espace passent plus tôt.
+- **Dé du large** : résultat à 0,7 s et suite à 1,7 s après le clic (au lieu de 3,6 s) ; nouvelle case « Lancer mon dé tout seul les prochaines fois », mémorisée sur l'appareil.
+- **IA** : leurs moments sans rien à montrer passent presque sans attendre (cartes et dés 0,15 s au lieu de 1,8 et 0,9 s) ; la consigne du tour résume leurs cartes et questions du tour précédent ; leurs déplacements qui se suivent sont animés ensemble.
+- **Erreurs corrigées** : une carte du large qui immobilise n'est plus présentée comme une voile inutilisable (message de la carte, 2,5 s, sans scène de voile affalée) ; passer l'animation ou changer de vitesse juste après le dé du large ne saute plus l'événement suivant.
+- **Réseau** : la décision (question, relance, réparation) s'affiche dès que le serveur la demande ; la carte du large d'un autre joueur est annoncée 2 s sans clic ; **délais du serveur** (2 min 30 pour le cap, puis le routeur choisit ; 1 min 30 pour une décision, puis réponse par défaut ; temps restant affiché ; chiffres provisoires) ; la question en réseau part seule une fois le temps écoulé ; « Confier à l'IA » possible après une minute d'attente ; l'hôte qui part passe son rôle ; ping toutes les 20 s et connexion morte repérée des deux côtés ; reconnexion immédiate au retour sur l'onglet ; messages gardés pendant une coupure ; refus du serveur affichés ; page rechargée reconnectée seule ; place reprise depuis un autre onglet ; bateau confié à l'IA repris en revenant.
+- Vérifié : 55 tests, types du client, du moteur et du serveur ; partie en réseau à deux joueurs et deux IA sur un serveur de salons lancé en local (minuteur, décision immédiate, carte de l'autre sans clic, rechargement, reprise depuis un autre onglet). **Le serveur réseau a changé : à la mise en ligne, publier aussi le serveur.**
+
+## 13/11/2026 · Audit de fluidité des parties (branche `mises-a-jour-jeu`, aucun changement du jeu)
+- Demande du porteur de projet : accélérer les tours de jeu, d'abord par un audit des parties (solo, même écran, réseau, avec ou sans IA). Note : `jeu/conception/audit-fluidite.md`, 33 situations, une ligne chacune (où, combien, pourquoi, pistes), à choisir au cas par cas.
+- Mesures : lecture du code et parties rejouées avec le moteur (30 parties solo, 48 parties réseau simulées). Un tour solo impose environ 32 s d'animations et 6 clics ; le calcul (IA comprises) reste sous 0,1 s par tour sur PC ; en réseau, chaque décision d'un joueur bloque la table jusqu'à sa réponse, sans minuteur, et la partie entière (60 à 230 Ko) est renvoyée à chaque clic.
+
+## 13/11/2026 · Molle des Antilles redessinée, brume au sud-ouest de l'Irlande (branche `mises-a-jour-jeu`, non publié)
+- **Molle de la Route du Rhum** (demande du porteur de projet) : la zone de vent faible et instable n'est plus un cercle centré à l'est de Pointe-à-Pitre (il débordait de 150 milles sur l'Atlantique). C'est désormais **la zone qu'il a dessinée**, relevée point par point : allongée et arrondie, elle épouse à l'est l'arc antillais (Barbuda, Antigua, est de Grande-Terre et de la Désirade sans les dépasser, est de la Dominique et de la Martinique) et s'étale à l'ouest jusqu'au bord de la carte, du nord d'Anguilla à la hauteur de Saint-Vincent (environ 250 × 350 milles). Elle reste tirée au hasard au départ (6 courses sur 10), avec un vent F1-2 qui change de direction à chaque tour, et ne dépend plus de la classe. Le moteur sait maintenant décrire une molle par son contour (champ `molle.contour` de la course) ; les autres courses gardent leur cercle. Vérifié à l'écran en local.
+- **Brume du sud-ouest de l'Irlande** (demande du porteur de projet) : vaste zone de brume de 49,5° N à 51,35° N, de 14° W au méridien du Fastnet Rock, posée sur les trois cartes qui couvrent ce secteur : **Rolex Fastnet Race** (du bord ouest de la carte jusqu'au rocher, 53 × 45 cases ; la ligne de passage à l'ouest du rocher reste hors de la brume, mais le tour du rocher y entre), **Route du Rhum** et **Transat Café L'Or** (8 × 6 cases au nord-ouest d'Ouessant). Les tours du monde (cases de 60 milles, sans brume) ne changent pas. Rappel : une case de brume compte double et le tableau de bord ne l'annonce pas (« pas maintenant », 13/11).
+- Molle et brume aussi inscrites dans l'outil qui génère les cartes (`outils/courses-atlantique.ts` pour la brume ; la molle dessinée n'est que dans `route-du-rhum.json`, comme la jauge des Ultim du 13/11 : à reporter si l'on régénère la carte).
+- 2 tests ajoutés (55 tests). Le moteur a changé : à la mise en ligne, publier aussi le serveur réseau.
+
+## 13/11/2026 · Ultim calés sur leurs records de distance en 24 h (branche `mises-a-jour-jeu`, non publié)
+- Demande du porteur de projet : dans les meilleures conditions, bonus compris, un Ultim ne fait pas plus que le record de distance en 24 h de son mode de navigation (Wikipédia) : 851 milles en solitaire (Route du Rhum), 908 milles en équipage (Transat Café L'Or en double, Rolex Fastnet Race au prorata du tour de 4,8 h). Avant, le meilleur tour d'un Ultim faisait 1 530 milles en 23 h (1 597 en 24 h) au Rhum et à la Transat.
+- Mesuré (`outils/mesure-max-24h.ts`, nouvel outil : toutes voiles, forces, allures, familles et compétences) : Route du Rhum 27 cases = 810 milles par tour de 23 h (845 en 24 h, la case suivante dépasserait 851), Transat 29 cases = 870 milles (908 en 24 h), Fastnet 71 cases = 181 milles par tour (905 en 24 h). La jauge de chaque course plafonne aussi les cartes « bonne nouvelle ». Toute l'échelle de l'Ultim baisse dans la même proportion (comme pour l'IMOCA le 12/11), l'Arkéa Ultim Challenge garde sa durée.
+- Durée des courses (simulation, 20 parties, 4 IA, médiane du vainqueur) : Route du Rhum 9 → 16 tours (cible de la course 12 à 18 ; IMOCA 21 dans la même simulation), Transat Café L'Or 14 → 22 (cible 12 à 18), Rolex Fastnet Race 21 → 18 (cible 13 à 17), Arkéa 18 → 18. **À revoir** : l'usure des voiles et la fréquence des fronts de l'Ultim restent calées sur une course de 7 tours (`tours_moyens`).
+- Açores vérifiées : la zone de brume (12 × 9 cases autour de l'archipel, 09/11/2026) coûte le double par case. Même cap, même avance de 20 cases : 14 cases parcourues en la traversant (420 milles), 20 en passant au nord ou au sud. Règle voulue (« dans la brume, on avance moins vite »), mais le tableau de bord annonce les milles sans tenir compte de la brume ; seul l'aperçu du trajet sur la carte s'arrête plus tôt.
+- 2 tests ajoutés (53 tests).
+
+## Mise en ligne 10b36b30 (12/11/2026, nuit), serveur réseau d9dc2a52
+Avec l'accord du porteur de projet (« corrige et met en ligne ») :
+- **Échelle des distances IMOCA et Ocean Fifty, 640 milles en 24 h au plus** : un bord de spi à F7 proposait 720 milles. Toute l'échelle est réduite dans la même proportion (vitesse de classe 1,75 → 1,35) et les tours passent de 28 h à 24 h : le maximum mesuré est 630 milles en 24 h. Vendée Globe recalé (échelle 5,5 → 7,1) pour garder sa longueur.
+- **Ocean Fifty** : même échelle que l'IMOCA, moins rapide au près (330 milles contre 390), plus rapide au portant (profil d'allure par angle).
+- **Téléphone** : une fenêtre (question, mauvaise réponse) plus haute que l'écran défile désormais ; son bouton Valider ou Fermer est toujours atteignable.
+
+## Mise en ligne 787e37e8 (12/11/2026, nuit), serveur réseau 9176d054
+Avec l'accord du porteur de projet (« met en ligne avec la nouvelle interface et les essais réalisés ») :
+- **Nouvelle interface** (branche d'essai `essai-interface`, fusionnée dans main) : rose des caps sur la carte autour du bateau, voiles en boutons dessinés en bas, distance maximale réglée sur la carte, journal à droite et masquable, aperçu 3D du bateau sous la voile choisie, scène 3D de la voile devenue inutilisable.
+- Angles des voiles : code 0 dès le travers, gennaker dès 112,5°, spi dès 135°. Bon plein plus rapide que le près.
+- Planisphère complet sans bande de couleur inversée au nord (contour de l'Eurasie coupé à Béring).
+- Louvoyage : plus de saut de deux cases près d'une côte.
+
+## Mise en ligne 1dd25f15 (12/11/2026, soir), serveur réseau 565f9fa3
+Corrections demandées par le porteur de projet après essais :
+- Bonus et malus en pourcentage (+20 % / −20 % par cran, cumulés) : fin des « toutes les voiles à 90 mn » en Class40 et des écarts ×2 entre allures.
+- Alizés : l'écran des dés explique quand la force reste bornée (F3 à F7).
+- Carte : plus de pointillés jaunes (parcours obligatoire, lignes de passage) ; zoom 4 fois plus fin ; bateaux 1,3 fois plus grands.
+- Vendée Globe et Arkéa Ultim Challenge retirés de la version en ligne (jouables en local).
+- Plantage de l'affichage : message avec l'erreur et bouton « Reprendre la partie » au lieu d'un écran noir.
+
 ## Mise en ligne 1dea1110 (12/11/2026), serveur réseau 911f3a56 · chacun choisit le niveau de ses questions
 Avec l'accord du propriétaire (« Merge and publish ») : branche `mises-a-jour-jeu` fusionnée dans `main`, jeu « Version 0.4.200 ». Vérifié en ligne : essai à deux joueurs sur le serveur publié (mêmes résultats qu'en local) et salon ouvert dans le navigateur (choix du niveau, liste des équipages, choix mémorisé ; faces du dé du large justes sur « Créer une partie »).
 

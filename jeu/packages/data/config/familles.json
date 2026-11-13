@@ -8,8 +8,8 @@
    "bulletin_meteo": true,
    "longueur": "60 pieds (18,28 m)",
    "tours_moyens": 10,
-   "vitesse": 1.75,
-   "heures_par_tour": 28,
+   "vitesse": 1.35,
+   "heures_par_tour": 24,
    "distance_max_24h": 640,
    "usure_facteur": 1.0
   },
@@ -20,7 +20,7 @@
    "bulletin_meteo": true,
    "longueur": "32 m (trimaran)",
    "tours_moyens": 7,
-   "vitesse": 2.7,
+   "vitesse": 1.44,
    "heures_par_tour": 23,
    "usure_facteur": 1.2
   },
@@ -31,8 +31,8 @@
    "bulletin_meteo": true,
    "longueur": "50 pieds (15,24 m, trimaran)",
    "tours_moyens": 10,
-   "vitesse": 1.75,
-   "heures_par_tour": 28,
+   "vitesse": 1.35,
+   "heures_par_tour": 24,
    "distance_max_24h": 640,
    "usure_facteur": 1.0
   },
@@ -65,7 +65,7 @@
    "id": "imoca_foiler",
    "classe": "IMOCA",
    "nom": "Foiler",
-   "bonus": "+1 case au travers et au largue (F4 et plus)",
+   "bonus": "+20 % de distance au travers et au largue (F4 et plus)",
    "malus": "Risque +1 cran par vent fort (F6 et plus)",
    "effets": [
     {
@@ -106,7 +106,7 @@
    "classe": "IMOCA",
    "nom": "Dérives droites",
    "bonus": "Risque −1 cran par vent fort (F6 et plus)",
-   "malus": "−1 case au largue (F4 et plus)",
+   "malus": "−20 % de distance au largue (F4 et plus)",
    "effets": [
     {
      "type": "risque",
@@ -144,7 +144,7 @@
    "id": "ultim",
    "classe": "ULTIM",
    "nom": "Ultim volant",
-   "bonus": "+1 case au travers et au largue (F4 et plus)",
+   "bonus": "+20 % de distance au travers et au largue (F4 et plus)",
    "malus": "Risque +1 cran dès la bonne brise (F5 et plus), +2 par vent fort (F7 et plus) : chavirage",
    "effets": [
     {
@@ -191,7 +191,7 @@
    "id": "ocean_fifty",
    "classe": "OCEAN_FIFTY",
    "nom": "Trimaran de 50 pieds",
-   "bonus": "+1 case au travers (F4 et plus)",
+   "bonus": "+20 % de distance au travers (F4 et plus)",
    "malus": "Risque +1 cran par vent très fort (F7 et plus) : chavirage",
    "effets": [
     {
@@ -213,10 +213,10 @@
     }
    ],
    "profil_allure": {
-    "45": 0,
+    "45": -1,
     "90": 0,
-    "135": 0,
-    "180": 0
+    "135": 1,
+    "180": 1
    },
    "profil_note": "Rapide, chavire par gros temps",
    "polaire": {
@@ -231,7 +231,7 @@
    "classe": "CLASS40",
    "nom": "Class40 à étrave ronde",
    "bonus": "Risque −1 cran par vent très fort (F7 et plus) : robuste",
-   "malus": "−1 case au près (F4 et plus)",
+   "malus": "−20 % de distance au près (F4 et plus)",
    "effets": [
     {
      "type": "risque",
@@ -301,7 +301,7 @@
    "nom": "Monocoque de légende",
    "multicoque": false,
    "bonus": "Risque −1 cran par vent fort (F6 et plus) : robuste",
-   "malus": "−1 case au largue (F4 et plus)",
+   "malus": "−20 % de distance au largue (F4 et plus)",
    "effets": [
     {
      "type": "risque",
@@ -341,7 +341,7 @@
    "classe": "VINTAGE",
    "nom": "Multicoque de légende",
    "multicoque": true,
-   "bonus": "+1 case au travers (F4 et plus)",
+   "bonus": "+20 % de distance au travers (F4 et plus)",
    "malus": "Risque +1 cran par vent très fort (F7 et plus) : chavirage",
    "effets": [
     {

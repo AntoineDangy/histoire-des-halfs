@@ -71,6 +71,9 @@ const zonesNord = (rect: Rect) => [
   // Décision du 10/11/2026 : brume dans le golfe de Gascogne, entre la pointe de Bretagne et le cap Finisterre.
   { type: 'brume', nom: 'Brume', rect: rect(-9.6, 44.2, -5.6, 47.4), texte: 'Brume : bateaux invisibles, risque de collision' },
   { type: 'brume', nom: 'Brume des Açores', rect: rect(-31.5, 36.8, -24.8, 40.2), texte: 'Brume des Açores' },
+  // Demande du porteur de projet (13/11/2026) : vaste zone de brume au sud-ouest de l'Irlande (49,5° N à 51,35° N, de 14° W
+  // au méridien du Fastnet Rock), la même que sur la carte du Fastnet.
+  { type: 'brume', nom: "Brume du sud-ouest de l'Irlande", rect: rect(-14, 49.5, -9.7, 51.35), texte: "Brume du sud-ouest de l'Irlande" },
   { type: 'courant', nom: 'Courant des Canaries', rect: rect(-21, 20.5, -14.5, 30), direction: 10, texte: 'Courant des Canaries' },
   // DST d'Ouessant (11/11/2026) : sur cette carte à cases de 30 milles, une seule case à sa vraie place, au nord-ouest
   // d'Ouessant, en laissant le passage côtier ; les rails des Scilly, plus fins qu'une case, fermeraient la Manche (ils sont
@@ -219,6 +222,9 @@ export const COURSES: ConfigCourse[] = [
       { type: 'courant', maree: true, nom: "Marée de Land's End", rect: rect(-5.9, 49.95, -5.62, 50.15), direction: 0, texte: "Marée de Land's End" },
       { type: 'courant', maree: true, nom: 'Raz Blanchard', rect: rect(-2.1, 49.62, -1.8, 49.78), direction: 6, texte: 'Raz Blanchard (marée très forte)' },
       { type: 'brume', nom: 'Brume des Scilly', rect: rect(-7.1, 49.6, -5.9, 50.35), texte: 'Brume des Scilly' },
+      // Demande du porteur de projet (13/11/2026) : vaste zone de brume au sud-ouest de l'Irlande, du bord ouest de la carte
+      // au méridien du Fastnet Rock, juste au sud du rocher (sa ligne de passage, au nord, reste hors de la brume).
+      { type: 'brume', nom: "Brume du sud-ouest de l'Irlande", rect: rect(-13.2, 49.5, -9.7, 51.35), texte: "Brume du sud-ouest de l'Irlande" },
       // DST des Scilly (11/11/2026, d'après la carte réelle fournie par le porteur de projet) : trois rails, à l'ouest, au sud
       // et à l'est des îles (entre les Scilly et Land's End). Positions approchées, à affiner sur une carte marine.
       { type: 'zone_interdite', nom: 'DST des Scilly (ouest)', rect: rect(-6.88, 49.86, -6.55, 50.06), texte: 'DST Scilly' },

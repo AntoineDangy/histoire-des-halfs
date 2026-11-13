@@ -103,6 +103,9 @@ export function distanceBase(v: VoileDef, angle: number): number | null {
   }
   const a = v.distances[String(angle - 22.5)] ?? null;
   const b = v.distances[String(angle + 22.5)] ?? null;
+  // Bon plein (67,5°) : un bateau y va plus vite qu'au près (12/11/2026, porteur de projet). Moyenne exacte du près et du
+  // travers, et toujours au moins 10 % de plus qu'au près (avant : moyenne arrondie par défaut, souvent égale au près).
+  if (a !== null && b !== null && angle === 67.5) return Math.round(Math.max((a + b) / 2, a * 1.1) * 100) / 100;
   if (a !== null && b !== null) return Math.floor((a + b) / 2);
   if (a === null && b === null) return null;
   return Math.max(1, (a ?? b)! - 1);
@@ -145,21 +148,34 @@ export function facesForce(d: Donnees, force: number): number[] {
 export function echelleBateau(d: Donnees, carte: CarteCompilee, b: Pick<EtatBateau, 'famille'>): number {
   // Fastnet : même durée de course pour toutes les classes (15 tours) ; un réglage par classe compense leurs effets propres.
   if (carte.course.vitesse_unique) return echelleCarte(carte) * (carte.course.echelle_classe?.[classeBateau(d, b)?.id ?? ''] ?? 1);
-  return echelleCarte(carte) * (classeBateau(d, b)?.vitesse ?? 1);
+  const c = classeBateau(d, b);
+  return echelleCarte(carte) * (c?.vitesse ?? 1) * (carte.course.vitesse_classe?.[c?.id ?? ''] ?? 1);
 }
 
 type ProfilBateau = Pick<EtatBateau, 'competence' | 'famille' | 'x' | 'y'> & { modificateurs?: Modificateur[]; derniereVoile?: string | null; dernierCap?: number | null };
 
+/** Record de distance en 24 h qui sert de jauge à ce bateau sur cette course (milles), ou null. */
+export function jauge24h(d: Donnees, carte: CarteCompilee, b: Pick<EtatBateau, 'famille'>): number | null {
+  const c = classeBateau(d, b);
+  if (!c) return null;
+  return carte.course.distance_max_24h_classe?.[c.id] ?? (carte.course.vitesse_unique ? null : c.distance_max_24h ?? null);
+}
+
 /**
- * Jauge de distance (11/11/2026, porteur de projet) : sur les transatlantiques, un IMOCA ou un Ocean Fifty ne dépasse
- * jamais 640 milles en 24 h (record de l'IMOCA), bonus compris. Renvoie le plafond en cases pour un tour, ou null.
- * Le Fastnet (vitesse unique, durée calée par classe) n'est pas concerné.
+ * Jauge de distance : jamais plus que le record de distance en 24 h de la classe, bonus compris (cartes du large
+ * comprises, voir resoudreEvenement), au prorata de la durée du tour. Renvoie le plafond en cases pour un tour, ou null.
+ * - 11/11/2026 : IMOCA et Ocean Fifty, 640 milles en 24 h sur les transatlantiques (distance_max_24h de la classe) ;
+ * - 13/11/2026 : Ultim, record de la course selon le mode de navigation (distance_max_24h_classe de la course) :
+ *   851 milles en solitaire (Route du Rhum), 908 en équipage (Transat Café L'Or, Rolex Fastnet Race au prorata).
+ * Sur le Fastnet (vitesse unique), seule la jauge propre à la course s'applique.
  */
 export function plafondCases(d: Donnees, carte: CarteCompilee, b: Pick<EtatBateau, 'famille'>): number | null {
   const c = classeBateau(d, b);
-  if (!c?.distance_max_24h || carte.course.vitesse_unique) return null;
-  const heures = carte.course.distance_reelle ? carte.course.heures_par_tour : c.heures_par_tour ?? carte.course.heures_par_tour; // tours du monde : durée de la course
-  return Math.max(1, Math.floor((c.distance_max_24h * heures) / 24 / (carte.course.milles_par_case ?? 1)));
+  const max = jauge24h(d, carte, b);
+  if (!c || !max) return null;
+  // Durée du tour : celle de la course pour les tours du monde et le Fastnet, sinon celle de la classe (heuresParTour).
+  const heures = carte.course.distance_reelle || carte.course.vitesse_unique ? carte.course.heures_par_tour : c.heures_par_tour ?? carte.course.heures_par_tour;
+  return Math.max(1, Math.floor((max * heures) / 24 / (carte.course.milles_par_case ?? 1)));
 }
 
 /** Les alizés sont favorables si le cap est à 22,5° au plus d'une direction listée. */
@@ -190,7 +206,10 @@ export function calculerDistance(
   const base = distanceBase(v, angle);
   if (base === null)
     return { distance: null, details: [{ libelle: louvoyage ? 'Voile inutilisable pour louvoyer (voile de portant)' : 'Voile inutilisable à cette allure', valeur: 0 }], louvoyage };
-  let dist = base;
+  // Bonus et malus en pourcentage (12/11/2026, décision du porteur de projet) : chaque +1 = +20 %, chaque −1 = −20 %,
+  // cumulés en multipliant. Avant, un cran de la table s'ajoutait puis était multiplié par l'échelle de la course
+  // (un malus divisait la distance par deux, plusieurs ramenaient toutes les voiles au minimum).
+  let dist = 0;
   details.push({ libelle: louvoyage ? `${voileId ? v.nom_court : 'À sec de toile'} au près, pour louvoyer` : voileId ? `${v.nom_court} à ${String(angle).replace('.', ',')}°` : `À sec de toile à ${String(angle).replace('.', ',')}°`, valeur: base });
   if (vent.force <= 2 && v.moins_petit_temps) {
     dist -= 1;
@@ -244,7 +263,10 @@ export function calculerDistance(
       details.push({ libelle: 'Alizés contraires', valeur: -1 });
     }
   }
-  const unites = Math.max(1, dist);
+  const pas = d.regles.pourcentage_bonus ?? 0.2;
+  const mult = dist >= 0 ? Math.pow(1 + pas, dist) : Math.pow(1 - pas, -dist);
+  const unites = Math.round(base * mult * 100) / 100;
+  if (dist !== 0) details.push({ libelle: `Bonus et malus : ${dist > 0 ? '+' : '−'}${Math.abs(dist)} soit × ${String(Math.round(mult * 100) / 100).replace('.', ',')} (${pas * 100} % par cran)`, valeur: Math.round(mult * 100) / 100 });
   const e = echelleBateau(d, carte, b);
   const coef = louvoyage ? d.regles.louvoyage?.coefficient ?? 0.6 : 1;
   const cf = d.regles.coefficient_force?.[Math.max(0, Math.min(12, vent.force))] ?? 1;
@@ -254,11 +276,11 @@ export function calculerDistance(
   const casesPres = Math.max(1, Math.round(unites * e * cf));
   const cases = louvoyage ? Math.max(1, Math.round(casesPres * coef)) : casesPres;
   if (louvoyage) details.push({ libelle: `Louvoyage : ${Math.round(coef * 100)} % de la distance au près (bords et virements)`, valeur: coef });
-  if (e !== 1) details.push({ libelle: `Total ${unites}${louvoyage ? ` × ${String(coef).replace('.', ',')}` : ''}${cf !== 1 ? ` × ${String(cf).replace('.', ',')}` : ''} × échelle ${String(Math.round(e * 100) / 100).replace('.', ',')} = cases`, valeur: cases });
+  if (e !== 1) details.push({ libelle: `Total ${String(unites).replace('.', ',')}${louvoyage ? ` × ${String(coef).replace('.', ',')}` : ''}${cf !== 1 ? ` × ${String(cf).replace('.', ',')}` : ''} × échelle ${String(Math.round(e * 100) / 100).replace('.', ',')} = cases`, valeur: cases });
   const plafond = plafondCases(d, carte, b);
   let total = cases;
   if (plafond !== null && cases > plafond) {
-    details.push({ libelle: `Jauge : ${classeBateau(d, b)!.distance_max_24h} milles en 24 h au plus`, valeur: plafond });
+    details.push({ libelle: `Jauge : ${jauge24h(d, carte, b)} milles en 24 h au plus (record de la classe)`, valeur: plafond });
     total = plafond;
   }
   // Avarie durable, tours suivant celui de la carte : une part de l'avance du tour (docs/avaries-et-reparations.md).
@@ -415,8 +437,16 @@ export function tracerChemin(
         qy = oy + t * vy + derY;
       }
     }
-    const nx = Math.floor(qx);
-    const ny = Math.floor(qy);
+    let nx = Math.floor(qx);
+    let ny = Math.floor(qy);
+    // Changement de bord près d'une côte : la position visée peut sauter deux cases d'un coup. Le bateau avance quand même
+    // case par case (correction du 12/11/2026, anomalie « saut » du journal des mouvements).
+    if (Math.max(Math.abs(nx - x), Math.abs(ny - y)) > 1) {
+      nx = x + Math.sign(nx - x);
+      ny = y + Math.sign(ny - y);
+      qx = nx + 0.5;
+      qy = ny + 0.5;
+    }
     // Terre fine : le bateau s'arrête au bord d'une presqu'île ou d'un cap plus étroits qu'une case (contrôle au pas et
     // à mi-pas, pour ne pas rogner le coin d'une sous-case de terre).
     if (navigable(carte, nx, ny) && (terreFine(carte, qx, qy) || terreFine(carte, (qx + px) / 2, (qy + py) / 2))) {

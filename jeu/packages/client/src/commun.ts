@@ -144,3 +144,9 @@ export function competenceDef(id: string) {
 export function posExacte(b: { x: number; y: number; pos?: [number, number] }): [number, number] {
   return b.pos && Math.floor(b.pos[0]) === b.x && Math.floor(b.pos[1]) === b.y ? [b.pos[0] - 0.5, b.pos[1] - 0.5] : [b.x, b.y];
 }
+
+/**
+ * Courses proposées au joueur. Les tours du monde (Vendée Globe, Arkéa Ultim Challenge) restent en essai : jouables
+ * en local seulement, retirés de la version en ligne (12/11/2026, demande du porteur de projet).
+ */
+export const COURSES_PROPOSEES = D.courses.filter((c) => import.meta.env.DEV || !c.distance_reelle);

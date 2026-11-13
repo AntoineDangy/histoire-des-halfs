@@ -3,8 +3,8 @@
 import { DurableObject } from 'cloudflare:workers';
 import { donneesBrutes } from '../../data/index';
 import {
-  angleAllure, appliquer, bateau, choisirIA, competence, creerPartie, decisionReparationIA, humainsAttendus, masquerEtat, MAX_HUMAINS,
-  NIVEAU_QUIZ_DEFAUT, niveauQuizValide,
+  angleAllure, appliquer, bateau, choisirIA, competence, creerPartie, decisionReparationIA, DELAI_CHOIX_S, DELAI_DECISION_S, humainsAttendus, masquerEtat, MAX_HUMAINS,
+  NIVEAU_QUIZ_DEFAUT, niveauQuizValide, nomSkipper,
 } from '../../engine/src/index';
 import type { Action, Donnees, EtatPartie, JoueurSalon, MessageClient, MessageServeur, ParticipantParams, ReglagesSalon, VueSalon } from '../../engine/src/index';
 
@@ -48,9 +48,22 @@ export default {
 interface DonneesSalon {
   code: string;
   reglages: ReglagesSalon;
-  joueurs: (JoueurSalon & { jeton: string })[];
+  /** bateauConfie : bateau confié à l'IA pendant l'absence du joueur, qu'il reprend en revenant (13/11/2026, audit C6). */
+  joueurs: (JoueurSalon & { jeton: string; bateauConfie?: string })[];
   etat: EtatPartie | null;
+  /** Attente en cours (choix des caps, ou décision d'un joueur) et heure à laquelle le serveur jouera par défaut (audit C2). */
+  attente?: { cle: string; echeance: number } | null;
 }
+
+/** Pièce jointe d'une connexion : jeton du joueur, heure d'arrivée, et si son appareil envoie des « ping » (13/11/2026). */
+interface Attache {
+  jeton?: string;
+  depuis?: number;
+  ping?: boolean;
+}
+
+/** Sans ping depuis ce délai, une connexion est tenue pour morte (13/11/2026, audit C5 ; le client pingue toutes les 20 s). */
+const PING_MORT_MS = 60_000;
 
 const REGLAGES_DEFAUT: ReglagesSalon = {
   nbBateaux: 4,
@@ -61,6 +74,13 @@ const REGLAGES_DEFAUT: ReglagesSalon = {
 
 export class Salon extends DurableObject<Env> {
   private s: DonneesSalon | null = null;
+
+  constructor(ctx: DurableObjectState, env: Env) {
+    super(ctx, env);
+    // Ping des joueurs (13/11/2026, audit C5) : le serveur répond « pong » sans se réveiller, et note l'heure du dernier
+    // ping de chaque connexion.
+    ctx.setWebSocketAutoResponse(new WebSocketRequestResponsePair('ping', 'pong'));
+  }
 
   private async charger(): Promise<DonneesSalon | null> {
     if (!this.s) this.s = (await this.ctx.storage.get<DonneesSalon>('salon')) ?? null;
@@ -96,7 +116,7 @@ export class Salon extends DurableObject<Env> {
       return this.envoyer(ws, { t: 'erreur', message: 'Message illisible' });
     }
     try {
-      if (msg.t === 'rejoindre') return await this.rejoindre(ws, msg.jeton, msg.nom, msg.niveauQuiz);
+      if (msg.t === 'rejoindre') return await this.rejoindre(ws, msg.jeton, msg.nom, msg.niveauQuiz, msg.ping);
       const jeton = (ws.deserializeAttachment() as { jeton?: string } | null)?.jeton;
       const joueur = s.joueurs.find((j) => j.jeton === jeton);
       if (!joueur) return this.envoyer(ws, { t: 'erreur', message: 'Rejoignez d\'abord le salon' });
@@ -139,6 +159,7 @@ export class Salon extends DurableObject<Env> {
           break;
         }
       }
+      await this.planifier();
       await this.sauver();
       this.diffuser();
     } catch (e) {
@@ -148,14 +169,113 @@ export class Salon extends DurableObject<Env> {
 
   async webSocketClose(ws: WebSocket) {
     const s = await this.charger();
-    const jeton = (ws.deserializeAttachment() as { jeton?: string } | null)?.jeton;
-    const j = s?.joueurs.find((x) => x.jeton === jeton);
-    if (j && !this.ctx.getWebSockets().some((w) => w !== ws && (w.deserializeAttachment() as { jeton?: string } | null)?.jeton === jeton)) j.connecte = false;
+    if (!s) return;
+    this.marquerDeconnecte((ws.deserializeAttachment() as Attache | null)?.jeton, ws);
     await this.sauver();
     this.diffuser();
   }
 
-  private async rejoindre(ws: WebSocket, jeton: string, nom: string, niveauQuiz?: unknown) {
+  /** Un joueur n'a plus aucune connexion ouverte : déconnecté. L'hôte qui part pendant la course passe son rôle (audit C2). */
+  private marquerDeconnecte(jeton: string | undefined, exclue: WebSocket): boolean {
+    const s = this.s!;
+    const j = s.joueurs.find((x) => x.jeton === jeton);
+    if (!j || this.ctx.getWebSockets().some((w) => w !== exclue && (w.deserializeAttachment() as Attache | null)?.jeton === jeton)) return false;
+    j.connecte = false;
+    if (j.hote && s.etat) {
+      const autre = s.joueurs.find((x) => x !== j && x.connecte);
+      if (autre) {
+        j.hote = false;
+        autre.hote = true;
+      }
+    }
+    return true;
+  }
+
+  // ---------------------------------------------------------------- Délais et connexions mortes (13/11/2026)
+
+  /** Note l'attente en cours (son échéance ne change pas tant que c'est la même) et programme le prochain réveil. */
+  private async planifier() {
+    const s = this.s!;
+    const e = s.etat;
+    let cle: string | null = null;
+    let delai = 0;
+    if (e && e.phase === 'choix' && humainsAttendus(e).length) {
+      cle = `choix:${e.tour}`;
+      delai = DELAI_CHOIX_S;
+    } else if (e && e.attente && e.bateaux.find((b) => b.id === e.attente!.bateauId)?.type === 'humain') {
+      cle = `attente:${e.evenements.length}:${e.attente.bateauId}:${e.attente.type}`;
+      delai = DELAI_DECISION_S;
+    }
+    if (!cle) s.attente = null;
+    else if (s.attente?.cle !== cle) s.attente = { cle, echeance: Date.now() + delai * 1000 };
+    // Réveil à l'échéance, et au moins toutes les 30 s pendant la course pour repérer les connexions mortes.
+    if (e && e.phase !== 'fin' && this.ctx.getWebSockets().length) {
+      await this.ctx.storage.setAlarm(Math.min(s.attente?.echeance ?? Infinity, Date.now() + 30_000));
+    }
+  }
+
+  async alarm() {
+    const s = await this.charger();
+    if (!s?.etat) return;
+    let change = false;
+    const maintenant = Date.now();
+    // Connexions mortes (audit C5) : un appareil qui pingue et ne l'a plus fait depuis 60 s est déconnecté.
+    for (const ws of this.ctx.getWebSockets()) {
+      const att = ws.deserializeAttachment() as Attache | null;
+      if (!att?.ping) continue;
+      const dernier = this.ctx.getWebSocketAutoResponseTimestamp(ws)?.getTime() ?? att.depuis ?? maintenant;
+      if (maintenant - Math.max(dernier, att.depuis ?? 0) <= PING_MORT_MS) continue;
+      try {
+        ws.close(1011, 'Connexion inactive');
+      } catch {
+        /* déjà fermée */
+      }
+      change = this.marquerDeconnecte(att.jeton, ws) || change;
+    }
+    // Échéance dépassée (audit C2) : le serveur joue pour les joueurs attendus.
+    if (s.attente && maintenant >= s.attente.echeance) {
+      this.jouerParDefaut();
+      change = true;
+    }
+    await this.planifier();
+    await this.sauver();
+    if (change) this.diffuser();
+  }
+
+  /** Temps écoulé : le routeur choisit le cap et la voile des joueurs attendus, ou la réponse par défaut est jouée. */
+  private jouerParDefaut() {
+    const s = this.s!;
+    let e = s.etat!;
+    if (e.phase === 'choix') {
+      for (let garde = 0; garde < 12 && e.phase === 'choix'; garde++) {
+        const b = humainsAttendus(e)[0];
+        if (!b) break;
+        e.evenements.push({ tour: e.tour, type: 'info', bateauId: b.id, texte: `Temps écoulé : le routeur choisit le cap et la voile de ${nomSkipper(D, e, b)} pour ce tour.` });
+        e = appliquer(D, e, { type: 'ChoisirCapEtVoile', bateauId: b.id, choix: choisirIA(D, e, b.id) });
+      }
+    } else if (e.attente) {
+      const b = bateau(e, e.attente.bateauId);
+      e.evenements.push({ tour: e.tour, type: 'info', bateauId: b.id, texte: `Temps écoulé : réponse par défaut pour ${nomSkipper(D, e, b)}.` });
+      e = this.repondre(e, b.id, 'delai');
+    }
+    s.etat = e;
+  }
+
+  /**
+   * Répond à la décision en attente d'un bateau : comme l'IA (bateau confié), ou par défaut (temps écoulé : question
+   * manquée, vent gardé, carte réparation jouée comme l'IA).
+   */
+  private repondre(e: EtatPartie, bateauId: string, mode: 'ia' | 'delai'): EtatPartie {
+    const a = e.attente!;
+    const b = bateau(e, bateauId);
+    const action: Action =
+      a.type === 'relance' ? { type: 'RepondreRelance', bateauId, relancer: mode === 'ia' && angleAllure(b.choix?.cap ?? 0, a.ventLocal.direction) < 45 }
+      : a.type === 'quiz' ? { type: 'RepondreQuiz', bateauId, reponse: mode === 'ia' && Math.random() < 0.7 ? (D.questions.find((q) => q.id === a.questionId)?.reponse ?? 0) : -1 }
+      : { type: 'JouerReparation', bateauId, jouer: decisionReparationIA(b, a.motif === 'evenement' ? 'penalite' : a.motif, a.penalite ?? null) };
+    return appliquer(D, e, action);
+  }
+
+  private async rejoindre(ws: WebSocket, jeton: string, nom: string, niveauQuiz?: unknown, ping?: boolean) {
     const s = this.s!;
     let j = s.joueurs.find((x) => x.jeton === jeton);
     if (!j) {
@@ -168,7 +288,18 @@ export class Salon extends DurableObject<Env> {
       s.joueurs.push(j);
     }
     j.connecte = true;
-    ws.serializeAttachment({ jeton });
+    // Le joueur revient après que son bateau a été confié à l'IA : il reprend la barre (13/11/2026, audit C6).
+    if (s.etat && !j.bateauId && j.bateauConfie) {
+      const b = s.etat.bateaux.find((x) => x.id === j!.bateauConfie);
+      if (b && b.type === 'ia' && !b.arrive) {
+        b.type = 'humain';
+        j.bateauId = b.id;
+        s.etat.evenements.push({ tour: s.etat.tour, type: 'info', bateauId: b.id, texte: `${j.nom} reprend la barre de ${nomSkipper(D, s.etat, b)}.` });
+      }
+      j.bateauConfie = undefined;
+    }
+    ws.serializeAttachment({ jeton, depuis: Date.now(), ping: !!ping } satisfies Attache);
+    await this.planifier();
     await this.sauver();
     this.diffuser();
   }
@@ -208,16 +339,12 @@ export class Salon extends DurableObject<Env> {
     b.type = 'ia';
     b.niveauIA = s.reglages.niveauIA;
     const j = s.joueurs.find((x) => x.bateauId === bateauId);
-    if (j) j.bateauId = null;
-    // Débloque une éventuelle décision en attente de ce bateau.
-    for (let garde = 0; garde < 20 && e.attente?.bateauId === bateauId; garde++) {
-      const a = e.attente;
-      const action: Action =
-        a.type === 'relance' ? { type: 'RepondreRelance', bateauId, relancer: angleAllure(b.choix?.cap ?? 0, a.ventLocal.direction) < 45 }
-        : a.type === 'quiz' ? { type: 'RepondreQuiz', bateauId, reponse: Math.random() < 0.7 ? (D.questions.find((q) => q.id === a.questionId)?.reponse ?? 0) : -1 }
-        : { type: 'JouerReparation', bateauId, jouer: decisionReparationIA(bateau(e, bateauId), a.motif === 'evenement' ? 'penalite' : a.motif, a.penalite ?? null) };
-      e = appliquer(D, e, action);
+    if (j) {
+      j.bateauId = null;
+      j.bateauConfie = bateauId; // il pourra le reprendre en revenant (audit C6)
     }
+    // Débloque une éventuelle décision en attente de ce bateau.
+    for (let garde = 0; garde < 20 && e.attente?.bateauId === bateauId; garde++) e = this.repondre(e, bateauId, 'ia');
     // Si tous les humains restants ont déjà choisi, le tour peut partir : l'IA choisit pour ce bateau.
     if (e.phase === 'choix' && humainsAttendus(e).length === 0 && e.bateaux.some((x) => x.type === 'humain'))
       e = appliquer(D, e, { type: 'ChoisirCapEtVoile', bateauId, choix: choisirIA(D, e, bateauId) });
@@ -234,6 +361,7 @@ export class Salon extends DurableObject<Env> {
     const s = this.s!;
     return {
       code: s.code, statut: s.etat ? 'course' : 'salon', reglages: s.reglages, maxHumains: MAX_HUMAINS,
+      echeanceDans: s.attente ? Math.max(0, s.attente.echeance - Date.now()) : null,
       joueurs: s.joueurs.map(({ nom, skipperId, connecte, hote, bateauId, niveauQuiz }) => ({ nom, skipperId, connecte, hote, bateauId, niveauQuiz: niveauQuiz ?? NIVEAU_QUIZ_DEFAUT })),
     };
   }
