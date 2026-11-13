@@ -1,5 +1,14 @@
 # Journal des versions
 
+## Mise en ligne b137f9ce (13/11/2026, soir), serveur réseau beb05c26
+Avec l'accord du porteur de projet (« Oui, mets en ligne ») : version 0.4.232, depuis la branche `corrections-affichage` après fusion de `main` (0.4.229), puis passée dans `main`. Contient la correction ci-dessous. 61 tests, mêmes modèles 3D que la version précédente. Vérifié en ligne : « Version 0.4.232 » sur l'accueil, noms de F9 à F12 présents dans le fichier du jeu, salon réseau créé, course lancée, premier tour résolu par le serveur.
+
+## 13/11/2026 · Correction : plantage de l'affichage par vent de force 9 et plus (branche `corrections-affichage`, publié le 13/11/2026)
+Bug envoyé par le porteur de projet (version en ligne 0.4.221) : écran « Oups, l'affichage du jeu a planté », `Cannot read properties of undefined (reading 'toLowerCase')`.
+- **Cause** : depuis le 11/11, le vent peut monter jusqu'à F11 (dé tempête), mais la table des noms de force (`regles.json`, `beaufort`) s'arrêtait à F8 (« Coup de vent »). Dès qu'un bateau se trouvait dans un vent de F9 à F11 (front, ou vent général), l'aperçu 3D du bateau, la pastille météo et l'écran des dés cherchaient un nom absent et l'affichage plantait. « Reprendre la partie » replantait aussitôt (même vent). En simulation, 14 parties sur 20 de la Route du Rhum en IMOCA ont un bateau en F9 et plus : c'est sans doute aussi l'« écran noir » signalé avant (Café L'Or, Class40). Le journal écrivait « (undefined) » à la place du nom du vent.
+- **Correction** : table complétée de F0 à F12, termes de Wikipédia (fr.wikipedia.org/wiki/Échelle_de_Beaufort) : Fort coup de vent, Tempête, Violente tempête, Vent d'ouragan ; F12 du hangar renommé « Vent d'ouragan » (au lieu d'« Ouragan ») pour suivre la même source. Les écrans lisent désormais le nom par une seule fonction du moteur (`nomBeaufort`), qui donne toujours un nom.
+- Vérifié : 57 tests (2 nouveaux : un nom pour chaque force possible ; en course, un nom pour chaque bateau pris en F9 et plus, sans « undefined » dans le journal ; ils échouent avec l'ancienne table), construction, et à l'écran en local : plantage reproduit avec un vent forcé à F10, puis plus de plantage après correction (« F10 tempête », « F11 violente tempête »). **Le moteur et les données ont changé : à la mise en ligne, publier aussi le serveur réseau** (noms du vent dans le journal des parties en réseau).
+
 ## Mise en ligne df657908 (13/11/2026, soir), sans changement du serveur réseau
 Avec l'accord du porteur de projet (« Oui, mets en ligne ») : version 0.4.229, le logo ci-dessous. Vérifié en ligne : version 0.4.229 affichée, `favicon.svg`, `favicon-32.png` et `apple-touch-icon.png` servis par le site.
 

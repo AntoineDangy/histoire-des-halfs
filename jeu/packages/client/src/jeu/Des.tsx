@@ -1,4 +1,4 @@
-import { NOMS_DIR_LONGS } from '@cal/engine';
+import { nomBeaufort, NOMS_DIR_LONGS } from '@cal/engine';
 import type { Vent } from '@cal/engine';
 import { D, RISQUES } from '../commun';
 
@@ -70,7 +70,7 @@ export function DesVent({ direction, force, phase, avant, apres, zone, autres }:
           )}
         </div>
         <div className="de-resultat">{roule ? '…' : `F${avant.force} → F${apres.force}`}</div>
-        <div className="de-legende">{roule ? '' : D.regles.beaufort[apres.force]}</div>
+        <div className="de-legende">{roule ? '' : nomBeaufort(D, apres.force)}</div>
       </div>
       <div className="de-bilan">
         {phase === 'apparition' && <>Jet des dés du vent…</>}
@@ -78,7 +78,7 @@ export function DesVent({ direction, force, phase, avant, apres, zone, autres }:
         {phase === 'resultat' && (
           <>
             {bilan.zone}, {bilan.texte} : il passe de <b>{NOMS_DIR_LONGS[avant.direction]} F{avant.force}</b> à{' '}
-            <b>{NOMS_DIR_LONGS[apres.direction]} F{apres.force}</b> ({D.regles.beaufort[apres.force].toLowerCase()}).
+            <b>{NOMS_DIR_LONGS[apres.direction]} F{apres.force}</b> ({nomBeaufort(D, apres.force).toLowerCase()}).
             {zone === 'alizes' && (direction !== 0 || force !== 0) && <> Les dés jouent sans faire sortir le vent de sa plage.</>}
             {(autres ?? []).map((x) => (
               <div key={x.nom} style={{ marginTop: 4, fontSize: '0.92em' }}>

@@ -1,7 +1,7 @@
 // L'échelle de Beaufort dans « Ton hangar à bateaux » : chaque bateau a la sienne (demande du porteur de projet,
 // 10/11/2026), dans sa vue 3D. Table d'origine : conception/risque-un-de-et-beaufort.md.
 // Sources : Met Office (vitesses, hauteurs de vague probables, état de la mer) ; Environnement et Changement climatique
-// Canada (termes français) ; seuils des avis de Météo-France relevés dans la presse nautique. Voilure : indicative.
+// Canada et Wikipédia, fr.wikipedia.org/wiki/Échelle_de_Beaufort (termes français) ; seuils des avis de Météo-France relevés dans la presse nautique. Voilure : indicative.
 import type { AllureKey, Forme } from './scene3d';
 
 export interface ForceBeaufort {
@@ -27,7 +27,7 @@ export const BEAUFORT: ForceBeaufort[] = [
   { terme: 'Fort coup de vent', noeuds: [41, 47], vague: '7', mer: 'Grosses lames, les crêtes déferlent en rouleaux.', avis: 'Avis de fort coup de vent', ciel: 'Nuages très bas et sombres, visibilité réduite.' },
   { terme: 'Tempête', noeuds: [48, 55], vague: '9', mer: 'Très grosses lames déferlantes, la mer paraît blanche.', avis: 'Avis de tempête', ciel: 'Plafond très bas, presque noir.' },
   { terme: 'Violente tempête', noeuds: [56, 63], vague: '11,5', mer: 'Lames exceptionnellement hautes, la mer est couverte d\'écume.', avis: 'Avis de violente tempête', ciel: 'Ciel noir, l\'horizon disparaît dans les embruns.' },
-  { terme: 'Ouragan', noeuds: [64, null], vague: '14 et plus', mer: 'L\'air est plein d\'écume et d\'embruns, la mer est entièrement blanche.', avis: 'Avis d\'ouragan', ciel: 'Ciel et mer se confondent.' },
+  { terme: "Vent d'ouragan", noeuds: [64, null], vague: '14 et plus', mer: 'L\'air est plein d\'écume et d\'embruns, la mer est entièrement blanche.', avis: 'Avis d\'ouragan', ciel: 'Ciel et mer se confondent.' },
 ];
 
 export interface VoilureBeaufort {

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   angleAllure, appliquer, bateau, heuresParTour, classement, categorie, categoriesPartie, NOM_CATEGORIE, coteVent, creerPartie, distanceRestante, formaterTemps, humainsAttendus, vecteur,
-  NOMS_DIR, NOMS_DIR_LONGS, nomSkipper, trajectoirePrevue, ventCourant, frontSur, DELAI_CHOIX_S, DELAI_DECISION_S,
+  NOMS_DIR, NOMS_DIR_LONGS, nomBeaufort, nomSkipper, trajectoirePrevue, ventCourant, frontSur, DELAI_CHOIX_S, DELAI_DECISION_S,
 } from '@cal/engine';
 import type { Action, Case, Choix, EtatPartie, Evenement, JoueurSalon, Vent } from '@cal/engine';
 import { bateauDef, courseDef, D, definirCourseActive, Lancement, nomClasse, skipper, posExacte } from '../commun';
@@ -960,10 +960,10 @@ function ResumeAttente({ etat, vus, enRetard, noms, onFin, moiId }: { etat: Etat
   const bMoi = moiId ? etat.bateaux.find((x) => x.id === moiId) : undefined;
   const vent = enRetard && ventVu ? ventVu : bMoi ? ventCourant(etat, bMoi.x, bMoi.y) : etat.vent;
   return (
-    <div className="meteo-sur-carte" title={`${D.regles.beaufort[vent.force]}. Les bateaux se déplacent dans l'ordre inverse du classement : le dernier bouge en premier.`}>
+    <div className="meteo-sur-carte" title={`${nomBeaufort(D, vent.force)}. Les bateaux se déplacent dans l'ordre inverse du classement : le dernier bouge en premier.`}>
       <div className="girouette"><Girouette direction={vent.direction} force={vent.force} /></div>
       <div className="meteo-texte">
-        <div className="meteo-vent">{NOMS_DIR[vent.direction]} · F{vent.force} <span className="muted">{D.regles.beaufort[vent.force].toLowerCase()}</span></div>
+        <div className="meteo-vent">{NOMS_DIR[vent.direction]} · F{vent.force} <span className="muted">{nomBeaufort(D, vent.force).toLowerCase()}</span></div>
         <div className="meteo-ligne muted">
           {enRetard ? 'Résolution du tour' : 'En attente'}
           {dernier?.donnees && typeof dernier.donnees.risque === 'number' && (

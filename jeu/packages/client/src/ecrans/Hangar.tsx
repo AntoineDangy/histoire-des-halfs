@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { calculerDistance, calculerRisque, compilerCarte, navigable, zonesCase } from '@cal/engine';
+import { calculerDistance, calculerRisque, compilerCarte, navigable, nomBeaufort, zonesCase } from '@cal/engine';
 import { bateauDef, D, familleDef, nomClasse, RISQUES } from '../commun';
 import { AllureKey, chargerModeles, Forme, modelesAcharger, modeleDuBateau, Scene3D } from '../jeu/scene3d';
 import { nomsVoiles, planDe } from '../jeu/voilure';
@@ -328,7 +328,7 @@ export default function Hangar({ onRetour }: { onRetour: () => void }) {
             <div className="hangar-tableau-defile">
               <table className="tableau hangar-tableau">
                 <thead>
-                  <tr><th>Allure</th>{FORCES.map((fo) => <th key={fo}>Force {fo} · {D.regles.beaufort[fo].toLowerCase()}</th>)}</tr>
+                  <tr><th>Allure</th>{FORCES.map((fo) => <th key={fo}>Force {fo} · {nomBeaufort(D, fo).toLowerCase()}</th>)}</tr>
                 </thead>
                 <tbody>
                   {ALLURES.map((a, i) => (

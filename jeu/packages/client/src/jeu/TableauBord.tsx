@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { alizeApres, alizeEn, dansAlize, frontSur, ventCourant } from '@cal/engine';
+import { alizeApres, alizeEn, dansAlize, frontSur, nomBeaufort, ventCourant } from '@cal/engine';
 import { ANGLE_MIN, angleAllure, apercuCap, bateau, usureParTour, choisirIA, demiCapsPermis, NB_DIR, nomAllure, nomCap, NOMS_ALLURES, NOMS_DIR, NOMS_DIR_LONGS, norm, peutRecoudre, surCaseAbri } from '@cal/engine';
 import type { Choix, EtatPartie } from '@cal/engine';
 import { bateauDef, competenceDef, D, DE_LARGE, faces, RISQUES, skipper } from '../commun';
@@ -325,10 +325,10 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider, entet
     : <span className="jauge-txt muted">à quai</span>);
 
   const meteo = (
-        <div className="meteo-sur-carte" title={D.regles.beaufort[vent.force]}>
+        <div className="meteo-sur-carte" title={nomBeaufort(D, vent.force)}>
           <div className="girouette"><Girouette direction={vent.direction} force={vent.force} /></div>
           <div className="meteo-texte">
-            <div className="meteo-vent">{NOMS_DIR[vent.direction]} · F{vent.force} <span className="muted">{D.regles.beaufort[vent.force].toLowerCase()}</span></div>
+            <div className="meteo-vent">{NOMS_DIR[vent.direction]} · F{vent.force} <span className="muted">{nomBeaufort(D, vent.force).toLowerCase()}</span></div>
             {tendanceTexte && <div className="meteo-ligne">☁ {tendanceTexte}</div>}
             {comp.speciaux.voit_de_force && etat.desProchains && (() => {
               const az = dansLesAlizes ? alizeEn(etat, b.x, b.y) : null;

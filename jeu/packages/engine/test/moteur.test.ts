@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { donneesBrutes } from '../../data/index';
 import {
   angleAllure, appliquer, bateauxAttendus, calculerDistance, calculerRisque, choisirIA, classement, compilerCarte,
-  classesDeCourse, controlerJournal, coursesReseau, creerPartie, dansAlize, distanceAttendue, distanceRestanteCase, facesForce, frontSur, humainsAttendus, maxBateauxSalon, navigable, NIVEAU_QUIZ_DEFAUT, niveauQuizValide, perteCarte, plafondCases, reglagesSalonValides, rejouer, terreFine, tracerChemin, ventCourant,
+  classesDeCourse, controlerJournal, coursesReseau, creerPartie, dansAlize, distanceAttendue, distanceRestanteCase, facesForce, frontSur, humainsAttendus, maxBateauxSalon, navigable, NIVEAU_QUIZ_DEFAUT, niveauQuizValide, nomBeaufort, perteCarte, plafondCases, reglagesSalonValides, rejouer, terreFine, tracerChemin, ventCourant,
 } from '../src/index';
 import type { Action, CourseDef, Donnees, EtatPartie, ParamsPartie, ReglagesSalon } from '../src/index';
 
@@ -293,6 +293,41 @@ describe('journal des mouvements', () => {
         if (l.budget !== null && !l.bloque && !l.arrive && l.issue === 'déplacement') expect(Math.abs(l.parcourue - l.budget)).toBeLessThanOrEqual(1.5);
       }
     }
+  });
+});
+
+describe('noms des forces du vent (bug d\'affichage du 13/11/2026)', () => {
+  it('chaque force possible, jusqu\'à la tempête (F11), a son nom sur l\'échelle de Beaufort', () => {
+    const plusForte = Math.max(d.regles.force_max, Number(d.regles.tempete?.force_max_fronts ?? 0), ...Object.keys(d.regles.tempete ?? {}).map(Number).filter(Number.isFinite));
+    expect(plusForte).toBeGreaterThanOrEqual(11);
+    for (let f = 0; f <= plusForte; f++) {
+      expect(d.regles.beaufort[f], `F${f}`).toBeTruthy();
+      expect(nomBeaufort(d, f)).toBe(d.regles.beaufort[f]);
+    }
+    expect(nomBeaufort(d, 9)).toBe('Fort coup de vent');
+    expect(nomBeaufort(d, 11)).toBe('Violente tempête');
+    // Hors de la table : le nom le plus proche, jamais « undefined » (l'affichage planterait).
+    expect(nomBeaufort(d, 15)).toBe("Vent d'ouragan");
+    expect(nomBeaufort(d, -1)).toBe('Calme');
+  });
+
+  it('en course, un bateau pris dans un vent de F9 et plus a un nom de vent, et le journal aussi', () => {
+    let tempetes = 0;
+    for (const g of [1, 2, 3, 4, 5, 6]) {
+      let e = creerPartie(d, params(g));
+      let garde = 0;
+      while (e.phase !== 'fin' && garde++ < 200) {
+        for (const b of e.bateaux) {
+          const v = ventCourant(e, b.x, b.y);
+          if (v.force >= 9) tempetes++;
+          expect(d.regles.beaufort[v.force], `graine ${g}, tour ${e.tour}, F${v.force}`).toBeTruthy();
+        }
+        const b = bateauxAttendus(e)[0];
+        e = appliquer(d, e, { type: 'ChoisirCapEtVoile', bateauId: b.id, choix: choisirIA(d, e, b.id) });
+      }
+      expect(e.evenements.filter((ev) => ev.texte.includes('undefined')).map((ev) => ev.texte)).toEqual([]);
+    }
+    expect(tempetes).toBeGreaterThan(0); // le cas qui plantait est bien rencontré
   });
 });
 

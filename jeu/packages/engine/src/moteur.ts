@@ -4,7 +4,7 @@ import { CarteCompilee, compilerCarte, distanceRestanteCase, idx, navigable, pas
 import { angleAllure, auAllure, capValide, coteVent, NB_DIR, nomAllure, NOMS_DIR_LONGS, norm, vecteur } from './geo';
 import { choisirIA, decisionRelanceIA, decisionReparationIA } from './ia';
 import { alizeApres, creerAnticyclonesPermanents, creerMolle, dansAlize, indiceAlize, evoluerFronts, frontSur, ventCourant, ventSysteme } from './meteo';
-import { calculerDistance, calculerRisque, classeBateau, competence, dansBrume, echelleBateau, estMulticoque, echelleCarte, facesForce, plafondCases, tracerChemin, voile } from './regles';
+import { calculerDistance, calculerRisque, classeBateau, competence, dansBrume, echelleBateau, estMulticoque, echelleCarte, facesForce, nomBeaufort, plafondCases, tracerChemin, voile } from './regles';
 import { alea, d6, entier, face, pas, tiragePondere } from './rng';
 import type {
   Action, Case, Choix, ContexteResolution, CourseDef, Donnees, EtatBateau, EtatPartie, Evenement,
@@ -416,7 +416,7 @@ function demarrerResolution(d: Donnees, etat: EtatPartie) {
       : dansAlize(etat, b.x, b.y) ? 'alizes' : 'general';
     locaux[b.id] = { avant: locauxAvant[b.id], apres: ventCourant(etat, b.x, b.y), zone };
   }
-  evt(etat, 'vent', `Le vent ${sens} : ${NOMS_DIR_LONGS[etat.vent.direction]}, force ${etat.vent.force} (${d.regles.beaufort[etat.vent.force]}).`, undefined, {
+  evt(etat, 'vent', `Le vent ${sens} : ${NOMS_DIR_LONGS[etat.vent.direction]}, force ${etat.vent.force} (${nomBeaufort(d, etat.vent.force)}).`, undefined, {
     avant: ventAvant, des, apres: { ...etat.vent }, locaux,
   });
   // Ordre inverse du classement : le dernier bouge en premier (§3.8).

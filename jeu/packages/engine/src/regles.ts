@@ -139,6 +139,16 @@ export function estMulticoque(d: Donnees, b: Pick<EtatBateau, 'famille'>): boole
   return f.multicoque ?? !!d.classes.find((x) => x.id === f.classe)?.multicoque;
 }
 
+/**
+ * Nom d'une force du vent sur l'échelle de Beaufort (« Coup de vent », « Tempête »…). Toujours un texte : une force hors
+ * de la table prend le nom de la force la plus proche (13/11/2026 : l'affichage plantait en F9 à F11, absents de la table).
+ */
+export function nomBeaufort(d: Pick<Donnees, 'regles'>, force: number): string {
+  const t = d.regles.beaufort;
+  if (!t?.length) return `Force ${force}`;
+  return t[Math.max(0, Math.min(t.length - 1, Math.round(force) || 0))] ?? `Force ${force}`;
+}
+
 /** Faces du dé de force selon la force actuelle : à F1, pas de baisse (règle du porteur de projet, 11/11/2026). */
 export function facesForce(d: Donnees, force: number): number[] {
   return force <= d.regles.force_min && d.regles.de_force_min ? d.regles.de_force_min : d.regles.de_force;

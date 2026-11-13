@@ -44,5 +44,6 @@
     "moyen":     { "1": 0.85, "2": 0.7, "3": 0.5 },
     "difficile": { "1": 0.95, "2": 0.85, "3": 0.65 }
   },
-  "beaufort": ["", "Très légère brise", "Légère brise", "Petite brise", "Jolie brise", "Bonne brise", "Vent frais", "Grand frais", "Coup de vent"]
+  "beaufort": ["Calme", "Très légère brise", "Légère brise", "Petite brise", "Jolie brise", "Bonne brise", "Vent frais", "Grand frais", "Coup de vent", "Fort coup de vent", "Tempête", "Violente tempête", "Vent d'ouragan"],
+  "_note_beaufort": "Nom de chaque force, de F0 à F12 (termes de Wikipédia, https://fr.wikipedia.org/wiki/%C3%89chelle_de_Beaufort, mêmes que l'échelle du hangar, client/src/jeu/beaufort.ts). Complétée le 13/11/2026 au-delà de F8 : depuis le 11/11 le vent monte jusqu'à F11 (dé tempête) et l'affichage plantait faute de nom pour F9 à F11. Lire avec nomBeaufort (moteur), jamais par indice direct."
 }

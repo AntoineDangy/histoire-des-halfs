@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { angleAllure, bateau, coteVent, heuresParTour, NOMS_DIR_LONGS, norm, ventCourant } from '@cal/engine';
+import { angleAllure, bateau, coteVent, heuresParTour, nomBeaufort, NOMS_DIR_LONGS, norm, ventCourant } from '@cal/engine';
 import type { EtatPartie } from '@cal/engine';
 import { bateauDef, courseDef, D, skipper } from '../commun';
 import { AllureKey, chargerModeles, Forme, modelesAcharger, modeleDuBateau, Scene3D } from './scene3d';
@@ -82,7 +82,7 @@ export default function Apercu3D({ etat, bateauId, cap, voile, actif }: {
       </div>
       <div className="apercu-3d-legende">
         <b>{def ? def.nom : 'À sec de toile'}</b>
-        <span className="muted"> · {NOMS_DIR_LONGS[vent.direction]} F{vent.force} · {D.regles.beaufort[vent.force].toLowerCase()}</span>
+        <span className="muted"> · {NOMS_DIR_LONGS[vent.direction]} F{vent.force} · {nomBeaufort(D, vent.force).toLowerCase()}</span>
       </div>
     </div>
   );
