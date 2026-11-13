@@ -88,10 +88,22 @@ export interface VueSalon {
 /**
  * Délais du serveur (13/11/2026, audit C2, PROVISOIRES, à valider par le porteur de projet) : au-delà, le routeur choisit
  * le cap et la voile du joueur pour ce tour ; pour une décision, la réponse par défaut est jouée (question : temps écoulé ;
- * relance : on garde le vent ; carte réparation : choix de l'IA). Le délai du choix compte aussi l'animation du tour.
+ * relance : on garde le vent ; carte réparation : choix de l'IA). Depuis le 13/11/2026 (audit de l'enchaînement), le
+ * délai ne compte plus l'animation : il part quand les écrans des joueurs attendus ont fini de montrer le tour.
  */
 export const DELAI_CHOIX_S = 150;
 export const DELAI_DECISION_S = 90;
+/** Écran qui ne dit jamais avoir fini l'animation (ancienne version, onglet en veille) : le chrono part quand même après ce temps. */
+export const ATTENTE_ANIMATION_MAX_S = 120;
+
+/**
+ * Le chrono d'une attente peut-il partir ? Oui quand chaque joueur attendu (connecté) a vu sur son écran tous les événements
+ * de la partie (`lus` : nombre d'événements montrés par son écran), ou quand l'attente dure depuis plus de 2 minutes.
+ */
+export function chronoPeutPartir(depuis: number, nEvenements: number, lus: (number | undefined)[], maintenant: number): boolean {
+  if (maintenant - depuis >= ATTENTE_ANIMATION_MAX_S * 1000) return true;
+  return lus.every((n) => n !== undefined && n >= nEvenements);
+}
 
 export type MessageClient =
   /** niveauQuiz : niveau mémorisé par l'appareil, pris seulement à la première arrivée dans le salon. */
@@ -101,7 +113,9 @@ export type MessageClient =
   | { t: 'reglages'; reglages: ReglagesSalon }
   | { t: 'lancer' }
   | { t: 'action'; action: Action }
-  | { t: 'confierIA'; bateauId: string };
+  | { t: 'confierIA'; bateauId: string }
+  /** L'écran du joueur a fini de montrer les `n` premiers événements de la partie (le chrono peut partir). */
+  | { t: 'lu'; n: number };
 
 export type MessageServeur =
   | { t: 'salon'; salon: VueSalon; moi: number }

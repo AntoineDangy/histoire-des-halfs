@@ -96,6 +96,7 @@ export default function Reseau({ codeInitial, onRetour, onFin }: Props) {
           connecte: cx.connecte,
           envoyer: (a) => conn.current?.action(a),
           confierIA: (id) => conn.current?.envoyer({ t: 'confierIA', bateauId: id }),
+          lu: (n) => conn.current?.envoyer({ t: 'lu', n }),
           erreur: cx.erreur,
           effacerErreur: () => conn.current?.effacerErreur(),
           echeance: cx.echeance,

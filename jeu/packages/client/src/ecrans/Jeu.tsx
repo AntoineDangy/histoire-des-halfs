@@ -9,6 +9,7 @@ import Carte from '../jeu/Carte';
 import TableauBord, { Girouette, PastilleRisque } from '../jeu/TableauBord';
 import type { ApercuChoix } from '../jeu/TableauBord';
 import { EcranPassation, ModaleQuiz, ModaleRelance, ModaleReparation } from '../jeu/Modales';
+import { attenteAMontrer, cleAttente, etapeDuTour, NOM_ETAPE, recapIA } from '../jeu/enchainement';
 import { AllureKey, BateauScene, chargerModeles, Forme, modelesAcharger, modeleDuBateau, Scene3D } from '../jeu/scene3d';
 import { bilanVent, DesVent, DeEvenement, DeRisque, DeSpecial, EtatDeRisque, EtatDeSpecial, Phase } from '../jeu/Des';
 import ModaleCarteEvenement from '../jeu/CarteEvenement';
@@ -30,6 +31,8 @@ export interface ModeReseau {
   connecte: boolean;
   envoyer: (a: Action) => void;
   confierIA: (bateauId: string) => void;
+  /** Dit au serveur que l'écran a fini de montrer les `n` premiers événements (le chrono peut partir, 13/11/2026). */
+  lu?: (n: number) => void;
   /** Refus du serveur (action impossible), affiché pendant la course (13/11/2026, audit C5). */
   erreur?: string | null;
   effacerErreur?: () => void;
@@ -110,6 +113,8 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
   };
   /** Priorité d'un moment : la scène 3D du tour est réservée au moment le plus fort (une voile perdue avant un petit temps). */
   const PRIORITE: Partial<Record<Evenement['type'], number>> = { voile_perdue: 4, bloque: 4, collision: 4, arrivee: 5, depassement: 3, a_vue: 2, debut: 1 };
+  /** Moments de voile (perdue, inutilisable) : leur scène se joue au moment où ils arrivent, pas en fin de tour. */
+  const sceneAuMoment = (ev: Evenement) => ev.type === 'voile_perdue' || ev.type === 'bloque';
   const impliqueHumain = (ev: Evenement) => {
     const d = (ev.donnees ?? {}) as { autre?: string; autres?: string[]; ligne?: string[] };
     if (d.ligne) return true; // la ligne d'arrivée est toujours montrée
@@ -150,6 +155,10 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
   const tourMonde = !!courseDef(etat.params.courseId).distance_reelle;
   const fileScenes = useRef<number[]>([]);
   const finDeTour = useRef(false);
+  /** Tour dont le récapitulatif des IA au large a déjà été montré. */
+  const recapFait = useRef(0);
+  /** Décision à laquelle le joueur vient de répondre : sa fenêtre ne revient pas en attendant la réponse du serveur. */
+  const [envoyee, setEnvoyee] = useState<string | null>(null);
   const conteneur3d = useRef<HTMLDivElement>(null);
   const etiquettes3d = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -263,6 +272,46 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
     if (ev.type !== 'de_evenement') setDeEvt(null);
     if (ev.type !== 'jet_risque') setDeRisque(null);
     setDeSpecial(null);
+    const fin = () => () => {
+      annule = true;
+      timers.forEach(clearTimeout);
+    };
+    // Audit de l'enchaînement (13/11/2026, validé par le porteur de projet) :
+    // 1. Entre « Le large » et « La course » : ce que les IA ont fait au large, en une phrase (2,5 s).
+    if (!rejouer && !depuisFile && recapFait.current !== ev.tour && etapeDuTour(etat.evenements, indexEv) === 'course'
+      && etapeDuTour(etat.evenements, indexEv - 1) !== 'course') {
+      recapFait.current = ev.tour;
+      const r = recapIA(etat, ev.tour);
+      if (r) {
+        setAnnonce(r);
+        timers.push(window.setTimeout(() => !annule && setRejoue((x) => x + 1), 2500 * k));
+        return fin();
+      }
+    }
+    const pourMoi = humain && (!reseau || ev.bateauId === reseau.moi);
+    // 2. Temps écoulé en réseau : le serveur a choisi ou répondu à la place du joueur ; on le lui dit clairement (4 s).
+    if (pourMoi && reseau && ev.type === 'info' && ev.texte.startsWith('Temps écoulé')) {
+      const choix = etat.evenements.slice(indexEv + 1).find((x) => x.bateauId === ev.bateauId && x.tour === ev.tour && x.type === 'debut')?.donnees as { cap?: number; voile?: string | null } | undefined;
+      const voileNom = choix?.voile ? D.voiles.find((v) => v.id === choix.voile)?.nom ?? choix.voile : null;
+      setAnnonce(ev.texte.includes('routeur') && choix?.cap !== undefined
+        ? `⏱ Temps écoulé : le routeur a choisi pour vous le cap ${NOMS_DIR[choix.cap]}${voileNom ? ` sous ${voileNom}` : ''}.`
+        : `⏱ ${ev.texte}`);
+      duree = 4000 * k;
+    }
+    // 3. Départ du bateau du joueur : la distance prévue au choix et la distance possible après les dés, avec la raison.
+    if (pourMoi && ev.type === 'debut') {
+      const dd = ev.donnees as { distance: number; prevu?: number; vent: Vent; ventPrevu?: Vent; max?: number };
+      // Distance limitée par le joueur : on compare ce qu'il visait à ce qu'il pourra faire, chacun borné par sa limite.
+      const plan = dd.prevu === undefined ? undefined : Math.min(dd.prevu, dd.max ?? Infinity);
+      const reel = Math.min(dd.distance, dd.max ?? Infinity);
+      if (plan !== undefined && Math.abs(plan - reel) >= Math.max(1, plan * 0.1)) {
+        const raisons: string[] = [];
+        if (dd.ventPrevu && dd.ventPrevu.force !== dd.vent.force) raisons.push(`le vent a ${dd.vent.force > dd.ventPrevu.force ? 'forci' : 'faibli'} (F${dd.ventPrevu.force} → F${dd.vent.force})`);
+        if (dd.ventPrevu && dd.ventPrevu.direction !== dd.vent.direction) raisons.push(`il a tourné (${NOMS_DIR[dd.ventPrevu.direction]} → ${NOMS_DIR[dd.vent.direction]})`);
+        setAnnonce(`🧭 ${noms[ev.bateauId!]} : ${Math.round(plan * mpc)} milles prévus au choix, ${Math.round(reel * mpc)} possibles${raisons.length ? ` : ${raisons.join(', ')}` : ''}.`);
+        duree = 3000 * k;
+      }
+    }
 
     if (ev.type === 'vent') {
       // Les dés roulent 1,2 s, puis le résultat reste affiché assez longtemps pour être lu (cliquer pour passer).
@@ -295,7 +344,7 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
         timers.push(window.setTimeout(() => !annule && setDeEvt({ ...base, phase: 'roule' }), 600 * k));
         timers.push(window.setTimeout(() => !annule && setDeEvt({ ...base, phase: 'resultat' }), 1900 * k));
         duree = 4000 * k;
-      } else if (humain && deAuto) {
+      } else if (humain && (deAuto || (plusieursHumains && !reseau))) {
         // Option « lancer tout seul » (13/11/2026, audit A3) : le dé roule sans attendre de clic.
         const base = { valeur: d.de, nom: noms[ev.bateauId!] };
         setDeEvt({ ...base, phase: 'apparition' });
@@ -326,6 +375,13 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
           timers.forEach(clearTimeout);
         };
       } else duree = 150 * k;
+    } else if (avec3d && !tourMonde && !depuisFile && !rejouer && momentFort(ev, humain) && (humain || impliqueHumain(ev)) && !sceneAuMoment(ev)) {
+      // Audit de l'enchaînement (13/11/2026, validé par le porteur de projet) : au plus une scène 3D par tour, jouée en fin
+      // de tour, celle du moment le plus fort (coup de vent, dépassement, arrivée…). Les voiles perdues ou inutilisables
+      // gardent la leur, au moment où elles arrivent.
+      const p = PRIORITE[ev.type] ?? 0;
+      const q = fileScenes.current[0];
+      if (q === undefined || etat.evenements[q]?.tour !== ev.tour || p > (PRIORITE[etat.evenements[q].type] ?? 0)) fileScenes.current = [curseur];
     } else if (avec3d && !tourMonde && ev.type === 'debut' && !rejouer && momentFort(ev, humain) && humain && risqueApres(curseur)) {
       sceneDifferee.current = curseur;
       duree = 400 * k;
@@ -480,7 +536,8 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
         const chemin: Case[] = d.chemin ?? (d.vers ? [d.vers] : []);
         const depart = positions[e2.bateauId!] ?? d.de;
         const arrivee = chemin[chemin.length - 1];
-        const t2 = Math.max(300, (humain ? 140 : 70) * chemin.length) * k;
+        // Les IA bougent ensemble en 1,2 s au moins, pour qu'on les voie (audit de l'enchaînement, 13/11/2026).
+        const t2 = Math.max(humain ? 300 : 1200, (humain ? 140 : 70) * chemin.length) * k;
         total = Math.max(total, t2);
         if (!depart || !arrivee) continue;
         const images = Math.max(2, Math.round(t2 / 40));
@@ -507,8 +564,13 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
     }
     // Après une scène retardée, l'événement courant (celui qui suit le dé) est lu à son tour : on ne fait pas avancer le curseur.
     // Tour du monde : au dernier événement du tour, on joue les scènes 3D gardées avant de passer au tour suivant.
-    const dernierDuTour = !depuisFile && (curseur + 1 >= etat.evenements.length || etat.evenements[curseur + 1].tour !== ev.tour);
-    if (tourMonde && dernierDuTour && fileScenes.current.length) finDeTour.current = true;
+    // Fin du tour : seulement si le tour est complet (en réseau, la suite peut attendre la décision d'un joueur).
+    const dernierDuTour = !depuisFile && (curseur + 1 >= etat.evenements.length ? etat.phase !== 'resolution' : etat.evenements[curseur + 1].tour !== ev.tour);
+    if (dernierDuTour && fileScenes.current.length) {
+      // Au plus une scène par tour : pas de scène de fin de tour moins forte qu'une scène de voile déjà jouée.
+      if (!tourMonde) fileScenes.current = fileScenes.current.filter((i) => !(tour3d.current.tour === etat.evenements[i].tour && (PRIORITE[etat.evenements[i].type] ?? 0) <= tour3d.current.prio));
+      if (fileScenes.current.length) finDeTour.current = true;
+    }
     timers.push(window.setTimeout(() => { if (annule) return; if (rejouer || finDeTour.current) setRejoue((r) => r + 1); else setCurseur((c) => c + saut); }, duree));
     return () => {
       annule = true;
@@ -571,13 +633,27 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
 
   // ---------- Qui joue ?
   const aJour = !enRetard;
+  // Réseau : l'écran a fini de montrer le tour ; le serveur peut lancer le chrono du choix ou de la décision (audit de
+  // l'enchaînement, 13/11/2026 : avant, il partait pendant l'animation et le routeur choisissait parfois à la place du joueur).
+  useEffect(() => {
+    if (reseau && aJour) reseau.lu?.(etat.evenements.length);
+  }, [aJour, etat.evenements.length, !!reseau]);
   const joueurChoix = aJour && etat.phase === 'choix'
     ? (reseau ? humainsAttendus(etat).find((b) => b.id === reseau.moi) ?? null : humainsAttendus(etat)[0] ?? null)
     : null;
   const besoinPassation = !reseau && joueurChoix && plusieursHumains && passation !== `${etat.tour}:${joueurChoix.id}`;
-  // En réseau, la décision (question, relance, réparation) s'affiche dès que le serveur la demande, sans attendre la fin
-  // de l'animation : les autres joueurs attendaient chaque fois cette animation (13/11/2026, audit C1).
-  const attenteHumaine = (aJour || !!reseau) && etat.attente && (!reseau || etat.attente.bateauId === reseau.moi) ? etat.attente : null;
+  // Décision (question, relance, réparation) : à son moment, quand l'animation y arrive, et une seule fois, dans tous les
+  // modes (audit de l'enchaînement, 13/11/2026). L'affichage d'avance en réseau (audit C1) montrait la carte du large
+  // deux fois et les questions avant le dé qui les provoque.
+  const attenteHumaine = attenteAMontrer(etat, curseur, reseau ? { moi: reseau.moi } : null, envoyee);
+  /** Répond à une décision : la fenêtre se ferme tout de suite, sans revenir pendant que le serveur traite la réponse. */
+  const repondre = (a: Action) => {
+    setEnvoyee(cleAttente(etat));
+    jouer(a);
+  };
+  // Même écran : la décision d'un joueur est précédée de « Je suis X », comme le choix du cap (audit E10).
+  const [passationDecision, setPassationDecision] = useState<string | null>(null);
+  const besoinPassationDecision = !reseau && plusieursHumains && !!attenteHumaine && passationDecision !== cleAttente(etat);
   // Échéance du serveur (13/11/2026, audit C2) : il choisit ou répond à la place des joueurs attendus.
   const [maintenant, setMaintenant] = useState(() => Date.now());
   useEffect(() => {
@@ -593,6 +669,14 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
       ? etat.bateaux.filter((b) => b.type === 'humain' && !b.arrive && b.passeTours === 0 && b.id !== reseau.moi && !reseau.ontChoisi.includes(b.id))
       : etat.attente && etat.attente.bateauId !== reseau.moi ? etat.bateaux.filter((b) => b.id === etat.attente!.bateauId) : []
     : [];
+
+  // Jamais de scène 3D pendant le choix du cap ou l'attente des autres (capture du porteur de projet du 13/11/2026 : titre
+  // « Dépassement ! » resté affiché sous « en attente de »).
+  useEffect(() => {
+    if (!joueurChoix && !attenteAutres.length) return;
+    setVue3d(null);
+    scene3dRef.current?.arreter();
+  }, [!!joueurChoix, attenteAutres.length]);
 
   useEffect(() => {
     if (joueurChoix && !besoinPassation) setBandeau(`Tour ${etat.tour} : ${plusieursHumains ? joueurChoix.nom + ', ' : ''}choisissez un cap (sur la rose, ou en touchant la mer) puis une voile.${resumeIA}`);
@@ -632,6 +716,10 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
   const groupesRang = cats ? cats.map((c) => ({ titre: NOM_CATEGORIE[c], liste: rang.filter((b) => categorie(D, b) === c) })) : [{ titre: '', liste: rang }];
   const course = courseDef(etat.params.courseId);
   const tourAffiche = enRetard ? etat.evenements[curseur].tour : etat.tour;
+  // Étape du tour annoncée à côté du numéro du tour (audit de l'enchaînement, 13/11/2026).
+  // Pendant une décision (animation arrivée au bout, tour pas fini), l'étape reste celle du dernier événement montré.
+  const etapeLue = enRetard ? etapeDuTour(etat.evenements, curseur) : etat.phase === 'resolution' ? etapeDuTour(etat.evenements, etat.evenements.length - 1) : null;
+  const etapeAffichee = etapeLue ? NOM_ETAPE[etapeLue] : !enRetard && etat.phase === 'choix' ? 'Choix du cap' : null;
   const heures = (tourAffiche - 1) * heuresParTour(D, etat);
   // Traces (11/11/2026) : un déplacement pas encore joué n'est pas dessiné ; celui qui se joue se dessine au fil du bateau.
   const coupes: Record<string, { n: number; pts: [number, number][] }> = {};
@@ -655,7 +743,7 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
         <span className="sep" />
         <span className="muted">{course.nom} · <b style={{ color: 'var(--texte)' }}>{nomClasse(etat.params.classe)}</b></span>
         <div className="droite">
-          <span className="puce garde">Tour <b>{tourAffiche}</b></span>
+          <span className="puce garde">Tour <b>{tourAffiche}</b>{etapeAffichee && <> · <b>{etapeAffichee}</b></>}</span>
           <span className="puce">Temps de course <b>J+{Math.floor(heures / 24)} · {String(Math.floor(heures % 24)).padStart(2, '0')} h</b></span>
           <button className="btn btn-petit" onClick={() => setVitesse(vitesse === 1 ? 2 : vitesse === 2 ? 4 : 1)} title="Vitesse des animations">×{vitesse}</button>
           {enRetard && <button className="btn btn-petit garde" onClick={passerAnimation}>Passer l'animation</button>}
@@ -689,8 +777,11 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
             <TableauBord etat={etat} bateauId={joueurChoix.id} onApercu={setApercu} onValider={valider}
               entete={plusieursHumains ? `À vous, ${joueurChoix.nom} (${nomSkipper(D, etat, joueurChoix)})` : undefined} />
           )}
+          {/* Une seule zone de messages en bas de la carte : ils s'empilent au lieu de se recouvrir (audit de l'enchaînement,
+              13/11/2026). */}
+          <div className="zone-messages">
           {reseau && attenteAutres.length > 0 && (
-            <div className="panneau attente-reseau attente-carte">
+            <div className="panneau attente-reseau">
               <div className="lbl">{etat.phase === 'choix' ? 'Vous avez choisi · en attente de' : 'Décision en cours'}</div>
               {attenteAutres.map((b) => {
                 const j = reseau.joueurs.find((x) => x.bateauId === b.id);
@@ -715,16 +806,17 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
           )}
           {/* Mon propre choix en réseau : le temps restant s'affiche dans la dernière minute (13/11/2026, audit C2). */}
           {reseau && (joueurChoix || attenteHumaine) && resteEcheance !== null && resteEcheance <= 60 && (
-            <div className="alerte-front annonce attente-carte">
+            <div className="alerte-front annonce">
               ⏱ Plus que {resteEcheance} s : {joueurChoix ? 'ensuite le routeur choisira votre cap et votre voile pour ce tour.' : 'ensuite la réponse par défaut sera jouée.'}
             </div>
           )}
-          {reseau && !reseau.connecte && <div className="alerte-front annonce attente-carte">Connexion perdue : reconnexion en cours…</div>}
+          {reseau && !reseau.connecte && <div className="alerte-front annonce">Connexion perdue : reconnexion en cours…</div>}
           {reseau?.erreur && (
-            <div className="alerte-front annonce attente-carte" role="alert" onClick={() => reseau.effacerErreur?.()} style={{ cursor: 'pointer' }}>
+            <div className="alerte-front annonce" role="alert" onClick={() => reseau.effacerErreur?.()} style={{ cursor: 'pointer' }}>
               Le serveur a refusé : {reseau.erreur} <span className="muted">(toucher pour fermer)</span>
             </div>
           )}
+          </div>
           {etat.phase === 'fin' && !enRetard && (
             <div className="panneau fin-carte">
               <h2>🏁 Arrivée !</h2>
@@ -882,14 +974,20 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
       {journalOuvert && <JournalMouvements etat={etat} onFermer={() => setJournalOuvert(false)} />}
       {briefing && <Briefing etat={etat} onFermer={() => setBriefing(false)} />}
       {besoinPassation && joueurChoix && <EcranPassation nom={joueurChoix.nom} onPret={() => setPassation(`${etat.tour}:${joueurChoix.id}`)} />}
-      {attenteHumaine?.type === 'quiz' && (
-        <ModaleQuiz key={attenteHumaine.questionId} attente={attenteHumaine} delai={reglages.delaiQuiz} envoiAuto={!!reseau} nom={noms[attenteHumaine.bateauId]} onRepondre={(r) => jouer({ type: 'RepondreQuiz', bateauId: attenteHumaine.bateauId, reponse: r })} />
+      {besoinPassationDecision && attenteHumaine && !carteVue && (
+        <EcranPassation nom={bateau(etat, attenteHumaine.bateauId).nom} onPret={() => setPassationDecision(cleAttente(etat))} />
+      )}
+      {attenteHumaine?.type === 'quiz' && !besoinPassationDecision && (
+        <ModaleQuiz key={attenteHumaine.questionId} attente={attenteHumaine} delai={reglages.delaiQuiz} envoiAuto={!!reseau} nom={noms[attenteHumaine.bateauId]} onRepondre={(r) => repondre({ type: 'RepondreQuiz', bateauId: attenteHumaine.bateauId, reponse: r })} />
       )}
       {carteVue && (() => {
         const carte = D.evenements!.cartes.find((c) => c.id === carteVue.carteId)!;
         const b = bateau(etat, carteVue.bateauId);
-        const dernier = curseur === etat.evenements.length - 1;
-        const decision = dernier && etat.attente?.type === 'reparation' && etat.attente.motif === 'evenement' && etat.attente.bateauId === b.id && (!reseau || reseau.moi === b.id);
+        // Décision de réparation liée à CETTE carte (et non « dernier événement » : un message du serveur peut suivre la
+        // carte, et la décision passait alors dans une seconde fenêtre qui remontrait la carte).
+        const att = etat.attente;
+        const decision = att?.type === 'reparation' && att.motif === 'evenement' && att.bateauId === b.id && att.carteId === carteVue.carteId
+          && cleAttente(etat) !== envoyee && (!reseau || reseau.moi === b.id);
         const fermer = () => {
           setCarteVue(null);
           setCurseur((c) => c + 1);
@@ -900,16 +998,21 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
             nom={noms[b.id]}
             couleur={skipper(b.skipperId).couleurs.spi}
             reparations={b.reparations}
-            onReparer={decision ? (j) => { fermer(); jouer({ type: 'JouerReparation', bateauId: b.id, jouer: j }); } : undefined}
+            onReparer={decision ? (j) => { fermer(); repondre({ type: 'JouerReparation', bateauId: b.id, jouer: j }); } : undefined}
             onContinuer={fermer}
           />
         );
       })()}
-      {attenteHumaine?.type === 'reparation' && !carteVue && (
-        <ModaleReparation attente={attenteHumaine} b={bateau(etat, attenteHumaine.bateauId)} nom={noms[attenteHumaine.bateauId]} onRepondre={(j) => jouer({ type: 'JouerReparation', bateauId: attenteHumaine.bateauId, jouer: j })} />
-      )}
-      {attenteHumaine?.type === 'relance' && (
-        <ModaleRelance attente={attenteHumaine} b={bateau(etat, attenteHumaine.bateauId)} etat={etat} nom={noms[attenteHumaine.bateauId]} onRepondre={(r) => jouer({ type: 'RepondreRelance', bateauId: attenteHumaine.bateauId, relancer: r })} />
+      {attenteHumaine?.type === 'reparation' && !carteVue && !besoinPassationDecision && (() => {
+        const b = bateau(etat, attenteHumaine.bateauId);
+        const carte = attenteHumaine.motif === 'evenement' && attenteHumaine.carteId ? D.evenements?.cartes.find((c) => c.id === attenteHumaine.carteId) : undefined;
+        // Carte du large que l'animation n'a pas montrée (reconnexion, « Passer l'animation ») : la carte entière, avec son choix.
+        return carte
+          ? <ModaleCarteEvenement carte={carte} nom={noms[b.id]} couleur={skipper(b.skipperId).couleurs.spi} reparations={b.reparations} onReparer={(j) => repondre({ type: 'JouerReparation', bateauId: b.id, jouer: j })} />
+          : <ModaleReparation attente={attenteHumaine} b={b} nom={noms[b.id]} onRepondre={(j) => repondre({ type: 'JouerReparation', bateauId: b.id, jouer: j })} />;
+      })()}
+      {attenteHumaine?.type === 'relance' && !besoinPassationDecision && (
+        <ModaleRelance attente={attenteHumaine} b={bateau(etat, attenteHumaine.bateauId)} etat={etat} nom={noms[attenteHumaine.bateauId]} onRepondre={(r) => repondre({ type: 'RepondreRelance', bateauId: attenteHumaine.bateauId, relancer: r })} />
       )}
       {avis3d && (
         <div className="voile-fond" onClick={() => setAvis3d(null)}>

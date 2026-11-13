@@ -1,5 +1,20 @@
 # Journal des versions
 
+## Mise en ligne b9bde76e (13/11/2026, soir), serveur réseau 8c86e9b8
+Avec l'accord du porteur de projet (« Oui, mets en ligne ») : version 0.4.245, depuis la branche `corrections-affichage`, puis passée dans `main`. Contient l'entrée ci-dessous. 67 tests, mêmes modèles 3D que la version précédente. Vérifié en ligne : « Version 0.4.245 » sur l'accueil, salon créé sur le serveur publié, tour 1 joué en entier dans l'ordre des étapes, tour 2 lancé.
+
+## 13/11/2026 · Enchaînement d'un tour plus clair, en solo et en multijoueur (branche `corrections-affichage`, publié le 13/11/2026)
+Bug envoyé par le porteur de projet (en ligne 0.4.239, Route du Rhum à deux en réseau) : « les cartes s'affichent 2x et mon déplacement est incohérent », puis « le jeu va trop vite et s'emmêle ». Audit `jeu/conception/audit-enchainement.md` ; choix du porteur de projet : « oui tout ». La perte de voile entre le vent et le large, et les dés du large lancés ensemble, sont faits par la conversation du jeu (branche `mises-a-jour-jeu`).
+- **Décisions à leur moment, une seule fois** (tous les modes) : en réseau, une question ou une carte réparation ne s'affiche plus avant le dé qui la provoque ; la carte du large n'apparaît plus deux fois. Une réponse envoyée ne fait pas revenir la fenêtre en attendant le serveur. Carte que l'animation n'a pas montrée (reconnexion, « Passer l'animation ») : la carte entière, avec son choix.
+- **Étape du tour** à côté du numéro : Choix du cap, Le vent, Les voiles, Le large, La course, Fin du tour.
+- **Distance expliquée** au départ du bateau du joueur : « 450 milles prévus au choix, 190 possibles : le vent a faibli (F5 → F3) ».
+- **Chrono réseau** : il part quand les écrans des joueurs attendus ont fini l'animation (au plus tard 2 min après la fin du calcul), et non plus pendant l'animation ; « Temps écoulé : le routeur a choisi pour vous le cap X sous Y » affiché clairement.
+- **IA** : récapitulatif de ce qu'elles ont fait au large (2,5 s), déplacements visibles 1,2 s au moins.
+- **Une seule zone de messages** sur la carte (attente des autres, temps restant, connexion, erreurs : empilés, plus superposés).
+- **Scènes 3D** : au plus une par tour, en fin de tour (les voiles perdues ou inutilisables gardent la leur, à leur moment) ; jamais pendant le choix.
+- **Même écran** : « Je suis X » avant chaque décision d'un joueur ; dé du large lancé seul.
+- Vérifié : 67 tests (5 nouveaux), construction, à l'écran en local (partie à deux en réseau sur un serveur de salons lancé sur le PC, partie solo à 8 bateaux). **Moteur et serveur changés : à la mise en ligne, publier aussi le serveur réseau.**
+
 ## Mise en ligne 80e8d7ed (13/11/2026, soir), serveur réseau inchangé (26ccb641)
 Avec l'accord du porteur de projet (« Oui, mets en ligne »), pour l'essayer au doigt sur son téléphone : version 0.4.239, le point bleu qui tourne (ci-dessous). Moteur et données inchangés, serveur non republié. Vérifié en ligne : version 0.4.239 affichée, nouveauté présente dans le jeu publié.
 

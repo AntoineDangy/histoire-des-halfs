@@ -3,7 +3,7 @@
 import { DurableObject } from 'cloudflare:workers';
 import { donneesBrutes } from '../../data/index';
 import {
-  angleAllure, appliquer, bateau, choisirIA, competence, creerPartie, decisionReparationIA, DELAI_CHOIX_S, DELAI_DECISION_S, humainsAttendus, masquerEtat, MAX_HUMAINS,
+  angleAllure, appliquer, ATTENTE_ANIMATION_MAX_S, bateau, choisirIA, chronoPeutPartir, competence, creerPartie, decisionReparationIA, DELAI_CHOIX_S, DELAI_DECISION_S, humainsAttendus, masquerEtat, MAX_HUMAINS,
   NIVEAU_QUIZ_DEFAUT, niveauQuizValide, nomSkipper, reglagesSalonValides,
 } from '../../engine/src/index';
 import type { Action, Donnees, EtatPartie, JoueurSalon, MessageClient, MessageServeur, ParticipantParams, ReglagesSalon, VueSalon } from '../../engine/src/index';
@@ -51,8 +51,14 @@ interface DonneesSalon {
   /** bateauConfie : bateau confié à l'IA pendant l'absence du joueur, qu'il reprend en revenant (13/11/2026, audit C6). */
   joueurs: (JoueurSalon & { jeton: string; bateauConfie?: string })[];
   etat: EtatPartie | null;
-  /** Attente en cours (choix des caps, ou décision d'un joueur) et heure à laquelle le serveur jouera par défaut (audit C2). */
-  attente?: { cle: string; echeance: number } | null;
+  /**
+   * Attente en cours (choix des caps, ou décision d'un joueur) et heure à laquelle le serveur jouera par défaut (audit C2).
+   * Depuis le 13/11/2026 (audit de l'enchaînement) : `depuis` (début de l'attente) et `demarre` (le chrono ne part qu'une
+   * fois l'animation finie sur les écrans des joueurs attendus) ; une attente enregistrée avant n'a ni l'un ni l'autre.
+   */
+  attente?: { cle: string; echeance: number; depuis?: number; demarre?: boolean } | null;
+  /** Nombre d'événements de la partie que l'écran de chaque joueur (par jeton) a fini de montrer. */
+  lus?: Record<string, number>;
 }
 
 /** Pièce jointe d'une connexion : jeton du joueur, heure d'arrivée, et si son appareil envoie des « ping » (13/11/2026). */
@@ -158,6 +164,16 @@ export class Salon extends DurableObject<Env> {
           s.etat = appliquer(D, s.etat, msg.action);
           break;
         }
+        case 'lu': {
+          // L'écran du joueur a fini de montrer le tour (audit de l'enchaînement, 13/11/2026) : le chrono peut partir.
+          if (!Number.isFinite(msg.n)) return;
+          s.lus = { ...(s.lus ?? {}), [joueur.jeton]: Math.max(s.lus?.[joueur.jeton] ?? 0, msg.n) };
+          const partiAvant = s.attente?.demarre;
+          await this.planifier();
+          await this.sauver();
+          if (s.attente?.demarre && partiAvant === false) this.diffuser();
+          return;
+        }
         case 'confierIA': {
           if (!joueur.hote || !s.etat) throw new Error('Seul l\'hôte peut confier un bateau à l\'IA');
           this.confierIA(msg.bateauId);
@@ -211,8 +227,22 @@ export class Salon extends DurableObject<Env> {
       cle = `attente:${e.evenements.length}:${e.attente.bateauId}:${e.attente.type}`;
       delai = DELAI_DECISION_S;
     }
+    const maintenant = Date.now();
     if (!cle) s.attente = null;
-    else if (s.attente?.cle !== cle) s.attente = { cle, echeance: Date.now() + delai * 1000 };
+    else {
+      // Nouvelle attente : le chrono ne part pas tout de suite (au plus tard après ATTENTE_ANIMATION_MAX_S).
+      if (s.attente?.cle !== cle) s.attente = { cle, depuis: maintenant, demarre: false, echeance: maintenant + (ATTENTE_ANIMATION_MAX_S + delai) * 1000 };
+      const a = s.attente;
+      // Il part quand l'écran de chaque joueur attendu (connecté) a fini de montrer le tour (audit de l'enchaînement, 13/11/2026).
+      if (a.demarre === false && e) {
+        const ids = new Set(e.phase === 'choix' ? humainsAttendus(e).map((b) => b.id) : e.attente ? [e.attente.bateauId] : []);
+        const lus = s.joueurs.filter((j) => j.connecte && j.bateauId && ids.has(j.bateauId)).map((j) => s.lus?.[j.jeton]);
+        if (chronoPeutPartir(a.depuis ?? maintenant, e.evenements.length, lus, maintenant)) {
+          a.demarre = true;
+          a.echeance = Math.min(a.echeance, maintenant + delai * 1000);
+        }
+      }
+    }
     // Réveil à l'échéance, et au moins toutes les 30 s pendant la course pour repérer les connexions mortes.
     if (e && e.phase !== 'fin' && this.ctx.getWebSockets().length) {
       await this.ctx.storage.setAlarm(Math.min(s.attente?.echeance ?? Infinity, Date.now() + 30_000));
@@ -242,7 +272,10 @@ export class Salon extends DurableObject<Env> {
       this.jouerParDefaut();
       change = true;
     }
+    const partiAvant = s.attente?.demarre;
     await this.planifier();
+    // Chrono parti au réveil (écran resté muet plus de 2 minutes) : les joueurs voient le temps restant.
+    if (s.attente?.demarre && partiAvant === false) change = true;
     await this.sauver();
     if (change) this.diffuser();
   }
@@ -369,7 +402,8 @@ export class Salon extends DurableObject<Env> {
     const s = this.s!;
     return {
       code: s.code, statut: s.etat ? 'course' : 'salon', reglages: s.reglages, maxHumains: MAX_HUMAINS,
-      echeanceDans: s.attente ? Math.max(0, s.attente.echeance - Date.now()) : null,
+      // Temps restant montré seulement une fois le chrono parti (audit de l'enchaînement, 13/11/2026).
+      echeanceDans: s.attente && s.attente.demarre !== false ? Math.max(0, s.attente.echeance - Date.now()) : null,
       joueurs: s.joueurs.map(({ nom, skipperId, connecte, hote, bateauId, niveauQuiz }) => ({ nom, skipperId, connecte, hote, bateauId, niveauQuiz: niveauQuiz ?? NIVEAU_QUIZ_DEFAUT })),
     };
   }

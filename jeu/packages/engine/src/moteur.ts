@@ -559,6 +559,17 @@ function faireRelance(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: Contexte
   });
 }
 
+/**
+ * Distance possible (en cases) et vent prévus au moment du choix, avant les dés du vent, et distance maximale choisie par le
+ * joueur (`max`, s'il en a fixé une) : l'écran compare ce qui était prévu à ce que permet le nouveau vent.
+ */
+function prevuAuChoix(etat: EtatPartie, b: EtatBateau): { prevu?: number; ventPrevu?: Vent; max?: number } {
+  const p = etat.resolution?.previsions?.[b.id];
+  if (!p || p.distance === null) return {};
+  const max = b.choix?.distanceMax;
+  return { prevu: p.distance, ventPrevu: p.vent, ...(max ? { max } : {}) };
+}
+
 /** Calcule l'allure, la distance et le risque avec le nouveau vent. */
 function calculerTour(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: ContexteResolution) {
   const choix = b.choix!;
@@ -587,6 +598,8 @@ function calculerTour(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: Contexte
   b.derniereVoile = choix.voile;
   evt(etat, 'debut', louvoyage ? `${nom} louvoie face au vent sous ${nomVoile} (bords à ±${d.regles.louvoyage?.angle_bords ?? 40}°),` : `${nom} : ${nomAllure(ctx.angle).toLowerCase()} sous ${nomVoile}, ${Math.round(dist * (carte.course.milles_par_case ?? 1))} milles possibles.`, b.id, {
     vent, angle: ctx.angle, distance: dist, risque: ctx.risque, voile: choix.voile, cap: choix.cap, louvoyage,
+    // Distance et vent prévus au moment du choix (avant les dés) : l'écran explique l'écart (audit de l'enchaînement, 13/11/2026).
+    ...prevuAuChoix(etat, b),
   });
   ctx.etape = 'evenement';
   deTempete(d, etat, b, ctx);
