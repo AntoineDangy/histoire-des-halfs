@@ -9,7 +9,7 @@ import Carte from '../jeu/Carte';
 import TableauBord, { Girouette, PastilleRisque } from '../jeu/TableauBord';
 import type { ApercuChoix } from '../jeu/TableauBord';
 import { EcranPassation, ModaleQuiz, ModaleRelance, ModaleReparation } from '../jeu/Modales';
-import { attenteAMontrer, cleAttente, etapeDuTour, NOM_ETAPE, recapIA } from '../jeu/enchainement';
+import { attenteAMontrer, cleAttente, etapeDuTour, NOM_ETAPE, recapIA, ventDuJoueur } from '../jeu/enchainement';
 import { AllureKey, BateauScene, chargerModeles, Forme, modelesAcharger, modeleDuBateau, Scene3D } from '../jeu/scene3d';
 import { bilanVent, DesVent, DeEvenement, DeRisque, DeSpecial, EtatDeRisque, EtatDeSpecial, Phase } from '../jeu/Des';
 import ModaleCarteEvenement from '../jeu/CarteEvenement';
@@ -710,6 +710,8 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
   };
 
   const recapId = moiId ?? (humains[0]?.id ?? null);
+  // Vent du joueur à l'instant montré : le même sur la girouette de la carte et sous le bateau 3D (13/11/2026).
+  const ventJoueur = ventDuJoueur(etat, curseur, recapId);
   const rang = classement(D, etat);
   // Flotte Vintage mêlant monocoques et multicoques : un classement par catégorie (décision du 10/11/2026).
   const cats = categoriesPartie(D, etat);
@@ -764,7 +766,7 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
               qui tourne avec le vent pendant la lecture (demande du porteur de projet, 12/11/2026). */}
           <div id="meteo-carte">
             {!(joueurChoix && !besoinPassation) && (
-              <ResumeAttente etat={etat} vus={etat.evenements.slice(0, curseur)} enRetard={enRetard} noms={noms} onFin={() => onFin(etat)} moiId={reseau?.moi ?? etat.bateaux.find((x) => x.type === 'humain')?.id} />
+              <ResumeAttente etat={etat} vus={etat.evenements.slice(0, curseur)} enRetard={enRetard} noms={noms} onFin={() => onFin(etat)} moiId={recapId} vent={ventJoueur} />
             )}
           </div>
           {!coteOuvert && (
@@ -918,7 +920,7 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
         <aside className={`cote-droit ${coteOuvert ? '' : 'reduit'}`} aria-hidden={!coteOuvert}>
           {/* Aperçu 3D du bateau sous la voile choisie, dans le vent de sa zone (grand écran seulement). */}
           {recapId && !besoinPassation && (
-            <Apercu3D etat={etat} bateauId={recapId} cap={joueurChoix?.id === recapId ? apercu.cap : null}
+            <Apercu3D etat={etat} bateauId={recapId} vent={ventJoueur} cap={joueurChoix?.id === recapId ? apercu.cap : null}
               voile={joueurChoix?.id === recapId ? apercu.voile : undefined} actif={coteOuvert && !vue3d} />
           )}
           {/* Puis la fiche du bateau, et le journal de bord dessous (demande du porteur de projet, 12/11/2026). */}
@@ -1053,15 +1055,13 @@ function plusPetite(f: Forme | undefined): Forme {
   return f === 'j2' ? 'j3' : f === 'j3' || f === 'tourmentin' ? 'tourmentin' : 'j2';
 }
 
-function ResumeAttente({ etat, vus, enRetard, noms, onFin, moiId }: { etat: EtatPartie; vus: Evenement[]; enRetard: boolean; noms: Record<string, string>; onFin: () => void; moiId?: string }) {
+function ResumeAttente({ etat, vus, enRetard, noms, onFin, moiId, vent }: { etat: EtatPartie; vus: Evenement[]; enRetard: boolean; noms: Record<string, string>; onFin: () => void; moiId?: string | null; vent: Vent }) {
   // Arrivée : le panneau « Voir les résultats » est posé sur la carte (toujours visible, même volet masqué).
   if (etat.phase === 'fin' && !enRetard) return null;
-  const dernier = [...vus].reverse().find((e) => e.type === 'debut');
-  // Toujours le vent de la zone où se trouve le joueur (alizés, front, molle…), jamais le vent général.
-  const dv = [...vus].reverse().find((e) => e.type === 'vent')?.donnees as { apres?: Vent; locaux?: Record<string, { apres: Vent }> } | undefined;
-  const ventVu = dv ? (moiId && dv.locaux?.[moiId]?.apres) || dv.apres : undefined;
-  const bMoi = moiId ? etat.bateaux.find((x) => x.id === moiId) : undefined;
-  const vent = enRetard && ventVu ? ventVu : bMoi ? ventCourant(etat, bMoi.x, bMoi.y) : etat.vent;
+  // Seulement le joueur (13/11/2026, demande du porteur de projet) : le vent de sa zone (`vent`, le même que sous le bateau
+  // 3D) et, une fois son départ montré dans ce tour, son risque ; plus le nom et le risque du dernier bateau parti.
+  const tourLu = vus[vus.length - 1]?.tour;
+  const dernier = moiId && enRetard ? [...vus].reverse().find((e) => e.type === 'debut' && e.bateauId === moiId && e.tour === tourLu) : undefined;
   return (
     <div className="meteo-sur-carte" title={`${nomBeaufort(D, vent.force)}. Les bateaux se déplacent dans l'ordre inverse du classement : le dernier bouge en premier.`}>
       <div className="girouette"><Girouette direction={vent.direction} force={vent.force} /></div>

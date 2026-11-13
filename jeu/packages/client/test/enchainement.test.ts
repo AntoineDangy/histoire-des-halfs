@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { donneesBrutes } from '../../data/index';
-import { appliquer, ATTENTE_ANIMATION_MAX_S, choisirIA, chronoPeutPartir, creerPartie, humainsAttendus } from '../../engine/src/index';
+import { appliquer, ATTENTE_ANIMATION_MAX_S, choisirIA, chronoPeutPartir, creerPartie, humainsAttendus, ventCourant } from '../../engine/src/index';
 import type { Donnees, EtatPartie } from '../../engine/src/index';
-import { attenteAMontrer, cleAttente, etapeDuTour, recapIA } from '../src/jeu/enchainement';
+import { attenteAMontrer, cleAttente, etapeDuTour, recapIA, ventDuJoueur } from '../src/jeu/enchainement';
 
 const d = donneesBrutes as unknown as Donnees;
 
@@ -79,6 +79,27 @@ describe('enchaînement d\'un tour à l\'écran (audit du 13/11/2026)', () => {
       expect(typeof dd.prevu).toBe('number');
       expect(typeof dd.ventPrevu?.force).toBe('number');
     }
+  });
+
+  it('girouette et bateau 3D : le vent du joueur à l\'instant montré, jamais celui d\'un autre bateau (bug du 13/11/2026)', () => {
+    const e = jusquA(1, (x) => x.tour >= 5 && x.phase === 'choix');
+    const moi = e.bateaux.find((b) => b.type === 'humain')!;
+    const evs = e.evenements;
+    const tour = e.tour - 1;
+    const iVent = evs.findIndex((v) => v.tour === tour && v.type === 'vent');
+    const iDebut = evs.findIndex((v) => v.tour === tour && v.type === 'debut' && v.bateauId === moi.id);
+    const iPremier = evs.findIndex((v) => v.tour === tour);
+    const dv = evs[iVent].donnees as { locaux: Record<string, { avant: unknown; apres: unknown }> };
+    expect(iDebut).toBeGreaterThan(iVent);
+    // Avant les dés du tour : le vent de sa zone avant les dés.
+    expect(ventDuJoueur(e, iPremier, moi.id)).toEqual(dv.locaux[moi.id].avant);
+    // Dés montrés : le vent de sa zone après les dés, même pendant le départ des autres bateaux.
+    expect(ventDuJoueur(e, iVent + 1, moi.id)).toEqual(dv.locaux[moi.id].apres);
+    expect(ventDuJoueur(e, iDebut, moi.id)).toEqual(dv.locaux[moi.id].apres);
+    // Son départ montré : le vent de son départ.
+    expect(ventDuJoueur(e, iDebut + 1, moi.id)).toEqual((evs[iDebut].donnees as { vent: unknown }).vent);
+    // Animation finie : le vent à sa position.
+    expect(ventDuJoueur(e, evs.length, moi.id)).toEqual(ventCourant(e, moi.x, moi.y));
   });
 
   it('chrono réseau : il part quand les écrans des joueurs attendus ont fini le tour, ou au bout de 2 minutes', () => {

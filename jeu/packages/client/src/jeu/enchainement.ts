@@ -1,7 +1,42 @@
 // Enchaînement d'un tour à l'écran (audit du 13/11/2026, jeu/conception/audit-enchainement.md, validé par le porteur de
 // projet) : l'écran raconte le tour dans l'ordre du calcul, une étape annoncée après l'autre, chaque décision à son
 // moment et une seule fois, en solo comme en même écran et en réseau.
-import type { Attente, EtatPartie, Evenement } from '@cal/engine';
+import { ventCourant } from '@cal/engine';
+import type { Attente, EtatPartie, Evenement, Vent } from '@cal/engine';
+
+/**
+ * Vent du joueur à l'instant que montre l'écran (girouette sur la carte et légende du bateau 3D : toujours les mêmes, bug
+ * signalé par le porteur de projet le 13/11/2026 ; règle du 12/11/2026 : le vent de la zone où se trouve le joueur).
+ * Pendant la lecture d'un tour : le vent de sa zone avant les dés, puis après les dés, puis celui de son départ (relance
+ * comprise). Animation finie : le vent à sa position actuelle. `curseur` : nombre d'événements déjà montrés.
+ */
+export function ventDuJoueur(etat: EtatPartie, curseur: number, id: string | null | undefined): Vent {
+  const b = id ? etat.bateaux.find((x) => x.id === id) : undefined;
+  const evs = etat.evenements;
+  if (!b) return etat.vent;
+  if (curseur >= evs.length) return ventCourant(etat, b.x, b.y);
+  const tour = evs[curseur].tour;
+  for (let i = curseur - 1; i >= 0 && evs[i].tour === tour; i--) {
+    const e = evs[i];
+    if ((e.type === 'debut' || e.type === 'relance') && e.bateauId === id) {
+      const v = (e.donnees as { vent?: Vent } | undefined)?.vent;
+      if (v) return v;
+    }
+    if (e.type === 'vent') {
+      const d = e.donnees as { apres?: Vent; locaux?: Record<string, { apres: Vent }> } | undefined;
+      const v = d?.locaux?.[id!]?.apres ?? d?.apres;
+      if (v) return v;
+    }
+  }
+  // Rien de ce tour n'est encore montré : le vent de sa zone avant les dés.
+  for (let i = curseur; i < evs.length && evs[i].tour === tour; i++) {
+    if (evs[i].type !== 'vent') continue;
+    const d = evs[i].donnees as { avant?: Vent; locaux?: Record<string, { avant: Vent }> } | undefined;
+    const v = d?.locaux?.[id!]?.avant ?? d?.avant;
+    if (v) return v;
+  }
+  return ventCourant(etat, b.x, b.y);
+}
 
 export type EtapeTour = 'vent' | 'voiles' | 'large' | 'course' | 'fin';
 

@@ -1,5 +1,14 @@
 # Journal des versions
 
+## Mise en ligne 5269eaba (13/11/2026, soir), serveur réseau inchangé (8c86e9b8)
+Avec l'accord du porteur de projet (« Oui, mets en ligne ») : version 0.4.248, depuis la branche `corrections-affichage`, puis passée dans `main`. Contient la correction ci-dessous. 68 tests ; moteur, serveur, données et modèles 3D inchangés. Vérifié en ligne : « Version 0.4.248 » sur l'accueil, partie solo sans aucun écart entre la girouette et la légende 3D.
+
+## 13/11/2026 · Correction : la girouette montre le vent du joueur, le même que sous le bateau 3D (branche `corrections-affichage`, publié le 13/11/2026)
+Bug envoyé par le porteur de projet : pendant la résolution du tour, la girouette de la carte (« N · F4 », « Boris Herrmann · Faible ») contredisait la légende sous le bateau 3D (« Sud-Ouest F7 »).
+- **Cause** : la girouette et la légende 3D calculaient le vent chacune à leur façon (vent après les dés pour l'une, vent de fin de tour à la position finale pour l'autre) ; la ligne sous la girouette montrait le dernier bateau parti, souvent une IA.
+- **Correction** : un seul calcul pour les deux (`ventDuJoueur`) : le vent de la zone du joueur à l'instant montré (avant les dés, après les dés, à son départ, puis à sa position) ; sous la girouette, seulement le joueur et son risque (règle du 12/11/2026 : le vent affiché est celui de la zone du joueur).
+- Vérifié : 68 tests, construction, partie solo en local sur 4 tours sans aucun écart entre la girouette et la légende 3D. Moteur et serveur inchangés : à la mise en ligne, le jeu seul.
+
 ## Mise en ligne b9bde76e (13/11/2026, soir), serveur réseau 8c86e9b8
 Avec l'accord du porteur de projet (« Oui, mets en ligne ») : version 0.4.245, depuis la branche `corrections-affichage`, puis passée dans `main`. Contient l'entrée ci-dessous. 67 tests, mêmes modèles 3D que la version précédente. Vérifié en ligne : « Version 0.4.245 » sur l'accueil, salon créé sur le serveur publié, tour 1 joué en entier dans l'ordre des étapes, tour 2 lancé.
 

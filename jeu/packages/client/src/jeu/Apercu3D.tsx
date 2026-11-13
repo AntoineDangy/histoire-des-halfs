@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { angleAllure, bateau, coteVent, heuresParTour, nomBeaufort, NOMS_DIR_LONGS, norm, ventCourant } from '@cal/engine';
-import type { EtatPartie } from '@cal/engine';
+import type { EtatPartie, Vent } from '@cal/engine';
 import { bateauDef, courseDef, D, skipper } from '../commun';
 import { AllureKey, chargerModeles, Forme, modelesAcharger, modeleDuBateau, Scene3D } from './scene3d';
 
@@ -11,9 +11,11 @@ const allure3d = (a: number): AllureKey => (a < 67 ? 'pres' : a < 112 ? 'travers
  * porteur de projet) : le bateau sous la voile choisie (ou la dernière voile portée), au cap choisi, dans le vent de sa
  * zone. Il suit les choix du joueur pendant la décision. La scène tourne seulement quand le volet est visible.
  */
-export default function Apercu3D({ etat, bateauId, cap, voile, actif }: {
+export default function Apercu3D({ etat, bateauId, cap, voile, actif, vent: ventDonne }: {
   etat: EtatPartie;
   bateauId: string;
+  /** Vent du joueur à l'instant montré, le même que sur la girouette de la carte (13/11/2026) ; sinon celui de sa position. */
+  vent?: Vent;
   /** Cap choisi (null : dernier cap suivi). */
   cap: number | null;
   /** Voile choisie (undefined : pas encore choisie, on montre la dernière voile portée ; null : à sec de toile). */
@@ -49,7 +51,7 @@ export default function Apercu3D({ etat, bateauId, cap, voile, actif }: {
     void chargerModeles(modelesAcharger([modele])).then(() => setPret((x) => x + 1));
   }, [modele]);
 
-  const vent = ventCourant(etat, b.x, b.y);
+  const vent = ventDonne ?? ventCourant(etat, b.x, b.y);
   const capVu = cap ?? b.dernierCap ?? b.choix?.cap ?? norm(vent.direction + 6);
   // Voile montrée : la voile choisie, sinon la dernière portée, sinon le solent (ou la première voile à bord).
   const voileVue = voile !== undefined ? voile : b.choix?.voile ?? (b.voiles.includes('solent') ? 'solent' : b.voiles[0] ?? null);
