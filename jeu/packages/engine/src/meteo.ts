@@ -230,7 +230,8 @@ export function reglesMolle(d: Donnees): ReglesMolle | null {
 /** Au départ : peut-être une molle à l'approche de l'arrivée (vent faible et instable). */
 export function creerMolle(d: Donnees, etat: EtatPartie, arrivee: { x: number; y: number } | undefined, zone?: CourseDef['molle']): string | null {
   const r = reglesMolle(d);
-  if (!r || !arrivee || alea(etat) >= r.probabilite) return null;
+  // Le tirage a toujours lieu (même suite de hasard) ; une molle propre à la course peut avoir sa propre probabilité.
+  if (!r || !arrivee || alea(etat) >= (zone?.probabilite ?? r.probabilite)) return null;
   if (zone) {
     // Zone propre à la course (13/11/2026) : contour fixe dessiné par le porteur de projet, quelle que soit la classe.
     // x, y, rx, ry : rectangle englobant, pour placer l'étiquette sur la carte.

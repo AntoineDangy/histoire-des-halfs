@@ -188,6 +188,12 @@ details.details ul { margin: 6px 0; padding-left: 18px; }
 .etapes span { padding: 4px 9px; border-radius: 999px; color: var(--texte-3); }
 .etapes span.active { background: var(--accent); color: var(--accent-texte); font-weight: 700; }
 .vue3d .bas { position: absolute; left: 12px; bottom: 12px; width: min(380px, calc(100% - 24px)); }
+/* Scène 3D en format carte (13/11/2026) : affalage, perte de voile et décision de réparation, l'explication dessous. */
+.fond-carte3d { position: absolute; inset: 0; z-index: 4; background: rgba(4, 12, 22, 0.6); }
+.vue3d.en-carte { inset: auto; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(520px, calc(100% - 20px)); height: min(600px, calc(100% - 20px)); z-index: 5; border-radius: 18px; overflow: hidden; border: 1px solid var(--bord); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); }
+.vue3d.en-carte .scene, .vue3d.en-carte .etiquettes { bottom: 42%; }
+.vue3d.en-carte .bas { left: 0; right: 0; bottom: 0; top: 58%; width: auto; border-radius: 0; border: 0; border-top: 1px solid var(--bord); overflow-y: auto; }
+.vue3d.en-carte .bas .barre-actions { flex-wrap: wrap; }
 /* Scène 3D de course : 10 s, barre qui se vide, bouton « Passer la scène » (10/11/2026) */
 .barre-scene { flex: 1; height: 4px; border-radius: 2px; background: var(--accent); transform-origin: left; animation-name: barre-scene; animation-timing-function: linear; animation-fill-mode: forwards; }
 @keyframes barre-scene { from { transform: scaleX(1); } to { transform: scaleX(0); } }
@@ -246,6 +252,21 @@ table.tableau td { border-bottom: 1px solid #13283b; padding: 8px 6px; }
 .de-force .barres i { width: 4px; background: rgba(42,19,0,.25); border-radius: 1px; }
 .de-force .barres i.pleine { background: #2a1300; }
 .de-evenement { width: 76px; height: 76px; border-radius: 14px; background: linear-gradient(160deg, #b79cff, #7c5cff); border: 3px solid #efe8ff; color: #fff; font-family: var(--police-titre); font-size: 28px; font-weight: 700; display: grid; place-items: center; position: relative; box-shadow: 0 6px 18px rgba(124,92,255,.35); }
+/* Dé du large en boussole sur un camembert à 6 parts (13/11/2026) : toutes les boussoles tournent ensemble, 3 s en tout. */
+.boussoles-large { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.boussoles { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+.boussole-large { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 112px; }
+.boussole-large svg { filter: drop-shadow(0 6px 14px rgba(0,0,0,.35)); }
+.boussole-large .aiguille { transform-box: view-box; transform-origin: 50px 50px; transition: transform 2.2s cubic-bezier(0.12, 0.85, 0.22, 1.06); }
+.boussole-large.fin svg { animation: boussole-fin 0.45s ease-out; }
+.boussole-large .boussole-nom { font-size: 12px; font-weight: 700; max-width: 140px; text-align: center; }
+.boussole-large .boussole-bilan { font-size: 12px; color: var(--texte-2); min-height: 16px; }
+.boussole-large.fin.carte .boussole-bilan { color: #ff9f43; font-weight: 700; }
+.boussole-large.fin.question .boussole-bilan { color: #3dd6f5; font-weight: 700; }
+.boussole-message { font-weight: 700; color: #ffd0d0; text-align: center; max-width: 320px; }
+.boussole-large.fin.touche svg { animation: boussole-fin 0.45s ease-out; filter: drop-shadow(0 0 10px rgba(255,90,95,.6)); }
+@keyframes boussole-fin { 0% { transform: scale(1); } 45% { transform: scale(1.08); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .boussole-large .aiguille { transition: none; } .boussole-large.fin svg { animation: none; } }
 .de-evenement .etoile { position: absolute; top: 3px; left: 7px; font-size: 13px; opacity: .8; }
 .de-evenement.six { background: linear-gradient(160deg, #ffe27a, #ffb800); color: #2a1d00; box-shadow: 0 0 0 4px rgba(255,214,0,.35), 0 6px 22px rgba(255,184,0,.5); }
 .roule { animation: roule 0.45s ease-in-out infinite; }

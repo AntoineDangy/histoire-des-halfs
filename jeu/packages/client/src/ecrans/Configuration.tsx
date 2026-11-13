@@ -1,5 +1,5 @@
 import type { NiveauIA } from '@cal/engine';
-import { D, NIVEAUX_IA, NIVEAUX_QUIZ, Reglages } from '../commun';
+import { D, DE_LARGE, faces, NIVEAUX_IA, NIVEAUX_QUIZ, Reglages } from '../commun';
 import { classesDe, COURSES_PROPOSEES, courseDef, nomClasse, skippersDe } from '../commun';
 import { useEffect } from 'react';
 
@@ -118,7 +118,7 @@ export default function Configuration({ reglages: r, onChange, onRetour, onSuite
               )}
             </div>
             <span className="lbl" style={{ marginTop: 6 }}>Options</span>
-            <label className="case-cocher"><input type="checkbox" checked={r.options.quiz} onChange={(e) => opt('quiz', e.target.checked)} /> Questions de culture marine (dé du large : 3 ou 4)</label>
+            <label className="case-cocher"><input type="checkbox" checked={r.options.quiz} onChange={(e) => opt('quiz', e.target.checked)} /> Questions de culture marine (dé du large : {faces(DE_LARGE.question)})</label>
             {r.options.quiz && (
               <label className="champ">
                 <span className="lbl">Temps pour répondre</span>
@@ -129,7 +129,7 @@ export default function Configuration({ reglages: r, onChange, onRetour, onSuite
                 </div>
               </label>
             )}
-            <label className="case-cocher"><input type="checkbox" checked={r.options.evenements !== false} onChange={(e) => opt('evenements', e.target.checked)} /> Cartes du large (dé du large : 5 ou 6)</label>
+            <label className="case-cocher"><input type="checkbox" checked={r.options.evenements !== false} onChange={(e) => opt('evenements', e.target.checked)} /> Cartes du large (dé du large : {faces(DE_LARGE.carte)})</label>
             <label className="case-cocher"><input type="checkbox" checked={r.options.bulletinMeteo} onChange={(e) => opt('bulletinMeteo', e.target.checked)} /> Bulletin météo (tendance du vent)</label>
             <label className="case-cocher"><input type="checkbox" checked={r.options.nomsReels} onChange={(e) => opt('nomsReels', e.target.checked)} /> Noms réels des skippers et des bateaux</label>
             <label className="case-cocher"><input type="checkbox" checked={r.options.courseComplete} onChange={(e) => opt('courseComplete', e.target.checked)} /> Course complète (les autres continuent après la 1re arrivée)</label>

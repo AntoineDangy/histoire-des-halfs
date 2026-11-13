@@ -115,7 +115,7 @@ export default function Regles({ onRetour }: { onRetour: () => void }) {
               <li><b>J3 / foc</b> : la voile de brise, solide.</li>
               <li><b>Voilure réduite</b> : grand-voile arisée et tourmentin, pour survivre.</li>
             </ul>
-            <p className="muted">Une voile trop fragile pour le vent du moment est grisée : on ne peut pas la choisir. Mais si le vent forcit après votre choix, c'est la <b>case noire</b> : la voile explose (un multicoque chavire). Une <b>carte réparation</b> peut la sauver, au prix du tour.</p>
+            <p className="muted">Une voile trop fragile pour le vent du moment est grisée : on ne peut pas la choisir. Mais si le vent forcit après votre choix, il y a <b>trop de toile</b> : la voile lâche, le bateau ne fait qu'un tiers de sa route et ne lance pas le dé du large (un multicoque chavire : fin de course). Une <b>carte réparation</b> repêche la voile, avec 40 % d'usure en plus. Si le vent <b>tourne</b> et que la voile ne porte plus, on change de voile : la manœuvre coûte la moitié de la route et la carte du large du tour.</p>
           </Bloc>
         </div>
 
@@ -146,7 +146,7 @@ export default function Regles({ onRetour }: { onRetour: () => void }) {
                 </div>
               ))}
             </div>
-            <p className="muted">Faces rouges : <b>démâtage</b> pour un monocoque (il ne reste qu'un gréement de fortune) ou <b>chavirage</b> pour un multicoque. Bateau immobilisé ; escale technique si un port est assez proche.</p>
+            <p className="muted">Faces rouges : <b>démâtage</b> pour un monocoque (il ne reste qu'un gréement de fortune) ou <b>chavirage</b> pour un multicoque. Démâté, le monocoque rentre par la mer au port d'escale le plus proche (250 milles par tour au plus, sans couper la terre ni les rails interdits), y répare 1 tour et repart avec des voiles neuves ; sans port (Fastnet), c'est la fin de course. Un multicoque chaviré abandonne.</p>
           </Bloc>
         </div>
 
@@ -170,7 +170,7 @@ export default function Regles({ onRetour }: { onRetour: () => void }) {
               <li><b>Collision</b> : seulement dans la brume, quand on finit sur la case d'un concurrent qu'on ne voyait pas. Les deux perdent une carte réparation et un tour.</li>
               <li><b>Zones interdites</b> (rails de cargos, ou DST, dessinés sur la carte : Ouessant, les Scilly, Land's End…) : on ne les traverse pas.</li>
               <li><b>Marques de parcours</b> : à respecter, du bon côté. Le Fastnet Rock se contourne en le laissant à bâbord : sans le tour complet, la marque ne compte pas.</li>
-              <li><b>Ports</b> : une escale répare tout. Après une avarie grave, l'escale technique est automatique si un port est proche.</li>
+              <li><b>Ports</b> : on peut s'arrêter dans un port d'escale (bouton « ⚓ port ») : voiles neuves, puis on repart au tour suivant. Démâté, on y est rapatrié par la mer.</li>
             </ul>
           </Bloc>
 

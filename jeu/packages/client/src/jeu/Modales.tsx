@@ -98,20 +98,20 @@ export function ModaleReparation({ attente, b, nom, onRepondre }: { attente: Ext
     <div className="voile-fond" role="dialog" aria-modal="true">
       <div className="modale">
         <div className="lbl">{nom} · carte réparation</div>
-        <h2>{attente.motif === 'voile_noire' ? (multi ? 'Vous allez chavirer !' : `Votre ${voile} va exploser !`) : attente.motif === 'evenement' ? D.evenements?.cartes.find((c) => c.id === attente.carteId)?.titre ?? 'Avarie !' : 'Avarie !'}</h2>
+        <h2>{attente.motif === 'voile_noire' ? (multi ? 'Vous allez chavirer !' : `Trop de toile : votre ${voile} lâche !`) : attente.motif === 'evenement' ? D.evenements?.cartes.find((c) => c.id === attente.carteId)?.titre ?? 'Avarie !' : 'Avarie !'}</h2>
         <p className="muted">
           {attente.motif === 'voile_noire'
             ? multi
               ? 'Trop de toile pour ce vent. Avec une carte réparation, vous redressez le bateau sans avancer ; sans elle, vous restez immobilisé 2 tours (sauf escale technique).'
-              : 'Le vent est trop fort pour cette voile. Endurer : la voile est perdue, mais vous avancez de la moitié de la distance prévue. Réparer : la voile est sauvée, mais vous n\'avancez pas ce tour.'
+              : 'Le vent est trop fort pour cette voile : elle lâche. Ce tour, le bateau ne fait qu\'un tiers de sa route, sans dé du large. Une carte réparation repêche la voile, réparée tant bien que mal (+40 % d\'usure).'
             : attente.motif === 'evenement'
               ? 'Une carte réparation permet de réparer aussitôt cette avarie.'
               : `Sans réparation, ${TEXTE_PENALITE[attente.penalite ?? 'demi']}.`}
         </p>
         <p>Il vous reste <b>{b.reparations}</b> carte{b.reparations > 1 ? 's' : ''} réparation.</p>
         <div className="barre-actions">
-          <button className="btn" onClick={() => onRepondre(false)}>{noireMono ? 'Endurer : perdre la voile, avancer de moitié' : 'Non, garder ma carte'}</button>
-          <button className="btn btn-orange" onClick={() => onRepondre(true)} autoFocus>{noireMono ? '🔧 Réparer : garder la voile, sans avancer' : '🔧 Jouer une réparation'}</button>
+          <button className="btn" onClick={() => onRepondre(false)}>{noireMono ? 'Perdre la voile' : 'Non, garder ma carte'}</button>
+          <button className="btn btn-orange" onClick={() => onRepondre(true)} autoFocus>{noireMono ? '🔧 Repêcher la voile (+40 % d\'usure)' : '🔧 Jouer une réparation'}</button>
         </div>
       </div>
     </div>

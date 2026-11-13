@@ -46,6 +46,8 @@ export interface Speciaux {
   /** Usure des voiles d'avant multipliée (0,6 = il ménage ses voiles ; 1,5 = il les use vite) (12/11/2026). */
   usure_facteur?: number;
   relances_direction?: number;
+  /** Faces du dé de tempête qui démâtent ou font chavirer, par force (remplace la table des règles ; Coriace, 14/11/2026). */
+  tempete?: Record<string, number[]>;
   malus_relance?: number;
   traverse_bateaux?: boolean;
   /** Régatier (09/11/2026) : n'entre jamais en collision dans la brume, ni comme abordeur, ni comme abordé. */
@@ -239,7 +241,8 @@ export interface CourseDef {
    * Zone de molle propre à la course (13/11/2026, dessinée par le porteur de projet) : contour en cases (x, y), à la
    * place du cercle autour de l'arrivée de regles.json ; même probabilité et même vent faible, quelle que soit la classe.
    */
-  molle?: { contour: [number, number][]; _note?: string };
+  /** probabilite : chance d'apparition de cette molle, à la place de celle des règles (Rhum : 1, toujours, 13/11/2026). */
+  molle?: { contour: [number, number][]; probabilite?: number; _note?: string };
   zones_cotieres?: { rayon: number; autour: string[] };
   lieux?: { nom: string; x: number; y: number; type: string }[];
 }
@@ -423,6 +426,8 @@ export interface EtatBateau {
   usure?: Record<string, number>;
   /** Avarie grave ce tour (chavirage, deuxième voile perdue) : peut déclencher une escale technique. */
   avarieGrave?: boolean;
+  /** Démâté, il rentre au port de secours par la mer, sous gréement de fortune (13/11/2026). */
+  rapatriement?: { port: Case; nom: string } | null;
   passeTours: number;
   relancesRestantes: number;
   dernierRecousu: number;
@@ -458,6 +463,21 @@ export type Attente =
   | { type: 'quiz'; bateauId: string; questionId: string; niveau: number; source?: 'large' }
   | { type: 'reparation'; bateauId: string; motif: 'voile_noire' | 'penalite' | 'evenement'; penalite?: PenaliteDef['id']; carteId?: string };
 
+/** Bilan de l'étape des voiles d'un bateau (13/11/2026). */
+export interface BilanVoiles {
+  delta: number;
+  relance: boolean;
+  ventLocal: Vent | null;
+  /** Part de la distance prévue : 1, 1/2 (changement de voile) ou 1/3 (voile perdue sous trop de toile). */
+  facteur: number;
+  /** Pas de dé du large ce tour (voile perdue, démâtage, chavirage, tour passé, rapatriement). */
+  sansLarge: boolean;
+  /** Pas de carte du large ce tour (manœuvre de changement de voile) ; une question reste possible. */
+  sansCarte: boolean;
+  /** Le bateau ne fait pas de route ce tour. */
+  fin: boolean;
+}
+
 export interface ContexteResolution {
   bateauId: string;
   etape: 'debut' | 'relance' | 'evenement' | 'risque' | 'quiz' | 'reparation' | 'deplacement' | 'fin';
@@ -480,6 +500,10 @@ export interface ContexteResolution {
   courant?: boolean;
   arrive?: boolean;
   issue?: string;
+  /** Étape des voiles déjà jouée pour ce bateau (13/11/2026) : la course ne revérifie ni la voile, ni la tempête, ni la surtoile. */
+  voilesFaites?: boolean;
+  /** Part de la distance prévue (changement de voile : 1/2 ; voile perdue sous trop de toile : 1/3). */
+  facteur?: number;
 }
 
 export interface Resolution {
@@ -490,6 +514,18 @@ export interface Resolution {
   rangAvant?: string[];
   /** Avancement des tirages du dé événement (tous les bateaux, juste après le jet du vent). */
   tirage: number;
+  /**
+   * Dés du large de tous les bateaux, lancés ensemble avant les questions et les cartes (13/11/2026, demande du porteur
+   * de projet : une seule animation, la même pour tous les joueurs). Absent dans une partie commencée avant.
+   */
+  desLarge?: Record<string, { de: number; declenche: boolean; question: boolean }>;
+  /**
+   * Étape « Les voiles », entre le vent et le large (13/11/2026, décisions du porteur de projet) : avancement, bateau en
+   * cours (décision), bilan par bateau. Absente dans une partie commencée avant.
+   */
+  voilesIndex?: number;
+  voilesCourant?: ContexteResolution | null;
+  voiles?: Record<string, BilanVoiles>;
   index: number;
   courant: ContexteResolution | null;
   /** Vent et distance annoncés au moment du choix, par bateau (journal des mouvements). */

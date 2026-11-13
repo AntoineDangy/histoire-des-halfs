@@ -100,7 +100,7 @@
       "id": "dur_au_mal",
       "nom": "Coriace",
       "icone": "⛈",
-      "bonus": "+20 % de distance par gros temps (F7 et plus)",
+      "bonus": "+20 % de distance par gros temps (F7 et plus) ; chances de démâtage réduites",
       "malus": "Risque +1 cran dès la bonne brise (F5 et plus)",
       "effets": [
         {
@@ -118,7 +118,9 @@
           }
         }
       ],
-      "speciaux": {}
+      "speciaux": {
+        "tempete": { "9": [], "10": [6], "11": [4, 5, 6], "_note": "Chances de démâtage réduites (porteur de projet, 14/11/2026, demandé pour Jérémie Beyou) : F9 aucune, F10 un 6, F11 un 4, 5 ou 6 (au lieu de 6 ; 4 à 6 ; 2 à 6)." }
+      }
     },
     {
       "id": "bricoleur",

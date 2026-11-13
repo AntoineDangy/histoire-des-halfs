@@ -371,6 +371,8 @@ interface Ud {
   boomPivot2?: T.Group;
   /** Multicoque chaviré (échelle de Beaufort, F11 et F12) : il flotte à l'envers. */
   chavire?: boolean;
+  /** Chavirage en cours (14/11/2026) : le bateau se couche à partir de t0. */
+  chavirage?: { t0: number };
 }
 
 function buildBoat(def: BateauScene) {
@@ -1411,6 +1413,8 @@ export class Scene3D {
   private seaBase: Float32Array;
   private seaCol: Float32Array;
   private fleet: T.Group[] = [];
+  /** Derniers bateaux affichés (le démâtage redessine la scène, mât cassé). */
+  private derniers: { bateaux: BateauScene[]; force: number } | null = null;
   /** Ligne d'arrivée (bouée, bateau comité, ligne), le cas échéant. */
   private decor: T.Group | null = null;
   private clock = new T.Clock();
@@ -1555,6 +1559,31 @@ export class Scene3D {
     this.ventNuages = 1 + f * 1.6;
   }
 
+  /** Le mât du bateau du joueur casse maintenant (démâtage, 14/11/2026) : la scène est redessinée, mât à l'eau. */
+  casserMat() {
+    if (!this.derniers) return;
+    const { bateaux, force } = this.derniers;
+    this.afficher(bateaux.map((b) => (b.moi ? { ...b, etat: 'demate' as const, perteVoile: false, affalage: undefined } : b)), force);
+  }
+
+  /** Le bateau du joueur chavire maintenant (14/11/2026) : il se couche en un peu moins de 2 secondes. */
+  chavirerMaintenant() {
+    for (const b of this.fleet) {
+      const ud = b.userData as unknown as Ud;
+      if (ud.def?.moi && !ud.chavire && !ud.chavirage) ud.chavirage = { t0: this.clock.elapsedTime };
+    }
+  }
+
+  /** Fait lâcher maintenant la voile d'avant du bateau du joueur (perte de voile encaissée, 13/11/2026). */
+  lacherVoile() {
+    if (this.reduceMotion) return;
+    for (const b of this.fleet) {
+      const ud = b.userData as unknown as Ud;
+      if (!ud.def?.moi || !ud.voileAvant || ud.chute) continue;
+      ud.chute = { t0: this.clock.elapsedTime + 0.1, heel0: ud.heel, speed0: ud.speed, gerbe: 0 };
+    }
+  }
+
   afficher(bateaux: BateauScene[], force = 4) {
     this.regler(force);
     if (this.decor) {
@@ -1571,6 +1600,7 @@ export class Scene3D {
     }
     this.ecumeAge.fill(99);
     this.labels.innerHTML = '';
+    this.derniers = { bateaux, force };
     this.fleet = bateaux.map((def) => {
       const b = buildBoat(def);
       const ud = b.userData as unknown as Ud;
@@ -1878,7 +1908,7 @@ export class Scene3D {
       const hl = this.waveH(b.position.x - 2.5, b.position.z, t), hr = this.waveH(b.position.x + 2.5, b.position.z, t);
       b.position.y = hh * 0.8 + ud.lift - (ud.coule ? Math.min(3.4, 1.2 + 0.18 * ((t * 0.6) % 14)) : 0);
       // Tangage et roulis suivent la pente des vagues : plus la mer est forte, plus le bateau bouge.
-      ud.body.rotation.set(ud.trim + Math.atan2(hf - ha, 14) * 0.9 + (ud.coule ? -0.38 : 0), 0, ud.heel + Math.atan2(hr - hl, 5) * 0.25 + 0.02 * Math.sin(t * 1.3 + ud.phase) + (ud.coule ? 1.05 : 0) + (ud.chavire ? Math.PI : 0), 'YXZ');
+      ud.body.rotation.set(ud.trim + Math.atan2(hf - ha, 14) * 0.9 + (ud.coule ? -0.38 : 0), 0, ud.heel + Math.atan2(hr - hl, 5) * 0.25 + 0.02 * Math.sin(t * 1.3 + ud.phase) + (ud.coule ? 1.05 : 0) + (ud.chavire ? Math.PI : 0) + (ud.chavirage ? Math.PI * Math.min(1, Math.max(0, (this.clock.elapsedTime - ud.chavirage.t0) / 1.8)) ** 2 : 0), 'YXZ');
       if (ud.chute) this.animerChute(b, ud, this.clock.elapsedTime);
       if (ud.affale && !this.reduceMotion) this.animerAffalage(ud, this.clock.elapsedTime);
       if (!this.reduceMotion) {

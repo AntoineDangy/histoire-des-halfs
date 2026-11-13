@@ -62,7 +62,9 @@ export interface ConfigCourse {
 }
 
 const PORTS_ATLANTIQUE: Record<string, [number, number]> = {
-  'La Corogne': [-8.4, 43.37], 'Horta (Açores)': [-28.63, 38.53], 'Funchal (Madère)': [-16.91, 32.65], 'Las Palmas (Canaries)': [-15.43, 28.14], 'Mindelo (Cap-Vert)': [-24.98, 16.89],
+  'Brest': [-4.49, 48.38], 'La Rochelle': [-1.15, 46.16], 'Lisbonne': [-9.42, 38.69], 'Ponta Delgada (Açores)': [-25.67, 37.74], // ajoutés le 13/11/2026 (porteur de projet)
+  'Lorient': [-3.37, 47.7], 'La Corogne': [-8.4, 43.37], // Lorient : port de secours en France (13/11/2026, porteur de projet)
+  'Horta (Açores)': [-28.63, 38.53], 'Funchal (Madère)': [-16.91, 32.65], 'Las Palmas (Canaries)': [-15.43, 28.14], 'Mindelo (Cap-Vert)': [-24.98, 16.89],
 };
 
 const zonesNord = (rect: Rect) => [
@@ -81,7 +83,7 @@ const zonesNord = (rect: Rect) => [
   // d'Ouessant, en laissant le passage côtier ; les rails des Scilly, plus fins qu'une case, fermeraient la Manche (ils sont
   // dessinés sur la carte du Fastnet, plus fine).
   { type: 'zone_interdite', nom: 'DST Ouessant', rect: rect(-5.75, 48.6, -5.5, 48.9), texte: 'DST Ouessant' },
-  { type: 'zone_interdite', nom: 'DST Finisterre', rect: rect(-10.3, 42.8, -9.7, 43.5), texte: 'DST Finisterre' },
+  { type: 'zone_interdite', nom: 'DST Finisterre', rect: rect(-11.0, 42.8, -10.1, 43.5), texte: 'DST Finisterre' }, // décalé d'une case vers le large le 13/11/2026 : passage le long du cap
 ];
 
 const LIEUX_ATLANTIQUE: [string, number, number, string][] = [
@@ -201,7 +203,8 @@ export const COURSES: ConfigCourse[] = [
     // le porteur de projet, 13/11/2026). Sortie du Solent par les Needles, sud du Lizard, NORD de Bishop Rock (entre Land's End et les
     // Scilly), tour du Fastnet Rock laissé à bâbord (nord, ouest, sud), SUD de Bishop Rock, nord du cap de la Hague, Cherbourg.
     vias: [[-1.37, 50.775], [-1.5, 50.735], [-1.56, 50.7], [-1.65, 50.645], [-5.2, 49.85], [-6.4, 50.1], [-9.62, 51.455], [-9.76, 51.389], [-9.62, 51.33], [-6.446, 49.75], [-1.95, 49.78], [-1.65, 49.72]],
-    ports: { 'Plymouth': [-4.14, 50.35], 'Falmouth': [-5.05, 50.14], 'Crosshaven (Cork)': [-8.29, 51.79], 'Saint-Peter-Port (Guernesey)': [-2.53, 49.46] },
+    // Pas de port d'escale au Fastnet (13/11/2026, porteur de projet) : un démâtage est une fin de course.
+    ports: {},
     marques: {
       '*': [
         // Aller (12/11/2026, parcours officiel fourni par le porteur de projet) : passage obligatoire au NORD de Bishop Rock

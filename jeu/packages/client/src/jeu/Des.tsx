@@ -93,6 +93,59 @@ export function DesVent({ direction, force, phase, avant, apres, zone, autres }:
 }
 
 /** Troisième dé : le dé ÉVÉNEMENT (violet, étoile). Sur un 6, on tire une carte du large. */
+/**
+ * Dé du large en boussole (13/11/2026, demande du porteur de projet) : une aiguille tourne sur un camembert à 6 parts
+ * (une part par face : rien, question, carte du large) et s'arrête sur le résultat. Une boussole par joueur, toutes
+ * lancées ensemble ; l'animation dure 3 s en tout (Jeu.tsx).
+ */
+export function BoussolesLarge({ lancers, phase }: { lancers: { nom: string; valeur: number }[]; phase: Phase }) {
+  const r = D.regles.de_du_large ?? { carte: [6], question: [] };
+  const genre = (f: number) => (r.carte.includes(f) ? 'carte' : r.question.includes(f) ? 'question' : 'rien');
+  const COULEUR = { carte: '#ff9f43', question: '#3dd6f5', rien: '#5b6b7c' } as const;
+  const part = (i: number) => {
+    // Part i (face i + 1) : de i × 60° à (i + 1) × 60°, en partant du nord, dans le sens des aiguilles d'une montre.
+    const a0 = ((i * 60 - 90) * Math.PI) / 180, a1 = (((i + 1) * 60 - 90) * Math.PI) / 180;
+    return `M50 50 L${50 + 46 * Math.cos(a0)} ${50 + 46 * Math.sin(a0)} A46 46 0 0 1 ${50 + 46 * Math.cos(a1)} ${50 + 46 * Math.sin(a1)} Z`;
+  };
+  return (
+    <div className="boussoles-large">
+      <div className="lbl">Dé du large</div>
+      <div className="boussoles">
+        {lancers.map((l, k) => {
+          // Arrêt au milieu de la part du résultat, un peu décalé pour faire naturel, après 4 tours (5 à l'arrêt suivant).
+          const cible = (l.valeur - 1) * 60 + 30 + (((l.valeur * 37 + k * 11) % 25) - 12);
+          const angle = phase === 'apparition' ? 0 : (4 + (k % 2)) * 360 + cible;
+          const g = genre(l.valeur);
+          return (
+            <div key={k} className={`boussole-large ${phase === 'resultat' ? `fin ${g}` : ''}`}>
+              <svg viewBox="0 0 100 100" width="104" height="104" aria-hidden="true">
+                {[0, 1, 2, 3, 4, 5].map((i) => (
+                  <path key={i} d={part(i)} fill={COULEUR[genre(i + 1)]} opacity={phase === 'resultat' && i !== l.valeur - 1 ? 0.28 : 0.9} stroke="#07131f" strokeWidth="1.5" />
+                ))}
+                {[0, 1, 2, 3, 4, 5].map((i) => {
+                  const a = ((i * 60 + 30 - 90) * Math.PI) / 180;
+                  return <text key={i} x={50 + 33 * Math.cos(a)} y={50 + 33 * Math.sin(a) + 4} textAnchor="middle" fontSize="12" fontWeight="700" fill="#07131f">{i + 1}</text>;
+                })}
+                <circle cx="50" cy="50" r="13" fill="#0b2236" stroke="#e6eef5" strokeWidth="1.5" />
+                <g className="aiguille" style={{ transform: `rotate(${angle}deg)` }}>
+                  <path d="M50 12 L55 50 L45 50 Z" fill="#ff5a5f" />
+                  <path d="M50 88 L55 50 L45 50 Z" fill="#e6eef5" />
+                  <circle cx="50" cy="50" r="3.5" fill="#07131f" />
+                </g>
+              </svg>
+              <div className="boussole-nom">{l.nom}</div>
+              <div className="boussole-bilan">
+                {phase === 'resultat' ? (g === 'carte' ? `${l.valeur} : carte du large` : g === 'question' ? `${l.valeur} : question` : `${l.valeur} : rien à signaler`) : '…'}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <div className="de-regle">{r.carte.join('-')} : carte du large · {r.question.join('-') || '—'} : question · {[1, 2, 3, 4, 5, 6].filter((x) => !r.carte.includes(x) && !r.question.includes(x)).join('-')} : rien</div>
+    </div>
+  );
+}
+
 export function DeEvenement({ valeur, phase, nom }: { valeur: number; phase: Phase; nom: string }) {
   const roule = phase !== 'resultat';
   const r = D.regles.de_du_large ?? { carte: [6], question: [] };
@@ -129,7 +182,7 @@ export interface EtatDeRisque {
 export function DeRisque({ valeur, seuil, niveau, declenche, noir, phase, nom, quiz }: EtatDeRisque) {
   const roule = phase !== 'resultat';
   const r = RISQUES[niveau] ?? RISQUES[0];
-  const regle = noir ? 'Case noire : trop de toile pour ce vent' : `Risque ${r.court.toLowerCase()} : incident si le dé fait 1${seuil > 1 ? ` à ${seuil}` : ''}`;
+  const regle = noir ? 'Trop de toile pour ce vent : la voile lâche' : `Risque ${r.court.toLowerCase()} : incident si le dé fait 1${seuil > 1 ? ` à ${seuil}` : ''}`;
   return (
     <div className="de-bloc">
       <div className="lbl">Dé de risque</div>
@@ -165,6 +218,47 @@ export interface EtatDeSpecial {
   resultat: string;
   mauvais: boolean;
   phase: Phase;
+  /** Faces qui frappent (parts rouges de la boussole). */
+  faces?: number[];
+  /** Message qui annonce le dé (« Vous êtes au cœur d'une tempête… »). */
+  message?: string;
+}
+
+/**
+ * Dé de tempête et dé du pot-au-noir en boussole (14/11/2026, « la boussole remplace les dés ») : camembert à 6 parts,
+ * rouges celles qui frappent, vertes les autres ; l'aiguille tourne puis s'arrête sur le résultat.
+ */
+export function BoussoleSpeciale({ titre, valeur, regle, resultat, mauvais, phase, faces = [], message }: EtatDeSpecial) {
+  const part = (i: number) => {
+    const a0 = ((i * 60 - 90) * Math.PI) / 180, a1 = (((i + 1) * 60 - 90) * Math.PI) / 180;
+    return `M50 50 L${50 + 46 * Math.cos(a0)} ${50 + 46 * Math.sin(a0)} A46 46 0 0 1 ${50 + 46 * Math.cos(a1)} ${50 + 46 * Math.sin(a1)} Z`;
+  };
+  const angle = phase === 'apparition' ? 0 : 4 * 360 + (valeur - 1) * 60 + 30 + (((valeur * 37) % 25) - 12);
+  return (
+    <div className="boussoles-large">
+      <div className="lbl">{titre}</div>
+      {message && <div className="boussole-message">{message}</div>}
+      <div className={`boussole-large ${phase === 'resultat' ? `fin ${mauvais ? 'touche' : 'tient'}` : ''}`}>
+        <svg viewBox="0 0 100 100" width="112" height="112" aria-hidden="true">
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <path key={i} d={part(i)} fill={faces.includes(i + 1) ? '#ff5a5f' : '#3ccb7f'} opacity={phase === 'resultat' && i !== valeur - 1 ? 0.28 : 0.9} stroke="#07131f" strokeWidth="1.5" />
+          ))}
+          {[0, 1, 2, 3, 4, 5].map((i) => {
+            const a = ((i * 60 + 30 - 90) * Math.PI) / 180;
+            return <text key={i} x={50 + 33 * Math.cos(a)} y={50 + 33 * Math.sin(a) + 4} textAnchor="middle" fontSize="12" fontWeight="700" fill="#07131f">{i + 1}</text>;
+          })}
+          <circle cx="50" cy="50" r="13" fill="#0b2236" stroke="#e6eef5" strokeWidth="1.5" />
+          <g className="aiguille" style={{ transform: `rotate(${angle}deg)` }}>
+            <path d="M50 12 L55 50 L45 50 Z" fill="#ff5a5f" />
+            <path d="M50 88 L55 50 L45 50 Z" fill="#e6eef5" />
+            <circle cx="50" cy="50" r="3.5" fill="#07131f" />
+          </g>
+        </svg>
+      </div>
+      <div className="de-regle">{regle}</div>
+      {phase === 'resultat' && <div className="de-regle" style={{ fontWeight: 700 }}>{resultat}</div>}
+    </div>
+  );
 }
 
 export function DeSpecial({ titre, valeur, regle, resultat, mauvais, phase }: EtatDeSpecial) {

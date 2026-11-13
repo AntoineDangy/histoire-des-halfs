@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   angleAllure, appliquer, bateau, heuresParTour, classement, categorie, categoriesPartie, NOM_CATEGORIE, coteVent, creerPartie, distanceRestante, formaterTemps, humainsAttendus, vecteur,
-  NOMS_DIR, NOMS_DIR_LONGS, nomBeaufort, nomSkipper, trajectoirePrevue, ventCourant, frontSur, DELAI_CHOIX_S, DELAI_DECISION_S,
+  NOMS_DIR, NOMS_DIR_LONGS, nomBeaufort, nomSkipper, trajectoirePrevue, ventCourant, frontSur, DELAI_CHOIX_S, DELAI_DECISION_S, estMulticoque,
 } from '@cal/engine';
 import type { Action, Case, Choix, EtatPartie, Evenement, JoueurSalon, Vent } from '@cal/engine';
 import { bateauDef, courseDef, D, definirCourseActive, Lancement, nomClasse, skipper, posExacte } from '../commun';
@@ -11,7 +11,7 @@ import type { ApercuChoix } from '../jeu/TableauBord';
 import { EcranPassation, ModaleQuiz, ModaleRelance, ModaleReparation } from '../jeu/Modales';
 import { attenteAMontrer, cleAttente, etapeDuTour, NOM_ETAPE, recapIA, ventDuJoueur } from '../jeu/enchainement';
 import { AllureKey, BateauScene, chargerModeles, Forme, modelesAcharger, modeleDuBateau, Scene3D } from '../jeu/scene3d';
-import { bilanVent, DesVent, DeEvenement, DeRisque, DeSpecial, EtatDeRisque, EtatDeSpecial, Phase } from '../jeu/Des';
+import { bilanVent, BoussoleSpeciale, BoussolesLarge, DesVent, DeRisque, EtatDeRisque, EtatDeSpecial, Phase } from '../jeu/Des';
 import ModaleCarteEvenement from '../jeu/CarteEvenement';
 import RecapBateau from '../jeu/RecapBateau';
 import Apercu3D from '../jeu/Apercu3D';
@@ -19,7 +19,7 @@ import Coach from '../jeu/Coach';
 import JournalMouvements from '../jeu/JournalMouvements';
 import Regles from './Regles';
 import Briefing, { CLE_BRIEFING } from '../jeu/Briefing';
-import { ecrireStockage, lireStockage } from '../commun';
+import { lireStockage } from '../commun';
 
 /** Mode réseau : l'état vient du serveur de salons, les actions lui sont envoyées. */
 export interface ModeReseau {
@@ -54,8 +54,6 @@ export const derniereSauvegarde: { etat?: EtatPartie } = {};
 
 /** Durée d'une scène 3D de course à la vitesse normale (10 s le 10/11/2026, 8 s le 13/11/2026 : demandes du porteur de projet). */
 const DUREE_SCENE_3D = 8000;
-/** Dé du large lancé tout seul (option du joueur, mémorisée sur l'appareil, 13/11/2026). */
-const CLE_DE_AUTO = 'cal-de-large-auto';
 const allure3d = (a: number): AllureKey => (a < 67 ? 'pres' : a < 112 ? 'travers' : a < 157 ? 'largue' : 'arriere');
 
 export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Props) {
@@ -78,7 +76,8 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
   const [animPts, setAnimPts] = useState<{ id: string; pts: [number, number][] } | null>(null);
   const [enteteReduite, setEnteteReduite] = useState(() => window.innerWidth < 860);
   const [des, setDes] = useState<{ force: number; direction: number; phase: Phase; avant: Vent; apres: Vent; zone?: string; autres?: { nom: string; avant: Vent; apres: Vent; zone: string }[] } | null>(null);
-  const [deEvt, setDeEvt] = useState<{ valeur: number; phase: Phase; nom: string; attente?: boolean } | null>(null);
+  // Dés du large de tous les joueurs, en boussoles qui tournent ensemble (13/11/2026).
+  const [boussoles, setBoussoles] = useState<{ lancers: { nom: string; valeur: number }[]; phase: Phase } | null>(null);
   const [deRisque, setDeRisque] = useState<EtatDeRisque | null>(null);
   const [deSpecial, setDeSpecial] = useState<EtatDeSpecial | null>(null);
   const [carteVue, setCarteVue] = useState<{ carteId: string; bateauId: string } | null>(null);
@@ -87,7 +86,15 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
   const [apercu, setApercu] = useState<ApercuChoix>({ cap: null, distance: 0, max: 0, choisir: null });
   const [centrer, setCentrer] = useState(0);
   const [dureeScene, setDureeScene] = useState({ id: 0, ms: 0 }); // barre de temps de la scène 3D
-  const [vue3d, setVue3d] = useState<{ bateauId: string; etape: number; texte: string; vent: { direction: number; force: number }; titre?: string } | null>(null);
+  const [vue3d, setVue3d] = useState<{
+    bateauId: string; etape: number; texte: string; vent: { direction: number; force: number }; titre?: string;
+    /** Scène en format carte, l'explication dessous (affalage, perte de voile, décision de réparation ; 13/11/2026). */
+    carte?: boolean;
+    /** Décision de réparation qui coûterait une voile : les deux choix sous la scène. */
+    decision?: { reparer: string; endurer: string; explication: string };
+  } | null>(null);
+  /** Voile déjà vue lâcher dans la carte de la décision (« bateau:tour ») : sa scène n'est pas rejouée pour ce joueur. */
+  const voileDejaMontree = useRef<string | null>(null);
   /** Moments de course racontés en 3D (au plus un par tour). */
   const momentFort = (ev: Evenement, humain: boolean): string | null => {
     switch (ev.type) {
@@ -97,7 +104,10 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
       // Événement qui contraint la course : toujours expliqué et animé (demande du porteur de projet, 12/11/2026).
       // Seule la voile inutilisable porte des données (voile, cap, vent) ; une carte du large qui immobilise n'en a pas
       // (13/11/2026, audit E1 : elle était présentée à tort comme une voile inutilisable).
-      case 'bloque': return humain && ev.donnees ? 'Voile inutilisable' : null;
+      case 'bloque': return humain && ev.donnees ? ((ev.donnees as { nouvelle?: string }).nouvelle ? 'Changement de voile' : 'Voile inutilisable') : null;
+      // Démâtage et chavirage (14/11/2026) : scène en format carte, rejouée pour les autres joueurs.
+      case 'demate': return 'Démâtage !';
+      case 'naufrage': return 'Chavirage !';
       case 'collision': return 'Collision dans la brume';
       case 'arrivee': return (ev.donnees as { ligne?: string[] } | undefined)?.ligne ? "Ligne d'arrivée" : null;
       case 'debut': {
@@ -112,9 +122,9 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
     }
   };
   /** Priorité d'un moment : la scène 3D du tour est réservée au moment le plus fort (une voile perdue avant un petit temps). */
-  const PRIORITE: Partial<Record<Evenement['type'], number>> = { voile_perdue: 4, bloque: 4, collision: 4, arrivee: 5, depassement: 3, a_vue: 2, debut: 1 };
+  const PRIORITE: Partial<Record<Evenement['type'], number>> = { voile_perdue: 4, bloque: 4, demate: 5, naufrage: 5, collision: 4, arrivee: 5, depassement: 3, a_vue: 2, debut: 1 };
   /** Moments de voile (perdue, inutilisable) : leur scène se joue au moment où ils arrivent, pas en fin de tour. */
-  const sceneAuMoment = (ev: Evenement) => ev.type === 'voile_perdue' || ev.type === 'bloque';
+  const sceneAuMoment = (ev: Evenement) => ev.type === 'voile_perdue' || ev.type === 'bloque' || ev.type === 'demate' || ev.type === 'naufrage';
   const impliqueHumain = (ev: Evenement) => {
     const d = (ev.donnees ?? {}) as { autre?: string; autres?: string[]; ligne?: string[] };
     if (d.ligne) return true; // la ligne d'arrivée est toujours montrée
@@ -125,7 +135,6 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
   const [alerte, setAlerte] = useState<string | null>(null);
   /** Annonce brève pendant la lecture (carte du large d'un autre joueur en réseau…), sans clic (13/11/2026). */
   const [annonce, setAnnonce] = useState<string | null>(null);
-  const [deAuto, setDeAuto] = useState(() => lireStockage(CLE_DE_AUTO, false));
   const [journalOuvert, setJournalOuvert] = useState(false);
   const [reglesOuvertes, setReglesOuvertes] = useState(false);
   const [briefing, setBriefing] = useState(() => !lancement.tutoriel && !lireStockage(CLE_BRIEFING, { masque: false }).masque);
@@ -266,10 +275,10 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
     // Voile inutilisable : message explicite, même sans vue 3D (téléphone, vue 3D coupée). Une carte du large qui
     // immobilise le bateau (événement sans données) a son propre message, plus court (13/11/2026, audit E1).
     const bloque = ev.type === 'bloque' && humain;
-    setAlerte(bloque ? (ev.donnees ? MESSAGE_BLOQUE : ev.texte) : null);
+    setAlerte(bloque ? (ev.donnees && !(ev.donnees as { nouvelle?: string }).nouvelle ? MESSAGE_BLOQUE : ev.texte) : null);
     if (bloque) duree = (ev.donnees ? 5000 : 2500) * k;
     if (ev.type !== 'vent') setDes(null);
-    if (ev.type !== 'de_evenement') setDeEvt(null);
+    if (ev.type !== 'de_evenement') setBoussoles(null);
     if (ev.type !== 'jet_risque') setDeRisque(null);
     setDeSpecial(null);
     const fin = () => () => {
@@ -335,30 +344,23 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
       timers.push(window.setTimeout(() => !annule && setDes({ ...base, phase: 'resultat' }), 1200 * k));
       duree = 3500 * k;
     } else if (ev.type === 'de_evenement') {
-      const d = ev.donnees as { de: number; declenche: boolean };
-      // En réseau, seul le joueur concerné lance son dé ; chez les autres, le dé roule tout seul (11/11/2026, bug signalé
-      // par le porteur de projet : à trois joueurs, il fallait cliquer trois fois).
-      if (humain && reseau && ev.bateauId !== reseau.moi) {
-        const base = { valeur: d.de, nom: noms[ev.bateauId!] };
-        setDeEvt({ ...base, phase: 'apparition' });
-        timers.push(window.setTimeout(() => !annule && setDeEvt({ ...base, phase: 'roule' }), 600 * k));
-        timers.push(window.setTimeout(() => !annule && setDeEvt({ ...base, phase: 'resultat' }), 1900 * k));
+      // Dés du large de tous les bateaux, lancés ensemble par le moteur (13/11/2026, demande du porteur de projet) : une
+      // boussole par joueur, toutes ensemble, 3 s en tout, sans clic, au même moment pour tous en réseau. Les dés des IA ne
+      // sont pas montrés : leurs cartes et leurs questions suivent.
+      let j = curseur;
+      const lancers: { nom: string; valeur: number }[] = [];
+      for (; j < etat.evenements.length; j++) {
+        const x = etat.evenements[j];
+        if (x.type !== 'de_evenement' || x.tour !== ev.tour) break;
+        if (etat.bateaux.find((o) => o.id === x.bateauId)?.type === 'humain') lancers.push({ nom: noms[x.bateauId!], valeur: (x.donnees as { de: number }).de });
+      }
+      if (!rejouer && !depuisFile) saut = Math.max(1, j - curseur);
+      if (lancers.length && !rejouer && !depuisFile) {
+        setBoussoles({ lancers, phase: 'apparition' });
+        timers.push(window.setTimeout(() => !annule && setBoussoles({ lancers, phase: 'roule' }), 120 * k));
+        timers.push(window.setTimeout(() => !annule && setBoussoles({ lancers, phase: 'resultat' }), 2400 * k));
+        // Le résultat reste lisible 1,6 s (une seconde de plus le 14/11/2026, demande du porteur de projet).
         duree = 4000 * k;
-      } else if (humain && (deAuto || (plusieursHumains && !reseau))) {
-        // Option « lancer tout seul » (13/11/2026, audit A3) : le dé roule sans attendre de clic.
-        const base = { valeur: d.de, nom: noms[ev.bateauId!] };
-        setDeEvt({ ...base, phase: 'apparition' });
-        timers.push(window.setTimeout(() => !annule && setDeEvt({ ...base, phase: 'roule' }), 300 * k));
-        timers.push(window.setTimeout(() => !annule && setDeEvt({ ...base, phase: 'resultat' }), 1000 * k));
-        duree = 2000 * k;
-      } else if (humain) {
-        const nomB = noms[ev.bateauId!];
-        // Le joueur lance lui-même le dé du large (11/11/2026) : la lecture attend son clic.
-        setDeEvt({ valeur: d.de, phase: 'apparition', nom: nomB, attente: true });
-        return () => {
-          annule = true;
-          timers.forEach(clearTimeout);
-        };
       } else duree = 150 * k;
     } else if (ev.type === 'carte_evenement') {
       const d = ev.donnees as { carteId: string };
@@ -375,6 +377,10 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
           timers.forEach(clearTimeout);
         };
       } else duree = 150 * k;
+    } else if (ev.type === 'voile_perdue' && voileDejaMontree.current === `${ev.bateauId}:${ev.tour}`) {
+      // Le joueur a vu sa voile lâcher dans la carte de sa décision (13/11/2026) : pas de seconde scène pour lui.
+      voileDejaMontree.current = null;
+      duree = 1500 * k;
     } else if (avec3d && !tourMonde && !depuisFile && !rejouer && momentFort(ev, humain) && (humain || impliqueHumain(ev)) && !sceneAuMoment(ev)) {
       // Audit de l'enchaînement (13/11/2026, validé par le porteur de projet) : au plus une scène 3D par tour, jouée en fin
       // de tour, celle du moment le plus fort (coup de vent, dépassement, arrivée…). Les voiles perdues ou inutilisables
@@ -456,7 +462,9 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
           sansVoileAvant: !voileId,
           ris: voileId === 'reduite' ? 2 : 0, // voilure réduite : tourmentin et deux ris
           perteVoile: perdue,
-          affalage: ev.type === 'bloque' && o.id === ev.bateauId && voileId ? plusPetite(D.voiles.find((v) => v.id === voileId)?.forme_3d as Forme) : undefined,
+          affalage: ev.type === 'bloque' && o.id === ev.bateauId && voileId
+            ? ((D.voiles.find((v) => v.id === (ev.donnees as { nouvelle?: string })?.nouvelle)?.forme_3d as Forme | undefined) ?? plusPetite(D.voiles.find((v) => v.id === voileId)?.forme_3d as Forme))
+            : undefined,
           cote: coteVent(cap, vent.direction) || 1,
           off,
           // Vitesse en nœuds : milles parcourus ce tour divisés par la durée d'un tour.
@@ -468,7 +476,15 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
       scene3dRef.current?.afficher(scene, vent.force);
       if (d.ligne) scene3dRef.current?.ligneArrivee(d.ligne.length, vitLigne * 2.5, espacementLigne);
       scene3dRef.current?.demarrer();
-      setVue3d({ bateauId: focus.id, etape: 2, texte: ev.texte, vent, titre });
+      const precedent = etat.evenements[indexEv - 1];
+      const surtoile = ev.type === 'voile_perdue' && precedent?.type === 'jet_risque' && precedent.bateauId === ev.bateauId && !!(precedent.donnees as { noir?: boolean } | undefined)?.noir;
+      setVue3d({
+        bateauId: focus.id, etape: 2, texte: surtoile ? `${precedent.texte} ${ev.texte}` : ev.texte, vent, titre: surtoile ? 'Trop de toile !' : titre,
+        carte: ev.type === 'bloque' || ev.type === 'voile_perdue' || ev.type === 'demate' || ev.type === 'naufrage',
+      });
+      // Démâtage : le mât casse sous les yeux du joueur ; chavirage : le bateau se couche (14/11/2026).
+      if (ev.type === 'demate') timers.push(window.setTimeout(() => !annule && scene3dRef.current?.casserMat(), 1800 * k));
+      if (ev.type === 'naufrage') timers.push(window.setTimeout(() => !annule && scene3dRef.current?.chavirerMaintenant(), 1500 * k));
       // 8 secondes par scène à la vitesse normale (demande du porteur de projet, 13/11/2026) ; bouton « Passer la scène ».
       duree = DUREE_SCENE_3D * k;
       const ms = duree;
@@ -485,22 +501,27 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
       const multi = !!b && ['ultim', 'ultim_ancien', 'ocean_fifty', 'vintage_multicoque'].includes(b.famille);
       const base: EtatDeSpecial = ev.type === 'tempete'
         ? {
-          titre: `Dé de tempête · F${dt.force}`, valeur: dt.de, mauvais: !!dt.touche,
+          titre: `Dé de tempête · F${dt.force}`, valeur: dt.de, mauvais: !!dt.touche, faces: dt.faces ?? [],
+          message: `${nomB} est au cœur d'une tempête de force ${dt.force} : son gréement souffre !`,
           regle: `${nomB} : ${multi ? 'chavirage' : 'démâtage'} si le dé fait ${(dt.faces ?? []).join(', ')}`,
           resultat: dt.touche ? (multi ? 'Chavirage !' : 'Démâtage !') : 'Le bateau tient bon.', phase: 'apparition',
         }
         : {
-          titre: 'Dé du pot-au-noir', valeur: dt.de, mauvais: dt.de % 2 === 1,
+          titre: 'Dé du pot-au-noir', valeur: dt.de, mauvais: dt.de % 2 === 1, faces: [1, 3, 5],
           regle: `${nomB} est encalminé : pair, il repart ; impair, il passe son tour`,
           resultat: dt.de % 2 === 1 ? 'Impair : il reste encalminé.' : 'Pair : il attrape un souffle et repart !', phase: 'apparition',
         };
       setDeSpecial(base);
-      timers.push(window.setTimeout(() => !annule && setDeSpecial({ ...base, phase: 'roule' }), 600 * k));
-      timers.push(window.setTimeout(() => !annule && setDeSpecial({ ...base, phase: 'resultat' }), 1700 * k));
-      duree = 4200 * k;
+      // Boussole (14/11/2026) : elle tourne 2,3 s, puis le résultat reste lisible.
+      timers.push(window.setTimeout(() => !annule && setDeSpecial({ ...base, phase: 'roule' }), 150 * k));
+      timers.push(window.setTimeout(() => !annule && setDeSpecial({ ...base, phase: 'resultat' }), 2450 * k));
+      duree = 5200 * k;
     } else if (ev.type === 'jet_risque' && humain) {
       // Le dé rouge de risque, montré comme les dés du vent : il roule, puis la règle et le résultat s'affichent.
       const dr = ev.donnees as { de?: number; seuil?: number; niveau: number; declenche?: boolean; noir?: boolean };
+      // Trop de toile (14/11/2026) : plus de visuel « case noire » ; la scène 3D de la voile qui lâche raconte tout.
+      if (dr.noir) duree = 300 * k;
+      else {
       const base: EtatDeRisque = {
         valeur: dr.de ?? 0, seuil: dr.seuil ?? 0, niveau: dr.niveau, declenche: !!dr.declenche, noir: !!dr.noir,
         phase: 'apparition', nom: noms[ev.bateauId!], quiz: !!etat.params.options.quiz,
@@ -512,6 +533,7 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
       } else timers.push(window.setTimeout(() => !annule && setDeRisque({ ...base, phase: 'resultat' }), 300 * k));
       duree = 3800 * k;
       setVue3d((v) => (v && v.bateauId === ev.bateauId ? { ...v, etape: 2, texte: ev.texte } : v));
+      }
     } else if (ev.type === 'deplacement' || ev.type === 'port') {
       setVue3d(null);
       scene3dRef.current?.arreter();
@@ -577,7 +599,7 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
       timers.forEach(clearTimeout);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [curseur, enRetard, vitesse, rejoue, deAuto]);
+  }, [curseur, enRetard, vitesse, rejoue]);
 
   /** Passe à l'événement suivant, seulement si la lecture en est toujours à l'événement `i` (13/11/2026, audit E2 :
    *  une minuterie restée en route après « Passer » ou un changement de vitesse sautait l'événement suivant). */
@@ -654,6 +676,71 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
   // Même écran : la décision d'un joueur est précédée de « Je suis X », comme le choix du cap (audit E10).
   const [passationDecision, setPassationDecision] = useState<string | null>(null);
   const besoinPassationDecision = !reseau && plusieursHumains && !!attenteHumaine && passationDecision !== cleAttente(etat);
+
+  // Décision de réparation qui coûterait une voile (13/11/2026, demande du porteur de projet) : la scène 3D, en format
+  // carte, montre le bateau sous cette voile, avec l'explication et le choix dessous ; « Endurer » fait lâcher la voile.
+  const decisionVoile = (() => {
+    const a = etat.attente;
+    if (!avec3d || !a || a.type !== 'reparation' || (reseau && a.bateauId !== reseau.moi)) return null;
+    const b = bateau(etat, a.bateauId);
+    if (b.type !== 'humain') return null;
+    const carte = a.motif === 'evenement' ? D.evenements?.cartes.find((c) => c.id === a.carteId) : undefined;
+    const voile = a.motif === 'evenement'
+      ? carte?.effet.perte_voile?.find((v) => b.voiles.includes(v))
+      : (a.motif === 'penalite' && a.penalite === 'perte_voile') || (a.motif === 'voile_noire' && !estMulticoque(D, b)) ? b.choix?.voile ?? undefined : undefined;
+    if (!voile) return null;
+    // Au bon moment : la carte du large vient d'être tirée (lecture arrêtée sur elle), ou la lecture est arrivée au bout.
+    const surLaCarte = !!carteVue && carteVue.bateauId === b.id && carteVue.carteId === a.carteId && curseur === etat.evenements.length - 1;
+    if (!surLaCarte && (enRetard || !attenteHumaine)) return null;
+    if (cleAttente(etat) === envoyee || besoinPassationDecision) return null;
+    return { b, motif: a.motif, carte, voile, surLaCarte };
+  })();
+  const cleDecisionVoile = decisionVoile ? `${decisionVoile.b.id}:${etat.tour}:${decisionVoile.motif}:${decisionVoile.voile}` : null;
+  useEffect(() => {
+    if (!decisionVoile) return;
+    const { b, voile, carte, motif } = decisionVoile;
+    const vent = ventCourant(etat, b.x, b.y);
+    const cap = b.choix?.cap ?? b.dernierCap ?? 12;
+    const s = skipper(b.skipperId);
+    const nomVoile = (D.voiles.find((v) => v.id === voile)?.nom ?? voile).toLowerCase();
+    scene3dRef.current?.afficher([{
+      nom: noms[b.id], moi: true, coque: s.couleurs.coque, bandes: s.couleurs.bandes, spi: s.couleurs.spi, numero: s.numero_voile,
+      allure: allure3d(Math.max(45, angleAllure(cap, vent.direction))), forme: (D.voiles.find((v) => v.id === voile)?.forme_3d ?? 'j2') as Forme,
+      sansVoileAvant: false, ris: 0, perteVoile: false, cote: coteVent(cap, vent.direction) || 1, off: [0, 0], vitesse: 8,
+      modele: modeleDuBateau(b.famille, bateauDef(b.bateauId)?.modele_3d), classe: D.familles.find((f) => f.id === b.famille)?.classe,
+    }], vent.force);
+    scene3dRef.current?.demarrer();
+    const n = b.reparations;
+    const titre = carte ? `${carte.icone} ${carte.titre}` : motif === 'voile_noire' ? `Trop de toile : votre ${nomVoile} lâche !` : 'Avarie de voile';
+    const texte = carte ? carte.texte : motif === 'voile_noire' ? 'Le vent est trop fort pour cette voile : elle lâche. Ce tour, le bateau ne fait qu\'un tiers de sa route, sans dé du large.' : `Incident : sans réparation, vous perdez votre ${nomVoile}.`;
+    const decision = motif === 'voile_noire'
+      ? { reparer: `🔧 Carte réparation : repêcher la voile (+40 % d'usure)`, endurer: 'Sans carte : la voile est perdue', explication: `Une carte réparation repêche la voile, réparée tant bien que mal. Il vous reste ${n} carte${n > 1 ? 's' : ''} réparation.` }
+      : carte
+      ? { reparer: '🔧 Réparer : garder la voile, sans avancer', endurer: `Endurer : perdre ${nomVoile.startsWith('spi') ? 'le' : 'la'} ${nomVoile}, avancer de moitié`, explication: `Il vous reste ${n} carte${n > 1 ? 's' : ''} réparation.` }
+      : { reparer: '🔧 Jouer une réparation', endurer: 'Endurer : perdre la voile', explication: `Il vous reste ${n} carte${n > 1 ? 's' : ''} réparation.` };
+    // La voile lâche d'abord sous les yeux du joueur, puis vient le choix de la carte réparation (14/11/2026, porteur de
+    // projet) : la scène de la voile perdue n'est pas rejouée ensuite pour ce joueur.
+    voileDejaMontree.current = `${b.id}:${etat.tour}`;
+    setVue3d({ bateauId: b.id, etape: 2, titre, texte, vent, carte: true });
+    const k = 1 / vitesse;
+    const t1 = window.setTimeout(() => scene3dRef.current?.lacherVoile(), 1200 * k);
+    const t2 = window.setTimeout(() => setVue3d((v) => (v && v.bateauId === b.id ? { ...v, decision } : v)), 3200 * k);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cleDecisionVoile]);
+  /** Choix fait dans la carte : réparer tout de suite ; endurer après avoir vu la voile lâcher (3 s). */
+  const deciderVoile = (reparer: boolean) => {
+    if (!decisionVoile || !vue3d?.decision) return;
+    const { b, surLaCarte } = decisionVoile;
+    // Avec ou sans carte réparation, le choix ferme la fenêtre (la voile a déjà lâché dans la scène).
+    setVue3d(null);
+    scene3dRef.current?.arreter();
+    if (surLaCarte) { setCarteVue(null); setCurseur((c) => c + 1); }
+    repondre({ type: 'JouerReparation', bateauId: b.id, jouer: reparer });
+  };
   // Échéance du serveur (13/11/2026, audit C2) : il choisit ou répond à la place des joueurs attendus.
   const [maintenant, setMaintenant] = useState(() => Date.now());
   useEffect(() => {
@@ -678,6 +765,11 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
     scene3dRef.current?.arreter();
   }, [!!joueurChoix, attenteAutres.length]);
 
+  // Démâté, le bateau du joueur rentre au port sous gréement de fortune : il n'a rien à choisir (14/11/2026).
+  const rapatrie = recapIdAvant(etat, reseau?.moi ?? null);
+  useEffect(() => {
+    if (!enRetard && rapatrie?.rapatriement) setBandeau(`⚓ ${rapatrie.nom} rentre à ${rapatrie.rapatriement.nom} sous gréement de fortune, 250 milles par tour au plus.`);
+  }, [enRetard, rapatrie?.id, rapatrie?.rapatriement?.nom, etat.tour]);
   useEffect(() => {
     if (joueurChoix && !besoinPassation) setBandeau(`Tour ${etat.tour} : ${plusieursHumains ? joueurChoix.nom + ', ' : ''}choisissez un cap (sur la rose, ou en touchant la mer) puis une voile.${resumeIA}`);
   }, [joueurChoix?.id, besoinPassation, etat.tour, plusieursHumains, resumeIA]);
@@ -852,43 +944,23 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
           </div>
           {/* Pendant la lecture d'un tour, le texte de l'événement n'est plus répété ici : le journal de bord suffit (12/11/2026,
               demande du porteur de projet). Le bandeau ne sert plus qu'aux dés et à la consigne du tour. */}
-          {bandeau && (des || deEvt || deRisque || deSpecial || !enRetard || (alerte && enRetard) || (annonce && enRetard)) && (
-            <div className={`panneau bandeau ${des || deEvt || deRisque || deSpecial ? 'avec-des' : ''}`} role="status">
+          {bandeau && (des || boussoles || deRisque || deSpecial || !enRetard || (alerte && enRetard) || (annonce && enRetard)) && (
+            <div className={`panneau bandeau ${des || boussoles || deRisque || deSpecial ? 'avec-des' : ''}`} role="status">
               {/* Dés du vent : un clic dessus passe au résultat suivant (13/11/2026, audit A2). */}
               {des && <div onClick={() => des.phase === 'resultat' && avancerDepuis(curseur)} style={{ cursor: des.phase === 'resultat' ? 'pointer' : undefined }}><DesVent {...des} /></div>}
-              {deEvt && (
-                <div className="des-vent" style={{ flexDirection: 'column', alignItems: 'center' }}>
-                  <DeEvenement {...deEvt} />
-                  {deEvt.attente && (
-                    <>
-                      <button className="btn btn-principal" style={{ marginTop: 8 }} onClick={() => {
-                        // Plus court (13/11/2026, audit A3) : résultat à 0,7 s, suite à 1,7 s. La suite ne vaut que si la
-                        // lecture en est toujours à ce dé (audit E2).
-                        const k = 1 / vitesse, i = curseur;
-                        setDeEvt({ ...deEvt, attente: false, phase: 'roule' });
-                        window.setTimeout(() => setDeEvt((x) => x && { ...x, phase: 'resultat' }), 700 * k);
-                        window.setTimeout(() => avancerDepuis(i), 1700 * k);
-                      }}>🎲 Lancer le dé du large</button>
-                      <label className="muted" style={{ marginTop: 6, fontSize: 12, display: 'flex', gap: 6, alignItems: 'center' }}>
-                        <input type="checkbox" checked={deAuto} onChange={(e) => { setDeAuto(e.target.checked); ecrireStockage(CLE_DE_AUTO, e.target.checked); }} />
-                        Lancer mon dé tout seul les prochaines fois
-                      </label>
-                    </>
-                  )}
-                </div>
-              )}
+              {boussoles && <div className="des-vent"><BoussolesLarge {...boussoles} /></div>}
               {deRisque && <div className="des-vent"><DeRisque {...deRisque} /></div>}
-              {deSpecial && <div className="des-vent"><DeSpecial {...deSpecial} /></div>}
+              {deSpecial && <div className="des-vent"><BoussoleSpeciale {...deSpecial} /></div>}
               {alerte && enRetard && <div className="alerte-lecture">⚠ {alerte}</div>}
               {annonce && enRetard && <div className="alerte-lecture">{annonce}</div>}
-              {!des && !deEvt && !deRisque && !deSpecial && !annonce && bandeau}
+              {!des && !boussoles && !deRisque && !deSpecial && !annonce && bandeau}
               {des && des.phase === 'resultat' && (
                 <button className="btn btn-petit" style={{ marginTop: 8 }} onClick={() => avancerDepuis(curseur)}>Continuer →</button>
               )}
             </div>
           )}
           {avec3d && (
-            <div className="vue3d" style={{ display: vue3d ? 'block' : 'none' }}>
+            <>{vue3d?.carte && <div className="fond-carte3d" />}<div className={`vue3d ${vue3d?.carte ? 'en-carte' : ''}`} style={{ display: vue3d ? 'block' : 'none' }}>
               <div className="scene" ref={conteneur3d} />
               <div className="etiquettes" ref={etiquettes3d} />
               <div className="haut">
@@ -907,12 +979,22 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
                 <div className="lbl">{vue3d?.titre}</div>
                 {alerte && <div className="alerte-lecture" style={{ marginTop: 6 }}>⚠ {alerte}</div>}
                 <div style={{ marginTop: 6, fontWeight: 600 }}>{vue3d?.texte}</div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 8 }}>
-                  {vue3d && <span key={dureeScene.id} className="barre-scene" style={{ animationDuration: `${dureeScene.ms / 1000}s` }} />}
-                  <button className="btn btn-petit" onClick={passerScene3d}>Passer la scène ⏭</button>
-                </div>
+                {vue3d?.decision ? (
+                  <>
+                    <div className="muted" style={{ marginTop: 6, fontSize: 13 }}>{vue3d.decision.explication}</div>
+                    <div className="barre-actions" style={{ marginTop: 10 }}>
+                      <button className="btn" onClick={() => deciderVoile(false)}>{vue3d.decision.endurer}</button>
+                      <button className="btn btn-orange" onClick={() => deciderVoile(true)} autoFocus>{vue3d.decision.reparer}</button>
+                    </div>
+                  </>
+                ) : decisionVoile ? null : (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 8 }}>
+                    {vue3d && <span key={dureeScene.id} className="barre-scene" style={{ animationDuration: `${dureeScene.ms / 1000}s` }} />}
+                    <button className="btn btn-petit" onClick={passerScene3d}>Passer la scène ⏭</button>
+                  </div>
+                )}
               </div>
-            </div>
+            </div></>
           )}
         </div>
 
@@ -953,7 +1035,7 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
               voileChoisie: apercu.cap !== null && apercu.distance > 0,
               louvoyage: apercu.cap !== null && moi ? angleAllure(apercu.cap, ventCourant(etat, moi.x, moi.y).direction) < 45 : false,
               desVent: !!des,
-              deEvenement: !!deEvt,
+              deEvenement: !!boussoles,
               carteDuLarge: !!carteVue,
               jetRisque: evCourant?.type === 'jet_risque' && evCourant.bateauId === moi?.id,
               quiz: attenteHumaine?.type === 'quiz',
@@ -982,7 +1064,7 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
       {attenteHumaine?.type === 'quiz' && !besoinPassationDecision && (
         <ModaleQuiz key={attenteHumaine.questionId} attente={attenteHumaine} delai={reglages.delaiQuiz} envoiAuto={!!reseau} nom={noms[attenteHumaine.bateauId]} onRepondre={(r) => repondre({ type: 'RepondreQuiz', bateauId: attenteHumaine.bateauId, reponse: r })} />
       )}
-      {carteVue && (() => {
+      {carteVue && !decisionVoile?.surLaCarte && (() => {
         const carte = D.evenements!.cartes.find((c) => c.id === carteVue.carteId)!;
         const b = bateau(etat, carteVue.bateauId);
         // Décision de réparation liée à CETTE carte (et non « dernier événement » : un message du serveur peut suivre la
@@ -1005,7 +1087,7 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
           />
         );
       })()}
-      {attenteHumaine?.type === 'reparation' && !carteVue && !besoinPassationDecision && (() => {
+      {attenteHumaine?.type === 'reparation' && !carteVue && !besoinPassationDecision && !decisionVoile && (() => {
         const b = bateau(etat, attenteHumaine.bateauId);
         const carte = attenteHumaine.motif === 'evenement' && attenteHumaine.carteId ? D.evenements?.cartes.find((c) => c.id === attenteHumaine.carteId) : undefined;
         // Carte du large que l'animation n'a pas montrée (reconnexion, « Passer l'animation ») : la carte entière, avec son choix.
@@ -1048,6 +1130,11 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
 
 
 /** Message affiché quand la voile choisie devient inutilisable (demande du porteur de projet, 12/11/2026). */
+/** Bateau du joueur (réseau : le sien ; sinon le premier humain) : sert au message de rapatriement. */
+function recapIdAvant(etat: EtatPartie, moi: string | null) {
+  return etat.bateaux.find((b) => (moi ? b.id === moi : b.type === 'humain' && !b.arrive && !b.horsClassement)) ?? null;
+}
+
 const MESSAGE_BLOQUE = "Impossible d'avancer avec cette voile, vous allez tout casser !";
 
 /** Voile d'avant plus petite hissée après l'affalage d'une voile inutilisable (animation seulement). */

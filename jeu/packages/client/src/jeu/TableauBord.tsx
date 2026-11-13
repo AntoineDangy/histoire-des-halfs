@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { alizeApres, alizeEn, dansAlize, frontSur, nomBeaufort, ventCourant } from '@cal/engine';
 import { ANGLE_MIN, angleAllure, apercuCap, bateau, usureParTour, choisirIA, demiCapsPermis, NB_DIR, nomAllure, nomCap, NOMS_ALLURES, NOMS_DIR, NOMS_DIR_LONGS, norm, peutRecoudre, surCaseAbri, trajectoirePrevue } from '@cal/engine';
 import type { Choix, EtatPartie } from '@cal/engine';
-import { bateauDef, competenceDef, D, DE_LARGE, faces, RISQUES, skipper } from '../commun';
+import { bateauDef, competenceDef, courseDef, D, DE_LARGE, faces, RISQUES, skipper } from '../commun';
 import { modeleDuBateau } from './scene3d';
 import IconeVoile from './IconeVoile';
 import type { RoseCarte } from './Carte';
@@ -76,10 +76,10 @@ function ExplicationVoile({ nomVoile, usure, ajout, noir, quiz, reparations, for
     <div className="explication-risque" style={{ borderColor: noir || perdue ? '#ff5d5d' : 'var(--bord)' }}>
       <div className="titre-risque">
         <b>{nomVoile}</b>
-        {noir ? <span className="effet dommage">Case noire</span> : <span className="muted">usure {Math.round((usure / seuil) * 100)} % · ce tour +{Math.round((ajout / seuil) * 100)} %</span>}
+        {noir ? <span className="effet dommage">Trop de toile</span> : <span className="muted">usure {Math.round((usure / seuil) * 100)} % · ce tour +{Math.round((ajout / seuil) * 100)} %</span>}
       </div>
       {noir ? (
-        <p>Beaucoup trop de toile pour ce vent : la voile explose. En l'endurant, vous la perdez mais avancez de moitié ; avec une carte réparation, vous la gardez mais n'avancez pas. Réduisez la toile.</p>
+        <p>Beaucoup trop de toile pour ce vent : la voile lâche. Vous la perdez et ne faites qu'un tiers de votre route, sans dé du large ; une carte réparation la repêche, avec 40 % d'usure en plus. Réduisez la toile.</p>
       ) : perdue ? (
         <p><b>Cette voile est à bout : elle explosera à la fin de ce tour.</b> Changez de voile, ou acceptez de la perdre.</p>
       ) : ajout > 0 ? (
@@ -448,6 +448,12 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider, entet
     ? `Cap ${Number.isInteger(cap) ? capFr(cap) : nomCap(cap).replace(/W/g, 'O')} · louvoyage face au vent (${Math.round((D.regles.louvoyage?.coefficient ?? 0.6) * 100)} % de la distance au près)`
     : `Cap ${Number.isInteger(cap) ? capFr(cap) : nomCap(cap).replace(/W/g, 'O')} · ${nomAllure(angleAllure(cap, vent.direction))} ${String(angleAllure(cap, vent.direction)).replace('.', ',')}°`;
 
+  // Escale volontaire (14/11/2026, porteur de projet) : viser le port d'escale le plus proche (en ligne droite) ; au port, des
+  // voiles neuves, puis on repart au tour suivant.
+  const portProche = (courseDef(etat.params.courseId).lieux ?? [])
+    .filter((l) => l.type === 'port')
+    .reduce<{ nom: string; x: number; y: number } | null>((m, l) => (!m || Math.hypot(l.x - b.x - 0.5, l.y - b.y - 0.5) < Math.hypot(m.x - b.x - 0.5, m.y - b.y - 0.5) ? l : m), null);
+
   const routeur = () => {
     const c = choisirIA(D, structuredClone(etat), bateauId, { utilisableMaintenant: true });
     if (c.cap !== null) {
@@ -502,6 +508,11 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider, entet
         <button className="lien-discret" title="Propose le cap et la voile que choisirait un routeur (l'IA de niveau moyen)" onClick={routeur}>
           💡 routeur
         </button>
+        {portProche && (
+          <button className="lien-discret" title={`Viser ${portProche.nom}, le port d'escale le plus proche : on y reçoit des voiles neuves, puis on repart au tour suivant`} onClick={() => viser([portProche.x, portProche.y])}>
+            ⚓ port
+          </button>
+        )}
         {apercu && (
           <button className="btn btn-petit" aria-expanded={infos} onClick={() => setInfos((x) => !x)} title="Usure, dé du large, détails du calcul">
             ⓘ {infos ? 'Masquer' : 'Détails'}

@@ -210,7 +210,7 @@ function conseils(famille: string): string[] {
     if (e.type === 'risque' && e.valeur < 0) out.push(`Plus robuste ${quand} : vous pouvez garder plus de toile quand les autres réduisent.`);
   }
   if (f.profil_allure?.['180'] && f.profil_allure['180'] < 0) out.push('Lent au plein vent arrière : au portant, tirez des bords de largue plutôt que de viser droit.');
-  if (f.multicoque ?? (f.classe === 'ULTIM' || f.classe === 'OCEAN_FIFTY')) out.push('Multicoque : une case noire, c\'est le chavirage (immobilisé, ou escale technique si un port est proche).');
+  if (f.multicoque ?? (f.classe === 'ULTIM' || f.classe === 'OCEAN_FIFTY')) out.push('Multicoque : trop de toile ou une tempête, c\'est le chavirage, et la fin de course.');
   return out;
 }
 

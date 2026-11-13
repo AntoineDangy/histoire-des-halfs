@@ -333,14 +333,19 @@ describe('noms des forces du vent (bug d\'affichage du 13/11/2026)', () => {
 
 describe('partie complète', () => {
   it('se termine, avec un vainqueur arrivé, en un nombre de tours raisonnable', () => {
+    // Durée : une partie isolée peut traîner (34 à 38 tours mesurés le 13/11/2026, avec ou sans la zone de dévent), on
+    // borne donc chaque partie largement et la médiane de près.
+    const tours: number[] = [];
     for (const g of [1, 2, 3, 4, 5]) {
       const e = jouerPartieIA(g);
       expect(e.phase).toBe('fin');
       const premier = e.bateaux.find((b) => b.id === e.classementFinal![0])!;
       expect(premier.arrive).toBe(true);
       expect(e.tour).toBeGreaterThanOrEqual(8);
-      expect(e.tour).toBeLessThanOrEqual(30);
+      expect(e.tour).toBeLessThanOrEqual(45);
+      tours.push(e.tour);
     }
+    expect(tours.sort((a, b) => a - b)[2]).toBeLessThanOrEqual(25);
   });
 
   it('Vintage : monocoques et multicoques ont chacun leur vainqueur (deux classements)', () => {
@@ -446,7 +451,7 @@ describe('dé événement et cartes du large', () => {
     jouerTour();
     expect(e.bateaux.every((b) => b.arrive || b.modificateurs.some((m) => m.id === 'pilote'))).toBe(true);
   });
-  it("case noire : endurer = voile perdue mais demi-distance ; réparer = voile gardée mais pas d'avance (règle du 12/11/2026)", () => {
+  it("trop de toile : la voile lâche, un tiers de route ; une carte réparation la repêche avec 40 % d'usure (règle du 13/11/2026, 40 % depuis le 14/11)", () => {
     let essais = 0;
     for (let graine = 1; graine <= 30 && essais < 3; graine++) {
       let e = creerPartie(d, params(graine, 1, { quiz: false }));
@@ -458,13 +463,27 @@ describe('dé événement et cartes du large', () => {
       if (e.attente?.type !== 'reparation' || e.attente.motif !== 'voile_noire') continue;
       essais++;
       const avant = e.bateaux.find((b) => b.id === 'b1')!;
-      const endure = appliquer(d, e, { type: 'JouerReparation', bateauId: 'b1', jouer: false }).bateaux.find((b) => b.id === 'b1')!;
+      const finir = (x: EtatPartie) => {
+        while (x.attente) {
+          const a = x.attente;
+          x = a.type === 'quiz' ? appliquer(d, x, { type: 'RepondreQuiz', bateauId: a.bateauId, reponse: 0 })
+            : a.type === 'relance' ? appliquer(d, x, { type: 'RepondreRelance', bateauId: a.bateauId, relancer: false })
+            : appliquer(d, x, { type: 'JouerReparation', bateauId: a.bateauId, jouer: false });
+        }
+        return x;
+      };
+      const eEndure = finir(appliquer(d, e, { type: 'JouerReparation', bateauId: 'b1', jouer: false }));
+      const endure = eEndure.bateaux.find((b) => b.id === 'b1')!;
       expect(endure.voiles).not.toContain('spi');
-      expect(endure.x !== avant.x || endure.y !== avant.y).toBe(true);
-      const repare = appliquer(d, e, { type: 'JouerReparation', bateauId: 'b1', jouer: true }).bateaux.find((b) => b.id === 'b1')!;
-      expect(repare.voiles).toContain('spi');
+      // Un tiers de la route (le bateau peut rester sur place si un concurrent occupe la case suivante).
+      expect(eEndure.evenements.some((x) => x.tour === 1 && x.bateauId === 'b1' && /un tiers de sa route/.test(x.texte))).toBe(true);
+      // Pas de dé du large pour ce bateau ce tour.
+      expect(eEndure.evenements.some((x) => x.tour === 1 && x.type === 'de_evenement' && x.bateauId === 'b1')).toBe(false);
+      const eRepare = finir(appliquer(d, e, { type: 'JouerReparation', bateauId: 'b1', jouer: true }));
+      const repare = eRepare.bateaux.find((b) => b.id === 'b1')!;
       expect(repare.reparations).toBe(avant.reparations - 1);
-      expect([repare.x, repare.y]).toEqual([avant.x, avant.y]);
+      // Le spi est repêché avec 40 % d'usure (il peut ensuite exploser en naviguant par F7 : 85 % d'usure par tour).
+      expect(eRepare.evenements.some((x) => x.tour === 1 && x.bateauId === 'b1' && x.type === 'reparation' && /repêché/.test(x.texte))).toBe(true);
     }
     expect(essais).toBeGreaterThan(0);
   });
@@ -622,6 +641,119 @@ describe('jeu en réseau : Route du Rhum, Transat Café L\'Or et Rolex Fastnet R
       });
       expect(e.params.courseId).toBe(courseId);
       expect(e.bateaux).toHaveLength(4);
+    }
+  });
+});
+
+describe('étape des voiles : changement de voile, tempête, rapatriement (13/11/2026)', () => {
+  const jouerJusqua = (dd: Donnees, e: EtatPartie, fin: (x: EtatPartie) => boolean, max = 40) => {
+    for (let i = 0; i < max && !fin(e) && e.phase !== 'fin'; i++) {
+      if (e.attente) {
+        const a = e.attente;
+        e = a.type === 'quiz' ? appliquer(dd, e, { type: 'RepondreQuiz', bateauId: a.bateauId, reponse: 0 })
+          : a.type === 'relance' ? appliquer(dd, e, { type: 'RepondreRelance', bateauId: a.bateauId, relancer: false })
+          : appliquer(dd, e, { type: 'JouerReparation', bateauId: a.bateauId, jouer: false });
+        continue;
+      }
+      const b = bateauxAttendus(e)[0];
+      if (!b) break;
+      e = appliquer(dd, e, { type: 'ChoisirCapEtVoile', bateauId: b.id, choix: choisirIA(dd, e, b.id) });
+    }
+    return e;
+  };
+  it('le vent tourne : la voile change d\'office, la moitié de la route, pas de carte du large', () => {
+    let vu = 0;
+    for (let g = 1; g <= 40 && vu < 2; g++) {
+      let e = creerPartie(d, params(g, 0));
+      // Vent du nord F3, cap au sud sous spi, puis le vent passe au sud : le spi ne porte plus face au vent.
+      // Sans relance du dé de direction (b1 peut être Stratège) : le vent tourne pour de bon.
+      e = { ...e, vent: { direction: 0, force: 3 }, desProchains: { force: 0, direction: 8 }, bateaux: e.bateaux.map((b) => (b.id === 'b1' ? { ...b, relancesRestantes: 0 } : b)) };
+      e = appliquer(d, e, { type: 'ChoisirCapEtVoile', bateauId: 'b1', choix: { cap: 8, voile: 'spi', distanceMax: null } });
+      e = jouerJusqua(d, e, (x) => x.tour > 1);
+      const ev = e.evenements.find((x) => x.tour === 1 && x.bateauId === 'b1' && x.type === 'bloque');
+      if (!ev || !(ev.donnees as { nouvelle?: string }).nouvelle) continue;
+      vu++;
+      expect(ev.texte).toMatch(/la moitié de sa route/);
+      expect(e.evenements.some((x) => x.tour === 1 && x.bateauId === 'b1' && x.type === 'carte_evenement')).toBe(false);
+    }
+    expect(vu).toBeGreaterThan(0);
+  });
+  it('démâtage : rapatriement par la mer, 250 milles par tour au plus, puis 1 tour de réparation et des voiles neuves', () => {
+    let vu = 0;
+    for (let g = 1; g <= 30 && vu < 1; g++) {
+      let e = creerPartie(d, params(g, 0));
+      e = { ...e, vent: { direction: 10, force: 11 }, desProchains: { force: 0, direction: 0 } };
+      e = jouerJusqua(d, e, (x) => x.tour > 1);
+      const demate = e.evenements.find((x) => x.tour === 1 && x.type === 'demate' && (x.donnees as { port?: string })?.port);
+      if (!demate) continue;
+      vu++;
+      const id = demate.bateauId!;
+      const carte = compilerCarte(rhum);
+      // Chaque déplacement de rapatriement : 250 milles au plus, par des cases de mer.
+      e = jouerJusqua(d, e, (x) => x.evenements.some((v) => v.type === 'port' && v.bateauId === id), 60);
+      const routes = e.evenements.filter((x) => x.bateauId === id && x.type === 'deplacement' && /gréement de fortune/.test(x.texte));
+      expect(routes.length).toBeGreaterThan(0);
+      for (const r of routes) {
+        expect(Number(/(\d+) milles/.exec(r.texte)![1])).toBeLessThanOrEqual(250);
+        for (const [x, y] of (r.donnees as { chemin: [number, number][] }).chemin) expect(carte.type[y * carte.L + x] === 'P' || navigable(carte, x, y)).toBe(true);
+      }
+      const b = e.bateaux.find((x) => x.id === id)!;
+      expect(e.evenements.some((v) => v.type === 'port' && v.bateauId === id)).toBe(true);
+      expect(b.voiles.length).toBe(b.voilesDepart.length);
+      expect(b.horsClassement).toBe(false);
+    }
+    expect(vu).toBeGreaterThan(0);
+  });
+  it('Coriace (Jérémie Beyou) : chances de démâtage réduites en tempête (F9 aucune, F11 un 4, 5 ou 6)', () => {
+    const coriace = d.competences.find((c) => c.id === 'dur_au_mal')!;
+    expect(coriace.speciaux.tempete).toMatchObject({ '9': [], '10': [6], '11': [4, 5, 6] });
+    expect(coriace.bonus).toMatch(/démâtage réduites/);
+    // À F9, Jérémie Beyou ne démâte jamais.
+    const ids = [...d.skippers.filter((s) => s.classe === 'IMOCA').map((s) => s.id).filter((id) => id !== 'jeremie-beyou').slice(0, 3), 'jeremie-beyou'];
+    for (let g = 1; g <= 20; g++) {
+      let e = creerPartie(d, { courseId: 'route-du-rhum', classe: 'IMOCA', graine: g, options: { quiz: false, bulletinMeteo: true, nomsReels: true, courseComplete: false },
+        participants: ids.map((id) => ({ nom: 'IA', type: 'ia', niveauIA: 'moyen', niveauQuiz: 2, skipperId: id })) });
+      e = { ...e, vent: { direction: 10, force: 9 }, desProchains: { force: 0, direction: 0 } };
+      e = jouerJusqua(d, e, (x) => x.tour > 1);
+      const beyou = e.bateaux.find((b) => b.skipperId === 'jeremie-beyou')!;
+      expect(e.evenements.some((x) => x.tour === 1 && x.type === 'demate' && x.bateauId === beyou.id)).toBe(false);
+    }
+  });
+  it('Rolex Fastnet Race : pas de port d\'escale, un démâtage est une fin de course', () => {
+    const fastnet = d.courses.find((c) => c.id === 'rolex-fastnet')!;
+    expect(compilerCarte(fastnet).ports.length).toBe(0);
+    let vu = 0;
+    for (let g = 1; g <= 30 && vu < 1; g++) {
+      let e = creerPartie(d, { ...params(g, 0), courseId: 'rolex-fastnet' });
+      e = { ...e, vent: { direction: 10, force: 11 }, desProchains: { force: 0, direction: 0 } };
+      e = jouerJusqua(d, e, (x) => x.tour > 1);
+      const demate = e.evenements.find((x) => x.tour === 1 && x.type === 'demate');
+      if (!demate) continue;
+      vu++;
+      expect(demate.texte).toMatch(/fin de course/);
+      expect(e.bateaux.find((x) => x.id === demate.bateauId)!.horsClassement).toBe(true);
+    }
+    expect(vu).toBeGreaterThan(0);
+  });
+});
+
+describe('dé du large lancé par tous ensemble (13/11/2026)', () => {
+  it('après le vent, les dés de tous les joueurs se suivent, avant toute question ou carte', () => {
+    for (const g of [3, 8, 21]) {
+      let e = creerPartie(d, params(g, 3));
+      while (e.phase === 'choix') {
+        const b = bateauxAttendus(e)[0];
+        e = appliquer(d, e, { type: 'ChoisirCapEtVoile', bateauId: b.id, choix: choisirIA(d, e, b.id) });
+      }
+      // Relance du Stratège : elle se joue juste après les dés du vent, avant le large (13/11/2026).
+      while (e.attente?.type === 'relance') e = appliquer(d, e, { type: 'RepondreRelance', bateauId: e.attente.bateauId, relancer: false });
+      const tour = e.evenements.filter((x) => x.tour === 1);
+      const i = tour.findIndex((x) => x.type === 'de_evenement') - 1;
+      const des = tour.slice(i + 1).findIndex((x) => x.type !== 'de_evenement');
+      const bloc = des < 0 ? tour.slice(i + 1) : tour.slice(i + 1, i + 1 + des);
+      // Les trois joueurs humains ont leur dé dans ce premier bloc, même si l'un d'eux doit ensuite répondre à une question.
+      expect(new Set(bloc.filter((x) => e.bateaux.find((b) => b.id === x.bateauId)?.type === 'humain').map((x) => x.bateauId)).size).toBe(3);
+      expect(e.resolution?.desLarge ?? {}).toBeTypeOf('object');
     }
   });
 });
@@ -786,6 +918,17 @@ describe('brume, fronts et Bricoleur', () => {
 });
 
 describe('molle des Antilles et brume irlandaise (13/11/2026)', () => {
+  it('Route du Rhum : la zone de dévent des Antilles est là dans toutes les parties, ailleurs la molle reste possible', () => {
+    for (let g = 1; g <= 60; g++) expect(creerPartie(d, params(g)).fronts.some((f) => f.type === 'molle' && !!f.contour)).toBe(true);
+    // Transat Café L'Or : molle tirée au hasard (60 %), donc absente d'au moins une partie sur 60.
+    const transat = d.courses.find((c) => c.id === 'transat-cafe-lor')!;
+    const ids = d.skippers.filter((k) => k.classe === 'IMOCA').map((k) => k.id);
+    const sans = Array.from({ length: 60 }, (_, g) => creerPartie(d, {
+      courseId: transat.id, classe: 'IMOCA', graine: g + 1, options: params().options,
+      participants: ids.slice(0, 2).map((id, i) => ({ nom: `J${i}`, type: 'ia' as const, niveauIA: 'moyen' as const, niveauQuiz: 2 as const, skipperId: id, coSkipperId: ids[ids.length - 1 - i] })),
+    })).filter((e) => !e.fronts.some((f) => f.type === 'molle')).length;
+    expect(sans).toBeGreaterThan(0);
+  });
   it('Route du Rhum : la molle dessinée épouse l\'arc antillais à l\'est et s\'étale à l\'ouest', () => {
     let e: EtatPartie | null = null;
     for (let g = 1; g < 50 && !e; g++) {
