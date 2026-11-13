@@ -1,5 +1,13 @@
 # Journal des versions
 
+## Mise en ligne df657908 (13/11/2026, soir), sans changement du serveur réseau
+Avec l'accord du porteur de projet (« Oui, mets en ligne ») : version 0.4.229, le logo ci-dessous. Vérifié en ligne : version 0.4.229 affichée, `favicon.svg`, `favicon-32.png` et `apple-touch-icon.png` servis par le site.
+
+## 13/11/2026 · Logo du jeu (branche `mises-a-jour-jeu`, publié le 13/11/2026)
+- Demande du porteur de projet (« un joli logo ») : l'onglet du jeu montrait le petit globe gris par défaut. Trois propositions aux couleurs du jeu ; il a choisi **la rose des vents** (nord orange, voilier blanc au centre, fond bleu nuit).
+- Posé dans l'onglet du navigateur (`favicon.svg`, avec une image de 32 px pour les navigateurs qui ne lisent pas le SVG) et comme icône d'écran d'accueil sur téléphone (`apple-touch-icon.png`, 180 px) ; couleur de la barre du navigateur sur téléphone : le bleu nuit du jeu.
+- Vérifié en local : les trois fichiers se chargent depuis la page du jeu, la construction les recopie dans `dist/`.
+
 ## Mise en ligne 33278827 (13/11/2026, soir), serveur réseau 7b09904b
 Avec l'accord du porteur de projet (« Corrige puis publie ») : version 0.4.227, branche `mises-a-jour-jeu` passée dans `main`.
 - **Transat Café L'Or et Rolex Fastnet Race jouables en réseau** (entrée ci-dessous, branche `reseau-transat-fastnet` fusionnée).

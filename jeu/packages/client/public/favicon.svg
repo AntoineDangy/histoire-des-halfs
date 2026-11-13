@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Course au large</title>
+  <!-- Logo « rose des vents » choisi par le porteur de projet le 13/11/2026 : rose des vents, nord orange, voilier au centre. -->
+  <rect width="64" height="64" rx="14" fill="#0b2236"/>
+  <path d="M32 4 L37.5 26.5 L60 32 L37.5 37.5 L32 60 L26.5 37.5 L4 32 L26.5 26.5 Z" fill="#3dd6f5"/>
+  <path d="M32 4 L37.5 26.5 L32 32 L26.5 26.5 Z" fill="#ff9f43"/>
+  <circle cx="32" cy="33" r="13.5" fill="#0b2236"/>
+  <path d="M33 22 Q39.5 30.5 41 40 L33 40 Z" fill="#e6eef5"/>
+  <path d="M31 25 L31 40 L24.5 40 Q26.5 31.5 31 25 Z" fill="#e6eef5"/>
+  <path d="M23 42 L42 42 L39.5 44.5 L25.5 44.5 Z" fill="#ff9f43"/>
+</svg>
