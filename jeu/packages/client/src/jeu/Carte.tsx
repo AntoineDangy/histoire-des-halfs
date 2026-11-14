@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { centreTraine, compilerCarte, course as courseJouee, navigable, NOMS_DIR, norm, terreFine, vecteur } from '@cal/engine';
-import type { Case, EtatPartie } from '@cal/engine';
+import type { Case, EtatPartie, Front } from '@cal/engine';
 import traceRhum from '@cal/data/courses/route-du-rhum-trace.json';
 import traceCafeLor from '@cal/data/courses/transat-cafe-lor-trace.json';
 import traceFastnet from '@cal/data/courses/rolex-fastnet-trace.json';
@@ -23,6 +23,8 @@ export interface PropsCarte {
   noms: Record<string, string>;
   /** Lecture d'un tour en cours (les bateaux se déplacent) : sur les tours du monde, le globe s'affiche seul. */
   lecture?: boolean;
+  /** Fronts et anticyclones affichés pendant la lecture d'un tour : ils glissent en même temps que les bateaux (14/11/2026). */
+  fronts?: Front[];
   /** Décision en cours (rose des caps autour du bateau) : la carte ramène le bateau à l'écran s'il en est sorti. */
   enChoix?: boolean;
   /**
@@ -74,7 +76,7 @@ function couleurVitesse(v: number) {
 type Trace = { cotes: number[][]; orthodromie: number[] };
 const TRACES: Record<string, Trace> = { 'route-du-rhum': traceRhum as Trace, 'transat-cafe-lor': traceCafeLor as Trace, 'rolex-fastnet': traceFastnet as Trace, 'vendee-globe': traceVendee as Trace, 'arkea-ultim-challenge': traceArkea as Trace };
 
-export default function Carte({ etat, positions, trajectoire, moiId, centrer, noms, coupes, lecture, enChoix, reglageDistance, roseCaps }: PropsCarte) {
+export default function Carte({ etat, positions, trajectoire, moiId, centrer, noms, coupes, lecture, enChoix, reglageDistance, roseCaps, fronts }: PropsCarte) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   // Calque posé sur le bateau du joueur : la rose des caps y est affichée (TableauBord.tsx, par createPortal).
   const calqueRef = useRef<HTMLDivElement>(null);
@@ -87,7 +89,7 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
   const zoomGlobe = useRef<((f: number) => void) | null>(null);
   const vue = useRef({ s: 8, ox: 0, oy: 0, init: false, min: 3 });
   const propsRef = useRef<PropsCarte>({ etat, positions, trajectoire, moiId, centrer, noms });
-  propsRef.current = { etat, positions, trajectoire, moiId, centrer, noms, coupes, reglageDistance, roseCaps };
+  propsRef.current = { etat, positions, trajectoire, moiId, centrer, noms, coupes, reglageDistance, roseCaps, fronts };
   const globeVisible = useRef(false);
   // Parcours de la classe jouée (marques obligatoires propres à chaque classe).
   const course = courseJouee(D, etat);
@@ -230,7 +232,7 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
     }
 
     // Fronts météo : zone de gros vent, traîne derrière, et trajectoire annoncée en pointillés.
-    for (const f of P.etat.fronts ?? []) {
+    for (const f of P.fronts ?? P.etat.fronts ?? []) {
       const ellipse = (cx: number, cy: number) => {
         g.beginPath();
         // Molle dessinée d'une course (13/11/2026) : contour lissé (courbes passant par le milieu de chaque côté).

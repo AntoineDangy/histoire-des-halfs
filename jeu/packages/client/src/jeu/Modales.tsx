@@ -95,23 +95,25 @@ export function ModaleReparation({ attente, b, nom, onRepondre }: { attente: Ext
   const multi = estMulticoque(D, b);
   // Trop de toile : la voile lâche, multicoque compris (largueur automatique, 14/11/2026).
   const noireMono = attente.motif === 'voile_noire';
+  // Fenêtre en quelques mots (porteur de projet, 14/11/2026 : « plus de fun, moins de détails »).
+  const voileCourte = voile ? (/^[A-Z][a-zé]/.test(voile) ? voile[0].toLowerCase() + voile.slice(1) : voile) : 'voile';
   return (
     <div className="voile-fond" role="dialog" aria-modal="true">
       <div className="modale">
         <div className="lbl">{nom} · carte réparation</div>
-        <h2>{attente.motif === 'voile_noire' ? `Trop de toile : votre ${voile} lâche !` : attente.motif === 'evenement' ? D.evenements?.cartes.find((c) => c.id === attente.carteId)?.titre ?? 'Avarie !' : 'Avarie !'}</h2>
+        <h2>{attente.motif === 'voile_noire' ? 'Trop de toile !' : attente.motif === 'evenement' ? D.evenements?.cartes.find((c) => c.id === attente.carteId)?.titre ?? 'Avarie !' : 'Avarie !'}</h2>
         <p className="muted">
           {attente.motif === 'voile_noire'
             ? multi
-              ? 'Trop de toile pour ce vent : le largueur automatique choque l\'écoute, le multicoque ne chavire pas, mais la voile lâche. Ce tour, le bateau ne fait qu\'un tiers de sa route, sans dé du large. Une carte réparation repêche la voile, réparée tant bien que mal (+40 % d\'usure).'
-              : 'Le vent est trop fort pour cette voile : elle lâche. Ce tour, le bateau ne fait qu\'un tiers de sa route, sans dé du large. Une carte réparation repêche la voile, réparée tant bien que mal (+40 % d\'usure).'
+              ? `Le largueur automatique sauve le bateau… mais votre ${voileCourte} s'envole ! 1/3 de route ce tour.`
+              : `Crac ! Votre ${voileCourte} a lâché. 1/3 de route ce tour.`
             : attente.motif === 'evenement'
               ? 'Une carte réparation permet de réparer aussitôt cette avarie.'
               : `Sans réparation, ${TEXTE_PENALITE[attente.penalite ?? 'demi']}.`}
         </p>
         <p>Il vous reste <b>{b.reparations}</b> carte{b.reparations > 1 ? 's' : ''} réparation.</p>
         <div className="barre-actions">
-          <button className="btn" onClick={() => onRepondre(false)}>{noireMono ? 'Perdre la voile' : 'Non, garder ma carte'}</button>
+          <button className="btn" onClick={() => onRepondre(false)}>{noireMono ? 'Tant pis, elle est perdue' : 'Non, garder ma carte'}</button>
           <button className="btn btn-orange" onClick={() => onRepondre(true)} autoFocus>{noireMono ? '🔧 Repêcher la voile (+40 % d\'usure)' : '🔧 Jouer une réparation'}</button>
         </div>
       </div>

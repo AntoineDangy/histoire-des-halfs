@@ -3,7 +3,7 @@ import {
   angleAllure, appliquer, bateau, heuresParTour, classement, categorie, categoriesPartie, NOM_CATEGORIE, coteVent, creerPartie, distanceRestante, formaterTemps, humainsAttendus, vecteur,
   NOMS_DIR, NOMS_DIR_LONGS, nomBeaufort, nomSkipper, trajectoirePrevue, ventCourant, frontSur, DELAI_CHOIX_S, DELAI_DECISION_S, estMulticoque,
 } from '@cal/engine';
-import type { Action, Case, Choix, EtatPartie, Evenement, JoueurSalon, Vent } from '@cal/engine';
+import type { Action, Case, Choix, EtatPartie, Evenement, Front, JoueurSalon, Vent } from '@cal/engine';
 import { bateauDef, courseDef, D, definirCourseActive, Lancement, nomClasse, skipper, posExacte } from '../commun';
 import Carte from '../jeu/Carte';
 import TableauBord, { Girouette, PastilleRisque } from '../jeu/TableauBord';
@@ -221,8 +221,42 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
 
   // ---------- Lecture animée des événements
   const enRetard = curseur < etat.evenements.length;
+  // Fronts et anticyclones (14/11/2026, porteur de projet) : le moteur les fait avancer à la fin du tour, après les bateaux ;
+  // à l'écran, ils restent à leur place de départ pendant les dés, puis glissent en même temps que les bateaux.
+  const frontsDebut = useRef<{ tour: number; fronts: Front[] } | null>(null);
+  const tourLu = useRef<number | null>(null);
+  const [avanceFronts, setAvanceFronts] = useState(1);
+  useEffect(() => {
+    if (!enRetard && etat.phase === 'choix') frontsDebut.current = { tour: etat.tour, fronts: JSON.parse(JSON.stringify(etat.fronts ?? [])) as Front[] };
+  }, [enRetard, etat]);
+  const frontsAffiches = useMemo(() => {
+    const deb = frontsDebut.current;
+    if (!enRetard || !deb || etat.evenements[curseur]?.tour !== deb.tour) return undefined;
+    const fin = etat.fronts ?? [];
+    const a = Math.max(0, Math.min(1, avanceFronts));
+    const out: Front[] = [];
+    for (const f0 of deb.fronts) {
+      const f1 = fin.find((x) => x.id === f0.id);
+      if (f1) out.push({ ...f1, x: f0.x + (f1.x - f0.x) * a, y: f0.y + (f1.y - f0.y) * a });
+      else if (a < 1) out.push(f0);
+    }
+    if (a >= 1) for (const f1 of fin) if (!deb.fronts.some((x) => x.id === f1.id)) out.push(f1);
+    return out;
+  }, [enRetard, curseur, etat, avanceFronts]);
   useEffect(() => {
     if (!enRetard) return;
+    const tourEv = etat.evenements[curseur]?.tour;
+    if (tourEv !== undefined && tourEv !== tourLu.current) {
+      tourLu.current = tourEv;
+      setAvanceFronts(0);
+    }
+  }, [curseur, enRetard, etat]);
+  useEffect(() => {
+    if (!enRetard) {
+      // Lecture arrêtée sur une décision du joueur (tour pas fini) : les fronts restent où ils en sont.
+      if (etat.phase !== 'resolution') setAvanceFronts(1);
+      return;
+    }
     let ev: Evenement = etat.evenements[curseur];
     let rejouer = false;
     let indexEv = curseur;
@@ -478,8 +512,11 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
       scene3dRef.current?.demarrer();
       const precedent = etat.evenements[indexEv - 1];
       const surtoile = ev.type === 'voile_perdue' && precedent?.type === 'jet_risque' && precedent.bateauId === ev.bateauId && !!(precedent.donnees as { noir?: boolean } | undefined)?.noir;
+      // Fenêtres des voiles en quelques mots (14/11/2026) ; le journal garde le détail.
+      const moi = focus.type === 'humain' && (!reseau || focus.id === reseau.moi);
+      const court = fenetreVoile(ev, surtoile ? precedent : undefined, noms[focus.id] ?? '', moi);
       setVue3d({
-        bateauId: focus.id, etape: 2, texte: surtoile ? `${precedent.texte} ${ev.texte}` : ev.texte, vent, titre: surtoile ? 'Trop de toile !' : titre,
+        bateauId: focus.id, etape: 2, texte: court?.texte ?? ev.texte, vent, titre: court?.titre ?? titre,
         carte: ev.type === 'bloque' || ev.type === 'voile_perdue' || ev.type === 'demate' || ev.type === 'naufrage',
       });
       // Démâtage : le mât casse sous les yeux du joueur ; chavirage : le bateau se couche (14/11/2026).
@@ -579,6 +616,14 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
             if (groupe.length === 1) setAnimPts({ id: e2.bateauId!, pts: passes });
           }, (t2 * i) / images));
         }
+      }
+      // Les fronts glissent pendant les déplacements du tour : chaque déplacement en fait avancer sa part (14/11/2026).
+      const deplacements = etat.evenements.filter((x) => x.tour === ev.tour && (x.type === 'deplacement' || x.type === 'port'));
+      const iDep = deplacements.indexOf(ev);
+      if (iDep >= 0 && total > 0) {
+        const a0 = iDep / deplacements.length, a1 = Math.min(1, (iDep + groupe.length) / deplacements.length);
+        const n = Math.max(2, Math.round(total / 40));
+        for (let i = 1; i <= n; i++) timers.push(window.setTimeout(() => { if (!annule) setAvanceFronts((a) => Math.max(a, a0 + ((a1 - a0) * i) / n)); }, (total * i) / n));
       }
       duree = Math.max(duree * 0.5, total + 150 * k);
     } else if (ev.type === 'fin') {
@@ -711,15 +756,19 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
     }], vent.force);
     scene3dRef.current?.demarrer();
     const n = b.reparations;
-    const titre = carte ? `${carte.icone} ${carte.titre}` : motif === 'voile_noire' ? `Trop de toile : votre ${nomVoile} lâche !` : 'Avarie de voile';
-    // Multicoque (14/11/2026, option A) : le largueur automatique évite le chavirage, la voile lâche quand même.
-    const largueur = estMulticoque(D, b) ? 'Le largueur automatique choque l\'écoute : le multicoque ne chavire pas, mais la voile lâche. ' : '';
-    const texte = carte ? carte.texte : motif === 'voile_noire' ? `${largueur || 'Le vent est trop fort pour cette voile : elle lâche. '}Ce tour, le bateau ne fait qu'un tiers de sa route, sans dé du large.` : `Incident : sans réparation, vous perdez votre ${nomVoile}.`;
+    // Fenêtres des voiles : « plus de fun, moins de détails » (porteur de projet, 14/11/2026) ; le détail reste dans le
+    // journal et les règles. Multicoque (option A) : le largueur automatique évite le chavirage, la voile lâche quand même.
+    const court = nomCourtVoile(voile);
+    const titre = carte ? `${carte.icone} ${carte.titre}` : motif === 'voile_noire' ? 'Trop de toile !' : 'Avarie de voile';
+    const texte = carte ? carte.texte : motif === 'voile_noire'
+      ? `${estMulticoque(D, b) ? `Le largueur automatique sauve le bateau… mais votre ${court} s'envole !` : `Crac ! Votre ${court} a lâché.`} 1/3 de route ce tour.`
+      : `Votre ${court} est en danger !`;
+    const reserve = `${n} carte${n > 1 ? 's' : ''} réparation en réserve.`;
     const decision = motif === 'voile_noire'
-      ? { reparer: `🔧 Carte réparation : repêcher la voile (+40 % d'usure)`, endurer: 'Sans carte : la voile est perdue', explication: `Une carte réparation repêche la voile, réparée tant bien que mal. Il vous reste ${n} carte${n > 1 ? 's' : ''} réparation.` }
+      ? { reparer: `🔧 Repêcher la voile (+40 % d'usure)`, endurer: 'Tant pis, elle est perdue', explication: reserve }
       : carte
-      ? { reparer: '🔧 Réparer : garder la voile, sans avancer', endurer: `Endurer : perdre ${nomVoile.startsWith('spi') ? 'le' : 'la'} ${nomVoile}, avancer de moitié`, explication: `Il vous reste ${n} carte${n > 1 ? 's' : ''} réparation.` }
-      : { reparer: '🔧 Jouer une réparation', endurer: 'Endurer : perdre la voile', explication: `Il vous reste ${n} carte${n > 1 ? 's' : ''} réparation.` };
+      ? { reparer: '🔧 Réparer : voile sauvée, pas d\'avance', endurer: 'Endurer : voile perdue, demi-route', explication: reserve }
+      : { reparer: '🔧 Réparer', endurer: 'Tant pis, elle est perdue', explication: reserve };
     // La voile lâche d'abord sous les yeux du joueur, puis vient le choix de la carte réparation (14/11/2026, porteur de
     // projet) : la scène de la voile perdue n'est pas rejouée ensuite pour ce joueur.
     voileDejaMontree.current = `${b.id}:${etat.tour}`;
@@ -853,7 +902,7 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
 
       <div className={`corps ${coteOuvert ? "" : "sans-cote"}`}>
         <div className={`zone-carte ${joueurChoix && !besoinPassation ? 'avec-commandes' : ''}`}>
-          <Carte etat={etat} positions={positions} trajectoire={trajectoire} moiId={moiId} centrer={centrer} noms={noms} coupes={coupes} lecture={enRetard}
+          <Carte etat={etat} positions={positions} fronts={frontsAffiches} trajectoire={trajectoire} moiId={moiId} centrer={centrer} noms={noms} coupes={coupes} lecture={enRetard}
             enChoix={!!joueurChoix && !besoinPassation} reglageDistance={reglageDistance}
             roseCaps={joueurChoix && !besoinPassation ? apercu.rose ?? null : null} />
           {/* Météo sur la carte : celle du tableau de bord pendant le choix (portail), sinon la girouette de la résolution du tour,
@@ -1138,6 +1187,37 @@ function recapIdAvant(etat: EtatPartie, moi: string | null) {
 }
 
 const MESSAGE_BLOQUE = "Impossible d'avancer avec cette voile, vous allez tout casser !";
+
+/** Nom court d'une voile dans une phrase : « gennaker », « code 0 », « J3 ». */
+function nomCourtVoile(id?: string | null): string {
+  const n = D.voiles.find((v) => v.id === id)?.nom_court ?? 'voile';
+  return /^[A-Z][a-zé]/.test(n) ? n[0].toLowerCase() + n.slice(1) : n;
+}
+
+/**
+ * Fenêtres des événements de voile (porteur de projet, 14/11/2026 : « plus de fun, moins de détails ») : quelques mots,
+ * factuels ; le journal garde la phrase complète et l'écran des règles le détail. Null : on garde le texte du moteur.
+ */
+function fenetreVoile(ev: Evenement, tropDeToile: Evenement | undefined, nom: string, moi: boolean): { titre: string; texte: string } | null {
+  if (ev.type === 'voile_perdue') {
+    const v = nomCourtVoile((ev.donnees as { voile?: string } | undefined)?.voile);
+    if (tropDeToile) {
+      const largueur = !!(tropDeToile.donnees as { largueur?: boolean } | undefined)?.largueur;
+      const texte = largueur
+        ? (moi ? `Le largueur automatique sauve le bateau… mais votre ${v} s'envole !` : `${nom} : le largueur sauve le bateau, mais le ${v} s'envole !`)
+        : (moi ? `Crac ! Votre ${v} a lâché.` : `${nom} : crac, le ${v} a lâché !`);
+      return { titre: 'Trop de toile !', texte: `${texte} 1/3 de route ce tour.` };
+    }
+    return { titre: 'Voile perdue', texte: moi ? `Votre ${v} rend l'âme !` : `${nom} perd son ${v}.` };
+  }
+  if (ev.type === 'bloque') {
+    const d = ev.donnees as { voile?: string; nouvelle?: string } | undefined;
+    if (!d?.nouvelle) return null;
+    const a = nomCourtVoile(d.voile), n = nomCourtVoile(d.nouvelle);
+    return { titre: 'Le vent tourne !', texte: moi ? `On affale le ${a}, on envoie le ${n}. Moitié de route ce tour.` : `${nom} affale le ${a} et envoie le ${n}.` };
+  }
+  return null;
+}
 
 /** Voile d'avant plus petite hissée après l'affalage d'une voile inutilisable (animation seulement). */
 function plusPetite(f: Forme | undefined): Forme {
