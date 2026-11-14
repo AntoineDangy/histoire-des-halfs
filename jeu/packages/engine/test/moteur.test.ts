@@ -753,6 +753,26 @@ describe('étape des voiles : changement de voile, tempête, rapatriement (13/11
     }
     expect(vu).toBeGreaterThan(0);
   });
+  it('multicoque sous trop de toile : le largueur automatique évite le chavirage, la voile lâche ; le tableau du tour le dit (option A, 14/11/2026)', () => {
+    const ids = d.skippers.filter((s) => s.classe === 'OCEAN_FIFTY').slice(0, 2).map((s) => s.id);
+    let e = creerPartie(d, {
+      courseId: 'route-du-rhum', classe: 'OCEAN_FIFTY', graine: 1,
+      participants: ids.map((id, i) => ({ nom: i ? 'IA' : 'Vous', type: i ? ('ia' as const) : ('humain' as const), niveauIA: 'moyen' as const, niveauQuiz: 2 as const, skipperId: id })),
+      options: { quiz: false, bulletinMeteo: true, nomsReels: true, courseComplete: false },
+    });
+    // Le cas signalé par le porteur de projet : solent à F5, le vent monte à F6.
+    e = { ...e, vent: { direction: 4, force: 5 }, desProchains: { force: 1, direction: 0 }, bateaux: e.bateaux.map((b) => (b.id === 'b1' ? { ...b, relancesRestantes: 0 } : b)) };
+    e = appliquer(d, e, { type: 'ChoisirCapEtVoile', bateauId: 'b1', choix: { cap: 12, voile: 'solent', distanceMax: null } });
+    e = jouerJusqua(d, e, (x) => x.tour > 1);
+    const b1 = e.bateaux.find((b) => b.id === 'b1')!;
+    expect(e.evenements.some((x) => x.tour === 1 && x.bateauId === 'b1' && x.type === 'naufrage')).toBe(false);
+    expect(b1.horsClassement).toBe(false);
+    expect(b1.voiles).not.toContain('solent');
+    expect(e.evenements.some((x) => x.tour === 1 && x.bateauId === 'b1' && /largueur automatique/.test(x.texte))).toBe(true);
+    const ligne = (e.journal ?? []).find((l) => l.tour === 1 && l.bateauId === 'b1')!;
+    expect(ligne.ventApres?.force).toBe(6);
+    expect(ligne.issue).toBe('trop de toile (largueur automatique) : Solent perdu, un tiers de la route');
+  });
   it('vent fort (14/11/2026) : à partir de F8, la face +2 du dé de force compte −1, pour le vent général comme pour les fronts', () => {
     expect([hausseVent(d, 7, 2), hausseVent(d, 8, 2), hausseVent(d, 11, 2), hausseVent(d, 9, 1), hausseVent(d, 9, -2), hausseVent(d, 9, 0)]).toEqual([2, -1, -1, 1, -2, 0]);
     let e = creerPartie(d, params(6, 0));

@@ -93,16 +93,17 @@ export function ModaleReparation({ attente, b, nom, onRepondre }: { attente: Ext
   const voile = b.choix?.voile ? D.voiles.find((v) => v.id === b.choix!.voile)?.nom_court : '';
   // Case noire d'un monocoque : endurer (voile perdue, demi-distance) ou réparer (voile sauvée, pas d'avance) ; règle du 12/11/2026.
   const multi = estMulticoque(D, b);
-  const noireMono = attente.motif === 'voile_noire' && !multi;
+  // Trop de toile : la voile lâche, multicoque compris (largueur automatique, 14/11/2026).
+  const noireMono = attente.motif === 'voile_noire';
   return (
     <div className="voile-fond" role="dialog" aria-modal="true">
       <div className="modale">
         <div className="lbl">{nom} · carte réparation</div>
-        <h2>{attente.motif === 'voile_noire' ? (multi ? 'Vous allez chavirer !' : `Trop de toile : votre ${voile} lâche !`) : attente.motif === 'evenement' ? D.evenements?.cartes.find((c) => c.id === attente.carteId)?.titre ?? 'Avarie !' : 'Avarie !'}</h2>
+        <h2>{attente.motif === 'voile_noire' ? `Trop de toile : votre ${voile} lâche !` : attente.motif === 'evenement' ? D.evenements?.cartes.find((c) => c.id === attente.carteId)?.titre ?? 'Avarie !' : 'Avarie !'}</h2>
         <p className="muted">
           {attente.motif === 'voile_noire'
             ? multi
-              ? 'Trop de toile pour ce vent. Avec une carte réparation, vous redressez le bateau sans avancer ; sans elle, vous restez immobilisé 2 tours (sauf escale technique).'
+              ? 'Trop de toile pour ce vent : le largueur automatique choque l\'écoute, le multicoque ne chavire pas, mais la voile lâche. Ce tour, le bateau ne fait qu\'un tiers de sa route, sans dé du large. Une carte réparation repêche la voile, réparée tant bien que mal (+40 % d\'usure).'
               : 'Le vent est trop fort pour cette voile : elle lâche. Ce tour, le bateau ne fait qu\'un tiers de sa route, sans dé du large. Une carte réparation repêche la voile, réparée tant bien que mal (+40 % d\'usure).'
             : attente.motif === 'evenement'
               ? 'Une carte réparation permet de réparer aussitôt cette avarie.'

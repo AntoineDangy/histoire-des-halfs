@@ -556,6 +556,9 @@ function etapeBateau(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: ContexteR
       // Étape des voiles déjà jouée (13/11/2026) : vent du bateau (avec la relance), voile et part de route en viennent.
       const bilan = etat.resolution?.voiles?.[b.id];
       if (bilan) {
+        // Tableau du tour (14/11/2026) : le vent après les dés et ce qui est arrivé à l'étape des voiles.
+        ctx.ventLocal = bilan.ventLocal ?? ctx.ventLocal;
+        if (bilan.issue) ctx.issue = bilan.issue;
         if (bilan.fin) {
           b.distanceDernierTour = 0;
           ctx.issue ??= 'immobilisé';
@@ -1452,6 +1455,9 @@ function reglerPriorite(d: Donnees, etat: EtatPartie, b: EtatBateau, chemin: Cas
 function marquerIssue(etat: EtatPartie, b: EtatBateau, issue: string) {
   const ctx = etat.resolution?.courant;
   if (ctx && ctx.bateauId === b.id) ctx.issue = issue;
+  // Étape des voiles (14/11/2026) : gardée pour la ligne du tableau du tour, écrite à l'étape de la course.
+  const bilan = etat.resolution?.voiles?.[b.id];
+  if (bilan && etat.resolution?.voilesCourant?.bateauId === b.id) bilan.issue = issue;
 }
 
 function majSillage(b: EtatBateau, depart: Case, chemin: Case[]) {
@@ -1564,6 +1570,7 @@ function voilesApresRelance(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: Co
     const nomA = ancienne ? voile(d, ancienne).nom_court : 'sa voile';
     if (meilleure === undefined) {
       evt(etat, 'bloque', `${nom} ne peut pas avancer : aucune de ses voiles ne porte ${auAllure(angle)}.`, b.id, { vent, angle, voile: ancienne, cap: choix.cap });
+      bilan.issue = 'aucune voile ne porte avec le vent tourné';
       b.distanceDernierTour = 0;
       bilan.fin = true;
       bilan.sansCarte = true;
@@ -1571,6 +1578,7 @@ function voilesApresRelance(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: Co
     }
     choix.voile = meilleure;
     bilan.facteur = 0.5;
+    bilan.issue = `le vent a tourné : changement de voile, moitié de la route`;
     bilan.sansCarte = true;
     evt(etat, 'bloque', `Le vent a tourné : ${nom} affale son ${nomA} et envoie son ${voile(d, meilleure).nom_court}. La manœuvre lui coûte la moitié de sa route.`, b.id, {
       vent, angle, voile: ancienne, nouvelle: meilleure, cap: choix.cap,
@@ -1586,14 +1594,16 @@ function voilesApresRelance(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: Co
   // cape, la voilure réduite est affalée sans casse.
   if (choix.voile && !(cape && choix.voile === 'reduite') && calculerRisque(d, carte, b, choix.voile, vent, choix.cap).risque >= 5) {
     bilan.sansLarge = true;
-    if (estMulticoque(d, b)) {
-      chavirer(d, etat, b, 'trop de toile');
-      bilan.fin = true;
-      return;
-    }
     bilan.facteur = Math.min(bilan.facteur, 1 / 3);
     ctx.noir = true;
-    evt(etat, 'jet_risque', `Trop de toile pour ce vent : le ${voile(d, choix.voile).nom_court} de ${nom} lâche !`, b.id, { niveau: 5, noir: true, voile: choix.voile });
+    // Multicoque (porteur de projet, 14/11/2026, option A) : le largueur automatique choque l'écoute, le bateau ne chavire
+    // pas, mais la voile lâche comme sur un monocoque. Il ne chavire plus qu'au dé de tempête.
+    const multi = estMulticoque(d, b);
+    const nomV = voile(d, choix.voile).nom_court;
+    evt(etat, 'jet_risque', multi
+      ? `Trop de toile pour ce vent : le largueur automatique choque l'écoute, ${nom} ne chavire pas, mais son ${nomV} lâche !`
+      : `Trop de toile pour ce vent : le ${nomV} de ${nom} lâche !`, b.id, { niveau: 5, noir: true, voile: choix.voile, largueur: multi });
+    bilan.issue = `trop de toile : ${nomV} lâché${multi ? ' (largueur automatique)' : ''}`;
     if (b.reparations > 0) {
       ctx.etape = 'reparation';
       if (b.type === 'humain') {
@@ -1612,6 +1622,7 @@ function traiterSurtoile(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: Conte
   const v = b.choix?.voile ?? null;
   const nom = nomSkipper(d, etat, b);
   const cape = !!etat.resolution?.voiles?.[b.id]?.cape;
+  const quoi = `trop de toile${estMulticoque(d, b) ? ' (largueur automatique)' : ''}`;
   ctx.etape = 'fin';
   if (!v) return;
   if (jouer && b.reparations > 0) {
@@ -1628,10 +1639,12 @@ function traiterSurtoile(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: Conte
     }
     b.usure[v] = apres;
     evt(etat, 'reparation', `${nom} joue une carte réparation : son ${voile(d, v).nom_court}, repêché, est réparé tant bien que mal (usure ${Math.round(apres)} %).${cape ? '' : ' Un tiers de la route ce tour.'}`, b.id);
+    marquerIssue(etat, b, `${quoi} : ${voile(d, v).nom_court} repêché (carte réparation)${cape ? '' : ', un tiers de la route'}`);
     return;
   }
   perdreVoile(d, etat, b, v);
   evt(etat, 'info', cape ? `${nom} perd son ${voile(d, v).nom_court}.` : `${nom} perd son ${voile(d, v).nom_court} et ne fait qu'un tiers de sa route ce tour.`, b.id);
+  marquerIssue(etat, b, `${quoi} : ${voile(d, v).nom_court} perdu${cape ? '' : ', un tiers de la route'}`);
 }
 
 /**
@@ -1737,6 +1750,7 @@ function demater(d: Donnees, etat: EtatPartie, b: EtatBateau) {
     return;
   }
   b.rapatriement = { port: port.port, nom: port.nom };
+  marquerIssue(etat, b, `démâtage : cap sur ${port.nom} sous gréement de fortune`);
   evt(etat, 'demate', `${nom} a démâté : sous gréement de fortune, cap sur ${port.nom} (${port.milles} milles par la mer), puis 1 tour de réparation.`, b.id, {
     port: port.nom, milles: port.milles,
   });

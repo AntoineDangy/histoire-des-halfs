@@ -116,7 +116,7 @@ export default function Regles({ onRetour }: { onRetour: () => void }) {
               <li><b>J3 / foc</b> : la voile de brise, solide, {textePlage(V('j3'))}.</li>
               <li><b>Voilure réduite</b> : grand-voile arisée et tourmentin, pour survivre, {textePlage(V('reduite'))}. Au-delà, on se met à la cape, à sec de toile.</li>
             </ul>
-            <p className="muted">Ces plages sont les mêmes pour toutes les classes. Une voile hors de sa plage pour le vent du moment est grisée : on ne peut pas la choisir. Mais si le vent forcit après votre choix, il y a <b>trop de toile</b> : la voile lâche, le bateau ne fait qu'un tiers de sa route et ne lance pas le dé du large (un multicoque chavire : fin de course). Une <b>carte réparation</b> repêche la voile, avec 40 % d'usure en plus. Si le vent <b>tourne</b> et que la voile ne porte plus, ou sort de sa plage à la nouvelle allure, on change de voile : la manœuvre coûte la moitié de la route et la carte du large du tour.</p>
+            <p className="muted">Ces plages sont les mêmes pour toutes les classes. Une voile hors de sa plage pour le vent du moment est grisée : on ne peut pas la choisir. Mais si le vent forcit après votre choix, il y a <b>trop de toile</b> : la voile lâche, le bateau ne fait qu'un tiers de sa route et ne lance pas le dé du large (sur un multicoque, le largueur automatique d'écoute évite le chavirage, mais la voile lâche aussi). Une <b>carte réparation</b> repêche la voile, avec 40 % d'usure en plus. Si le vent <b>tourne</b> et que la voile ne porte plus, ou sort de sa plage à la nouvelle allure, on change de voile : la manœuvre coûte la moitié de la route et la carte du large du tour.</p>
           </Bloc>
         </div>
 

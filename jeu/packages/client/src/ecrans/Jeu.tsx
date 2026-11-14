@@ -687,7 +687,7 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
     const carte = a.motif === 'evenement' ? D.evenements?.cartes.find((c) => c.id === a.carteId) : undefined;
     const voile = a.motif === 'evenement'
       ? carte?.effet.perte_voile?.find((v) => b.voiles.includes(v))
-      : (a.motif === 'penalite' && a.penalite === 'perte_voile') || (a.motif === 'voile_noire' && !estMulticoque(D, b)) ? b.choix?.voile ?? undefined : undefined;
+      : (a.motif === 'penalite' && a.penalite === 'perte_voile') || a.motif === 'voile_noire' ? b.choix?.voile ?? undefined : undefined;
     if (!voile) return null;
     // Au bon moment : la carte du large vient d'être tirée (lecture arrêtée sur elle), ou la lecture est arrivée au bout.
     const surLaCarte = !!carteVue && carteVue.bateauId === b.id && carteVue.carteId === a.carteId && curseur === etat.evenements.length - 1;
@@ -712,7 +712,9 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
     scene3dRef.current?.demarrer();
     const n = b.reparations;
     const titre = carte ? `${carte.icone} ${carte.titre}` : motif === 'voile_noire' ? `Trop de toile : votre ${nomVoile} lâche !` : 'Avarie de voile';
-    const texte = carte ? carte.texte : motif === 'voile_noire' ? 'Le vent est trop fort pour cette voile : elle lâche. Ce tour, le bateau ne fait qu\'un tiers de sa route, sans dé du large.' : `Incident : sans réparation, vous perdez votre ${nomVoile}.`;
+    // Multicoque (14/11/2026, option A) : le largueur automatique évite le chavirage, la voile lâche quand même.
+    const largueur = estMulticoque(D, b) ? 'Le largueur automatique choque l\'écoute : le multicoque ne chavire pas, mais la voile lâche. ' : '';
+    const texte = carte ? carte.texte : motif === 'voile_noire' ? `${largueur || 'Le vent est trop fort pour cette voile : elle lâche. '}Ce tour, le bateau ne fait qu'un tiers de sa route, sans dé du large.` : `Incident : sans réparation, vous perdez votre ${nomVoile}.`;
     const decision = motif === 'voile_noire'
       ? { reparer: `🔧 Carte réparation : repêcher la voile (+40 % d'usure)`, endurer: 'Sans carte : la voile est perdue', explication: `Une carte réparation repêche la voile, réparée tant bien que mal. Il vous reste ${n} carte${n > 1 ? 's' : ''} réparation.` }
       : carte

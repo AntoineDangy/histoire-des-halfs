@@ -4,13 +4,11 @@ import { distanceRestanteCase, idx } from './carte';
 import { ANGLE_MIN, angleAllure, NB_DIR, norm } from './geo';
 import { carteDe, demiCapsPermis, enCourse, peutRecoudre, usureParTour } from './moteur';
 import { alizeApres, alizeEn, frontSur, ventCourant } from './meteo';
-import { calculerDistance, calculerRisque, competence, dansBrume, estMulticoque, facesForce, hausseVent, tracerChemin } from './regles';
+import { calculerDistance, calculerRisque, competence, dansBrume, facesForce, hausseVent, tracerChemin } from './regles';
 import { alea } from './rng';
 import { desVus } from './apercu';
 import type { Choix, ContexteResolution, Donnees, EtatBateau, EtatPartie, PenaliteDef, Vent } from './types';
 
-/** Coût, en cases, d'un chavirage (fin de course) pour l'IA d'un multicoque : elle ne risque pas le trop de toile. */
-const CHAVIRAGE_IA = 40;
 
 interface Option {
   cap: number;
@@ -157,8 +155,8 @@ export function choisirIA(d: Donnees, etat: EtatPartie, bateauId: string, opts: 
         const { gain, risque, distance } = gainOption(d, etat, b, o, s.vent, occ);
         if (distance === null) continue;
         let v: number;
-        // Trop de toile : voile perdue pour un monocoque ; chavirage, donc fin de course, pour un multicoque (14/11/2026).
-        if (risque >= 5) v = estMulticoque(d, b) ? -CHAVIRAGE_IA : -(b.reparations > 0 ? 1.2 : 2.5);
+        // Trop de toile : la voile lâche (multicoque compris, largueur automatique, 14/11/2026), un tiers de la route.
+        if (risque >= 5) v = -(b.reparations > 0 ? 1.2 : 2.5);
         else if (d.regles.usure) {
           // Règles du 10/11/2026 : le risque pris se paie en usure de la voile (perdue au seuil), et la tempête
           // (F9 et plus) peut démâter ou faire chavirer.

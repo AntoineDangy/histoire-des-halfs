@@ -489,6 +489,8 @@ export interface BilanVoiles {
   fin: boolean;
   /** À la cape, à sec de toile (14/11/2026) : il dérive sous le vent au lieu de faire route. */
   cape?: boolean;
+  /** Ce qui est arrivé à l'étape des voiles, pour le tableau du tour (14/11/2026). */
+  issue?: string;
 }
 
 export interface ContexteResolution {

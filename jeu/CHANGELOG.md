@@ -1,5 +1,16 @@
 # Journal des versions
 
+## Mise en ligne c4dec042 (14/11/2026, soir), serveur réseau 74e336f3
+Avec l'accord du porteur de projet (« met en ligne sans les messages raccourcis dans les fenêtres, on garde les messages initiaux ») : « Version 0.4.280 », depuis la branche `mises-a-jour-jeu`. Contient l'entrée ci-dessous. 80 tests, construction ; moteur changé : serveur réseau publié aussi. **Vérifié en ligne** : accueil « Version 0.4.280 · mise à jour le 14 novembre 2026 à 18 h 26 » ; le code servi contient les messages d'origine du largueur automatique ; serveur réseau : salon créé, un joueur y entre.
+
+## 14/11/2026 · Multicoque sous trop de toile : le largueur automatique évite le chavirage (branche `mises-a-jour-jeu`, publié le 14/11/2026, jeu c4dec042)
+Signalé par le porteur de projet (Sébastien Rogues, Ocean Fifty, chaviré sous solent à F5 montant à F6), puis décision : « je choisis la solution A, largage auto ».
+- **Trop de toile sur un multicoque** : le largueur automatique d'écoute empêche le chavirage ; la voile lâche comme sur un monocoque (perdue, ou repêchée avec +40 % d'usure grâce à une carte réparation), un tiers de la route, sans dé du large. Un multicoque ne chavire plus qu'au dé de tempête. Avant : 1 chance sur 3 de chavirer à chaque tour pour une voile portée à la limite de sa plage.
+- **Écran** : la carte 3D de la voile qui lâche et la fenêtre de la carte réparation valent aussi pour les multicoques, avec le message du largueur ; règles du jeu et bulle d'aide du tutoriel à jour. L'IA n'évite plus spécialement le trop de toile en multicoque (même calcul qu'en monocoque).
+- **Tableau du tour** (« Journal ») : pour un bateau arrêté ou freiné à l'étape des voiles, il montre maintenant le vent après les dés et ce qui est arrivé (trop de toile, voile perdue ou repêchée, largueur automatique, changement de voile, démâtage et port visé, chavirage en tempête) au lieu de « immobilisé ».
+- **Textes** : raccourcis un moment (règle du 14/11 : à l'écran le strict minimum), puis remis comme à l'origine à la demande du porteur de projet (« on garde les messages initiaux. je verrais à l'usage si ils sont oppressant »).
+- 1 test ajouté (80 tests). **Vérifié en local** (trop de toile forcé pour le joueur le temps de l'essai, puis retiré) : Ocean Fifty sous gennaker, carte 3D « Trop de toile : votre gennaker lâche ! » avec le message du largueur et les deux boutons ; tableau du tour : vent après les dés « E F5 », 150 milles au lieu de 330, issue « trop de toile (largueur automatique) : Gennaker perdu, un tiers de la route ».
+
 ## Mise en ligne 8630648b (14/11/2026), serveur réseau 0cdabf3d
 Avec l'accord du porteur de projet (« applique le tout et met en ligne ») : « Version 0.4.274 », depuis la branche `mises-a-jour-jeu`. Contient l'entrée ci-dessous. 79 tests, construction ; moteur et données changés : serveur réseau publié aussi. **Vérifié en ligne** : accueil « Version 0.4.274 · mise à jour le 14 novembre 2026 à 17 h 59 » ; le code servi contient les trois réglages et les nouveaux textes des règles ; serveur réseau : salon de la Route du Rhum créé, un joueur y entre.
 
