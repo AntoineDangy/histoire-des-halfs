@@ -1,5 +1,17 @@
 # Journal des versions
 
+## Mise en ligne 8630648b (14/11/2026), serveur réseau 0cdabf3d
+Avec l'accord du porteur de projet (« applique le tout et met en ligne ») : « Version 0.4.274 », depuis la branche `mises-a-jour-jeu`. Contient l'entrée ci-dessous. 79 tests, construction ; moteur et données changés : serveur réseau publié aussi. **Vérifié en ligne** : accueil « Version 0.4.274 · mise à jour le 14 novembre 2026 à 17 h 59 » ; le code servi contient les trois réglages et les nouveaux textes des règles ; serveur réseau : salon de la Route du Rhum créé, un joueur y entre.
+
+## 14/11/2026 · Tempêtes : le vent retombe, un dé par tempête, cape plus sûre (branche `mises-a-jour-jeu`, publié le 14/11/2026, jeu 8630648b)
+Décisions du porteur de projet (« équilibre les abandons, pas la durée des courses » ; « les trois ensemble mais à partir de F8, le dé de force de vent remplace sa face +2 par une face −1 » ; « applique le tout et met en ligne »). Mises en situation et comparaison avec la Route du Rhum 2018 et le Fastnet 1979 : `jeu/conception/tempetes-et-abandons.md`.
+- **Le vent retombe** : à partir de F8, la face +2 du dé de force compte −1 (dé : −2, −1, −1, 0, 0, +1), pour le vent général comme pour les fronts (un front de F9 ne monte plus d'un coup à F11). L'écran du dé l'explique quand c'est le cas ; la prévision de force (Navigateur) en tient compte.
+- **Un dé par tempête** : un seul dé de tempête par tempête et par palier de force ; un bateau dont le gréement a tenu à une force ne relance pas le dé tant que le vent ne dépasse pas cette force (journal : « … est toujours dans la tempête (force N) : le gréement a déjà tenu à cette force. ») ; il le relance après être redescendu sous F9.
+- **Cape plus sûre** : à la cape (F10 et plus), seul un 6 démâte ou fait chavirer, à F10 comme à F11 ; la boussole de tempête montre ces faces. L'IA en tient compte.
+- Pourquoi : le vent général évoluait au hasard sans revenir au calme (à F9 et plus 27 % des tours en IMOCA) et les fronts suivaient le même dé jusqu'à F11 ; chaque bateau relançait le dé de tempête à chaque tour.
+- Mesure (12 Routes du Rhum par classe, IA moyennes, avant → après) : abandons Ultim 44 → 19 %, Ocean Fifty 50 → 4 %, IMOCA, Class40 et Vintage 0 % ; démâtages par IMOCA et par course 2,2 → 0,15 ; vent à F9 et plus 27 → 6 % des tours en IMOCA ; tours du vainqueur IMOCA 24 → 19, Ultim 19 → 18, Ocean Fifty 25 → 21, Class40 24 → 22, Vintage 23 → 19 (bruit de mesure ±7 points sur les abandons).
+- Règles du jeu à jour. 3 tests ajoutés (79 tests). Pas vu à l'écran : le message du dé à F8 et plus (rare), la boussole de tempête à la cape.
+
 ## Mise en ligne 2a589c8b (14/11/2026), serveur réseau a6d71536
 Avec l'accord du porteur de projet (« corrige et met en ligne. vas au bout du process ») : « Version 0.4.266 », depuis la branche `mises-a-jour-jeu`. Contient l'entrée ci-dessous. 76 tests, construction ; moteur et données changés : serveur réseau publié aussi. **Vérifié en ligne** : accueil « Version 0.4.266 · mise à jour le 14 novembre 2026 à 13 h 44 » ; le code servi contient les plages (force_max), la cape et les nouveaux textes ; serveur réseau : salon de la Route du Rhum créé, un joueur y entre.
 

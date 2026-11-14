@@ -287,7 +287,12 @@ export interface ReglesDef {
   usure?: { seuil: number; bandes_force: number[]; par_tour: Record<string, number[]>; mauvaise_reponse: number; tours_reference: number };
   tempete?: Record<string, number[] | number>;
   /** À la cape (14/11/2026) : à partir de cette force, plus aucune voile ; le bateau dérive sous le vent. */
-  a_la_cape?: { force_min: number; derive_cases?: number };
+  a_la_cape?: { force_min: number; derive_cases?: number; /** Faces du dé de tempête à la cape, par force (14/11/2026). */ tempete?: Record<string, number[]> };
+  /** Vent fort (14/11/2026) : à partir de cette force, certaines faces du dé de force comptent autrement (« 2 » : −1), pour
+   *  le vent général comme pour les fronts. */
+  vent_fort?: { a_partir_de: number; faces: Record<string, number> };
+  /** Un seul dé de tempête par tempête et par palier de force, pas un à chaque tour passé dedans (14/11/2026). */
+  tempete_options?: { une_par_tempete?: boolean };
   anticyclone?: { rapport_fronts: number; rayons: [number, number]; vitesse: [number, number]; forces: number[]; duree: number; max_par_course: number };
   reparations_depart: number;
   voiles_depart: string[];
@@ -408,6 +413,8 @@ export interface Choix {
 }
 
 export interface EtatBateau {
+  /** Force la plus forte déjà encaissée dans la tempête en cours (option « un dé par tempête »). */
+  tempeteSubie?: number;
   id: string;
   nom: string;
   type: 'humain' | 'ia';

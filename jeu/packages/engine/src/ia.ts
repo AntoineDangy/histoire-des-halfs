@@ -4,7 +4,7 @@ import { distanceRestanteCase, idx } from './carte';
 import { ANGLE_MIN, angleAllure, NB_DIR, norm } from './geo';
 import { carteDe, demiCapsPermis, enCourse, peutRecoudre, usureParTour } from './moteur';
 import { alizeApres, alizeEn, frontSur, ventCourant } from './meteo';
-import { calculerDistance, calculerRisque, competence, dansBrume, estMulticoque, facesForce, tracerChemin } from './regles';
+import { calculerDistance, calculerRisque, competence, dansBrume, estMulticoque, facesForce, hausseVent, tracerChemin } from './regles';
 import { alea } from './rng';
 import { desVus } from './apercu';
 import type { Choix, ContexteResolution, Donnees, EtatBateau, EtatPartie, PenaliteDef, Vent } from './types';
@@ -71,7 +71,7 @@ function scenariosVent(d: Donnees, etat: EtatPartie, b?: EtatBateau): { vent: Ve
   for (const { v: f, p: pf } of vus.forces)
     for (const { v: dd, p: pd } of vus.directions)
       out.push({
-        vent: alize ? alizeApres(alize, dd, f) : { direction: norm(base.direction + dd), force: Math.max(r.force_min, Math.min(r.force_max, base.force + f)) },
+        vent: alize ? alizeApres(alize, dd, f) : { direction: norm(base.direction + dd), force: Math.max(r.force_min, Math.min(r.force_max, base.force + hausseVent(d, base.force, f))) },
         p: pf * pd,
       });
   return out;
@@ -89,8 +89,12 @@ function coutUsure(d: Donnees, etat: EtatPartie, b: EtatBateau, v: string | null
 
 /** Coût probable du dé tempête (immobilisation d'un ou deux tours). */
 function coutTempete(d: Donnees, force: number, gain: number): number {
-  const faces = d.regles.tempete?.[String(Math.min(11, force))];
+  const cle = String(Math.min(11, force));
+  let faces = d.regles.tempete?.[cle];
   if (force < 9 || !Array.isArray(faces)) return 0;
+  // À la cape (F10 et plus, 14/11/2026), le dé de tempête est moins dangereux.
+  const cape = d.regles.a_la_cape;
+  if (cape && force >= cape.force_min && Array.isArray(cape.tempete?.[cle]) && cape.tempete![cle].length < faces.length) faces = cape.tempete![cle];
   return (faces.length / 6) * (Math.max(gain, 4) * 1.5);
 }
 

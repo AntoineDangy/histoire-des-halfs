@@ -18,8 +18,12 @@ export function bilanVent(avant: Vent, apres: Vent, zone?: string, de?: { force:
   const tourne = d === 0 ? 'garde sa direction' : `tourne de ${String(Math.abs(d) * 22.5).replace('.', ',')}° ${d > 0 ? "dans le sens des aiguilles d'une montre" : "dans le sens inverse des aiguilles d'une montre"}`;
   const forceTxt = dF === 0 ? ' et garde sa force' : dF > 0 ? ` et forcit de ${dF}` : ` et mollit de ${-dF}`;
   // Vent régulier (alizés) : force et direction restent dans leurs limites, même si le dé dit plus (12/11/2026).
+  const vf = D.regles.vent_fort;
+  const lu = de && vf && avant.force >= vf.a_partir_de ? vf.faces[String(de.force)] : undefined;
   const borne = de && zone === 'alizes' && de.force !== dF
     ? ` : le vent régulier des alizés ne sort pas de ses limites, il reste à F${apres.force}`
+    // Vent fort (14/11/2026) : à partir de F8, la face +2 compte −1.
+    : lu !== undefined ? ` (à partir de F${vf!.a_partir_de}, la face +${de!.force} compte ${lu > 0 ? '+' : '−'}${Math.abs(lu)} : la tempête retombe)`
     : '';
   return { zone: NOMS_ZONES[zone ?? 'general'] ?? NOMS_ZONES.general, texte: `le vent ${tourne}${forceTxt}${borne}` };
 }

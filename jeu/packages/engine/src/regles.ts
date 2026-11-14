@@ -150,6 +150,16 @@ export function nomBeaufort(d: Pick<Donnees, 'regles'>, force: number): string {
 }
 
 /** Faces du dé de force selon la force actuelle : à F1, pas de baisse (règle du porteur de projet, 11/11/2026). */
+/**
+ * Variation de force réellement appliquée à un vent par la face tirée du dé de force (porteur de projet, 14/11/2026) : à partir
+ * de F8, la face +2 compte −1 (le dé devient −2, −1, −1, 0, 0, +1) ; une tempête finit par retomber. Vent général et fronts.
+ */
+export function hausseVent(d: Donnees, force: number, df: number): number {
+  const v = d.regles.vent_fort;
+  if (!v || force < v.a_partir_de) return df;
+  return v.faces[String(df)] ?? df;
+}
+
 export function facesForce(d: Donnees, force: number): number[] {
   return force <= d.regles.force_min && d.regles.de_force_min ? d.regles.de_force_min : d.regles.de_force;
 }

@@ -4,7 +4,7 @@ import { CarteCompilee, compilerCarte, dansCarte, distanceRestanteCase, idx, nav
 import { angleAllure, auAllure, capValide, coteVent, NB_DIR, nomAllure, NOMS_DIR_LONGS, norm, vecteur } from './geo';
 import { choisirIA, decisionRelanceIA, decisionReparationIA } from './ia';
 import { alizeApres, creerAnticyclonesPermanents, creerMolle, dansAlize, indiceAlize, evoluerFronts, frontSur, ventCourant, ventSysteme } from './meteo';
-import { calculerDistance, calculerRisque, classeBateau, competence, dansBrume, echelleBateau, estMulticoque, echelleCarte, facesForce, nomBeaufort, plafondCases, tracerChemin, voile } from './regles';
+import { calculerDistance, calculerRisque, classeBateau, hausseVent, competence, dansBrume, echelleBateau, estMulticoque, echelleCarte, facesForce, nomBeaufort, plafondCases, tracerChemin, voile } from './regles';
 import { alea, d6, entier, face, pas, tiragePondere } from './rng';
 import type {
   Action, Case, Choix, ContexteResolution, CourseDef, Donnees, EtatBateau, EtatPartie, Evenement,
@@ -410,11 +410,11 @@ function demarrerResolution(d: Donnees, etat: EtatPartie) {
     f.origine ??= { direction: f.direction, force: f.force };
     const ecart = ((f.direction + des.direction - f.origine.direction + 24) % 16) - 8;
     if (Math.abs(ecart) <= 4) f.direction = norm(f.direction + des.direction);
-    f.force = Math.max(Math.max(1, f.origine.force - 2), Math.min(Math.min(r.force_max, f.origine.force + 2), f.force + des.force));
+    f.force = Math.max(Math.max(1, f.origine.force - 2), Math.min(Math.min(r.force_max, f.origine.force + 2), f.force + hausseVent(d, f.force, des.force)));
   }
   etat.vent = {
     direction: norm(ventAvant.direction + des.direction),
-    force: Math.max(r.force_min, Math.min(r.force_max, ventAvant.force + des.force)),
+    force: Math.max(r.force_min, Math.min(r.force_max, ventAvant.force + hausseVent(d, ventAvant.force, des.force))),
   };
   const sens = des.direction === 0 ? 'ne tourne pas' : des.direction > 0 ? 'tourne de 45° (sens horaire)' : 'tourne de 45° (sens antihoraire)';
   const locaux: Record<string, { avant: Vent; apres: Vent; zone: string }> = {};
@@ -1680,19 +1680,32 @@ function deriverALaCape(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: Contex
 /** Dé de tempête (F9 et plus ; chances inchangées le 13/11/2026). Vrai si le bateau démâte ou chavire. */
 function tempete(d: Donnees, etat: EtatPartie, b: EtatBateau, vent: Vent): boolean {
   const t = d.regles.tempete;
+  const unParTempete = !!d.regles.tempete_options?.une_par_tempete;
+  if (unParTempete && vent.force < 9) b.tempeteSubie = 0;
   if (!t || vent.force < 9) return false;
+  const nom = nomSkipper(d, etat, b);
+  // Option : un dé par tempête et par palier de force ; le gréement qui a tenu à cette force tient encore.
+  if (unParTempete && (b.tempeteSubie ?? 0) >= vent.force) {
+    evt(etat, 'info', `${nom} est toujours dans la tempête (force ${vent.force}) : le gréement a déjà tenu à cette force.`, b.id);
+    return false;
+  }
   // Une compétence peut réduire les chances (Coriace, 14/11/2026 : F9 aucune, F10 un 6, F11 un 4, 5 ou 6).
   const cle = String(Math.min(11, vent.force));
-  const faces = competence(d, b.competence).speciaux.tempete?.[cle] ?? t[cle];
+  let faces = competence(d, b.competence).speciaux.tempete?.[cle] ?? t[cle];
   if (!Array.isArray(faces)) return false;
+  // Option : à la cape, à sec de toile, le bateau encaisse mieux (on garde la plus petite des deux listes).
+  const cape = d.regles.a_la_cape?.tempete?.[cle];
+  if (etat.resolution?.voiles?.[b.id]?.cape && Array.isArray(cape) && cape.length < faces.length) faces = cape;
   const de = d6(etat);
-  const nom = nomSkipper(d, etat, b);
   const multi = estMulticoque(d, b);
   const touche = faces.includes(de);
   evt(etat, 'tempete', touche
     ? `Dé de tempête (F${vent.force}) : ${de}. ${multi ? `${nom} chavire !` : `${nom} démâte !`}`
     : `Dé de tempête (F${vent.force}) : ${de}. ${nom} tient bon dans la tempête.`, b.id, { de, faces, touche, force: vent.force });
-  if (!touche) return false;
+  if (!touche) {
+    if (unParTempete) b.tempeteSubie = vent.force;
+    return false;
+  }
   b.distanceDernierTour = 0;
   b.stats.avaries++;
   if (multi) chavirer(d, etat, b, 'tempête');

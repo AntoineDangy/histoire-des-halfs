@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { alizeApres, alizeEn, dansAlize, frontSur, nomBeaufort, textePlage, ventCourant } from '@cal/engine';
+import { alizeApres, alizeEn, dansAlize, frontSur, hausseVent, nomBeaufort, textePlage, ventCourant } from '@cal/engine';
 import { ANGLE_MIN, angleAllure, apercuCap, bateau, usureParTour, choisirIA, demiCapsPermis, NB_DIR, nomAllure, nomCap, NOMS_ALLURES, NOMS_DIR, NOMS_DIR_LONGS, norm, peutRecoudre, surCaseAbri, trajectoirePrevue } from '@cal/engine';
 import type { Choix, EtatPartie } from '@cal/engine';
 import { bateauDef, competenceDef, courseDef, D, DE_LARGE, faces, RISQUES, skipper } from '../commun';
@@ -389,13 +389,13 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider, entet
               const az = dansLesAlizes ? alizeEn(etat, b.x, b.y) : null;
               const f = az
                 ? alizeApres(az, 0, etat.desProchains.force).force
-                : Math.max(D.regles.force_min, Math.min(D.regles.force_max, vent.force + etat.desProchains.force));
+                : Math.max(D.regles.force_min, Math.min(D.regles.force_max, vent.force + hausseVent(D, vent.force, etat.desProchains.force)));
               return <div className="meteo-ligne heureux">🧭 vent attendu : F{f}</div>;
             })()}
             {etat.previsions && comp.speciaux.prevoit_force && (() => {
               const az = dansLesAlizes ? alizeEn(etat, b.x, b.y) : null;
               const pf = etat.previsions!.force;
-              const f = az ? alizeApres(az, 0, pf).force : Math.max(D.regles.force_min, Math.min(D.regles.force_max, vent.force + pf));
+              const f = az ? alizeApres(az, 0, pf).force : Math.max(D.regles.force_min, Math.min(D.regles.force_max, vent.force + hausseVent(D, vent.force, pf)));
               return <div className="meteo-ligne heureux">🧭 vent attendu : F{f} <span className="muted">(juste {Math.round(comp.speciaux.prevoit_force! * 100)} % du temps)</span></div>;
             })()}
             {etat.previsions && comp.speciaux.prevoit_direction && (() => {

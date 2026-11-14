@@ -90,7 +90,7 @@ export default function Regles({ onRetour }: { onRetour: () => void }) {
         <Bloc titre="Un tour en quatre temps" accroche="Tout le monde joue en même temps, en secret.">
           <ol className="regles-temps">
             <li><span className="regles-num">1</span><b>Vous choisissez</b> un cap (16 directions) et une voile, avec le vent du moment.</li>
-            <li><span className="regles-num">2</span><b>Les dés du vent</b> : il tourne de 45° (ou pas) et forcit ou mollit, parfois jusqu'à la tempête. Les systèmes météo bougent avec les dés. Votre choix doit tenir le coup.</li>
+            <li><span className="regles-num">2</span><b>Les dés du vent</b> : il tourne de 45° (ou pas) et forcit ou mollit, parfois jusqu'à la tempête. Les systèmes météo bougent avec les dés. Votre choix doit tenir le coup. À partir de F{R.vent_fort?.a_partir_de ?? 8}, la face +2 du dé de force compte −1 : une tempête finit par retomber.</li>
             <li><span className="regles-num">3</span><b>Le dé du large</b> : une carte, une question… ou rien. La part du hasard et du savoir.</li>
             <li><span className="regles-num">4</span><b>Vous avancez</b> avec le nouveau vent, le long du trajet tracé sur la carte : bords de louvoyage et dérive du courant compris. Le dernier au classement bouge en premier.</li>
           </ol>
@@ -148,7 +148,8 @@ export default function Regles({ onRetour }: { onRetour: () => void }) {
               ))}
             </div>
             <p className="muted">Faces rouges : <b>démâtage</b> pour un monocoque (il ne reste qu'un gréement de fortune) ou <b>chavirage</b> pour un multicoque. Démâté, le monocoque rentre par la mer au port d'escale le plus proche (250 milles par tour au plus, sans couper la terre ni les rails interdits), y répare 1 tour et repart avec des voiles neuves ; sans port (Fastnet), c'est la fin de course. Un multicoque chaviré abandonne.</p>
-            <p className="muted"><b>À la cape</b> : à partir de force {R.a_la_cape?.force_min ?? 10}, aucune voile ne tient, même la voilure réduite. À sec de toile, le bateau dérive d'une case sous le vent, sans choisir sa direction et sans dé du large.</p>
+            <p className="muted"><b>À la cape</b> : à partir de force {R.a_la_cape?.force_min ?? 10}, aucune voile ne tient, même la voilure réduite. À sec de toile, le bateau dérive d'une case sous le vent, sans choisir sa direction et sans dé du large. Il encaisse mieux : seul un 6 démâte ou fait chavirer.</p>
+            <p className="muted"><b>Un seul dé par tempête</b> : un bateau dont le gréement a tenu à une force ne relance pas le dé tant que le vent ne dépasse pas cette force. Il le relance si le vent monte plus haut, ou lors d'une nouvelle tempête.</p>
           </Bloc>
         </div>
 

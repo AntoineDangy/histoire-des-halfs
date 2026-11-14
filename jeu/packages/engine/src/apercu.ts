@@ -4,7 +4,7 @@ import { idx } from './carte';
 import { angleAllure, norm } from './geo';
 import { alizeApres, alizeEn, ventCourant } from './meteo';
 import { bateau, carteDe, enCourse } from './moteur';
-import { calculerDistance, calculerRisque, competence, dansBrume, Detail, facesForce, tracerChemin } from './regles';
+import { calculerDistance, calculerRisque, competence, dansBrume, Detail, facesForce, hausseVent, tracerChemin } from './regles';
 import type { Case, Donnees, EtatBateau, EtatPartie } from './types';
 
 /**
@@ -89,7 +89,7 @@ export function distanceAttendue(d: Donnees, etat: EtatPartie, bateauId: string,
     for (const { v: dd, p: pd } of directions) {
       const w = pf * pd;
       n += w;
-      const vent = { direction: norm(base.direction + dd), force: Math.max(r.force_min, Math.min(r.force_max, base.force + df)) };
+      const vent = { direction: norm(base.direction + dd), force: Math.max(r.force_min, Math.min(r.force_max, base.force + hausseVent(d, base.force, df))) };
       const dist = calculerDistance(d, carte, b, voile, cap, vent).distance;
       if (dist === null) continue;
       const risque = voile ? calculerRisque(d, carte, b, voile, vent, cap).risque : 0;
@@ -120,7 +120,7 @@ export function apercuCap(d: Donnees, etat: EtatPartie, bateauId: string, cap: n
   const az = alizeEn(etat, b.x, b.y);
   const ventForcit = az && vent.direction === az.direction && vent.force === az.force
     ? alizeApres(az, 0, fMax)
-    : { direction: vent.direction, force: Math.min(d.regles.force_max, vent.force + fMax) };
+    : { direction: vent.direction, force: Math.min(d.regles.force_max, vent.force + hausseVent(d, vent.force, fMax)) };
   const voiles = ids.map((v) => {
     const dist = calculerDistance(d, carte, b, v, cap, vent);
     const risque = calculerRisque(d, carte, b, v, vent, cap);

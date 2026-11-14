@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { donneesBrutes } from '../../data/index';
 import {
   angleAllure, appliquer, bateauxAttendus, calculerDistance, calculerRisque, choisirIA, classement, compilerCarte,
-  classesDeCourse, controlerJournal, coursesReseau, creerPartie, dansAlize, distanceAttendue, distanceRestanteCase, facesForce, frontSur, humainsAttendus, maxBateauxSalon, navigable, NIVEAU_QUIZ_DEFAUT, niveauQuizValide, nomBeaufort, perteCarte, plafondCases, reglagesSalonValides, rejouer, terreFine, tracerChemin, ventCourant,
+  classesDeCourse, controlerJournal, coursesReseau, creerPartie, dansAlize, distanceAttendue, distanceRestanteCase, facesForce, frontSur, hausseVent, humainsAttendus, maxBateauxSalon, navigable, NIVEAU_QUIZ_DEFAUT, niveauQuizValide, nomBeaufort, perteCarte, plafondCases, reglagesSalonValides, rejouer, terreFine, tracerChemin, ventCourant,
 } from '../src/index';
 import type { Action, CourseDef, Donnees, EtatPartie, ParamsPartie, ReglagesSalon } from '../src/index';
 
@@ -752,6 +752,35 @@ describe('étape des voiles : changement de voile, tempête, rapatriement (13/11
       expect(b.horsClassement).toBe(false);
     }
     expect(vu).toBeGreaterThan(0);
+  });
+  it('vent fort (14/11/2026) : à partir de F8, la face +2 du dé de force compte −1, pour le vent général comme pour les fronts', () => {
+    expect([hausseVent(d, 7, 2), hausseVent(d, 8, 2), hausseVent(d, 11, 2), hausseVent(d, 9, 1), hausseVent(d, 9, -2), hausseVent(d, 9, 0)]).toEqual([2, -1, -1, 1, -2, 0]);
+    let e = creerPartie(d, params(6, 0));
+    e = { ...e, vent: { direction: 4, force: 9 }, desProchains: { force: 2, direction: 0 } };
+    e = jouerJusqua(d, e, (x) => x.tour > 1);
+    const v = e.evenements.find((x) => x.tour === 1 && x.type === 'vent');
+    expect(v?.texte).toMatch(/force 8/);
+  });
+  it('option « un dé par tempête » : le gréement qui a tenu à cette force ne relance pas le dé au tour suivant', () => {
+    const dd: Donnees = { ...d, regles: { ...d.regles, tempete_options: { une_par_tempete: true }, tempete: { ...d.regles.tempete, '9': [] } } };
+    let e = creerPartie(dd, params(3, 0));
+    e = { ...e, vent: { direction: 4, force: 9 }, desProchains: { force: 0, direction: 0 } };
+    e = jouerJusqua(dd, e, (x) => x.tour > 1);
+    const des1 = e.evenements.filter((x) => x.tour === 1 && x.type === 'tempete');
+    expect(des1.length).toBeGreaterThan(0);
+    e = { ...e, vent: { direction: 4, force: 9 }, fronts: [], desProchains: { force: 0, direction: 0 } };
+    e = jouerJusqua(dd, e, (x) => x.tour > 2);
+    expect(e.evenements.filter((x) => x.tour === 2 && x.type === 'tempete').length).toBe(0);
+    expect(e.evenements.some((x) => x.tour === 2 && /toujours dans la tempête/.test(x.texte))).toBe(true);
+  });
+  it('option « cape plus sûre » : à la cape, les faces du dé de tempête viennent de la cape', () => {
+    const dd: Donnees = { ...d, regles: { ...d.regles, tempete: { ...d.regles.tempete, '10': [1, 2, 3, 4, 5, 6] }, a_la_cape: { ...d.regles.a_la_cape!, tempete: { '10': [] } } } };
+    let e = creerPartie(dd, params(4, 0));
+    e = { ...e, vent: { direction: 4, force: 10 }, desProchains: { force: 0, direction: 0 } };
+    e = jouerJusqua(dd, e, (x) => x.tour > 1);
+    const des1 = e.evenements.filter((x) => x.tour === 1 && x.type === 'tempete');
+    expect(des1.length).toBeGreaterThan(0);
+    expect(des1.every((x) => !(x.donnees as { touche?: boolean }).touche)).toBe(true);
   });
   it('Coriace (Jérémie Beyou) : chances de démâtage réduites en tempête (F9 aucune, F11 un 4, 5 ou 6)', () => {
     const coriace = d.competences.find((c) => c.id === 'dur_au_mal')!;
