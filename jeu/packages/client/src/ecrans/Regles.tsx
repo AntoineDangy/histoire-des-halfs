@@ -1,5 +1,6 @@
 import { textePlage } from '@cal/engine';
 import { D } from '../commun';
+import Film from '../tutoriel/Film';
 
 /**
  * Les règles du jeu, claires et imagées (10/11/2026). Les chiffres sont lus dans les réglages du jeu
@@ -86,6 +87,11 @@ export default function Regles({ onRetour }: { onRetour: () => void }) {
           Route du Rhum, Transat Café L'Or, Rolex Fastnet Race : vous êtes à la barre d'un vrai bateau de course, face à de vrais marins.
           À chaque tour, un choix : <b>un cap et une voile</b>. Puis la mer décide. Le premier qui coupe la ligne a gagné.
         </p>
+
+        {/* Le petit film « Comment ça marche » (décision du propriétaire, 14/11/2026). */}
+        <Bloc titre="🎬 Comment ça marche">
+          <Film />
+        </Bloc>
 
         <Bloc titre="Un tour en quatre temps" accroche="Tout le monde joue en même temps, en secret.">
           <ol className="regles-temps">

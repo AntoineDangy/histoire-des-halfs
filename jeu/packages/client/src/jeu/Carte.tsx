@@ -34,6 +34,8 @@ export interface PropsCarte {
   reglageDistance?: { trajet: [number, number][]; reperes: [number, number][]; max: number; valeur: number; choisir: (d: number) => void } | null;
   /** Boussole : caps possibles ; une touche sur la couronne choisit le cap le plus proche. */
   roseCaps?: RoseCarte | null;
+  /** Tutoriel (14/11/2026) : point de mer montré par le guide (« Touche la mer ici »), en coordonnées de carte, et son cap. */
+  repere?: { pt: [number, number]; cap: number } | null;
 }
 
 /** Caps de la boussole, choisis d'une touche sur la couronne (chaque cap a toute sa part du cercle, même avec 32 caps). */
@@ -76,10 +78,12 @@ function couleurVitesse(v: number) {
 type Trace = { cotes: number[][]; orthodromie: number[] };
 const TRACES: Record<string, Trace> = { 'route-du-rhum': traceRhum as Trace, 'transat-cafe-lor': traceCafeLor as Trace, 'rolex-fastnet': traceFastnet as Trace, 'vendee-globe': traceVendee as Trace, 'arkea-ultim-challenge': traceArkea as Trace };
 
-export default function Carte({ etat, positions, trajectoire, moiId, centrer, noms, coupes, lecture, enChoix, reglageDistance, roseCaps, fronts }: PropsCarte) {
+export default function Carte({ etat, positions, trajectoire, moiId, centrer, noms, coupes, lecture, enChoix, reglageDistance, roseCaps, fronts, repere }: PropsCarte) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   // Calque posé sur le bateau du joueur : la rose des caps y est affichée (TableauBord.tsx, par createPortal).
   const calqueRef = useRef<HTMLDivElement>(null);
+  // Repère du guide du tutoriel, posé sur la mer (Guide.tsx l'entoure de son halo).
+  const repereRef = useRef<HTMLDivElement>(null);
   /** Poignée de distance, en pixels d'écran : trajet complet et nombre de cases (pour la saisie au doigt ou à la souris). */
   /** Centre de la boussole à l'écran (pixels du canevas), pour la faire ressortir au survol de la souris. */
   const roseEcran = useRef<{ x: number; y: number } | null>(null);
@@ -89,7 +93,7 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
   const zoomGlobe = useRef<((f: number) => void) | null>(null);
   const vue = useRef({ s: 8, ox: 0, oy: 0, init: false, min: 3 });
   const propsRef = useRef<PropsCarte>({ etat, positions, trajectoire, moiId, centrer, noms });
-  propsRef.current = { etat, positions, trajectoire, moiId, centrer, noms, coupes, reglageDistance, roseCaps, fronts };
+  propsRef.current = { etat, positions, trajectoire, moiId, centrer, noms, coupes, reglageDistance, roseCaps, fronts, repere };
   const globeVisible = useRef(false);
   // Parcours de la classe jouée (marques obligatoires propres à chaque classe).
   const course = courseJouee(D, etat);
@@ -702,6 +706,23 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
         roseEcran.current = { x: v.ox + X(pm[0] + 0.5), y: v.oy + Y(pm[1] + 0.5) };
       } else calque.style.display = 'none';
     }
+    const repG = repereRef.current;
+    if (repG) {
+      const pr = P.repere;
+      if (pr && !globeVisible.current) {
+        let rx = v.ox + X(pr.pt[0]), ry = v.oy + Y(pr.pt[1]);
+        // Trop près du bateau, le point tomberait au centre de la boussole, où un toucher ne fait rien : on le pose sur
+        // la couronne, dans la direction du cap (un toucher y choisit ce cap).
+        const rb = roseEcran.current, R = cv.clientWidth <= 860 ? 60 : 78;
+        if (rb && Math.hypot(rx - rb.x, ry - rb.y) < R + 40) {
+          const a = (pr.cap * 22.5 * Math.PI) / 180;
+          rx = rb.x + R * Math.sin(a);
+          ry = rb.y - R * Math.cos(a);
+        }
+        repG.style.display = '';
+        repG.style.transform = `translate(${rx}px, ${ry}px)`;
+      } else repG.style.display = 'none';
+    }
 
     // Échelle des distances (1 case = milles_par_case milles) : 30, 100 ou 500 milles selon le zoom.
     const mpc = course.milles_par_case ?? 1;
@@ -962,6 +983,7 @@ export default function Carte({ etat, positions, trajectoire, moiId, centrer, no
     <>
       <canvas ref={canvasRef} aria-label="Carte de la course" role="img" />
       <div className="calque-bateau" ref={calqueRef}><div id="rose-carte" /></div>
+      <div className="repere-guide" ref={repereRef} style={{ display: 'none' }} />
       <div className="outils-carte">
         <button className="btn btn-petit" onClick={() => ((globe || (lecture && course.distance_reelle)) && zoomGlobe.current ? zoomGlobe.current(1.3) : zoomBouton(1.3))} aria-label="Zoomer">+</button>
         <button className="btn btn-petit" onClick={() => ((globe || (lecture && course.distance_reelle)) && zoomGlobe.current ? zoomGlobe.current(1 / 1.3) : zoomBouton(1 / 1.3))} aria-label="Dézoomer">−</button>

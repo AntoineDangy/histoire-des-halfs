@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   angleAllure, appliquer, bateau, heuresParTour, classement, categorie, categoriesPartie, NOM_CATEGORIE, coteVent, creerPartie, distanceRestante, formaterTemps, humainsAttendus, vecteur,
-  NOMS_DIR, NOMS_DIR_LONGS, nomBeaufort, nomSkipper, trajectoirePrevue, ventCourant, frontSur, DELAI_CHOIX_S, DELAI_DECISION_S, estMulticoque,
+  NOMS_DIR, NOMS_DIR_LONGS, nomBeaufort, nomSkipper, trajectoirePrevue, ventCourant, DELAI_CHOIX_S, DELAI_DECISION_S, estMulticoque,
 } from '@cal/engine';
 import type { Action, Case, Choix, EtatPartie, Evenement, Front, JoueurSalon, Vent } from '@cal/engine';
 import { bateauDef, courseDef, D, definirCourseActive, Lancement, nomClasse, skipper, posExacte } from '../commun';
@@ -15,7 +15,8 @@ import { bilanVent, BoussoleSpeciale, BoussolesLarge, DesVent, DeRisque, EtatDeR
 import ModaleCarteEvenement from '../jeu/CarteEvenement';
 import RecapBateau from '../jeu/RecapBateau';
 import Apercu3D from '../jeu/Apercu3D';
-import Coach from '../jeu/Coach';
+import Guide from '../tutoriel/Guide';
+import { forceTempete, repereDuGuide, voileUsee } from '../tutoriel/guideLogique';
 import JournalMouvements from '../jeu/JournalMouvements';
 import Regles from './Regles';
 import Briefing, { CLE_BRIEFING } from '../jeu/Briefing';
@@ -847,6 +848,13 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [joueurChoix, besoinPassation, apercu, etat]);
 
+  // Tutoriel, premier tour : le point de mer que le guide montre (« Touche la mer ici »), au bout de la route du routeur.
+  const repereGuide = useMemo(
+    () => (lancement.tutoriel && joueurChoix && !besoinPassation && etat.tour === 1 ? repereDuGuide(D, etat, joueurChoix.id) : null),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [lancement.tutoriel, joueurChoix?.id, besoinPassation, etat],
+  );
+
   const valider = (c: Choix) => {
     setApercu({ cap: null, distance: 0, max: 0, choisir: null });
     jouer({ type: 'ChoisirCapEtVoile', bateauId: joueurChoix!.id, choix: c });
@@ -904,7 +912,7 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
         <div className={`zone-carte ${joueurChoix && !besoinPassation ? 'avec-commandes' : ''}`}>
           <Carte etat={etat} positions={positions} fronts={frontsAffiches} trajectoire={trajectoire} moiId={moiId} centrer={centrer} noms={noms} coupes={coupes} lecture={enRetard}
             enChoix={!!joueurChoix && !besoinPassation} reglageDistance={reglageDistance}
-            roseCaps={joueurChoix && !besoinPassation ? apercu.rose ?? null : null} />
+            roseCaps={joueurChoix && !besoinPassation ? apercu.rose ?? null : null} repere={repereGuide} />
           {/* Météo sur la carte : celle du tableau de bord pendant le choix (portail), sinon la girouette de la résolution du tour,
               qui tourne avec le vent pendant la lecture (demande du porteur de projet, 12/11/2026). */}
           <div id="meteo-carte">
@@ -1074,27 +1082,20 @@ export default function Jeu({ lancement, onQuitter, onFin, reseau, reprise }: Pr
       </div>
 
       {lancement.tutoriel && (() => {
+        // Guide du tutoriel (14/11/2026) : à la place des bulles du coach ; il passe sous les fenêtres du jeu.
         const moi = humains[0];
-        const evCourant = enRetard ? etat.evenements[curseur] : null;
-        const front = moi ? frontSur(etat, moi.x, moi.y) : null;
         return (
-          <Coach
+          <Guide
             onQuitter={onQuitter}
             contexte={{
-              phaseChoix: !!joueurChoix && !besoinPassation,
-              capChoisi: apercu.cap !== null,
-              voileChoisie: apercu.cap !== null && apercu.distance > 0,
-              louvoyage: apercu.cap !== null && moi ? angleAllure(apercu.cap, ventCourant(etat, moi.x, moi.y).direction) < 45 : false,
-              desVent: !!des,
-              deEvenement: !!boussoles,
-              carteDuLarge: !!carteVue,
-              jetRisque: evCourant?.type === 'jet_risque' && evCourant.bateauId === moi?.id,
-              quiz: attenteHumaine?.type === 'quiz',
-              reparation: attenteHumaine?.type === 'reparation',
-              dansFront: !!front && front.front.type !== 'molle' && front.zone === 'front',
+              tour: tourAffiche,
+              choix: !!joueurChoix && !besoinPassation,
+              destination: apercu.cap !== null,
+              etape: etapeLue && etapeLue !== 'fin' ? etapeLue : null,
+              fini: etat.phase === 'fin',
               frontAnnonce: (etat.fronts ?? []).some((f) => f.annonce > 0),
-              tour: etat.tour,
-              fini: etat.phase === 'fin' && !enRetard,
+              tempete: !!moi && ventCourant(etat, moi.x, moi.y).force >= forceTempete(D),
+              voileUsee: !!moi && voileUsee(D, moi),
             }}
           />
         );

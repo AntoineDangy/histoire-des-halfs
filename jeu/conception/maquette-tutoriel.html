@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tutoriel animé · maquette</title>
+<!--
+  Maquette du nouveau tutoriel animé de « Course au large » (14/11/2026, branche tutoriel).
+  Fichier autonome, à ouvrir dans un navigateur. Rien de tout cela n'est encore dans le jeu :
+  c'est une proposition à valider par le propriétaire (scénario : tutoriel-anime.md).
+-->
+<style>
+:root {
+  --fond: #04121f; --panneau: #0b2236; --bord: #1f3d5a; --texte: #e6eef5; --muted: #9fb3c8;
+  --cyan: #3dd6f5; --orange: #ff9f43; --jaune: #ffd166; --vert: #4cc38a; --rouge: #ff5d5d; --violet: #a78bfa;
+  --terre: #efe3c8; --coach: #fff7e0; --coach-bord: #ffb800; --coach-encre: #2a1d00;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fond); color: var(--texte); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 980px; margin: 0 auto; padding: 16px; }
+h1 { font-size: 22px; margin: 2px 0 4px; }
+.lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+.intro { color: var(--muted); margin: 4px 0 14px; }
+.onglets { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.onglet { flex: 1 1 260px; text-align: left; background: var(--panneau); color: var(--texte); border: 2px solid var(--bord); border-radius: 12px; padding: 10px 12px; cursor: pointer; font: inherit; }
+.onglet b { display: block; font-size: 15px; }
+.onglet span { color: var(--muted); font-size: 13px; }
+.onglet[aria-selected="true"] { border-color: var(--cyan); background: #0e2c45; }
+.onglet .reco { display: inline-block; background: var(--jaune); color: #2a1d00; border-radius: 6px; padding: 0 6px; font-size: 11px; font-weight: 700; margin-left: 6px; vertical-align: 2px; }
+[hidden] { display: none !important; }
+.cadre { background: var(--panneau); border: 1px solid var(--bord); border-radius: 16px; overflow: hidden; }
+.frise { display: flex; gap: 4px; padding: 8px; justify-content: center; flex-wrap: wrap; background: #081a2b; border-bottom: 1px solid var(--bord); }
+.frise span { font-size: 12px; padding: 3px 9px; border-radius: 999px; background: #11283d; color: var(--muted); white-space: nowrap; }
+.frise span.on { background: var(--cyan); color: #04121f; font-weight: 700; }
+.titre-scene { text-align: center; padding: 10px 12px 0; }
+.scene svg { display: block; width: 100%; height: auto; max-height: 56vh; touch-action: manipulation; }
+.phrase { font-size: 21px; font-weight: 750; text-align: center; margin: 10px 16px 2px; min-height: 1.5em; }
+.petit { text-align: center; color: var(--muted); margin: 0 16px 12px; min-height: 1.4em; }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--bord); }
+.points { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+.points button { width: 11px; height: 11px; border-radius: 50%; background: #2a4a66; border: 0; padding: 0; cursor: pointer; }
+.points button.on { background: var(--cyan); }
+.btn { background: #11283d; color: var(--texte); border: 1px solid var(--bord); border-radius: 10px; padding: 9px 14px; font: inherit; font-weight: 650; cursor: pointer; }
+.btn:disabled { opacity: .35; cursor: default; }
+.btn-principal { background: var(--cyan); border-color: var(--cyan); color: #04121f; }
+.gros { font-size: 18px; padding: 12px 22px; }
+.centre { text-align: center; margin: 0 0 14px; }
+.note { margin-top: 10px; font-size: 13px; color: var(--muted); background: #081a2b; border: 1px dashed var(--bord); border-radius: 10px; padding: 8px 10px; }
+.note b { color: var(--texte); }
+.note ul { margin: 4px 0 0; padding-left: 18px; }
+
+/* --- Animations des scènes (SVG) --- */
+.souffle line { stroke: #cfe9ff; stroke-width: 1.6; stroke-linecap: round; opacity: 0; animation: souffle 1.8s linear infinite; }
+.vite .souffle line { animation-duration: .7s; stroke-width: 2.2; }
+@keyframes souffle { 0% { transform: translateY(-30px); opacity: 0; } 25% { opacity: .6; } 100% { transform: translateY(70px); opacity: 0; } }
+.vague { animation: vague 2.4s ease-in-out infinite; }
+.vite .vague { animation-duration: 1s; }
+@keyframes vague { 50% { transform: translateY(4px); } }
+.tangage { transform-box: fill-box; transform-origin: 50% 100%; animation: tangage 3s ease-in-out infinite; }
+.vite .tangage { animation-duration: 1.1s; }
+@keyframes tangage { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2.5deg); } }
+.drapeau { transform-box: fill-box; transform-origin: 0 50%; animation: drapeau .8s ease-in-out infinite alternate; }
+@keyframes drapeau { to { transform: skewY(8deg) scaleX(.85); } }
+.cap-bateau { transition: transform .6s cubic-bezier(.3,1.4,.6,1); }
+.trace { stroke-dasharray: 5 5; animation: defile 1s linear infinite; }
+@keyframes defile { to { stroke-dashoffset: -10; } }
+.apparait { animation: apparait .45s ease-out both; }
+@keyframes apparait { from { opacity: 0; transform: scale(.85); } }
+.cible-dir { cursor: pointer; }
+.cible-dir circle { transition: r .2s, fill .2s; }
+.cible-dir:hover circle, .cible-dir.on circle { fill: #ffffff; }
+.voile-carte { transition: opacity .4s, filter .4s; }
+.voile-carte.non { opacity: .22; filter: grayscale(1); }
+.voile-carte .ok { opacity: 0; transition: opacity .3s; }
+.voile-carte.top .ok { opacity: 1; }
+.jauge-niveau { transition: height .6s ease, y .6s ease, fill .6s; }
+.roule { transform-box: fill-box; transform-origin: center; animation: roule .25s linear infinite; }
+@keyframes roule { 0% { transform: rotate(-14deg) scale(1.05); } 50% { transform: rotate(14deg) scale(.95); } 100% { transform: rotate(-14deg) scale(1.05); } }
+.fleche-vent { transition: transform 1s cubic-bezier(.3,1.3,.6,1); }
+.tremble { transform-box: fill-box; transform-origin: 0 100%; animation: tremble .12s linear infinite; }
+@keyframes tremble { 50% { transform: skewX(-6deg) scaleX(.94); } }
+.envol { transform-box: fill-box; transform-origin: 0 100%; transition: transform 1.1s ease-in, opacity 1.1s ease-in; transform: translate(150px, -70px) rotate(50deg); opacity: 0; }
+.spi { transition: transform .8s ease-out, opacity .8s ease-out; }
+.carte-rep { transition: transform .6s cubic-bezier(.3,1.3,.6,1); }
+.aiguille { transform-box: view-box; transform-origin: 200px 116px; transition: transform 2.2s cubic-bezier(.15,.85,.25,1); }
+.confetti rect { animation: confetti 1.6s ease-out forwards; transform-box: fill-box; }
+@keyframes confetti { from { transform: translate(0,0) rotate(0); opacity: 1; } to { transform: translate(var(--dx), var(--dy)) rotate(540deg); opacity: 0; } }
+
+/* --- Façon 2 : le guide dans la partie --- */
+.ecran-jeu { position: relative; overflow: hidden; background: #06243b; height: 460px; user-select: none; }
+.ej-barre { position: absolute; inset: 0 0 auto 0; height: 38px; display: flex; align-items: center; gap: 12px; padding: 0 12px; background: #04121f; border-bottom: 1px solid var(--bord); font-size: 13px; }
+.ej-barre b { letter-spacing: .04em; }
+.ej-barre .ej-tour { margin-left: auto; background: #11283d; border-radius: 8px; padding: 3px 8px; }
+.ej-carte { position: absolute; left: 0; top: 38px; bottom: 0; right: 260px; }
+.ej-carte svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ej-vent { position: absolute; right: 12px; top: 10px; background: #0b2236; border: 1px solid var(--bord); border-radius: 999px; padding: 5px 12px; font-weight: 700; font-size: 13px; }
+.ej-vent i { color: var(--orange); font-style: normal; margin-right: 6px; }
+.ej-cible { position: absolute; width: 44px; height: 44px; border-radius: 50%; }
+.ej-dock { position: absolute; left: 10px; right: 10px; bottom: 10px; background: rgba(11,34,54,.95); border: 1px solid var(--bord); border-radius: 14px; padding: 8px; display: flex; gap: 6px; align-items: stretch; }
+.ej-voiles { display: flex; gap: 6px; flex: 1; overflow: hidden; }
+.ej-v { flex: 1 1 0; min-width: 44px; background: #11283d; border: 1px solid var(--bord); border-radius: 10px; text-align: center; font-size: 11px; padding: 4px 2px; color: var(--muted); }
+.ej-v b { display: block; color: var(--texte); font-size: 12px; }
+.ej-v.choisie { border-color: var(--cyan); box-shadow: 0 0 0 2px var(--cyan) inset; color: var(--texte); }
+.ej-valider { background: var(--cyan); color: #04121f; border: 0; border-radius: 10px; font-weight: 800; padding: 0 18px; font: inherit; font-weight: 800; }
+.ej-valider.presse { transform: scale(.92); filter: brightness(1.3); }
+.ej-cote { position: absolute; right: 0; top: 38px; bottom: 0; width: 260px; border-left: 1px solid var(--bord); background: #081a2b; padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+.ej-cote div { background: #0b2236; border: 1px solid var(--bord); border-radius: 10px; color: var(--muted); font-size: 12px; padding: 8px; }
+.ej-3d { flex: 0 0 120px; background: linear-gradient(#7fb6e0, #3a78a8 60%, #0e4a73 60%) !important; }
+.ej-spot { position: absolute; border-radius: 14px; border: 3px solid var(--jaune); box-shadow: 0 0 0 2000px rgba(2,8,15,.72); transition: left .55s, top .55s, width .55s, height .55s, box-shadow .4s, border-color .4s; pointer-events: none; z-index: 5; animation: halo 1.4s ease-in-out infinite; }
+.ej-spot.cache { box-shadow: 0 0 0 2000px rgba(2,8,15,0); border-color: transparent; animation: none; }
+@keyframes halo { 50% { outline: 6px solid rgba(255,209,102,.35); outline-offset: 2px; } }
+.ej-main { position: absolute; z-index: 7; font-size: 34px; transition: left .7s ease, top .7s ease, opacity .3s; pointer-events: none; filter: drop-shadow(0 3px 4px rgba(0,0,0,.5)); }
+.ej-main.tape { animation: tape .9s ease-in-out infinite; }
+@keyframes tape { 0%, 100% { transform: translate(0, 0); } 45% { transform: translate(0, -10px); } 55% { transform: translate(0, 2px) scale(.92); } }
+.ej-bulle { position: absolute; z-index: 8; background: var(--coach); color: var(--coach-encre); border: 2px solid var(--coach-bord); border-radius: 14px; padding: 8px 12px; font-weight: 750; font-size: 16px; max-width: 240px; box-shadow: 0 10px 24px rgba(0,0,0,.45); transition: left .55s, top .55s, opacity .3s; }
+.ej-titre { position: absolute; z-index: 8; left: 50%; top: 42%; transform: translate(-50%, -50%); background: rgba(4,18,31,.92); border: 2px solid var(--cyan); border-radius: 16px; padding: 14px 22px; font-size: 24px; font-weight: 800; text-align: center; white-space: nowrap; }
+.ej-titre .ej-boutons { display: flex; gap: 8px; justify-content: center; margin-top: 10px; }
+.ej-titre .btn { font-size: 14px; }
+.ej-frise { position: absolute; z-index: 8; left: 50%; top: 46px; transform: translateX(-50%); display: flex; gap: 4px; }
+.ej-frise span { font-size: 11px; padding: 2px 8px; border-radius: 999px; background: #11283d; color: var(--muted); white-space: nowrap; }
+.ej-frise span.on { background: var(--cyan); color: #04121f; font-weight: 700; }
+.ej-route { opacity: 0; transition: opacity .4s; }
+.ej-route.on { opacity: 1; }
+.ej-moi { transition: transform 1.6s ease-in-out; }
+
+@media (max-width: 640px) {
+  main { padding: 12px; }
+  .phrase { font-size: 18px; }
+  .ej-cote, .ej-barre .muted { display: none; }
+  .ej-carte { right: 0; }
+  .ecran-jeu { height: 520px; }
+  .ej-titre { font-size: 19px; white-space: normal; width: 86%; }
+  .ej-frise { top: 44px; }
+  .ej-frise span { font-size: 10px; padding: 2px 6px; }
+}
+</style>
+</head>
+<body>
+<main>
+  <div class="lbl">Course au large · nouveau tutoriel · maquette à valider</div>
+  <h1>Deux façons d'animer le tutoriel</h1>
+  <p class="intro">Maquette pour choisir : rien n'est encore dans le jeu. Phrases courtes, plus d'images que de texte. Le scénario complet est dans <code>tutoriel-anime.md</code>.</p>
+
+  <div class="onglets" role="tablist">
+    <button class="onglet" role="tab" id="tab-film" aria-selected="true"><b>Façon 1 · Le petit film <span class="reco">conseillée, avec la façon 2 au 1er tour</span></b><span>9 scènes animées avant la course, environ 2 minutes. On touche, on regarde, on comprend.</span></button>
+    <button class="onglet" role="tab" id="tab-guide" aria-selected="false"><b>Façon 2 · Le guide dans la partie</b><span>Une vraie course. L'écran s'assombrit, sauf ce qu'il faut toucher ; une main montre le geste.</span></button>
+  </div>
+
+  <!-- ============ FAÇON 1 : LE PETIT FILM ============ -->
+  <section id="film">
+    <div class="cadre">
+      <div class="frise" id="frise" hidden>
+        <span>👆 Choisis</span><span>🎲 Le vent</span><span>⛵ Les voiles</span><span>🎡 Le large</span><span>➜ Ça avance</span>
+      </div>
+      <div class="titre-scene lbl" id="titreScene"></div>
+      <div class="scene" id="scene"></div>
+      <div class="phrase" id="phrase"></div>
+      <div class="petit" id="petit"></div>
+      <div class="centre" id="finFilm" hidden><button class="btn btn-principal gros" id="aToi">⛵ À toi de jouer !</button></div>
+      <div class="nav">
+        <button class="btn" id="prec">◀</button>
+        <div class="points" id="points"></div>
+        <button class="btn btn-principal" id="suiv">Suivant ▶</button>
+      </div>
+    </div>
+    <div class="note" id="noteScene"></div>
+  </section>
+
+  <!-- ============ FAÇON 2 : LE GUIDE DANS LA PARTIE ============ -->
+  <section id="guide" hidden>
+    <div class="cadre">
+      <div class="ecran-jeu" id="ecranJeu">
+        <div class="ej-barre"><b>COURSE AU LARGE</b><span class="muted">Route du Rhum · IMOCA</span><span class="ej-tour" id="ejTour">Tour 1 · Choix du cap</span></div>
+        <div class="ej-carte" id="ejCarte">
+          <svg viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><linearGradient id="merG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f4d78"/><stop offset="1" stop-color="#06243b"/></linearGradient></defs>
+            <rect width="600" height="420" fill="url(#merG)"/>
+            <path d="M600 0 L600 250 Q560 240 540 210 Q520 190 470 178 Q440 175 430 150 Q445 120 470 112 Q440 80 455 40 Q470 10 460 0 Z" fill="#efe3c8"/>
+            <path d="M380 0 Q400 40 390 70 Q370 95 395 110 L410 90 Q420 50 410 0 Z" fill="#efe3c8"/>
+            <text x="470" y="168" fill="#04121f" font-size="13" font-weight="700">Saint-Malo</text>
+            <g class="ej-route" id="ejRoute"><line x1="445" y1="150" x2="330" y2="118" stroke="#fff" stroke-width="2.5" class="trace"/><circle cx="330" cy="118" r="7" fill="none" stroke="#3dd6f5" stroke-width="3"/></g>
+            <g class="ej-moi" id="ejMoi"><g transform="translate(445 150) rotate(-74)"><path d="M0 -13 C6 -5 6 6 4 11 L-4 11 C-6 6 -6 -5 0 -13 Z" fill="#a78bfa" stroke="#fff" stroke-width="1.5"/></g></g>
+          </svg>
+          <div class="ej-vent" id="ejVent"><i>↖</i>SE · F3</div>
+          <div class="ej-cible" id="ejCible"></div>
+          <div class="ej-dock" id="ejDock">
+            <div class="ej-voiles">
+              <div class="ej-v"><b>Réduite</b>150</div><div class="ej-v"><b>J3</b>150</div><div class="ej-v"><b>Solent</b>150</div><div class="ej-v"><b>Code 0</b>210</div><div class="ej-v" id="ejGenn"><b>Gennaker</b>270</div><div class="ej-v"><b>Spi</b>360</div>
+            </div>
+            <button class="ej-valider" id="ejValider">Valider</button>
+          </div>
+        </div>
+        <div class="ej-cote"><div class="ej-3d">Vue 3D du bateau</div><div>Jérémie Beyou · Coriace</div><div style="flex:1">Journal de bord</div></div>
+        <div class="ej-frise" id="ejFrise" hidden><span>👆 Choisis</span><span>🎲 Le vent</span><span>⛵ Les voiles</span><span>🎡 Le large</span><span>➜ Ça avance</span></div>
+        <div class="ej-spot cache" id="ejSpot"></div>
+        <div class="ej-main" id="ejMain">👆</div>
+        <div class="ej-bulle" id="ejBulle"></div>
+        <div class="ej-titre" id="ejTitre" hidden></div>
+      </div>
+      <div class="nav">
+        <button class="btn" id="gPrec">◀</button>
+        <div class="points" id="gPoints"></div>
+        <button class="btn btn-principal" id="gSuiv">Suivant ▶</button>
+      </div>
+    </div>
+    <div class="note" id="gNote"></div>
+  </section>
+</main>
+
+<script>
+(() => {
+  'use strict';
+  // ---------- Outils ----------
+  let minuteurs = [];
+  const plus = (f, ms) => { const t = setTimeout(f, ms); minuteurs.push(t); return t; };
+  const chaque = (f, ms) => { const t = setInterval(f, ms); minuteurs.push(t); return t; };
+  const stop = () => { minuteurs.forEach((t) => { clearTimeout(t); clearInterval(t); }); minuteurs = []; };
+  const $ = (id) => document.getElementById(id);
+  const hasard = (l) => l[Math.floor(Math.random() * l.length)];
+  const rad = (a) => (a * Math.PI) / 180;
+
+  // Petits dessins réutilisés
+  const mer = (id = 'm') => `<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f4d78"/><stop offset="1" stop-color="#06243b"/></linearGradient></defs><rect width="400" height="240" fill="url(#${id})"/>`;
+  const coque = (couleur) => `<path d="M0 -13 C6 -5 6 6 4 11 L-4 11 C-6 6 -6 -5 0 -13 Z" fill="${couleur}" stroke="#fff" stroke-width="1.5"/>`;
+  const souffle = (n = 14, x0 = 20, x1 = 380) => {
+    let s = '<g class="souffle">';
+    for (let i = 0; i < n; i++) {
+      const x = x0 + ((x1 - x0) * (i + 0.5)) / n + (i % 2 ? 6 : -6);
+      const y = 30 + ((i * 53) % 150);
+      s += `<line x1="${x}" y1="${y}" x2="${x}" y2="${y + 16}" style="animation-delay:${((i * 0.37) % 1.8).toFixed(2)}s"/>`;
+    }
+    return s + '</g>';
+  };
+  const flecheVent = (x, y, l = 30) => `<path d="M${x} ${y} L${x} ${y + l} M${x - 8} ${y + l - 10} L${x} ${y + l} L${x + 8} ${y + l - 10}" stroke="#ff9f43" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+  // Bateau vu de côté (ligne de flottaison en 0, étrave à droite)
+  const bateauCote = (avecSpi = true) => `
+    <path d="M-58 0 L60 0 L48 14 L-50 14 Z" fill="#a78bfa" stroke="#fff" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="0" y2="-104" stroke="#e6eef5" stroke-width="3"/>
+    <path d="M-3 -100 L-3 -6 L-48 -6 Z" fill="#f4f7fb"/>
+    ${avecSpi ? '<g class="spi" id="spi"><path d="M4 -98 Q78 -70 62 -8 L6 -8 Z" fill="#ff9f43" stroke="#ffd2a8" stroke-width="1.5"/></g>' : ''}`;
+  const vagues = (y, couleur = '#2b6f9c') => `<g class="vague"><path d="M0 ${y} Q25 ${y - 6} 50 ${y} T100 ${y} T150 ${y} T200 ${y} T250 ${y} T300 ${y} T350 ${y} T400 ${y} L400 240 L0 240 Z" fill="${couleur}"/></g>`;
+
+  // ---------- Les 9 scènes du petit film ----------
+  const scenes = [
+    {
+      titre: '1 · Le but',
+      phrase: "Traverse l'océan à la voile.",
+      petit: 'Le premier arrivé gagne !',
+      note: "Le but du jeu en une image : de Saint-Malo à la Guadeloupe, deux bateaux font la course (toi en violet, l'adversaire en jaune). Animation en boucle.",
+      svg: () => `<svg viewBox="0 0 400 240">${mer()}
+        <path d="M400 0 L400 120 Q372 112 352 92 Q334 74 306 70 Q296 44 306 18 Q312 6 306 0 Z" fill="#efe3c8"/>
+        <text x="318" y="52" fill="#04121f" font-size="12" font-weight="700">Saint-Malo</text>
+        <g fill="#efe3c8"><circle cx="46" cy="200" r="8"/><circle cx="60" cy="206" r="5"/><circle cx="30" cy="186" r="4"/></g>
+        <text x="72" y="222" fill="#efe3c8" font-size="12" font-weight="700">Guadeloupe</text>
+        <path id="route1" d="M306 76 C 250 96, 150 150, 52 192" fill="none" stroke="#fff" stroke-width="2" class="trace" opacity=".7"/>
+        <g transform="translate(52 192)"><line x1="0" y1="0" x2="0" y2="-24" stroke="#fff" stroke-width="2"/><path class="drapeau" d="M0 -24 L16 -19 L0 -14 Z" fill="#ff5d5d"/></g>
+        <g>${coque('#ffd166')}<animateMotion dur="7s" repeatCount="indefinite" rotate="auto" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#route1"/></animateMotion><animateTransform attributeName="transform" type="rotate" values="90" dur="7s" repeatCount="indefinite" additive="sum"/></g>
+        <g>${coque('#a78bfa')}<animateMotion dur="6.3s" repeatCount="indefinite" rotate="auto"><mpath href="#route1"/></animateMotion><animateTransform attributeName="transform" type="rotate" values="90" dur="6.3s" repeatCount="indefinite" additive="sum"/></g>
+      </svg>`,
+    },
+    {
+      titre: '2 · Le vent et le cap',
+      phrase: 'Le vent vient de la flèche orange.',
+      petit: 'Touche un rond bleu pour choisir où aller !',
+      note: "Scène à toucher. Le cercle de couleurs autour du bateau est la rose des allures de l'écran des règles. Face au vent (gris), le bateau zigzague et avance moins (le louvoyage) ; de côté ou vent dans le dos, il file. Sans toucher, la scène se joue toute seule.",
+      svg: () => {
+        const c = { x: 200, y: 140 }, r = 66;
+        const secteur = (a0, a1, coul) => {
+          const p = (a) => `${c.x + r * Math.sin(rad(a))} ${c.y - r * Math.cos(rad(a))}`;
+          return `<path d="M${c.x} ${c.y} L${p(a0)} A${r} ${r} 0 0 1 ${p(a1)} Z" fill="${coul}" opacity=".42"/>`;
+        };
+        let cibles = '';
+        [0, 45, 90, 135, 180, 225, 270, 315].forEach((h) => {
+          const x = c.x + 84 * Math.sin(rad(h)), y = c.y - 84 * Math.cos(rad(h));
+          cibles += `<g class="cible-dir" data-cap="${h}" role="button" aria-label="Cap ${h}°"><circle cx="${x}" cy="${y}" r="9" fill="#3dd6f5" stroke="#04121f" stroke-width="2"/></g>`;
+        });
+        return `<svg viewBox="0 0 400 240">${mer()}${souffle(12)}
+          ${secteur(-45, 45, '#5c6f80')}${secteur(45, 80, '#3dd6f5')}${secteur(-80, -45, '#3dd6f5')}${secteur(80, 120, '#4cc38a')}${secteur(-120, -80, '#4cc38a')}${secteur(120, 160, '#ffd166')}${secteur(-160, -120, '#ffd166')}${secteur(160, 200, '#ff9f43')}
+          ${flecheVent(200, 6, 32)}<text x="214" y="24" fill="#ff9f43" font-size="12" font-weight="700">le vent</text>
+          <g id="trace2"></g>
+          <g transform="translate(${c.x} ${c.y})"><g class="cap-bateau" id="bateau2"><g transform="scale(1.5)">${coque('#a78bfa')}</g></g></g>
+          ${cibles}
+        </svg>`;
+      },
+      init: () => {
+        const c = { x: 200, y: 140 };
+        const textes = {
+          0: ['Face au vent : on zigzague.', "C'est le louvoyage : on avance moins."],
+          45: ['Près du vent : ça remonte.', 'Bien, mais pas le plus rapide.'],
+          90: ['Vent de côté : ça file !', ''],
+          135: ['Vent de biais, dans le dos : ça file !', ''],
+          180: ['Vent dans le dos : sors le spi !', ''],
+        };
+        const vitesse = { 0: 0.6 * 0.8, 45: 0.8, 90: 1, 135: 1.1, 180: 0.95 };
+        let auto = true;
+        const montrer = (h) => {
+          const k = h > 180 ? 360 - h : h;
+          $('bateau2').style.transform = `rotate(${h}deg)`;
+          document.querySelectorAll('.cible-dir').forEach((g) => g.classList.toggle('on', +g.dataset.cap === h));
+          const L = 80 * vitesse[k];
+          let d;
+          if (k === 0) {
+            // zigzag : bords à ±40° du vent, pour une avance de L vers le vent
+            const pts = [[c.x, c.y]]; let x = c.x, y = c.y;
+            for (let i = 0; i < 5; i++) { const s = i % 2 ? -1 : 1; x += (i === 0 ? 1 : 2) * s * 14; y -= 56 / 5; pts.push([x, y]); }
+            d = 'M' + pts.map((p) => p.join(' ')).join(' L');
+          } else {
+            d = `M${c.x} ${c.y} L${c.x + L * Math.sin(rad(h))} ${c.y - L * Math.cos(rad(h))}`;
+          }
+          const fin = d.split(' L').pop().replace('M', '').split(' ');
+          $('trace2').innerHTML = `<path d="${d}" fill="none" stroke="#fff" stroke-width="2.5" class="trace apparait"/><circle cx="${fin[0]}" cy="${fin[1]}" r="6" fill="none" stroke="${k === 0 ? '#9fb3c8' : '#3dd6f5'}" stroke-width="3" class="apparait"/>`;
+          $('phrase').textContent = textes[k][0];
+          $('petit').textContent = textes[k][1] || 'Essaie un autre rond bleu !';
+        };
+        document.querySelectorAll('.cible-dir').forEach((g) => g.addEventListener('click', () => { auto = false; montrer(+g.dataset.cap); }));
+        const demo = [0, 90, 180, 45, 135, 270, 0];
+        let i = 0;
+        plus(() => { if (auto) montrer(demo[i++]); }, 1800);
+        chaque(() => { if (auto) montrer(demo[i++ % demo.length]); }, 3000);
+      },
+    },
+    {
+      titre: '3 · Les voiles',
+      phrase: 'Plus il y a de vent, plus la voile est petite.',
+      petit: 'Le jeu te propose la bonne voile.',
+      note: "Les plages du jeu (14/11) : spi jusqu'à F4-F5, solent jusqu'à F5, J3 jusqu'à F7, voilure réduite jusqu'à F9 ; au-delà, à la cape. La jauge monte toute seule ; les voiles qui ne tiennent plus se grisent, comme dans le jeu. Les autres voiles (code 0, gennaker, spi de gros temps) sont dans les règles.",
+      svg: () => {
+        const voile = (x, nom, forme, id) => `<g class="voile-carte" id="${id}" transform="translate(${x} 40)">
+          <rect x="0" y="0" width="64" height="150" rx="10" fill="#11283d" stroke="#1f3d5a"/>
+          <g transform="translate(14 118)"><path d="M-6 0 L46 0 L40 8 L-2 8 Z" fill="#a78bfa"/><line x1="12" y1="0" x2="12" y2="-92" stroke="#e6eef5" stroke-width="2"/>${forme}</g>
+          <text x="32" y="140" text-anchor="middle" fill="#e6eef5" font-size="12" font-weight="700">${nom}</text>
+          <g class="ok"><circle cx="54" cy="12" r="9" fill="#4cc38a"/><path d="M49 12 L53 16 L59 8" stroke="#04121f" stroke-width="2.5" fill="none"/></g>
+        </g>`;
+        return `<svg viewBox="0 0 400 240">${mer()}${souffle(10, 20, 110)}
+          <g transform="translate(26 40)">
+            <rect x="0" y="0" width="34" height="150" rx="8" fill="#11283d" stroke="#1f3d5a"/>
+            <rect class="jauge-niveau" id="jauge" x="4" y="110" width="26" height="36" rx="5" fill="#4cc38a"/>
+          </g>
+          <text id="jaugeTxt" x="43" y="210" text-anchor="middle" fill="#e6eef5" font-size="13" font-weight="700">F3</text>
+          <text id="jaugeNom" x="43" y="226" text-anchor="middle" fill="#9fb3c8" font-size="11">petit vent</text>
+          ${voile(96, 'Spi', '<path d="M14 -90 Q60 -66 46 -4 L14 -4 Z" fill="#ff9f43"/>', 'v-spi')}
+          ${voile(170, 'Solent', '<path d="M14 -88 L40 -4 L14 -4 Z" fill="#f4f7fb"/>', 'v-solent')}
+          ${voile(244, 'J3', '<path d="M14 -64 L34 -4 L14 -4 Z" fill="#f4f7fb"/>', 'v-j3')}
+          ${voile(318, 'Réduite', '<path d="M14 -40 L28 -4 L14 -4 Z" fill="#f4f7fb"/><path d="M10 -44 L10 -4 L-4 -4 Z" fill="#cfd8e3"/>', 'v-reduite')}
+          <text id="cape" x="250" y="222" text-anchor="middle" fill="#ff5d5d" font-size="14" font-weight="800" opacity="0">Tempête : à la cape, on range tout</text>
+        </svg>`;
+      },
+      init: () => {
+        const niveaux = [
+          { f: 'F3', nom: 'petit vent', h: 36, coul: '#4cc38a', ok: ['spi', 'solent', 'j3', 'reduite'], top: 'spi' },
+          { f: 'F6', nom: 'bon vent', h: 76, coul: '#ffd166', ok: ['j3', 'reduite'], top: 'j3' },
+          { f: 'F8', nom: 'vent fort', h: 110, coul: '#ff9f43', ok: ['reduite'], top: 'reduite' },
+          { f: 'F10', nom: 'tempête', h: 142, coul: '#ff5d5d', ok: [], top: null },
+        ];
+        let i = 0;
+        const montrer = () => {
+          const n = niveaux[i % niveaux.length]; i++;
+          const j = $('jauge'); j.setAttribute('height', n.h); j.setAttribute('y', 146 - n.h); j.setAttribute('fill', n.coul);
+          $('jaugeTxt').textContent = n.f; $('jaugeNom').textContent = n.nom;
+          ['spi', 'solent', 'j3', 'reduite'].forEach((v) => {
+            const g = $('v-' + v); g.classList.toggle('non', !n.ok.includes(v)); g.classList.toggle('top', n.ok.includes(v));
+          });
+          $('cape').setAttribute('opacity', n.top ? 0 : 1);
+          document.querySelector('#scene svg').classList.toggle('vite', i % niveaux.length === 0 || i % niveaux.length === 3);
+        };
+        montrer();
+        chaque(montrer, 2600);
+      },
+    },
+    {
+      titre: '4 · Ton tour',
+      frise: 0,
+      phrase: 'Touche la mer où tu veux aller.',
+      petit: 'Puis « Valider ». Tout le monde choisit en même temps.',
+      note: "Le seul geste du joueur à chaque tour, montré par une main : toucher la mer (la route en pointillés apparaît, la voile conseillée est déjà choisie), puis « Valider ». La frise en haut montre les 5 temps du tour : elle revient dans les scènes suivantes et dans le jeu.",
+      svg: () => `<svg viewBox="0 0 400 240">${mer()}
+        <path d="M400 0 L400 130 Q370 122 352 100 Q334 82 306 78 Q296 50 306 22 L304 0 Z" fill="#efe3c8"/>
+        <rect x="272" y="10" width="112" height="24" rx="12" fill="#0b2236" stroke="#1f3d5a"/><text x="328" y="27" text-anchor="middle" fill="#e6eef5" font-size="12" font-weight="700"><tspan fill="#ff9f43">↖</tspan> vent F3</text>
+        <g id="route4" opacity="0"><line x1="290" y1="92" x2="170" y2="104" stroke="#fff" stroke-width="2.5" class="trace"/><circle cx="170" cy="104" r="7" fill="none" stroke="#3dd6f5" stroke-width="3"/></g>
+        <g transform="translate(290 92) rotate(-95)">${coque('#a78bfa')}</g>
+        <rect x="10" y="176" width="380" height="56" rx="12" fill="#0b2236" stroke="#1f3d5a"/>
+        ${['J3', 'Solent', 'Code 0', 'Genn.'].map((n, k) => `<g id="carte4-${k}"><rect x="${20 + k * 62}" y="184" width="56" height="40" rx="8" fill="#11283d" stroke="#1f3d5a" stroke-width="2"/><text x="${48 + k * 62}" y="208" text-anchor="middle" fill="#e6eef5" font-size="12" font-weight="700">${n}</text></g>`).join('')}
+        <g id="valider4"><rect x="282" y="186" width="98" height="36" rx="10" fill="#3dd6f5"/><text x="331" y="209" text-anchor="middle" fill="#04121f" font-size="14" font-weight="800">Valider</text></g>
+        <g id="main4" style="transition: transform .8s ease"><text font-size="30" x="0" y="0">👆</text></g>
+        <circle id="onde4" cx="0" cy="0" r="4" fill="none" stroke="#fff" stroke-width="2" opacity="0"/>
+      </svg>`,
+      init: () => {
+        const main = $('main4'), onde = $('onde4');
+        const aller = (x, y) => { main.style.transform = `translate(${x - 10}px, ${y + 4}px)`; };
+        const toucher = (x, y) => {
+          onde.setAttribute('cx', x); onde.setAttribute('cy', y);
+          onde.animate([{ r: 4, opacity: 1 }, { r: 22, opacity: 0 }], { duration: 600 });
+        };
+        const boucle = () => {
+          $('route4').setAttribute('opacity', 0);
+          $('carte4-3').querySelector('rect').setAttribute('stroke', '#1f3d5a');
+          $('valider4').style.filter = '';
+          aller(360, 250);
+          plus(() => aller(170, 104), 600);
+          plus(() => { toucher(170, 104); $('route4').setAttribute('opacity', 1); }, 1500);
+          plus(() => $('carte4-3').querySelector('rect').setAttribute('stroke', '#3dd6f5'), 2100);
+          plus(() => aller(331, 204), 2900);
+          plus(() => { toucher(331, 204); $('valider4').style.filter = 'brightness(1.35)'; }, 3800);
+        };
+        boucle();
+        chaque(boucle, 5600);
+      },
+    },
+    {
+      titre: '5 · Le vent change',
+      frise: 1,
+      phrase: 'Puis les dés font tourner le vent.',
+      petit: 'Ton bateau avance avec ce vent-là. Bien deviné ?',
+      note: "Les deux dés du vent, comme dans le jeu (dé rond : la direction ; dé carré : la force). Faces réelles : le vent tourne d'un huitième de tour à gauche, à droite ou pas du tout ; la force fait −2, −1, 0, 0, +1 ou +2. Le joueur a choisi AVANT les dés : c'est le cœur du jeu.",
+      svg: () => `<svg viewBox="0 0 400 240">${mer()}
+        <g id="deDir"><circle cx="130" cy="78" r="38" fill="#3dd6f5"/><path d="M110 78 A20 20 0 1 1 130 98" stroke="#04121f" stroke-width="5" fill="none"/><path d="M122 92 L130 99 L122 106" stroke="#04121f" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+        <g id="deForce"><rect x="232" y="40" width="76" height="76" rx="14" fill="#ff9f43"/>${[0, 1, 2, 3, 4].map((k) => `<rect x="${246 + k * 10}" y="${96 - k * 9}" width="7" height="${10 + k * 9}" rx="2" fill="#04121f" opacity="${k < 3 ? 1 : 0.3}"/>`).join('')}</g>
+        <text id="resDir" x="130" y="138" text-anchor="middle" fill="#e6eef5" font-size="15" font-weight="800"></text>
+        <text id="resForce" x="270" y="138" text-anchor="middle" fill="#e6eef5" font-size="15" font-weight="800"></text>
+        <circle cx="200" cy="196" r="34" fill="#0b2236" stroke="#1f3d5a"/>
+        <text x="200" y="168" text-anchor="middle" fill="#9fb3c8" font-size="9">N</text>
+        <g transform="translate(200 196)"><g class="fleche-vent" id="fleche5"><path d="M0 -26 L0 10 M-8 2 L0 12 L8 2" stroke="#ff9f43" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+        <text id="vent5" x="252" y="200" fill="#e6eef5" font-size="14" font-weight="800">F3</text>
+      </svg>`,
+      init: () => {
+        let dir = 135, force = 3; // vent de sud-est, F3 (le vent souffle vers le nord-ouest ; la flèche montre d'où il vient)
+        const pose = () => { $('fleche5').style.transform = `rotate(${dir}deg)`; $('vent5').textContent = 'F' + force; };
+        pose();
+        const lancer = () => {
+          $('resDir').textContent = ''; $('resForce').textContent = '';
+          $('deDir').classList.add('roule'); $('deForce').classList.add('roule');
+          plus(() => {
+            $('deDir').classList.remove('roule'); $('deForce').classList.remove('roule');
+            const d = hasard([-45, -45, 0, 0, 45, 45]);
+            let f = hasard([-2, -1, 0, 0, 1, 2]);
+            if (force + f < 2) f = 2 - force; if (force + f > 7) f = 7 - force;
+            $('resDir').textContent = d === 0 ? 'ne tourne pas' : d > 0 ? 'tourne ↻' : 'tourne ↺';
+            $('resForce').textContent = f === 0 ? 'force : pareil' : `force ${f > 0 ? '+' : ''}${f}`;
+            plus(() => { dir = (dir + d + 360) % 360; force += f; pose(); }, 500);
+          }, 1300);
+        };
+        plus(lancer, 400);
+        chaque(lancer, 4400);
+      },
+    },
+    {
+      titre: '6 · Trop de vent ?',
+      frise: 2,
+      phrase: 'Trop de vent pour ta voile ? Elle lâche !',
+      petit: 'Tu avances moins. Une carte réparation peut la sauver.',
+      note: "L'étape des voiles (règles du 13-14/11) : si le vent forcit trop pour la voile hissée, elle lâche, le bateau ne fait qu'un tiers de sa route et n'a pas de dé du large ; une carte réparation la repêche (avec de l'usure en plus). Si le vent tourne et que la voile ne porte plus, on change de voile (moitié de la route). Dans la tempête, le mât peut casser : c'est la scène 8.",
+      svg: () => `<svg viewBox="0 0 400 240" id="svg6">${mer()}${souffle(16)}
+        <g transform="translate(190 176)"><g class="tangage">${bateauCote(true)}</g></g>
+        ${vagues(186)}
+        <rect x="290" y="12" width="98" height="26" rx="13" fill="#0b2236" stroke="#1f3d5a"/><text id="vent6" x="339" y="30" text-anchor="middle" fill="#e6eef5" font-size="13" font-weight="800"><tspan fill="#ff9f43">↓</tspan> F4</text>
+        <g id="banniere6" opacity="0"><rect x="22" y="14" width="250" height="30" rx="10" fill="#ff5d5d"/><text id="txt6" x="147" y="34" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">La voile lâche !</text></g>
+        <g class="carte-rep" id="carte6" style="transform: translateX(260px)"><rect x="296" y="70" width="88" height="110" rx="10" fill="#fff7e0" stroke="#ffb800" stroke-width="2"/><text x="340" y="112" text-anchor="middle" font-size="28">🔧</text><text x="340" y="140" text-anchor="middle" fill="#2a1d00" font-size="11" font-weight="800">Carte</text><text x="340" y="154" text-anchor="middle" fill="#2a1d00" font-size="11" font-weight="800">réparation</text></g>
+      </svg>`,
+      init: () => {
+        const svg = $('svg6');
+        const boucle = () => {
+          const spi = $('spi');
+          svg.classList.remove('vite'); spi.classList.remove('tremble', 'envol');
+          $('banniere6').setAttribute('opacity', 0); $('carte6').style.transform = 'translateX(260px)';
+          $('vent6').innerHTML = '<tspan fill="#ff9f43">↓</tspan> F4';
+          plus(() => { svg.classList.add('vite'); $('vent6').innerHTML = '<tspan fill="#ff9f43">↓</tspan> F6 !'; spi.classList.add('tremble'); }, 1400);
+          plus(() => { spi.classList.remove('tremble'); spi.classList.add('envol'); $('txt6').textContent = 'Trop de toile : la voile lâche !'; $('banniere6').setAttribute('opacity', 1); }, 2900);
+          plus(() => { $('carte6').style.transform = 'translateX(0)'; }, 4300);
+          plus(() => { spi.classList.remove('envol'); $('txt6').textContent = 'Voile repêchée !'; $('banniere6').querySelector('rect').setAttribute('fill', '#4cc38a'); }, 5300);
+          plus(() => { $('banniere6').querySelector('rect').setAttribute('fill', '#ff5d5d'); }, 7400);
+        };
+        boucle();
+        chaque(boucle, 7600);
+      },
+    },
+    {
+      titre: '7 · La roue du large',
+      frise: 3,
+      phrase: 'La roue du large : rien, une question… ou une carte !',
+      petit: 'Mauvaise réponse ? Ta voile s\'use un peu.',
+      note: "La boussole du large (une par joueur, toutes ensemble) : 1, rien ; 2 ou 3, une question de culture marine (mauvaise réponse : la voile s'use de 20 %) ; 4, 5 ou 6, une carte du large (bonne nouvelle, histoire de mer ou avarie). Les exemples sont de vraies questions et de vraies cartes du jeu.",
+      svg: () => {
+        const c = { x: 200, y: 116 }, r = 78;
+        const parts = [['#5c6f80', '1'], ['#3dd6f5', '2'], ['#3dd6f5', '3'], ['#ffd166', '4'], ['#ffd166', '5'], ['#ffd166', '6']];
+        let s = '';
+        parts.forEach(([coul, n], k) => {
+          const a0 = k * 60, a1 = a0 + 60, p = (a) => `${c.x + r * Math.sin(rad(a))} ${c.y - r * Math.cos(rad(a))}`;
+          const m = a0 + 30;
+          s += `<path d="M${c.x} ${c.y} L${p(a0)} A${r} ${r} 0 0 1 ${p(a1)} Z" fill="${coul}" stroke="#04121f" stroke-width="2"/>`;
+          s += `<text x="${c.x + 52 * Math.sin(rad(m))}" y="${c.y - 52 * Math.cos(rad(m)) + 6}" text-anchor="middle" fill="#04121f" font-size="17" font-weight="800">${n}</text>`;
+        });
+        return `<svg viewBox="0 0 400 240">${mer()}${s}
+          <g class="aiguille" id="aiguille"><path d="M200 50 L208 116 L192 116 Z" fill="#fff" stroke="#04121f" stroke-width="2"/><circle cx="200" cy="116" r="11" fill="#04121f" stroke="#fff" stroke-width="2"/></g>
+          <g id="res7" opacity="0"><rect x="40" y="200" width="320" height="32" rx="10" fill="#fff7e0" stroke="#ffb800" stroke-width="2"/><text id="res7t" x="200" y="221" text-anchor="middle" fill="#2a1d00" font-size="13.5" font-weight="800"></text></g>
+        </svg>`;
+      },
+      init: () => {
+        let tours = 0;
+        const res = {
+          1: ['😌 Rien : la mer te laisse tranquille.'],
+          2: ['❓ De quelle couleur est le feu de tribord ?'],
+          3: ['❓ Quel côté appelle-t-on « bâbord » ?'],
+          4: ['🐬 Banc de dauphins : bonne nouvelle !'],
+          5: ['🌙 Une vraie nuit de sommeil : bonne nouvelle !'],
+          6: ['💥 Choc contre un OFNI : avarie !'],
+        };
+        const lancer = () => {
+          $('res7').setAttribute('opacity', 0);
+          const v = 1 + Math.floor(Math.random() * 6);
+          tours += 3;
+          $('aiguille').style.transform = `rotate(${tours * 360 + (v - 1) * 60 + 30}deg)`;
+          plus(() => { $('res7t').textContent = res[v][0]; $('res7').setAttribute('opacity', 1); }, 2300);
+        };
+        plus(lancer, 300);
+        chaque(lancer, 5000);
+      },
+    },
+    {
+      titre: '8 · Ça avance… gare aux fronts !',
+      frise: 4,
+      phrase: 'Les bateaux avancent. Gare aux fronts !',
+      petit: 'Un front, c\'est du gros vent qui se déplace. Dans la tempête, le mât peut casser.',
+      note: "Fin du tour : les bateaux avancent avec le nouveau vent. Un front (dépression) est annoncé à l'avance : sa route est en pointillés rouges ; dedans, gros vent, puis le vent bascule derrière. On l'évite ou on profite de son vent. Au-delà de F8, c'est la tempête : un dé (boussole de tempête) peut casser le mât (rapatriement au port) ou faire chavirer un multicoque.",
+      svg: () => `<svg viewBox="0 0 400 240">${mer()}
+        <path d="M400 0 L400 90 Q380 86 366 70 Q352 58 336 56 Q330 34 338 0 Z" fill="#efe3c8"/>
+        <path d="M-10 70 Q120 40 260 70 T420 66" fill="none" stroke="#ff5d5d" stroke-width="2.5" stroke-dasharray="3 7" opacity=".9"/>
+        <g id="front8">
+          <ellipse cx="0" cy="0" rx="56" ry="34" fill="#ff6e6e" opacity=".35"/>
+          <ellipse cx="-10" cy="-4" rx="36" ry="22" fill="#ff6e6e" opacity=".45"/>
+          <path d="M-4 -16 L-12 2 L-2 2 L-8 18 L8 -4 L-2 -4 L4 -16 Z" fill="#ffd166"/>
+          <text x="0" y="50" text-anchor="middle" fill="#ffb3b3" font-size="12" font-weight="800">front : gros vent</text>
+          <animateMotion dur="9s" repeatCount="indefinite" path="M-40 70 Q120 40 260 70 T460 66"/>
+        </g>
+        <path id="r8a" d="M330 90 C 280 120, 220 150, 150 170" fill="none" stroke="#fff" stroke-width="2" class="trace" opacity=".6"/>
+        <path id="r8b" d="M322 110 C 270 140, 210 170, 140 196" fill="none" stroke="#fff" stroke-width="2" class="trace" opacity=".6"/>
+        <g>${coque('#a78bfa')}<animateMotion dur="4.5s" repeatCount="indefinite" rotate="auto" keyTimes="0;0.7;1" keyPoints="0;1;1" calcMode="linear"><mpath href="#r8a"/></animateMotion><animateTransform attributeName="transform" type="rotate" values="90" dur="4.5s" repeatCount="indefinite" additive="sum"/></g>
+        <g>${coque('#ffd166')}<animateMotion dur="4.5s" repeatCount="indefinite" rotate="auto" keyTimes="0;0.7;1" keyPoints="0;1;1" calcMode="linear"><mpath href="#r8b"/></animateMotion><animateTransform attributeName="transform" type="rotate" values="90" dur="4.5s" repeatCount="indefinite" additive="sum"/></g>
+      </svg>`,
+    },
+    {
+      titre: '9 · L\'arrivée',
+      phrase: 'Coupe la ligne le premier : gagné !',
+      petit: 'La ligne est entre la bouée jaune et le bateau du comité.',
+      note: "L'arrivée : la course s'arrête à la fin du tour où le premier bateau coupe la ligne. Le bouton « À toi de jouer ! » lance la course du tutoriel, avec le guide de la façon 2 au premier tour.",
+      fin: true,
+      svg: () => `<svg viewBox="0 0 400 240">${mer()}
+        <line x1="118" y1="92" x2="292" y2="92" stroke="#fff" stroke-width="2" stroke-dasharray="6 6"/>
+        <g><circle cx="110" cy="92" r="11" fill="#ffd166" stroke="#fff" stroke-width="2"/></g>
+        <g transform="translate(306 92)"><path d="M-14 -6 L16 -6 L12 6 L-12 6 Z" fill="#e6eef5"/><line x1="0" y1="-6" x2="0" y2="-30" stroke="#e6eef5" stroke-width="2"/><path class="drapeau" d="M0 -30 L14 -26 L0 -22 Z" fill="#3dd6f5"/></g>
+        <g id="moi9" style="transition: transform 2.6s ease-in-out"><g transform="translate(205 0)">${coque('#a78bfa')}</g></g>
+        <g class="confetti" id="confetti9"></g>
+        <text id="premier9" x="205" y="60" text-anchor="middle" fill="#ffd166" font-size="26" font-weight="900" opacity="0">1er !</text>
+      </svg>`,
+      init: () => {
+        const boucle = () => {
+          const b = $('moi9');
+          b.style.transition = 'none'; b.style.transform = 'translateY(230px)'; $('premier9').setAttribute('opacity', 0); $('confetti9').innerHTML = '';
+          plus(() => { b.style.transition = 'transform 2.6s ease-in-out'; b.style.transform = 'translateY(60px)'; }, 80);
+          plus(() => {
+            let s = '';
+            const coul = ['#ffd166', '#3dd6f5', '#ff5d5d', '#4cc38a', '#a78bfa', '#ff9f43'];
+            for (let i = 0; i < 36; i++) {
+              const a = Math.random() * Math.PI * 2, d = 50 + Math.random() * 90;
+              s += `<rect x="203" y="88" width="6" height="9" fill="${coul[i % 6]}" style="--dx:${(Math.cos(a) * d).toFixed(0)}px;--dy:${(Math.sin(a) * d).toFixed(0)}px;animation-delay:${(Math.random() * 0.2).toFixed(2)}s"/>`;
+            }
+            $('confetti9').innerHTML = s; $('premier9').setAttribute('opacity', 1);
+          }, 1900);
+        };
+        boucle();
+        chaque(boucle, 5200);
+      },
+    },
+  ];
+
+  // ---------- Lecteur du petit film ----------
+  let n = 0;
+  const points = $('points');
+  scenes.forEach((_, k) => {
+    const b = document.createElement('button');
+    b.setAttribute('aria-label', `Scène ${k + 1}`);
+    b.addEventListener('click', () => montrerScene(k));
+    points.appendChild(b);
+  });
+  function montrerScene(k) {
+    stop();
+    n = Math.max(0, Math.min(scenes.length - 1, k));
+    const s = scenes[n];
+    $('titreScene').textContent = s.titre;
+    $('scene').innerHTML = s.svg();
+    $('phrase').textContent = s.phrase;
+    $('petit').textContent = s.petit || ' ';
+    $('noteScene').innerHTML = `<b>Pour le propriétaire :</b> ${s.note}`;
+    const frise = $('frise');
+    frise.hidden = s.frise === undefined;
+    [...frise.children].forEach((e, i) => e.classList.toggle('on', i === s.frise));
+    $('finFilm').hidden = !s.fin;
+    $('prec').disabled = n === 0;
+    $('suiv').disabled = n === scenes.length - 1;
+    [...points.children].forEach((b, i) => b.classList.toggle('on', i === n));
+    if (s.init) s.init();
+  }
+  $('prec').addEventListener('click', () => montrerScene(n - 1));
+  $('suiv').addEventListener('click', () => montrerScene(n + 1));
+  $('aToi').addEventListener('click', () => choisirOnglet('guide'));
+
+  // ---------- Façon 2 : le guide dans la partie ----------
+  const etapes = [
+    { cible: 'ejVent', texte: 'Le vent vient d\'ici.', tour: 'Tour 1 · Choix du cap', note: "L'écran de jeu s'assombrit, sauf la girouette du vent. Une seule phrase. On touche n'importe où pour continuer." },
+    { cible: 'ejCible', texte: 'Touche la mer ici.', main: true, tour: 'Tour 1 · Choix du cap', note: "La main montre un endroit sûr au large (pas « terre sur la route »). Le guide attend que le joueur touche la mer : la route en pointillés apparaît." },
+    { cible: 'ejDock', texte: 'Ta voile est déjà choisie.', route: true, genn: true, tour: 'Tour 1 · Choix du cap', note: "La voile conseillée s'allume. Pas d'explication des chiffres ici : elles sont dans les règles." },
+    { cible: 'ejValider', texte: 'Valider !', main: true, route: true, genn: true, tour: 'Tour 1 · Choix du cap', note: "Le guide attend le geste. Ensuite, plus d'assombrissement : on regarde le tour se jouer." },
+    { titre: '🎲 Le vent change !', frise: 1, route: true, genn: true, tour: 'Tour 1 · Le vent', note: "Pendant le tour, un grand titre et la frise des 5 temps suivent les animations du jeu (dés du vent, voiles, roue du large, déplacement). Un mot ou deux, pas plus." },
+    { titre: '🎡 La roue du large !', frise: 3, route: true, genn: true, tour: 'Tour 1 · Le large', note: "Question ou carte : la fenêtre habituelle du jeu s'ouvre ; le guide ne parle pas par-dessus." },
+    { titre: '➜ Ça avance !', frise: 4, route: true, genn: true, avance: true, tour: 'Tour 1 · La course', note: "Le bateau avance sur la carte." },
+    { cible: 'ejCarte', texte: 'À toi : même geste !', tour: 'Tour 2 · Choix du cap', avance: true, petitSpot: true, note: "Tour 2 : une seule bulle, sans main. Le joueur refait seul le geste." },
+    { titre: 'Bravo, tu sais jouer !', fin: true, avance: true, tour: 'Tour 3 · Choix du cap', note: "Après 2 ou 3 tours, le tutoriel s'arrête : « Continuer la course » ou « Accueil ». Plus tard, une petite bulle d'une ligne la première fois qu'arrive un front, une voile qui lâche, une carte réparation, une tempête ou l'arrivée." },
+  ];
+  let g = 0;
+  const gPoints = $('gPoints');
+  etapes.forEach((_, k) => {
+    const b = document.createElement('button');
+    b.setAttribute('aria-label', `Étape ${k + 1}`);
+    b.addEventListener('click', () => montrerEtape(k));
+    gPoints.appendChild(b);
+  });
+  function placer(el, cible, marge = 6) {
+    const e = $('ecranJeu').getBoundingClientRect(), r = cible.getBoundingClientRect();
+    el.style.left = `${r.left - e.left - marge}px`; el.style.top = `${r.top - e.top - marge}px`;
+    el.style.width = `${r.width + 2 * marge}px`; el.style.height = `${r.height + 2 * marge}px`;
+    return { x: r.left - e.left, y: r.top - e.top, w: r.width, h: r.height, W: e.width, H: e.height };
+  }
+  function montrerEtape(k) {
+    g = Math.max(0, Math.min(etapes.length - 1, k));
+    const s = etapes[g];
+    const spot = $('ejSpot'), main = $('ejMain'), bulle = $('ejBulle'), titre = $('ejTitre');
+    // Position de la cible « mer » : au large, à l'ouest-nord-ouest du bateau
+    const carte = $('ejCarte').getBoundingClientRect(), svg = $('ejCarte').querySelector('svg');
+    const sx = carte.width / 600, sy = carte.height / 420, sc = Math.max(sx, sy);
+    const ox = (carte.width - 600 * sc) / 2, oy = (carte.height - 420 * sc) / 2;
+    const cb = $('ejCible'); cb.style.left = `${ox + 330 * sc - 22}px`; cb.style.top = `${oy + 118 * sc - 22}px`;
+    $('ejRoute').classList.toggle('on', !!s.route || !!s.avance);
+    $('ejGenn').classList.toggle('choisie', !!s.genn);
+    $('ejMoi').style.transform = s.avance ? 'translate(-115px, -32px)' : '';
+    $('ejTour').textContent = s.tour;
+    $('ejValider').classList.toggle('presse', g === 4);
+    $('ejFrise').hidden = s.frise === undefined;
+    [...$('ejFrise').children].forEach((e, i) => e.classList.toggle('on', i === s.frise));
+    if (s.cible) {
+      spot.classList.toggle('cache', !!s.petitSpot);
+      const p = placer(spot, $(s.cible), s.cible === 'ejCible' ? 10 : 6);
+      bulle.style.opacity = 1; bulle.textContent = s.texte;
+      // Bulle au-dessus ou au-dessous de la cible, sans sortir de l'écran
+      const bw = Math.min(240, p.W - 24);
+      let bx = Math.min(Math.max(12, p.x + p.w / 2 - bw / 2), p.W - bw - 12);
+      let by = p.y > 90 ? p.y - 62 : p.y + p.h + 18;
+      if (s.cible === 'ejCarte') { bx = 24; by = 70; }
+      bulle.style.left = `${bx}px`; bulle.style.top = `${by}px`; bulle.style.maxWidth = `${bw}px`;
+      if (s.main) { main.style.opacity = 1; main.style.left = `${p.x + p.w / 2 - 10}px`; main.style.top = `${p.y + p.h / 2 - 4}px`; main.classList.add('tape'); }
+      else { main.style.opacity = 0; main.classList.remove('tape'); }
+      titre.hidden = true;
+    } else {
+      spot.classList.add('cache');
+      bulle.style.opacity = 0; main.style.opacity = 0; main.classList.remove('tape');
+      titre.hidden = false;
+      titre.innerHTML = s.fin ? `${s.titre}<div class="ej-boutons"><button class="btn btn-principal">Continuer la course</button><button class="btn">Accueil</button></div>` : s.titre;
+    }
+    $('gNote').innerHTML = `<b>Pour le propriétaire :</b> ${s.note}`;
+    $('gPrec').disabled = g === 0; $('gSuiv').disabled = g === etapes.length - 1;
+    [...gPoints.children].forEach((b, i) => b.classList.toggle('on', i === g));
+  }
+  $('gPrec').addEventListener('click', () => montrerEtape(g - 1));
+  $('gSuiv').addEventListener('click', () => montrerEtape(g + 1));
+  $('ecranJeu').addEventListener('click', () => { if (g < etapes.length - 1) montrerEtape(g + 1); });
+  window.addEventListener('resize', () => { if (!$('guide').hidden) montrerEtape(g); });
+
+  // ---------- Onglets ----------
+  function choisirOnglet(quoi) {
+    $('tab-film').setAttribute('aria-selected', quoi === 'film');
+    $('tab-guide').setAttribute('aria-selected', quoi === 'guide');
+    $('film').hidden = quoi !== 'film';
+    $('guide').hidden = quoi !== 'guide';
+    if (quoi === 'film') montrerScene(n); else { stop(); montrerEtape(0); }
+  }
+  $('tab-film').addEventListener('click', () => choisirOnglet('film'));
+  $('tab-guide').addEventListener('click', () => choisirOnglet('guide'));
+  montrerScene(0);
+})();
+</script>
+</body>
+</html>

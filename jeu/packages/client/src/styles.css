@@ -328,15 +328,86 @@ table.tableau td { border-bottom: 1px solid #13283b; padding: 8px 6px; }
 .alerte-front.traine { background: #12324c; border: 1px solid #3f6f99; color: #cfe3ff; }
 .alerte-front.annonce { background: #2e2410; border: 1px solid #a07a2a; color: #ffe2a6; }
 
-/* Tutoriel : bulle du coach */
-.coach { position: fixed; left: 16px; bottom: 60px; z-index: 45; width: min(380px, calc(100% - 32px)); background: #fff7e0; color: #2a1d00; border: 2px solid #ffb800; border-radius: 16px; padding: 12px 14px; box-shadow: 0 12px 30px rgba(0,0,0,.4); }
-.coach .lbl { color: #8a6400; }
-.coach p { margin: 8px 0; line-height: 1.45; font-size: 14px; }
-.coach-tete { display: flex; gap: 10px; align-items: center; }
-.coach-avatar { font-size: 28px; }
-.coach-actions { display: flex; justify-content: flex-end; }
-.coach .btn { background: #fff; color: #2a1d00; border-color: #e0c27a; }
-.coach .btn-principal { background: #ffb800; border-color: #ffb800; }
+/* Tutoriel : guide de la partie (14/11/2026, jeu/conception/tutoriel-anime.md). Sous les fenêtres du jeu (z-index 50). */
+.guide { position: fixed; inset: 0; z-index: 45; pointer-events: none; }
+.guide-projecteur { position: fixed; border: 3px solid #ffd166; border-radius: 14px; box-shadow: 0 0 0 4000px rgba(2, 8, 15, 0.66); transition: left .45s, top .45s, width .45s, height .45s; animation: guide-halo 1.4s ease-in-out infinite; }
+@keyframes guide-halo { 50% { outline: 6px solid rgba(255, 209, 102, 0.35); outline-offset: 2px; } }
+.guide-main { position: fixed; font-size: 34px; line-height: 1; filter: drop-shadow(0 3px 4px rgba(0,0,0,.5)); animation: guide-tape .9s ease-in-out infinite; transition: left .45s, top .45s; }
+@keyframes guide-tape { 0%, 100% { transform: translateY(0); } 45% { transform: translateY(-10px); } 55% { transform: translateY(2px) scale(.92); } }
+.guide-bulle { position: fixed; pointer-events: auto; display: flex; align-items: center; gap: 10px; max-width: min(300px, calc(100vw - 24px)); background: #fff7e0; color: #2a1d00; border: 2px solid #ffb800; border-radius: 14px; padding: 8px 12px; font-weight: 750; font-size: 16px; box-shadow: 0 10px 24px rgba(0,0,0,.45); transition: left .45s, top .45s; }
+.guide-bulle .btn { background: #ffb800; border-color: #ffb800; color: #2a1d00; min-height: 30px; }
+.guide-passer { background: none; border: 0; padding: 2px 0; color: #8a6400; font: inherit; font-size: 12px; font-weight: 600; text-decoration: underline; cursor: pointer; white-space: nowrap; }
+.guide-haut { position: fixed; transform: translateX(-50%); }
+.guide-frise { display: flex; gap: 4px; flex-wrap: nowrap; }
+.guide-frise span { font-size: 12px; padding: 3px 9px; border-radius: 999px; background: rgba(17, 40, 61, 0.92); border: 1px solid var(--bord); color: var(--texte-3); white-space: nowrap; }
+.guide-frise span.on { background: var(--accent); border-color: var(--accent); color: var(--accent-texte); font-weight: 700; }
+.guide-bravo { position: fixed; left: 50%; top: 45%; transform: translate(-50%, -50%); pointer-events: auto; background: var(--panneau-plein); border: 2px solid var(--accent); border-radius: 18px; padding: 18px 22px; text-align: center; box-shadow: 0 16px 40px rgba(0,0,0,.55); width: min(360px, calc(100vw - 32px)); }
+.guide-bravo h2 { margin: 0 0 12px; font-size: 24px; }
+.guide-bravo div { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+@media (max-width: 600px) { .guide-frise span:not(.on) b { display: none; } .guide-frise span { padding: 3px 7px; } }
+@media (prefers-reduced-motion: reduce) { .guide-projecteur, .guide-main { animation: none; } }
+/* Repère du guide sur la carte (« Touche la mer ici ») : un point, posé par Carte.tsx. */
+.repere-guide { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; z-index: 2; }
+
+/* Le petit film « Comment ça marche » (écran des règles, 14/11/2026). */
+.film { max-width: 760px; margin: 6px auto 0; }
+.film-frise { display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; min-height: 26px; margin-bottom: 6px; }
+.film-frise.vide { visibility: hidden; }
+.film-frise span { font-size: 12px; padding: 3px 9px; border-radius: 999px; background: #11283d; color: var(--texte-3); white-space: nowrap; }
+.film-frise span.on { background: var(--accent); color: var(--accent-texte); font-weight: 700; }
+.film-titre { text-align: center; margin-bottom: 6px; }
+.film-svg { display: block; width: 100%; height: auto; max-height: 52vh; border-radius: 12px; touch-action: manipulation; }
+.film-phrase { font-size: 21px; font-weight: 750; text-align: center; margin: 10px 8px 2px; }
+.film-petit { text-align: center; color: var(--texte-2); margin: 0 8px 8px; }
+.film-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.film-points { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+.film-points button { width: 11px; height: 11px; border-radius: 50%; background: #2a4a66; border: 0; padding: 0; cursor: pointer; }
+.film-points button.on { background: var(--accent); }
+.film-souffle line { stroke: #cfe9ff; stroke-width: 1.6; stroke-linecap: round; opacity: 0; animation: film-souffle 1.8s linear infinite; }
+.film-vite .film-souffle line { animation-duration: .7s; stroke-width: 2.2; }
+@keyframes film-souffle { 0% { transform: translateY(-30px); opacity: 0; } 25% { opacity: .6; } 100% { transform: translateY(70px); opacity: 0; } }
+.film-vague { animation: film-vague 2.4s ease-in-out infinite; }
+.film-vite .film-vague { animation-duration: 1s; }
+@keyframes film-vague { 50% { transform: translateY(4px); } }
+.film-tangage { transform-box: fill-box; transform-origin: 50% 100%; animation: film-tangage 3s ease-in-out infinite; }
+.film-vite .film-tangage { animation-duration: 1.1s; }
+@keyframes film-tangage { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2.5deg); } }
+.film-drapeau { transform-box: fill-box; transform-origin: 0 50%; animation: film-drapeau .8s ease-in-out infinite alternate; }
+@keyframes film-drapeau { to { transform: skewY(8deg) scaleX(.85); } }
+.film-trace { stroke-dasharray: 5 5; animation: film-defile 1s linear infinite; }
+@keyframes film-defile { to { stroke-dashoffset: -10; } }
+.film-apparait { animation: film-apparait .45s ease-out both; }
+@keyframes film-apparait { from { opacity: 0; } }
+.film-cap { transition: transform .6s cubic-bezier(.3,1.4,.6,1); }
+.film-cible { cursor: pointer; outline: none; }
+.film-cible circle { transition: fill .2s; }
+.film-cible:hover circle:not(.film-zone), .film-cible:focus-visible circle:not(.film-zone), .film-cible.on circle:not(.film-zone) { fill: #ffffff; }
+.film-voile { transition: opacity .4s, filter .4s; }
+.film-voile.non { opacity: .22; filter: grayscale(1); }
+.film-voile .film-coche { opacity: 0; transition: opacity .3s; }
+.film-voile.ok .film-coche { opacity: 1; }
+.film-jauge { transition: height .6s ease, y .6s ease, fill .6s; }
+.film-main { transition: transform .8s ease; }
+.film-onde { transform-box: fill-box; transform-origin: center; animation: film-onde .6s ease-out forwards; }
+@keyframes film-onde { from { transform: scale(.2); opacity: 1; } to { transform: scale(1); opacity: 0; } }
+.film-roule { transform-box: fill-box; transform-origin: center; animation: film-roule .25s linear infinite; }
+@keyframes film-roule { 0%, 100% { transform: rotate(-14deg) scale(1.05); } 50% { transform: rotate(14deg) scale(.95); } }
+.film-fleche { transition: transform 1s cubic-bezier(.3,1.3,.6,1); }
+.film-spi { transform-box: fill-box; transform-origin: 0 100%; transition: transform .8s ease-out, opacity .8s ease-out; }
+.film-spi.tremble { animation: film-tremble .12s linear infinite; }
+@keyframes film-tremble { 50% { transform: skewX(-6deg) scaleX(.94); } }
+.film-spi.envol { transition: transform 1.1s ease-in, opacity 1.1s ease-in; transform: translate(150px, -70px) rotate(50deg); opacity: 0; }
+.film-carte-rep { transition: transform .6s cubic-bezier(.3,1.3,.6,1); }
+.film-aiguille { transform-box: view-box; transform-origin: 200px 116px; transition: transform 2.2s cubic-bezier(.15,.85,.25,1); }
+.film-arrive { animation: film-arrive 2.6s ease-in-out both; }
+@keyframes film-arrive { from { transform: translateY(230px); } to { transform: translateY(60px); } }
+.film-confetti { transform-box: fill-box; animation: film-confetti 1.6s ease-out both; }
+@keyframes film-confetti { 0% { transform: translate(0, 0) rotate(0); opacity: 0; } 5% { opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) rotate(540deg); opacity: 0; } }
+.film-premier { animation: film-apparait .4s ease-out 1.9s both; }
+@media (max-width: 600px) { .film-phrase { font-size: 18px; } }
+@media (prefers-reduced-motion: reduce) {
+  .film-souffle line, .film-vague, .film-tangage, .film-drapeau, .film-trace, .film-roule, .film-spi.tremble { animation: none; }
+}
 
 /* Briefing de début de partie */
 .modale.briefing { width: min(860px, 100%); max-height: 90vh; overflow-y: auto; }
