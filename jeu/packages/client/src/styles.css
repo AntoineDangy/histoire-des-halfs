@@ -637,3 +637,6 @@ ol.journal-bord { list-style: none; margin: 0; padding: 0; display: flex; flex-d
 
 /* Alerte pendant la lecture du tour (voile inutilisable, 12/11/2026) : message explicite dans le bandeau. */
 .alerte-lecture { font-weight: 800; font-size: 15px; color: #ffb4a8; margin-bottom: 6px; }
+
+/* À la cape (14/11/2026) : aucune voile ne tient au-delà de F9. */
+.note-cape { margin: 4px 0 6px; padding: 6px 10px; border-left: 3px solid #ff5d5d; background: rgba(255, 93, 93, 0.08); border-radius: 4px; font-size: 0.9em; }

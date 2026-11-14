@@ -35,6 +35,8 @@ export interface VoileDef {
   angle_min?: number;
   /** Voile réservée aux monocoques (spi de gros temps, 11/11/2026). */
   monocoque?: boolean;
+  /** Force la plus forte que la voile tient (14/11/2026), seule ou par allure ('90', '135', '180'). Au-delà : trop de toile. */
+  force_max?: number | Record<string, number>;
 }
 
 export interface Speciaux {
@@ -284,6 +286,8 @@ export interface ReglesDef {
   de_du_large?: { carte: number[]; question: number[] };
   usure?: { seuil: number; bandes_force: number[]; par_tour: Record<string, number[]>; mauvaise_reponse: number; tours_reference: number };
   tempete?: Record<string, number[] | number>;
+  /** À la cape (14/11/2026) : à partir de cette force, plus aucune voile ; le bateau dérive sous le vent. */
+  a_la_cape?: { force_min: number; derive_cases?: number };
   anticyclone?: { rapport_fronts: number; rayons: [number, number]; vitesse: [number, number]; forces: number[]; duree: number; max_par_course: number };
   reparations_depart: number;
   voiles_depart: string[];
@@ -476,6 +480,8 @@ export interface BilanVoiles {
   sansCarte: boolean;
   /** Le bateau ne fait pas de route ce tour. */
   fin: boolean;
+  /** À la cape, à sec de toile (14/11/2026) : il dérive sous le vent au lieu de faire route. */
+  cape?: boolean;
 }
 
 export interface ContexteResolution {

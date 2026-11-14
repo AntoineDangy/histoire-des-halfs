@@ -307,17 +307,56 @@ export function calculerDistance(
   return { distance: total, details, louvoyage };
 }
 
-/** Niveau de risque de 0 (blanc) à 5 (noir), après bonus et malus. */
+/**
+ * Force la plus forte que tient une voile à un angle au vent (plages du porteur de projet, 14/11/2026, toutes classes).
+ * Sans angle : la plage la plus large de la voile. Entre deux allures de la table, la plus basse des deux.
+ */
+export function forceMaxVoile(v: VoileDef, angle?: number | null): number {
+  const m = v.force_max;
+  if (m === undefined) return Infinity;
+  if (typeof m === 'number') return m;
+  const cles = Object.keys(m).map(Number).filter((k) => !Number.isNaN(k)).sort((a, b) => a - b);
+  if (!cles.length) return Infinity;
+  if (angle === undefined || angle === null) return Math.max(...cles.map((k) => m[String(k)]));
+  const sous = cles.filter((k) => k <= angle + 1e-9).pop();
+  const sur = cles.find((k) => k >= angle - 1e-9);
+  const vals = [sous, sur].filter((k): k is number => k !== undefined).map((k) => m[String(k)]);
+  return Math.min(...vals);
+}
+
+/** La plage de la voile dépend-elle de l'allure ? */
+export function plageParAllure(v: VoileDef): boolean {
+  return typeof v.force_max === 'object' && v.force_max !== null;
+}
+
+/** Plage d'une voile en clair : « jusqu'à F5 » ou « F4 au travers, F5 au largue, F6 au vent arrière ». */
+export function textePlage(v: VoileDef): string {
+  const m = v.force_max;
+  if (m === undefined) return '';
+  if (typeof m === 'number') return `jusqu'à F${m}`;
+  const noms: Record<string, string> = { '90': 'au travers', '135': 'au largue', '180': 'au vent arrière' };
+  return `jusqu'à ${Object.keys(m).filter((k) => !k.startsWith('_')).sort((a, b) => Number(a) - Number(b)).map((k) => `F${m[k]} ${noms[k] ?? `à ${k}°`}`).join(', ')}`;
+}
+
+/** Niveau de risque de 0 (blanc) à 5 (noir), après bonus et malus. `cap` : pour les voiles dont la plage dépend de l'allure. */
 export function calculerRisque(
   d: Donnees,
   carte: CarteCompilee,
   b: ProfilBateau,
   voileId: string | null,
   vent: Vent,
+  cap?: Direction | null,
 ): { risque: number; details: Detail[] } {
   if (!voileId) return { risque: 0, details: [{ libelle: 'À sec de toile', valeur: 0 }] };
   const v = voile(d, voileId);
   const details: Detail[] = [];
+  // Plage de la voile (14/11/2026, toutes classes) : au-delà, trop de toile, quels que soient les bonus.
+  const angle = cap === undefined || cap === null ? null : Math.max(ANGLE_MIN, angleAllure(cap, vent.direction));
+  const max = forceMaxVoile(v, angle);
+  if (vent.force > max) {
+    details.push({ libelle: `${v.nom_court} : jusqu'à F${max}${plageParAllure(v) ? ' à cette allure' : ''}, trop de toile en F${vent.force}`, valeur: 5 });
+    return { risque: 5, details };
+  }
   let r = v.risque[bandeForce(vent.force)];
   details.push({ libelle: `${v.nom_court} en F${vent.force}`, valeur: r });
   const ctx: ContexteCalcul = { force: vent.force, angle: -1, zones: zonesCase(carte, b.x, b.y) };
@@ -330,13 +369,12 @@ export function calculerRisque(
     r += m.risque;
     details.push({ libelle: m.titre, valeur: m.risque });
   }
-  // Une voile que la table donne en « casse assurée » le reste, quels que soient les bonus (correction du 10/11/2026,
-  // signalée par le porteur de projet : un monocoque « robuste » portait son spi par force 8 sans risque de casse).
-  if (v.risque[bandeForce(vent.force)] >= 5 && r < 5) {
-    details.push({ libelle: 'Casse assurée selon la table : aucun bonus ne sauve cette voile', valeur: 5 - r });
-    r = 5;
+  // Dans sa plage, la voile tient, pour toutes les classes (14/11/2026) : les malus colorent le risque sans la rendre noire.
+  if (r >= 5) {
+    details.push({ libelle: `Dans sa plage (jusqu'à F${max}) : la voile tient`, valeur: 4 - r });
+    r = 4;
   }
-  return { risque: Math.max(0, Math.min(5, r)), details };
+  return { risque: Math.max(0, Math.min(4, r)), details };
 }
 
 /** Un bateau dans la brume est invisible des autres (prévisions, IA, carte). */

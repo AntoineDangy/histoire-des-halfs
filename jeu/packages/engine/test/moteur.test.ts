@@ -352,7 +352,8 @@ describe('partie complète', () => {
     const fam = (id: string) => d.bateaux.find((b) => b.id === d.skippers.find((s) => s.id === id)!.bateau_id)!.famille;
     const vintage = d.skippers.filter((s) => s.classe === 'VINTAGE').map((s) => s.id);
     const flotte = [...vintage.filter((id) => fam(id) === 'vintage_monocoque').slice(0, 2), ...vintage.filter((id) => fam(id) === 'vintage_multicoque').slice(0, 2)];
-    for (const g of [1, 2]) {
+    let deux = 0;
+    for (const g of [1, 2, 3, 4]) {
       let e = creerPartie(d, {
         courseId: 'route-du-rhum', classe: 'VINTAGE', graine: g,
         participants: flotte.map((id) => ({ nom: 'IA', type: 'ia' as const, niveauIA: 'moyen' as const, niveauQuiz: 2 as const, skipperId: id })),
@@ -364,12 +365,20 @@ describe('partie complète', () => {
         e = appliquer(d, e, { type: 'ChoisirCapEtVoile', bateauId: b.id, choix: choisirIA(d, e, b.id) });
       }
       expect(e.phase).toBe('fin');
-      expect(e.vainqueurs?.multicoque).toBeTruthy();
-      expect(e.vainqueurs?.monocoque).toBeTruthy();
-      expect(fam(e.bateaux.find((b) => b.id === e.vainqueurs!.monocoque)!.skipperId)).toBe('vintage_monocoque');
-      expect(e.bateaux.find((b) => b.id === e.vainqueurs!.monocoque)!.arrive || e.bateaux.filter((b) => fam(b.skipperId) === 'vintage_monocoque').every((b) => b.horsClassement)).toBe(true);
-      expect(e.evenements.find((x) => x.type === 'fin')!.texte).toMatch(/en multicoques et de .* en monocoques/);
+      // Une catégorie dont tous les bateaux ont abandonné (chavirage ou démâtage en tempête) n'a pas de vainqueur.
+      const tousHors = (f: string) => e.bateaux.filter((b) => fam(b.skipperId) === f).every((b) => b.horsClassement);
+      if (!tousHors('vintage_multicoque')) expect(e.vainqueurs?.multicoque).toBeTruthy();
+      if (!tousHors('vintage_monocoque')) expect(e.vainqueurs?.monocoque).toBeTruthy();
+      if (e.vainqueurs?.monocoque) {
+        expect(fam(e.bateaux.find((b) => b.id === e.vainqueurs!.monocoque)!.skipperId)).toBe('vintage_monocoque');
+        expect(e.bateaux.find((b) => b.id === e.vainqueurs!.monocoque)!.arrive).toBe(true);
+      }
+      if (e.vainqueurs?.multicoque && e.vainqueurs?.monocoque) {
+        deux++;
+        expect(e.evenements.find((x) => x.type === 'fin')!.texte).toMatch(/en multicoques et de .* en monocoques/);
+      }
     }
+    expect(deux).toBeGreaterThan(0);
   });
 
   it('est rejouable à l\'identique à partir de la graine et des actions', () => {
@@ -678,6 +687,46 @@ describe('étape des voiles : changement de voile, tempête, rapatriement (13/11
     }
     expect(vu).toBeGreaterThan(0);
   });
+  it('le vent tourne et la voile sort de sa plage à la nouvelle allure : changement de voile, pas trop de toile (14/11/2026)', () => {
+    let vu = 0;
+    for (let g = 1; g <= 40 && vu < 2; g++) {
+      let e = creerPartie(d, params(g, 0));
+      // Vent du nord F6, cap au sud sous code 0 (vent arrière : jusqu'à F6) ; le vent passe au nord-est : grand largue, où le
+      // code 0 ne tient que jusqu'à F5. La force ne change pas : c'est la rotation qui condamne la voile.
+      e = { ...e, vent: { direction: 0, force: 6 }, desProchains: { force: 0, direction: 2 }, bateaux: e.bateaux.map((b) => (b.id === 'b1' ? { ...b, relancesRestantes: 0 } : b)) };
+      e = appliquer(d, e, { type: 'ChoisirCapEtVoile', bateauId: 'b1', choix: { cap: 8, voile: 'code0', distanceMax: null } });
+      e = jouerJusqua(d, e, (x) => x.tour > 1);
+      const ev = e.evenements.find((x) => x.tour === 1 && x.bateauId === 'b1' && x.type === 'bloque');
+      if (!ev || !(ev.donnees as { nouvelle?: string }).nouvelle) continue;
+      vu++;
+      expect(ev.texte).toMatch(/la moitié de sa route/);
+      expect(e.evenements.some((x) => x.tour === 1 && x.bateauId === 'b1' && x.type === 'jet_risque')).toBe(false);
+      expect(e.bateaux.find((b) => b.id === 'b1')!.voiles).toContain('code0');
+    }
+    expect(vu).toBeGreaterThan(0);
+  });
+  it('à la cape (14/11/2026) : au-delà de F9, la voilure réduite est affalée et le bateau dérive d\'une case sous le vent, sans dé du large', () => {
+    let vu = 0;
+    for (let g = 1; g <= 40 && vu < 2; g++) {
+      let e = creerPartie(d, params(g, 0));
+      e = { ...e, vent: { direction: 4, force: 9 }, desProchains: { force: 1, direction: 0 }, bateaux: e.bateaux.map((b) => (b.id === 'b1' ? { ...b, relancesRestantes: 0 } : b)) };
+      const [x0, y0] = [e.bateaux.find((b) => b.id === 'b1')!.x, e.bateaux.find((b) => b.id === 'b1')!.y];
+      e = appliquer(d, e, { type: 'ChoisirCapEtVoile', bateauId: 'b1', choix: { cap: 12, voile: 'reduite', distanceMax: null } });
+      e = jouerJusqua(d, e, (x) => x.tour > 1);
+      const ev = e.evenements.find((x) => x.tour === 1 && x.bateauId === 'b1' && x.type === 'deplacement');
+      if (!ev || !(ev.donnees as { cape?: boolean }).cape) continue; // démâté par le dé de tempête
+      vu++;
+      expect(ev.texte).toMatch(/à la cape, à sec de toile/);
+      const b = e.bateaux.find((x) => x.id === 'b1')!;
+      expect(b.voiles).toContain('reduite'); // affalée, pas perdue
+      expect(e.evenements.some((x) => x.tour === 1 && x.bateauId === 'b1' && (x.type === 'de_evenement' || x.type === 'jet_risque'))).toBe(false);
+      // Une case au plus, sous le vent (le vent vient de l'est : vers l'ouest), jamais au vent.
+      expect(Math.abs(b.x - x0)).toBeLessThanOrEqual(1);
+      expect(Math.abs(b.y - y0)).toBeLessThanOrEqual(1);
+      expect(b.x).toBeLessThanOrEqual(x0);
+    }
+    expect(vu).toBeGreaterThan(0);
+  });
   it('démâtage : rapatriement par la mer, 250 milles par tour au plus, puis 1 tour de réparation et des voiles neuves', () => {
     let vu = 0;
     for (let g = 1; g <= 30 && vu < 1; g++) {
@@ -843,15 +892,23 @@ describe('équité humain / IA', () => {
     expect(facesForce(d, 1).filter((f) => f > 0).length).toBeGreaterThanOrEqual(4);
     expect(facesForce(d, 4)).toEqual(d.regles.de_force);
   });
-  it('une voile en casse assurée le reste malgré la robustesse du bateau (spi par force 8)', () => {
+  it('plages de force des voiles, les mêmes pour toutes les classes et toutes les compétences (porteur de projet, 14/11/2026)', () => {
     const carte = compilerCarte(courseTest(['............', '............', '............']));
-    for (const famille of ['imoca_derives', 'vintage_monocoque', 'class40']) {
-      for (const competence of ['aucune', 'communicant', 'dur_au_mal']) {
-        expect(calculerRisque(d, carte, profil(competence, famille), 'spi', { direction: 0, force: 8 }).risque).toBe(5);
+    // [voile, cap avec un vent du nord, force la plus forte tenue] : cap 4 = travers, 6 = largue, 7 = entre largue et vent
+    // arrière (la plus basse des deux plages), 8 = vent arrière.
+    const plages: [string, number, number][] = [
+      ['reduite', 8, 9], ['j3', 4, 7], ['j3', 8, 7], ['solent', 4, 5], ['solent', 8, 5],
+      ['code0', 4, 4], ['code0', 6, 5], ['code0', 7, 5], ['code0', 8, 6],
+      ['gennaker', 6, 5], ['gennaker', 8, 6], ['spi', 6, 4], ['spi', 8, 5], ['spi_gros_temps', 6, 6], ['spi_gros_temps', 8, 7],
+    ];
+    for (const famille of ['imoca_foiler', 'imoca_derives', 'ultim', 'ocean_fifty', 'class40', 'ultim_ancien', 'vintage_monocoque', 'vintage_multicoque'])
+      for (const competence of ['aucune', 'prudent', 'dur_au_mal']) {
+        const p = profil(competence, famille);
+        for (const [v, cap, max] of plages) {
+          expect(calculerRisque(d, carte, p, v, { direction: 0, force: max }, cap).risque, `${famille} ${competence} ${v} cap ${cap} F${max}`).toBeLessThan(5);
+          expect(calculerRisque(d, carte, p, v, { direction: 0, force: max + 1 }, cap).risque, `${famille} ${competence} ${v} cap ${cap} F${max + 1}`).toBe(5);
+        }
       }
-      // la robustesse aide toujours pour les voiles qui ne sont pas en casse assurée
-      expect(calculerRisque(d, carte, profil('aucune', famille), 'solent', { direction: 0, force: 8 }).risque).toBe(3);
-    }
   });
   it('louvoyage : 60 % de la distance au près affichée, à la case près (contrôle du 10/11/2026)', () => {
     const carte = compilerCarte(courseTest(['............', '............', '...........A']));

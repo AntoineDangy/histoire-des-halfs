@@ -1,3 +1,4 @@
+import { textePlage } from '@cal/engine';
 import { D } from '../commun';
 
 /**
@@ -107,15 +108,15 @@ export default function Regles({ onRetour }: { onRetour: () => void }) {
 
           <Bloc titre="Les voiles" accroche="La bonne voile, au bon moment. Toute la course est là.">
             <ul className="regles-voiles">
-              <li><b>Spi</b> : le roi du vent arrière, à partir du grand largue ({String(V('spi').angle_min ?? 135).replace('.', ',')}° du vent).</li>
-              <li><b>Spi gros temps</b> (monocoques) : le spi des fortes brises, de F6 à F8, à partir du grand largue (135° du vent).</li>
-              <li><b>Gennaker</b> : rapide et nerveux, au largue, à partir de {String(V('gennaker').angle_min ?? 112.5).replace('.', ',')}° du vent, jamais au près ni au travers.</li>
-              <li><b>Code 0</b> : du travers au largue ({V('code0').angle_min ?? 90}° du vent et plus), sur le bout-dehors.</li>
-              <li><b>Solent</b> : la voile à tout faire, au près comme au travers.</li>
-              <li><b>J3 / foc</b> : la voile de brise, solide.</li>
-              <li><b>Voilure réduite</b> : grand-voile arisée et tourmentin, pour survivre.</li>
+              <li><b>Spi</b> : le roi du vent arrière, à partir du grand largue ({String(V('spi').angle_min ?? 135).replace('.', ',')}° du vent). Tient {textePlage(V('spi'))}.</li>
+              <li><b>Spi gros temps</b> (monocoques) : le spi des fortes brises, à partir du grand largue (135° du vent). Tient {textePlage(V('spi_gros_temps'))}.</li>
+              <li><b>Gennaker</b> : rapide et nerveux, au largue, à partir de {String(V('gennaker').angle_min ?? 112.5).replace('.', ',')}° du vent, jamais au près ni au travers. Tient {textePlage(V('gennaker'))}.</li>
+              <li><b>Code 0</b> : du travers au largue ({V('code0').angle_min ?? 90}° du vent et plus), sur le bout-dehors. Tient {textePlage(V('code0'))}.</li>
+              <li><b>Solent</b> : la voile à tout faire, au près comme au travers, {textePlage(V('solent'))}.</li>
+              <li><b>J3 / foc</b> : la voile de brise, solide, {textePlage(V('j3'))}.</li>
+              <li><b>Voilure réduite</b> : grand-voile arisée et tourmentin, pour survivre, {textePlage(V('reduite'))}. Au-delà, on se met à la cape, à sec de toile.</li>
             </ul>
-            <p className="muted">Une voile trop fragile pour le vent du moment est grisée : on ne peut pas la choisir. Mais si le vent forcit après votre choix, il y a <b>trop de toile</b> : la voile lâche, le bateau ne fait qu'un tiers de sa route et ne lance pas le dé du large (un multicoque chavire : fin de course). Une <b>carte réparation</b> repêche la voile, avec 40 % d'usure en plus. Si le vent <b>tourne</b> et que la voile ne porte plus, on change de voile : la manœuvre coûte la moitié de la route et la carte du large du tour.</p>
+            <p className="muted">Ces plages sont les mêmes pour toutes les classes. Une voile hors de sa plage pour le vent du moment est grisée : on ne peut pas la choisir. Mais si le vent forcit après votre choix, il y a <b>trop de toile</b> : la voile lâche, le bateau ne fait qu'un tiers de sa route et ne lance pas le dé du large (un multicoque chavire : fin de course). Une <b>carte réparation</b> repêche la voile, avec 40 % d'usure en plus. Si le vent <b>tourne</b> et que la voile ne porte plus, ou sort de sa plage à la nouvelle allure, on change de voile : la manœuvre coûte la moitié de la route et la carte du large du tour.</p>
           </Bloc>
         </div>
 
@@ -147,6 +148,7 @@ export default function Regles({ onRetour }: { onRetour: () => void }) {
               ))}
             </div>
             <p className="muted">Faces rouges : <b>démâtage</b> pour un monocoque (il ne reste qu'un gréement de fortune) ou <b>chavirage</b> pour un multicoque. Démâté, le monocoque rentre par la mer au port d'escale le plus proche (250 milles par tour au plus, sans couper la terre ni les rails interdits), y répare 1 tour et repart avec des voiles neuves ; sans port (Fastnet), c'est la fin de course. Un multicoque chaviré abandonne.</p>
+            <p className="muted"><b>À la cape</b> : à partir de force {R.a_la_cape?.force_min ?? 10}, aucune voile ne tient, même la voilure réduite. À sec de toile, le bateau dérive d'une case sous le vent, sans choisir sa direction et sans dé du large.</p>
           </Bloc>
         </div>
 

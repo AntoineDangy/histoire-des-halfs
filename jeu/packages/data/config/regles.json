@@ -28,6 +28,7 @@
     "_note": "Décision du 10/11/2026 : usure des voiles d'avant à chaque tour d'utilisation, selon la voile et la force (F1-3, F4-5, F6, F7+). Référence d'une transat (10 tours) : spi perdu en 3 tours à F7, gennaker 4, Code 0 5, solent 8, J3 15. Multipliée par la robustesse de la classe et par 10 / tours moyens de la course. La grand-voile ne s'use pas."
   },
   "tempete": { "9": [6], "10": [4, 5, 6], "11": [2, 3, 4, 5, 6], "force_max_fronts": 11, "_note": "Décision du 10/11/2026 : au-delà de F8, dé tempête : démâtage (monocoque) ou chavirage (multicoque)." },
+  "a_la_cape": { "force_min": 10, "derive_cases": 1, "_note": "Décision du porteur de projet (14/11/2026) : la voilure réduite tient jusqu'à F9 ; au-delà, plus aucune voile, le bateau est à la cape, à sec de toile : il dérive d'une case sous le vent, sans choisir sa direction, sans dé du large. Le dé de tempête s'applique toujours." },
   "anticyclone": { "rapport_fronts": 0.5, "rayons": [11, 9], "vitesse": [0.4, 0], "forces": [3, 4], "duree": 6, "max_par_course": 1, "_note": "Décision du 10/11/2026 : anticyclone qui apparaît au hasard pendant la traversée, deux fois moins souvent qu'un front. Calme au centre, vent qui tourne dans le sens des aiguilles d'une montre autour." },
   "seuil_risque": [0, 2, 3, 4, 5, 6],
   "reparations_depart": 2,

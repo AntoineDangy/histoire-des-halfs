@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { calculerDistance, calculerRisque, compilerCarte, navigable, nomBeaufort, zonesCase } from '@cal/engine';
+import { calculerDistance, calculerRisque, compilerCarte, navigable, nomBeaufort, textePlage, zonesCase } from '@cal/engine';
 import { bateauDef, D, familleDef, nomClasse, RISQUES } from '../commun';
 import { AllureKey, chargerModeles, Forme, modelesAcharger, modeleDuBateau, Scene3D } from '../jeu/scene3d';
 import { nomsVoiles, planDe } from '../jeu/voilure';
@@ -19,6 +19,8 @@ const ALLURES: { angle: number; cap: number; nom: string }[] = [
   { angle: 180, cap: 8, nom: 'Vent arrière (180°)' },
 ];
 const FORCES = [2, 4, 6, 8];
+/** Forces du tableau des risques : là où les plages des voiles s'arrêtent (14/11/2026). */
+const FORCES_RISQUE = [3, 4, 5, 6, 7, 8, 9, 10];
 
 const carte = compilerCarte(D.courses[0]);
 const MPC = D.courses[0].milles_par_case ?? 1;
@@ -40,7 +42,7 @@ function meilleure(famille: string, voiles: string[], cap: number, force: number
     const vent = { direction: 0, force };
     const dist = calculerDistance(D, carte, profil(famille), v, cap, vent).distance;
     if (dist === null) continue;
-    const risque = calculerRisque(D, carte, profil(famille), v, vent).risque;
+    const risque = calculerRisque(D, carte, profil(famille), v, vent, cap).risque;
     const mn = Math.round(dist * MPC);
     if (risque >= 5) continue;
     if (!best || mn > best.mn || (mn === best.mn && risque < best.risque)) best = { voile: v, mn, risque };
@@ -357,16 +359,18 @@ export default function Hangar({ onRetour }: { onRetour: () => void }) {
             </div>
 
             <h3>Risque de chaque voile selon le vent</h3>
+            <p className="muted">Au vent arrière. Plage de chaque voile, la même pour toutes les classes : au-delà, trop de toile. Au-delà de F9, à la cape.</p>
             <div className="hangar-tableau-defile">
               <table className="tableau hangar-tableau">
                 <thead>
-                  <tr><th>Voile</th>{FORCES.map((fo) => <th key={fo}>F{fo}</th>)}</tr>
+                  <tr><th>Voile</th>{FORCES_RISQUE.map((fo) => <th key={fo}>F{fo}</th>)}<th>Plage</th></tr>
                 </thead>
                 <tbody>
                   {voiles.map((v) => (
                     <tr key={v}>
                       <td>{nomVoile(v)}</td>
-                      {FORCES.map((fo) => <td key={fo}><Pastille niveau={calculerRisque(D, carte, profil(famille), v, { direction: 0, force: fo }).risque} /></td>)}
+                      {FORCES_RISQUE.map((fo) => <td key={fo}><Pastille niveau={calculerRisque(D, carte, profil(famille), v, { direction: 0, force: fo }, 8).risque} /></td>)}
+                      <td className="muted">{textePlage(D.voiles.find((x) => x.id === v)!)}</td>
                     </tr>
                   ))}
                 </tbody>

@@ -92,7 +92,7 @@ export function distanceAttendue(d: Donnees, etat: EtatPartie, bateauId: string,
       const vent = { direction: norm(base.direction + dd), force: Math.max(r.force_min, Math.min(r.force_max, base.force + df)) };
       const dist = calculerDistance(d, carte, b, voile, cap, vent).distance;
       if (dist === null) continue;
-      const risque = voile ? calculerRisque(d, carte, b, voile, vent).risque : 0;
+      const risque = voile ? calculerRisque(d, carte, b, voile, vent, cap).risque : 0;
       if (risque >= 5) {
         noir += w;
         continue;
@@ -123,18 +123,18 @@ export function apercuCap(d: Donnees, etat: EtatPartie, bateauId: string, cap: n
     : { direction: vent.direction, force: Math.min(d.regles.force_max, vent.force + fMax) };
   const voiles = ids.map((v) => {
     const dist = calculerDistance(d, carte, b, v, cap, vent);
-    const risque = calculerRisque(d, carte, b, v, vent);
+    const risque = calculerRisque(d, carte, b, v, vent, cap);
     const siLeVentTourne = [-2, 0, 2].map((delta) => {
       const vt = { direction: norm(vent.direction + delta), force: vent.force };
       return {
         delta,
         distance: calculerDistance(d, carte, b, v, cap, vt).distance,
-        risque: calculerRisque(d, carte, b, v, vt).risque,
+        risque: calculerRisque(d, carte, b, v, vt, cap).risque,
         angle: angleAllure(cap, vt.direction),
       };
     });
     const att = dist.distance === null ? { attendu: 0, pNoir: 0 } : distanceAttendue(d, etat, bateauId, v, cap);
-    return { voile: v, distance: dist.distance, risque: risque.risque, details: dist.details, detailsRisque: risque.details, siLeVentTourne, risqueSiForcit: calculerRisque(d, carte, b, v, ventForcit).risque, ...att };
+    return { voile: v, distance: dist.distance, risque: risque.risque, details: dist.details, detailsRisque: risque.details, siLeVentTourne, risqueSiForcit: calculerRisque(d, carte, b, v, ventForcit, cap).risque, ...att };
   });
   const sec = calculerDistance(d, carte, b, null, cap, vent);
   voiles.push({ voile: null, distance: sec.distance, risque: 0, details: sec.details, detailsRisque: [], siLeVentTourne: [], risqueSiForcit: 0, ...(sec.distance === null ? { attendu: 0, pNoir: 0 } : distanceAttendue(d, etat, bateauId, null, cap)) });

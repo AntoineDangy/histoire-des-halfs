@@ -4,10 +4,13 @@ import { distanceRestanteCase, idx } from './carte';
 import { ANGLE_MIN, angleAllure, NB_DIR, norm } from './geo';
 import { carteDe, demiCapsPermis, enCourse, peutRecoudre, usureParTour } from './moteur';
 import { alizeApres, alizeEn, frontSur, ventCourant } from './meteo';
-import { calculerDistance, calculerRisque, competence, dansBrume, facesForce, tracerChemin } from './regles';
+import { calculerDistance, calculerRisque, competence, dansBrume, estMulticoque, facesForce, tracerChemin } from './regles';
 import { alea } from './rng';
 import { desVus } from './apercu';
 import type { Choix, ContexteResolution, Donnees, EtatBateau, EtatPartie, PenaliteDef, Vent } from './types';
+
+/** Coût, en cases, d'un chavirage (fin de course) pour l'IA d'un multicoque : elle ne risque pas le trop de toile. */
+const CHAVIRAGE_IA = 40;
 
 interface Option {
   cap: number;
@@ -39,7 +42,7 @@ export function gainOption(d: Donnees, etat: EtatPartie, b: EtatBateau, opt: Opt
   const carte = carteDe(d, etat);
   const { distance } = calculerDistance(d, carte, b, opt.voile, opt.cap, vent);
   if (distance === null) return { gain: 0, risque: 0, distance: null };
-  const { risque } = calculerRisque(d, carte, b, opt.voile, vent);
+  const { risque } = calculerRisque(d, carte, b, opt.voile, vent, opt.cap);
   const r = cheminOption(d, etat, b, opt.cap, distance, occ);
   const avant = distanceRestanteCase(carte, b.x, b.y, b.porte);
   let apres = r.arrive ? -r.depassement : distanceRestanteCase(carte, r.fin[0], r.fin[1], r.porte);
@@ -118,7 +121,10 @@ export function choisirIA(d: Donnees, etat: EtatPartie, bateauId: string, opts: 
   }
   {
     const carte = carteDe(d, etat);
-    options = options.filter((o) => calculerDistance(d, carte, b, o.voile, o.cap, ventCourant(etat, b.x, b.y)).distance !== null);
+    const vent = ventCourant(etat, b.x, b.y);
+    // Comme un humain : pas de voile qui ne porte pas, ni de voile hors de sa plage avec le vent actuel (14/11/2026).
+    options = options.filter((o) => calculerDistance(d, carte, b, o.voile, o.cap, vent).distance !== null
+      && (o.voile === null || calculerRisque(d, carte, b, o.voile, vent, o.cap).risque < 5));
     if (options.length === 0)
       for (const cap of caps)
         if (calculerDistance(d, carte, b, null, cap, ventCourant(etat, b.x, b.y)).distance !== null) options.push({ cap, voile: null });
@@ -147,7 +153,8 @@ export function choisirIA(d: Donnees, etat: EtatPartie, bateauId: string, opts: 
         const { gain, risque, distance } = gainOption(d, etat, b, o, s.vent, occ);
         if (distance === null) continue;
         let v: number;
-        if (risque >= 5) v = -(b.reparations > 0 ? 1.2 : 2.5);
+        // Trop de toile : voile perdue pour un monocoque ; chavirage, donc fin de course, pour un multicoque (14/11/2026).
+        if (risque >= 5) v = estMulticoque(d, b) ? -CHAVIRAGE_IA : -(b.reparations > 0 ? 1.2 : 2.5);
         else if (d.regles.usure) {
           // Règles du 10/11/2026 : le risque pris se paie en usure de la voile (perdue au seuil), et la tempête
           // (F9 et plus) peut démâter ou faire chavirer.
@@ -193,7 +200,7 @@ export function decisionRelanceIA(d: Donnees, etat: EtatPartie, b: EtatBateau, c
   if (angleAllure(choix.cap!, vent.direction) < ANGLE_MIN) return true;
   const carte = carteDe(d, etat);
   if (calculerDistance(d, carte, b, choix.voile, choix.cap!, vent).distance === null) return true;
-  return calculerRisque(d, carte, b, choix.voile, vent).risque >= 4;
+  return calculerRisque(d, carte, b, choix.voile, vent, choix.cap).risque >= 4;
 }
 
 export function decisionReparationIA(b: EtatBateau, motif: 'voile_noire' | 'penalite', p: PenaliteDef['id'] | null): boolean {

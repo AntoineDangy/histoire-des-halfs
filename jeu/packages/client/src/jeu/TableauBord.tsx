@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { alizeApres, alizeEn, dansAlize, frontSur, nomBeaufort, ventCourant } from '@cal/engine';
+import { alizeApres, alizeEn, dansAlize, frontSur, nomBeaufort, textePlage, ventCourant } from '@cal/engine';
 import { ANGLE_MIN, angleAllure, apercuCap, bateau, usureParTour, choisirIA, demiCapsPermis, NB_DIR, nomAllure, nomCap, NOMS_ALLURES, NOMS_DIR, NOMS_DIR_LONGS, norm, peutRecoudre, surCaseAbri, trajectoirePrevue } from '@cal/engine';
 import type { Choix, EtatPartie } from '@cal/engine';
 import { bateauDef, competenceDef, courseDef, D, DE_LARGE, faces, RISQUES, skipper } from '../commun';
@@ -132,7 +132,7 @@ function etatVoile(b: ReturnType<typeof bateau>, v: LigneVoile, force: number) {
   const perdue = v.voile !== null && b.voilesPerdues.includes(v.voile);
   const absente = v.voile !== null && !b.voiles.includes(v.voile) && !perdue;
   const tropFort = !absente && !perdue && v.distance !== null && v.risque >= 5;
-  const raison = absente ? 'Laissée à quai' : perdue ? 'Voile perdue' : tropFort ? `Vent trop fort (force ${force}) : elle ne tiendrait pas` : v.distance === null ? v.details[0]?.libelle ?? 'Inutilisable à cette allure' : def?.detail ?? 'Obligé d\'aller au bout';
+  const raison = absente ? 'Laissée à quai' : perdue ? 'Voile perdue' : tropFort ? `Vent trop fort (F${force}) : ${def ? textePlage(def) : 'elle ne tiendrait pas'}` : v.distance === null ? v.details[0]?.libelle ?? 'Inutilisable à cette allure' : def?.detail ?? 'Obligé d\'aller au bout';
   const desactive = absente || perdue || v.distance === null || tropFort; // plus de « case noire » : voile interdite (11/11/2026)
   return { def, raison, desactive };
 }
@@ -249,7 +249,9 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider, entet
   const comp = competenceDef(b.competence);
   const classe = D.classes.find((c) => c.id === etat.params.classe);
   const bulletin = etat.params.options.bulletinMeteo && classe?.bulletin_meteo;
-  const sansVoile = b.voiles.length === 0;
+  // À la cape (14/11/2026) : au-delà de F9, aucune voile ne tient ; il ne reste que « à sec de toile ».
+  const aLaCape = vent.force >= (D.regles.a_la_cape?.force_min ?? Infinity);
+  const sansVoile = b.voiles.length === 0 || aLaCape;
 
   useEffect(() => {
     setCap(null);
@@ -519,6 +521,9 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider, entet
           </button>
         )}
       </div>
+      {aLaCape && (
+        <p className="note-cape">⚓ Force {vent.force} : aucune voile ne tient. À la cape, à sec de toile : si le vent reste à force {D.regles.a_la_cape?.force_min} ou plus, le bateau dérive d'une case sous le vent, quel que soit le cap, sans dé du large.</p>
+      )}
       <div className="barre-ligne">
         <div className="boutons-voiles">
           {!apercu && D.regles.voiles_depart.filter((v) => b.voiles.includes(v)).map((v) => {
@@ -541,7 +546,7 @@ export default function TableauBord({ etat, bateauId, onApercu, onValider, entet
                 <IconeVoile forme={def ? def.forme_3d ?? 'j2' : null} modele={modele} ris={v.voile === 'reduite'} spi={couleurSpi} />
                 {v.voile && jauge(v.voile)}
                 <span className="n">{def ? def.nom_court : 'À sec'}</span>
-                <span className="d">{desactive ? '—' : mn(v.distance!)}{!desactive && v.risque > 0 && v.risque < 5 && <> <PastilleRisque niveau={v.risque} court /></>}</span>
+                <span className="d">{desactive ? '—' : v.voile === null && aLaCape ? 'dérive' : mn(v.distance!)}{!desactive && v.risque > 0 && v.risque < 5 && <> <PastilleRisque niveau={v.risque} court /></>}</span>
                 {desactive && <span className="s">{raison.length > 22 ? `${raison.slice(0, 20)}…` : raison}</span>}
               </button>
             );

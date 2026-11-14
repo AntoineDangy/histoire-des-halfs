@@ -562,6 +562,13 @@ function etapeBateau(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: ContexteR
           ctx.etape = 'fin';
           return;
         }
+        if (bilan.cape) {
+          ctx.delta = bilan.delta;
+          ctx.relance = bilan.relance;
+          ctx.ventLocal = bilan.ventLocal ?? ventLocalDe(d, etat, b, ctx.delta);
+          deriverALaCape(d, etat, b, ctx);
+          return;
+        }
         ctx.delta = bilan.delta;
         ctx.relance = bilan.relance;
         ctx.ventLocal = bilan.ventLocal ?? ventLocalDe(d, etat, b, ctx.delta);
@@ -648,7 +655,7 @@ function calculerTour(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: Contexte
   ctx.distance = dist;
   ctx.distanceDes = dist;
   ctx.louvoyage = louvoyage;
-  ctx.risque = calculerRisque(d, carte, b, choix.voile, vent).risque;
+  ctx.risque = calculerRisque(d, carte, b, choix.voile, vent, choix.cap).risque;
   b.derniereVoile = choix.voile;
   evt(etat, 'debut', louvoyage ? `${nom} louvoie face au vent sous ${nomVoile} (bords à ±${d.regles.louvoyage?.angle_bords ?? 40}°),` : `${nom} : ${nomAllure(ctx.angle).toLowerCase()} sous ${nomVoile}, ${Math.round(dist * (carte.course.milles_par_case ?? 1))} milles possibles.`, b.id, {
     vent, angle: ctx.angle, distance: dist, risque: ctx.risque, voile: choix.voile, cap: choix.cap, louvoyage,
@@ -1535,14 +1542,20 @@ function voilesApresRelance(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: Co
   bilan.ventLocal = vent;
   ctx.etape = 'fin';
   const angle = angleAllure(choix.cap!, vent.direction);
-  // 1. Le vent a tourné et la voile ne porte plus : on change de voile ; la manœuvre coûte la moitié de la route et la
-  // carte du large du tour (une question reste possible).
-  if (calculerDistance(d, carte, b, choix.voile, choix.cap!, vent).distance === null) {
+  // À la cape (14/11/2026) : au-delà de F9, plus aucune voile ; le bateau dérive sous le vent, sans dé du large.
+  const cape = vent.force >= (d.regles.a_la_cape?.force_min ?? Infinity);
+  if (cape) {
+    bilan.cape = true;
+    bilan.sansLarge = true;
+  }
+  // 1. Le vent a tourné et la voile ne porte plus, ou sort de sa plage à la nouvelle allure (14/11/2026) : on change de
+  // voile ; la manœuvre coûte la moitié de la route et la carte du large du tour (une question reste possible).
+  if (!cape && (calculerDistance(d, carte, b, choix.voile, choix.cap!, vent).distance === null || horsPlageParRotation(d, etat, b, vent))) {
     let meilleure: string | undefined;
     let dMax = -1;
     for (const v of b.voiles) {
       const dist = calculerDistance(d, carte, b, v, choix.cap!, vent).distance;
-      if (dist !== null && dist > dMax && calculerRisque(d, carte, b, v, vent).risque < 5) {
+      if (dist !== null && dist > dMax && calculerRisque(d, carte, b, v, vent, choix.cap!).risque < 5) {
         dMax = dist;
         meilleure = v;
       }
@@ -1569,8 +1582,9 @@ function voilesApresRelance(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: Co
     bilan.sansLarge = true;
     return;
   }
-  // 3. Trop de toile pour ce vent : la voile lâche ; un tiers de route, pas de dé du large.
-  if (choix.voile && calculerRisque(d, carte, b, choix.voile, vent).risque >= 5) {
+  // 3. Trop de toile pour ce vent : la voile lâche ; un tiers de route (à la cape : la dérive), pas de dé du large. À la
+  // cape, la voilure réduite est affalée sans casse.
+  if (choix.voile && !(cape && choix.voile === 'reduite') && calculerRisque(d, carte, b, choix.voile, vent, choix.cap).risque >= 5) {
     bilan.sansLarge = true;
     if (estMulticoque(d, b)) {
       chavirer(d, etat, b, 'trop de toile');
@@ -1597,6 +1611,7 @@ function voilesApresRelance(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: Co
 function traiterSurtoile(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: ContexteResolution, jouer: boolean) {
   const v = b.choix?.voile ?? null;
   const nom = nomSkipper(d, etat, b);
+  const cape = !!etat.resolution?.voiles?.[b.id]?.cape;
   ctx.etape = 'fin';
   if (!v) return;
   if (jouer && b.reparations > 0) {
@@ -1612,11 +1627,54 @@ function traiterSurtoile(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: Conte
       return;
     }
     b.usure[v] = apres;
-    evt(etat, 'reparation', `${nom} joue une carte réparation : son ${voile(d, v).nom_court}, repêché, est réparé tant bien que mal (usure ${Math.round(apres)} %). Un tiers de la route ce tour.`, b.id);
+    evt(etat, 'reparation', `${nom} joue une carte réparation : son ${voile(d, v).nom_court}, repêché, est réparé tant bien que mal (usure ${Math.round(apres)} %).${cape ? '' : ' Un tiers de la route ce tour.'}`, b.id);
     return;
   }
   perdreVoile(d, etat, b, v);
-  evt(etat, 'info', `${nom} perd son ${voile(d, v).nom_court} et ne fait qu'un tiers de sa route ce tour.`, b.id);
+  evt(etat, 'info', cape ? `${nom} perd son ${voile(d, v).nom_court}.` : `${nom} perd son ${voile(d, v).nom_court} et ne fait qu'un tiers de sa route ce tour.`, b.id);
+}
+
+/**
+ * Voile sortie de sa plage par la seule rotation du vent (14/11/2026) : trop de toile à la nouvelle allure, mais pas à
+ * l'allure prévue au moment du choix, avec la même force. C'est alors un changement de voile, pas une voile qui lâche.
+ */
+function horsPlageParRotation(d: Donnees, etat: EtatPartie, b: EtatBateau, vent: Vent): boolean {
+  const choix = b.choix!;
+  if (!choix.voile || choix.cap === null) return false;
+  const carte = carteDe(d, etat);
+  if (calculerRisque(d, carte, b, choix.voile, vent, choix.cap).risque < 5) return false;
+  const avant = etat.resolution?.previsions?.[b.id]?.vent ?? ventLocalDe(d, etat, b, 0);
+  return calculerRisque(d, carte, b, choix.voile, { direction: avant.direction, force: vent.force }, choix.cap).risque < 5;
+}
+
+/** À la cape, à sec de toile (14/11/2026) : le bateau dérive sous le vent, sans choisir sa direction, sans user de voile. */
+function deriverALaCape(d: Donnees, etat: EtatPartie, b: EtatBateau, ctx: ContexteResolution) {
+  const carte = carteDe(d, etat);
+  const vent = ctx.ventLocal!;
+  const nom = nomSkipper(d, etat, b);
+  const depart: Case = [b.x, b.y];
+  const cases = Math.max(1, Math.round(d.regles.a_la_cape?.derive_cases ?? 1));
+  ctx.etape = 'fin';
+  ctx.issue = 'à la cape';
+  ctx.budget = cases;
+  b.distanceDernierTour = 0;
+  b.derniereVoile = null;
+  const r = tracerChemin(carte, new Set<number>(), depart, b.porte, norm(vent.direction + NB_DIR / 2), cases, {
+    traverse: false, coutBrume: 1, ignoreCourantDefavorable: true,
+  });
+  const occupe = (x: number, y: number) => etat.bateaux.some((o) => o.id !== b.id && enCourse(o) && o.x === x && o.y === y);
+  const derive = !r.arrive && r.chemin.length > 0 && !occupe(r.fin[0], r.fin[1]);
+  const chemin = derive ? r.chemin : [];
+  if (derive) {
+    [b.x, b.y] = r.fin;
+    b.pos = [Math.round(r.finExacte[0] * 100) / 100, Math.round(r.finExacte[1] * 100) / 100];
+  }
+  ctx.chemin = chemin;
+  const mn = milles(carte, depart, [b.x, b.y]);
+  evt(etat, 'deplacement', derive
+    ? `${nom} est à la cape, à sec de toile (force ${vent.force}) : il dérive de ${mn} milles sous le vent.`
+    : `${nom} est à la cape, à sec de toile (force ${vent.force}) : il tient sa position.`, b.id, { de: depart, chemin, cape: true, vent });
+  majSillage(b, depart, chemin);
 }
 
 /** Dé de tempête (F9 et plus ; chances inchangées le 13/11/2026). Vrai si le bateau démâte ou chavire. */
